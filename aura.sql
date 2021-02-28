@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 27 fév. 2021 à 22:14
--- Version du serveur :  5.7.26
--- Version de PHP :  7.3.5
+-- Généré le : Dim 28 fév. 2021 à 11:00
+-- Version du serveur :  5.7.31
+-- Version de PHP : 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `aura`
+-- Base de données : `aura`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +31,6 @@ DROP TABLE IF EXISTS `activite`;
 CREATE TABLE IF NOT EXISTS `activite` (
   `id` int(16) NOT NULL,
   `idcoach` varchar(255) NOT NULL,
-  `idclient` varchar(255) NOT NULL,
   `duree` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `nombremax` int(16) NOT NULL,
@@ -236,6 +234,69 @@ CREATE TABLE IF NOT EXISTS `niveau` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `objectif`
+--
+
+DROP TABLE IF EXISTS `objectif`;
+CREATE TABLE IF NOT EXISTS `objectif` (
+  `id` varchar(50) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `reponse` int(11) NOT NULL,
+  `dateDebut` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `duree` int(11) NOT NULL,
+  `idClient` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ObjCli` (`idClient`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `objectif_pred`
+--
+
+DROP TABLE IF EXISTS `objectif_pred`;
+CREATE TABLE IF NOT EXISTS `objectif_pred` (
+  `id` varchar(50) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `reponse` int(11) NOT NULL,
+  `duree` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `participationactivté`
+--
+
+DROP TABLE IF EXISTS `participationactivté`;
+CREATE TABLE IF NOT EXISTS `participationactivté` (
+  `id` int(16) NOT NULL,
+  `id_client` varchar(255) NOT NULL,
+  `id_activite` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `part1` (`id_client`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `participationtherapie`
+--
+
+DROP TABLE IF EXISTS `participationtherapie`;
+CREATE TABLE IF NOT EXISTS `participationtherapie` (
+  `id` int(16) NOT NULL,
+  `id_client` varchar(255) NOT NULL,
+  `id_therapie` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `part2` (`id_client`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `reponse`
 --
 
@@ -250,6 +311,24 @@ CREATE TABLE IF NOT EXISTS `reponse` (
   PRIMARY KEY (`id`),
   KEY `rep1` (`id_coach`),
   KEY `rep2` (`id_client`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `suivi`
+--
+
+DROP TABLE IF EXISTS `suivi`;
+CREATE TABLE IF NOT EXISTS `suivi` (
+  `id` varchar(11) NOT NULL,
+  `valeur` int(11) NOT NULL,
+  `idClient` varchar(50) NOT NULL,
+  `idObjectif` varchar(50) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `fk_SuivCli` (`idClient`),
+  KEY `fk_SuivObj` (`idObjectif`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -321,11 +400,36 @@ ALTER TABLE `ligne_classement`
   ADD CONSTRAINT `ligne_classement_ibfk_1` FOREIGN KEY (`id_niveau`) REFERENCES `niveau` (`id`);
 
 --
+-- Contraintes pour la table `objectif`
+--
+ALTER TABLE `objectif`
+  ADD CONSTRAINT `fk_ObjCli` FOREIGN KEY (`idClient`) REFERENCES `client` (`id`);
+
+--
+-- Contraintes pour la table `participationactivté`
+--
+ALTER TABLE `participationactivté`
+  ADD CONSTRAINT `part1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id`);
+
+--
+-- Contraintes pour la table `participationtherapie`
+--
+ALTER TABLE `participationtherapie`
+  ADD CONSTRAINT `part2` FOREIGN KEY (`id_client`) REFERENCES `client` (`id`);
+
+--
 -- Contraintes pour la table `reponse`
 --
 ALTER TABLE `reponse`
   ADD CONSTRAINT `rep1` FOREIGN KEY (`id_coach`) REFERENCES `coach` (`id`),
   ADD CONSTRAINT `rep2` FOREIGN KEY (`id_client`) REFERENCES `client` (`id`);
+
+--
+-- Contraintes pour la table `suivi`
+--
+ALTER TABLE `suivi`
+  ADD CONSTRAINT `fk_SuivCli` FOREIGN KEY (`idClient`) REFERENCES `client` (`id`),
+  ADD CONSTRAINT `fk_SuivObj` FOREIGN KEY (`idObjectif`) REFERENCES `objectif` (`id`);
 
 --
 -- Contraintes pour la table `therapie`
