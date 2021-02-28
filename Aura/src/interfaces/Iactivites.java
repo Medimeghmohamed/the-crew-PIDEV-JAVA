@@ -13,4 +13,6 @@ import java.util.List;
 public interface Iactivites {
     public void addActivities(Activites a);
     public List<Activites> showActivites();
+    public void supprimeractivite(Activites a);
+     public void modifierActivite(Activites a);
 }

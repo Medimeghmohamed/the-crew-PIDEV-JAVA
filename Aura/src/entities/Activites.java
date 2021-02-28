@@ -85,6 +85,9 @@ public class Activites {
         this.lieu = lieu;
     }
 
+    public Activites() {
+    }
+
     public Activites(int id, String idcoach, String duree, Date date, int nombremax, String type, String description, String lieu) {
         this.id = id;
         this.idcoach = idcoach;

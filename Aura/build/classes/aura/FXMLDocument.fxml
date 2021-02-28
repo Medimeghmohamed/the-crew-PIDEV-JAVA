@@ -14,7 +14,7 @@
       <Text layoutX="25.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="idcoach" wrappingWidth="83.4658203125" />
       <DatePicker fx:id="datee" layoutX="32.0" layoutY="160.0" />
       <Text layoutX="43.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombremax" wrappingWidth="83.4658203125" />
-      <Text layoutX="44.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="type" wrappingWidth="123.4658203125" />
+      <Text fx:id="type" layoutX="44.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="type" wrappingWidth="123.4658203125" />
       <Text layoutX="44.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="desc" wrappingWidth="123.4658203125" />
       <Text layoutX="44.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lieu" wrappingWidth="123.4658203125" />
       <TextField fx:id="id" layoutX="33.0" layoutY="25.0" text="id" />

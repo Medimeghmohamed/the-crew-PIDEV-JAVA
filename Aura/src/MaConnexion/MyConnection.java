@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author medimegh
  */
 public class MyConnection {
-    final static String URL="jdbc:Mysql:127.0.0.1:3306/aura";
+    final static String URL="jdbc:Mysql://127.0.0.1:3306/aura";
   final static  String login="root";
   final static  String pwd="";
     Connection cnx;
