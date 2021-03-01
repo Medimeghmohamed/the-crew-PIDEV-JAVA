@@ -5,7 +5,6 @@
  */
 package entities;
 
-import java.util.Date;
 
 /**
  *
@@ -15,7 +14,7 @@ public class Activites {
    private int id;
    private String idcoach;
    private String duree;
-   private Date date;
+   private String date;
    private int nombremax;
    private String type;
    private String description;
@@ -45,11 +44,11 @@ public class Activites {
         this.duree = duree;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -88,7 +87,7 @@ public class Activites {
     public Activites() {
     }
 
-    public Activites(int id, String idcoach, String duree, Date date, int nombremax, String type, String description, String lieu) {
+    public Activites(int id, String idcoach, String duree, String date, int nombremax, String type, String description, String lieu) {
         this.id = id;
         this.idcoach = idcoach;
         this.duree = duree;

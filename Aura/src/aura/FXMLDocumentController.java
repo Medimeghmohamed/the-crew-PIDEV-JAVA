@@ -15,8 +15,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import entities.Activites;
+import java.io.IOException;
 import java.util.Date;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import services.serviceActivites;
 
 /**
@@ -41,6 +47,10 @@ public class FXMLDocumentController implements Initializable {
     private TextField lieu;
     @FXML
     private DatePicker datee;
+    @FXML
+    private TextField type;
+    @FXML
+    private Button show;
     
   
     
@@ -53,16 +63,38 @@ public class FXMLDocumentController implements Initializable {
     private void addact(ActionEvent event) {
         serviceActivites sa=new serviceActivites();
         Activites A =new Activites();
-      A.setDate(null);
 A.setDescription(description.getText());
 A.setIdcoach(idcoach.getText());
 A.setDuree(duree.getText());
 A.setLieu(lieu.getText());
+A.setDate(datee.getEditor().getText());
 A.setNombremax(Integer.parseInt(nombremax.getText()));
 A.setId(Integer.parseInt(id.getText()));
 
 sa.addActivities(A);
-
+clearfields();
     }
+
+    @FXML
+    private void modify(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modify.fxml"));
+Parent modif = (Parent) fxmlLoader.load();
+Stage stage = new Stage();
+stage.setScene(new Scene(modif));  
+stage.show();
+    }
+
+    private void clearfields() {
+lieu.clear();
+id.clear();
+description.clear();
+type.clear();
+nombremax.clear();
+idcoach.clear();
+duree.clear();
+    }
+    
+    
+    
     
 }
