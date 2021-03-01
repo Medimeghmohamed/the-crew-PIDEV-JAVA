@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : Dim 28 fév. 2021 à 11:00
+-- Généré le : lun. 01 mars 2021 à 17:59
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `theme` varchar(255) NOT NULL,
   `nom_auteur` varchar(255) NOT NULL,
   `date` date NOT NULL,
-  `article` longtext NOT NULL,
+  `article` varchar(255) NOT NULL,
   `id_coach` varchar(255) NOT NULL,
   `id_client` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
