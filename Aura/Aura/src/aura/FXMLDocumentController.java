@@ -131,7 +131,6 @@ public class FXMLDocumentController implements Initializable {
         ObservableList<String> listObjSuiv = so.getMesObjectifs(1);
         cbobjsuivi.setItems(listObjSuiv);
         tfobj.setText(null);
-
         //les valeurs des réponses
         ObservableList<Integer> listRep = FXCollections.observableArrayList();
         for (int i = 0; i <= 50; i++) {
@@ -140,30 +139,9 @@ public class FXMLDocumentController implements Initializable {
         cbrep.setItems(listRep);
         cbrep_suivi.setItems(listRep);
 
-        //afficher les objectifs au lancement
-        // ... + noms de colonnes
-        colid.setCellValueFactory(new PropertyValueFactory<>("id"));
-        coldesc.setCellValueFactory(new PropertyValueFactory<>("description"));
-        colrep.setCellValueFactory(new PropertyValueFactory<>("reponse"));
-        coldate.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
-        colduree.setCellValueFactory(new PropertyValueFactory<>("duree"));
-        tvobjectifs.setItems(objectifs);
-
-        //afficher les objectifs predéfinis au lancement
-        colid_pred.setCellValueFactory(new PropertyValueFactory<>("id"));
-        coldes_pred.setCellValueFactory(new PropertyValueFactory<>("description"));
-        colduree_pred.setCellValueFactory(new PropertyValueFactory<>("duree"));
-        colidad_pred.setCellValueFactory(new PropertyValueFactory<>("idAdmin"));
-        tvObjectifPred.setItems(objectifsP);
-        
-        //afficher les suivis au lancement
-        colid_suivi.setCellValueFactory(new PropertyValueFactory<Suivi, String>("id"));
-        colidobj_suivi.setCellValueFactory(new PropertyValueFactory<Suivi, String>("idObjectif"));
-        //col desc
-        colvaleur_suivi.setCellValueFactory(new PropertyValueFactory<Suivi, Integer>("valeur"));
-        coldate_suivi.setCellValueFactory(new PropertyValueFactory<Suivi, String>("date"));
-        colidcli_suivi.setCellValueFactory(new PropertyValueFactory<Suivi, String>("idClient"));
-        tv_suivi.setItems(suivis);
+        afficherObjectifs();
+        afficherObjectifsPred();
+        afficherSuivi();
 
         //afficher la date courante
         tfdate.setText(new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()));
@@ -192,7 +170,7 @@ public class FXMLDocumentController implements Initializable {
             o.setDuree(Integer.parseInt(tfduree.getText()));
             o.setIdCli(tfidCli.getText());
             sp.ajouterObjectif(o);
-            afficherObjectifs(event);
+            afficherObjectifs();
             tfid.setText(null);
             erreurObj.setText(null);
 
@@ -203,7 +181,7 @@ public class FXMLDocumentController implements Initializable {
             o.setDuree(Integer.parseInt(tfduree.getText()));
             o.setIdCli(tfidCli.getText());
             sp.ajouterObjectif(o);
-            afficherObjectifs(event);
+            afficherObjectifs();
             tfid.setText(null);
             erreurObj.setText(null);
         } else {
@@ -226,7 +204,7 @@ public class FXMLDocumentController implements Initializable {
         o.setDuree(Integer.parseInt(tfduree.getText()));
         o.setIdCli(tfidCli.getText());
         sp.modifierObjectif(o);
-        afficherObjectifs(event);
+        afficherObjectifs();
 
     }
 
@@ -234,16 +212,16 @@ public class FXMLDocumentController implements Initializable {
     private void supprimerObjectif(ActionEvent event) {
         ServiceObjectif sp = new ServiceObjectif();
         sp.supprimerObjectif(tfid.getText());
-        afficherObjectifs(event);
+        afficherObjectifs();
     }
 
-    private void afficherObjectifs(ActionEvent event) {
+    private void afficherObjectifs() {
         ServiceObjectif sop = new ServiceObjectif();
         ObservableList<Objectif> objectifs = sop.afficherObjectifs();
         colid.setCellValueFactory(new PropertyValueFactory<>("id"));
         coldesc.setCellValueFactory(new PropertyValueFactory<>("description"));
         colrep.setCellValueFactory(new PropertyValueFactory<>("reponse"));
-        coldate.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
+        coldate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colduree.setCellValueFactory(new PropertyValueFactory<>("duree"));
         tvobjectifs.setItems(objectifs);
     }
@@ -273,17 +251,17 @@ public class FXMLDocumentController implements Initializable {
         o.setDureeP(Integer.parseInt(tfduree_pred.getText()));
         o.setIdAdminP(tfidadP.getText());
         sp.ajouterObjectifPred(o);
-        afficherObjectifs(event);
+        afficherObjectifsPred();
         //tfid.setText(null);
     }
 
-    private void afficherObjectifsPred(ActionEvent event) {
+    private void afficherObjectifsPred() {
         ServiceObjectifPred sop = new ServiceObjectifPred();
         ObservableList<ObjectifPred> objectifsP = sop.afficherObjectifsPred();
-        colid_pred.setCellValueFactory(new PropertyValueFactory<ObjectifPred, String>("id"));
-        coldes_pred.setCellValueFactory(new PropertyValueFactory<ObjectifPred, String>("description"));
-        colduree_pred.setCellValueFactory(new PropertyValueFactory<ObjectifPred, Integer>("duree"));
-        colidad_pred.setCellValueFactory(new PropertyValueFactory<ObjectifPred, String>("idAdmin"));
+        colid_pred.setCellValueFactory(new PropertyValueFactory<>("idP"));
+        coldes_pred.setCellValueFactory(new PropertyValueFactory<>("descriptionP"));
+        colduree_pred.setCellValueFactory(new PropertyValueFactory<>("dureeP"));
+        colidad_pred.setCellValueFactory(new PropertyValueFactory<>("idAdminP"));
         tvObjectifPred.setItems(objectifsP);
     }
 
@@ -297,7 +275,7 @@ public class FXMLDocumentController implements Initializable {
         o.setDureeP(Integer.parseInt(tfduree_pred.getText()));
         o.setIdAdminP(tfidadP.getText());
         sp.modifierObjectifPred(o);
-        //afficherObjectifsPred(event);
+        afficherObjectifsPred();
 
     }
 
@@ -305,7 +283,7 @@ public class FXMLDocumentController implements Initializable {
     private void supprimerPred(ActionEvent event) {
         ServiceObjectifPred sp = new ServiceObjectifPred();
         sp.supprimerObjectifPred(tfid.getText());
-        afficherObjectifsPred(event);
+        afficherObjectifsPred();
     }
 
     @FXML
@@ -321,6 +299,18 @@ public class FXMLDocumentController implements Initializable {
         s.setDateSuiv(dateFicheSuivi.getText());
         ss.ajouterSuivi(s);
 
+    }
+    
+    private void afficherSuivi(){
+        ServiceSuivi ss= new ServiceSuivi();
+        ObservableList<Suivi> suivis = ss.afficherSuivi();
+        colid_suivi.setCellValueFactory(new PropertyValueFactory<>("idSuiv"));
+        colidobj_suivi.setCellValueFactory(new PropertyValueFactory<>("idObjectifSuiv"));
+        //col desc
+        colvaleur_suivi.setCellValueFactory(new PropertyValueFactory<>("valeurSuiv"));
+        coldate_suivi.setCellValueFactory(new PropertyValueFactory<>("dateSuiv"));
+        colidcli_suivi.setCellValueFactory(new PropertyValueFactory<>("idClientSuiv"));
+        tv_suivi.setItems(suivis);
     }
 
 }
