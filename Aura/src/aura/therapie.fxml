@@ -9,12 +9,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="418.0" prefWidth="624.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="aura.TherapieController">
+<AnchorPane id="AnchorPane" prefHeight="418.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.TherapieController">
    <children>
       <TabPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="780.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
@@ -56,7 +56,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tabth" layoutX="14.0" layoutY="14.0" prefHeight="467.0" prefWidth="763.0">
+                        <TableView fx:id="tabth" layoutX="14.0" layoutY="14.0" prefHeight="441.0" prefWidth="763.0">
                            <columns>
                               <TableColumn fx:id="cid" prefWidth="75.0" text="Id" />
                               <TableColumn fx:id="cidcoach" prefWidth="114.0" text="Id Coach" />
@@ -66,7 +66,13 @@
                               <TableColumn fx:id="clieu" prefWidth="212.0" text="Lieu" />
                            </columns>
                         </TableView>
-                        <Button layoutX="77.0" layoutY="482.0" mnemonicParsing="false" onAction="#loadtable" text="load" />
+                        <Button layoutX="72.0" layoutY="467.0" mnemonicParsing="false" onAction="#loadtable" text="load" />
+                        <ComboBox fx:id="combotype" layoutX="170.0" layoutY="467.0" onAction="#findtype" prefWidth="150.0">
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </ComboBox>
+                        <ComboBox fx:id="combodate" layoutX="354.0" layoutY="467.0" onAction="#finddate" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
                </content>

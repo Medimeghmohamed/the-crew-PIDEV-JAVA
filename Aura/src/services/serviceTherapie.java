@@ -108,5 +108,54 @@ public class serviceTherapie implements Itherapie{
             System.out.println(ex.getMessage());
         }
     }
+
+    @Override
+    public List<Therapie> findtype(String t) {
+       ObservableList<Therapie> myList = FXCollections.observableArrayList();
+        try {
+
+            String requete = "SELECT * FROM therapie  WHERE sujet='"+t+"' ORDER BY date  ";
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while (rs.next()) {
+                Therapie T = new Therapie();
+                T.setId(rs.getInt(1));
+                T.setSujet(rs.getString(2));
+                T.setDate(rs.getString(3));
+                T.setLieu(rs.getString(4));
+                T.setNombremax(rs.getInt(5));
+                T.setIdcoach(rs.getString(6));
+                myList.add(T);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return myList;
+    }    
+
+    @Override
+    public List<Therapie> finddate(String t) {
+ ObservableList<Therapie> myList = FXCollections.observableArrayList();
+        try {
+
+            String requete = "SELECT * FROM therapie  WHERE date='"+t+"'  ";
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while (rs.next()) {
+                Therapie T = new Therapie();
+                T.setId(rs.getInt(1));
+                T.setSujet(rs.getString(2));
+                T.setDate(rs.getString(3));
+                T.setLieu(rs.getString(4));
+                T.setNombremax(rs.getInt(5));
+                T.setIdcoach(rs.getString(6));
+                myList.add(T);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return myList;    }
     
 }

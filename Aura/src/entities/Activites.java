@@ -6,6 +6,7 @@
 package entities;
 
 
+
 /**
  *
  * @author Medimegh
@@ -19,6 +20,18 @@ public class Activites {
    private String type;
    private String description;
    private String lieu;
+    private int nombre_parti;
+
+    
+
+    public int getNombre_parti() {
+        return nombre_parti;
+    }
+
+    public void setNombre_parti(int nombre_parti) {
+        this.nombre_parti = nombre_parti;
+    }
+   
 
     public int getId() {
         return id;
@@ -100,8 +113,9 @@ public class Activites {
 
     @Override
     public String toString() {
-        return "Activites{" + "id=" + id + ", idcoach=" + idcoach + ", duree=" + duree + ", date=" + date + ", nombremax=" + nombremax + ", type=" + type + ", description=" + description + ", lieu=" + lieu + '}';
+        return "Activites{" + "id=" + id + ", idcoach=" + idcoach + ", duree=" + duree + ", date=" + date + ", nombremax=" + nombremax + ", type=" + type + ", description=" + description + ", lieu=" + lieu + ", nombre_parti=" + nombre_parti + '}';
     }
-    
+
+  
     
 }

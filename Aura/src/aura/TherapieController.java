@@ -78,13 +78,19 @@ public class TherapieController implements Initializable {
     private Button addact;
     @FXML
     private Button modifier;
+    @FXML
+    private ComboBox combotype;
+    @FXML
+    private ComboBox combodate;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        fillComboBox();    
+        fillComboBox(); 
+         fillComboBoxdate();
+         fillComboBoxtype();
         comboth.setVisible(false);
         lidm1.setVisible(false);
         lid1.setVisible(false);
@@ -136,14 +142,11 @@ idcoach.clear();
 
            Statement st = MyConnection.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(requete);
-            
             while(rs.next()){
                  String id =rs.getString("id"); 
                  combodel.getItems().addAll(id);
-                 comboth.getItems().addAll(id);
-                 
+                 comboth.getItems().addAll(id);   
             }
-            
             st.close();
             rs.close();
         } catch (SQLException ex) { 
@@ -242,6 +245,81 @@ int c  = Integer.parseInt((String) b);
             } catch (SQLException ex) {
                
             }
+    }
+
+    
+    
+    
+    public void fillComboBoxtype(){
+    
+        try {
+                        String requete = "SELECT sujet FROM therapie";
+
+           Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+                 String sujet =rs.getString("sujet"); 
+                 combotype.getItems().addAll(sujet);
+                  
+            }
+            st.close();
+            rs.close();
+        } catch (SQLException ex) { 
+        }        
+    }
+      public void fillComboBoxdate(){
+    
+        try {
+                        String requete = "SELECT date FROM therapie";
+
+           Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+                 String date =rs.getString("date"); 
+                 combodate.getItems().addAll(date);
+                  
+            }
+            st.close();
+            rs.close();
+        } catch (SQLException ex) { 
+        }        
+    }
+    
+    
+    
+    
+    @FXML
+    private void findtype(ActionEvent event) {
+         serviceTherapie th = new serviceTherapie();
+        ObservableList<Therapie> therapie = (ObservableList<Therapie>) th.findtype((String)combotype.getSelectionModel().getSelectedItem());
+                tabth.setItems(therapie);
+
+        cid.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("id"));
+        cidcoach.setCellValueFactory(new PropertyValueFactory<Therapie, String>("idcoach"));
+        csujet.setCellValueFactory(new PropertyValueFactory<Therapie, String>("sujet"));
+        cdate.setCellValueFactory(new PropertyValueFactory<Therapie, String>("date"));
+        cnbm.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("nombremax"));
+        clieu.setCellValueFactory(new PropertyValueFactory<Therapie, String>("lieu"));
+
+
+                tabth.setItems(therapie);
+    }
+
+    @FXML
+    private void finddate(ActionEvent event) {
+          serviceTherapie th = new serviceTherapie();
+        ObservableList<Therapie> therapie = (ObservableList<Therapie>) th.finddate((String)combodate.getSelectionModel().getSelectedItem());
+                tabth.setItems(therapie);
+
+        cid.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("id"));
+        cidcoach.setCellValueFactory(new PropertyValueFactory<Therapie, String>("idcoach"));
+        csujet.setCellValueFactory(new PropertyValueFactory<Therapie, String>("sujet"));
+        cdate.setCellValueFactory(new PropertyValueFactory<Therapie, String>("date"));
+        cnbm.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("nombremax"));
+        clieu.setCellValueFactory(new PropertyValueFactory<Therapie, String>("lieu"));
+
+
+                tabth.setItems(therapie);
     }
     
 }

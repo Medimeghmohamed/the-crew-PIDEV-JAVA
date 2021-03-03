@@ -16,4 +16,7 @@ public interface Itherapie {
     public List<Therapie> showTherapie();
     public void supprimerTherapie(int id);
      public void modifierTherapie(Therapie a);
+     public List<Therapie>findtype(String t);
+          public List<Therapie>finddate(String t);
+
 }
