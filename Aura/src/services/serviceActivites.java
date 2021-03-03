@@ -34,7 +34,7 @@ public class serviceActivites implements Iactivites{
             st.executeUpdate(requete);
             System.out.println("Activité ajouté");
             Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
+                alert.setTitle("ACTIVITE");
                 alert.setHeaderText(null);
                 alert.setContentText("Activité ajouté");
                 alert.showAndWait();
@@ -47,8 +47,10 @@ public class serviceActivites implements Iactivites{
     }
 
     @Override
-    public List<Activites> showActivites() {
-       List<Activites> myList = new ArrayList<>();
+    
+    
+    public ObservableList<Activites> showActivites() {
+      ObservableList<Activites> myList = FXCollections.observableArrayList();
         try {
 
             String requete = "SELECT * FROM activite";
@@ -57,13 +59,13 @@ public class serviceActivites implements Iactivites{
             while (rs.next()) {
                 Activites A = new Activites();
                 A.setId(rs.getInt(1));
-                A.setIdcoach(rs.getString("idcoach"));
-                A.setDuree(rs.getString("duree"));
-                A.setDate(rs.getString("date"));
-                A.setNombremax(rs.getInt("nombremax"));
-                A.setType(rs.getString("type"));
-                A.setDescription(rs.getString("description"));
-                A.setLieu(rs.getString("lieu"));
+                A.setIdcoach(rs.getString(2));
+                A.setDuree(rs.getString(3));
+                A.setDate(rs.getString(4));
+                A.setNombremax(rs.getInt(5));
+                A.setType(rs.getString(6));
+                A.setDescription(rs.getString(7));
+                A.setLieu(rs.getString(8));
                 myList.add(A);
             }
 
@@ -80,17 +82,22 @@ public class serviceActivites implements Iactivites{
     
     
      @Override
-    public void supprimeractivite(Activites a) {
+        public void supprimeractivite(int id) {
         try {
-            String requete = "DELETE FROM activite WHERE id=?";
-            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete);
-            pst.setInt(1,a.getId());
-            pst.executeUpdate();
+            String requete = "DELETE FROM activite WHERE id = " + id +"";
+            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            st.executeUpdate(requete);
             System.out.println("activite supprimer");
+             Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("ACTIVITE");
+                alert.setHeaderText(null);
+                alert.setContentText("Activité suppri");
+                alert.showAndWait();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
+
     
     @Override
     public void modifierActivite(Activites a) {
@@ -107,6 +114,11 @@ public class serviceActivites implements Iactivites{
             pst.setInt(8, a.getId());
             pst.executeUpdate();
             System.out.println("activite modifié!");
+             Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("ACTIVITE");
+                alert.setHeaderText(null);
+                alert.setContentText("Activité modifié");
+                alert.showAndWait();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

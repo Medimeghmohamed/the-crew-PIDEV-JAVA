@@ -6,6 +6,7 @@
 package aura;
 
 import MaConnexion.MyConnection;
+import entities.Activites;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import services.serviceActivites;
 
 /**
  * FXML Controller class
@@ -33,8 +38,6 @@ public class ModifyController implements Initializable {
 
     @FXML
     private DatePicker datee;
-    @FXML
-    private TextField id;
     @FXML
     private TextField idcoach;
     @FXML
@@ -48,36 +51,31 @@ public class ModifyController implements Initializable {
     @FXML
     private TextField lieu;
     @FXML
-    private Button show;
+    private ComboBox combobox;
     @FXML
-    private ComboBox<?> combobox;
+    private Text lid;
+    @FXML
+    private Text lid1;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         fillComboBox();
         // TODO
     }    
 
    
-                final ObservableList options = FXCollections.observableArrayList();
 
-     Connection conn;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-     @FXML
-    private void modify(ActionEvent event) {
-       
-    }
 
     
       
      
-  
+  //remplir combobox
                 
          public void fillComboBox(){
-        options.clear();
+    
         try {
                         String requete = "SELECT id FROM activite";
 
@@ -85,37 +83,31 @@ public class ModifyController implements Initializable {
             ResultSet rs = st.executeQuery(requete);
             
             while(rs.next()){
-                options.add(rs.getInt("id"));
+                 String name =rs.getString("id"); 
+                 combobox.getItems().addAll(name);
+                 
             }
             
             st.close();
             rs.close();
-        } catch (SQLException ex) {
+        } catch (SQLException ex) { 
         }        
     }
-
+         
+//remplir les champs
     @FXML
-    private void addact(ActionEvent event) {
-    }
-    @FXML
-    private void choix(ActionEvent event) {
-        
-                 ComboBox  comboBox = new ComboBox(options);
+    private void fill(ActionEvent event) {
+      Object b= combobox.getSelectionModel().getSelectedItem();
+int c  = Integer.parseInt((String) b);      
+        System.out.println(c);
+    try {
+                String query = "select * from activite where  id='"+c+"'";
 
-         fillComboBox();
-
-        comboBox.setOnAction((e) -> {
-            
-            
-            try {
-                String query = "select * from activite where id = ?";
-
-                pst = conn.prepareStatement(query);
-                pst.setInt(1, (int) comboBox.getSelectionModel().getSelectedItem());
-                rs = pst.executeQuery();
-          
+             Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(query);
                 while(rs.next()){
-                    id.setText(rs.getString("id"));
+                   lid.setText(rs.getString("id"));
+                   // id.setText(rs.getString("id"));
                     duree.setText(rs.getString("duree"));
                     lieu.setText(rs.getString("lieu"));
                     type.setText(rs.getString("type"));
@@ -123,18 +115,38 @@ public class ModifyController implements Initializable {
                     nombremax.setText(rs.getString("nombremax"));
                     idcoach.setText(rs.getString("idcoach"));
                     (datee.getEditor()).setText(rs.getString("date"));
-                    
-                    
+      
                 }
-                pst.close();
                 rs.close();
             } catch (SQLException ex) {
                
             }
+        
+    }
+
             
         
-        });
+      
+    //modifier act
+
+    @FXML
+    private void updateact(ActionEvent event) {
+        
+            serviceActivites sa=new serviceActivites();
+        Activites A =new Activites();
+A.setDescription(description.getText());
+A.setIdcoach(idcoach.getText());
+A.setDuree(duree.getText());
+A.setType(type.getText());
+A.setLieu(lieu.getText());
+A.setDate(datee.getEditor().getText());
+A.setNombremax(Integer.parseInt(nombremax.getText()));
+A.setId(Integer.parseInt(lid.getText()));
+
+sa.modifierActivite(A);
+       
     }
+
         
     
 }

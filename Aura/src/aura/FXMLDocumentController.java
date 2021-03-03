@@ -6,6 +6,7 @@
 package aura;
 
 
+import MaConnexion.MyConnection;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,13 +17,22 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import entities.Activites;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javax.swing.text.TabableView;
 import services.serviceActivites;
 
 /**
@@ -51,12 +61,54 @@ public class FXMLDocumentController implements Initializable {
     private TextField type;
     @FXML
     private Button show;
+    @FXML
+    private TableColumn<Activites, Integer> cid;
+    @FXML
+    private TableColumn<Activites, String> cidcoach;
+    @FXML
+    private TableColumn<Activites, String> cduree;
+    @FXML
+    private TableColumn<Activites, String> cdate;
+    @FXML
+    private TableColumn<Activites, Integer> cnbm;
+    @FXML
+    private TableColumn<Activites, String> ctype;
+    @FXML
+    private TableColumn<Activites, String> cdes;
+    @FXML
+    private TableColumn<Activites, String> clieu;
+    @FXML
+    private TableView<Activites> tabact;
+    @FXML
+    private ComboBox combodel;
     
   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+                  fillComboBox();
+
+//show tab
+         
+        serviceActivites sa = new serviceActivites();
+        ObservableList<Activites> activit = sa.showActivites();
+                tabact.setItems(activit);
+
+        // ... + noms de colonnesa
+        cid.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("id"));
+        cidcoach.setCellValueFactory(new PropertyValueFactory<Activites, String>("idcoach"));
+        cduree.setCellValueFactory(new PropertyValueFactory<Activites, String>("iduree"));
+        cdate.setCellValueFactory(new PropertyValueFactory<Activites, String>("date"));
+        cnbm.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("nombremax"));
+        ctype.setCellValueFactory(new PropertyValueFactory<Activites, String>("type"));
+        cdes.setCellValueFactory(new PropertyValueFactory<Activites, String>("description"));
+        clieu.setCellValueFactory(new PropertyValueFactory<Activites, String>("lieu"));
+
+
+
+
+        tabact.setItems(activit);
+         
     }    
 
     @FXML
@@ -67,6 +119,7 @@ A.setDescription(description.getText());
 A.setIdcoach(idcoach.getText());
 A.setDuree(duree.getText());
 A.setLieu(lieu.getText());
+A.setType(type.getText());
 A.setDate(datee.getEditor().getText());
 A.setNombremax(Integer.parseInt(nombremax.getText()));
 A.setId(Integer.parseInt(id.getText()));
@@ -93,8 +146,55 @@ nombremax.clear();
 idcoach.clear();
 duree.clear();
     }
+
+    @FXML
+    private void loadtable(ActionEvent event) {
+        
+        serviceActivites sa = new serviceActivites();
+        ObservableList<Activites> activit = sa.showActivites();
+                tabact.setItems(activit);
+
+        cid.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("id"));
+        cidcoach.setCellValueFactory(new PropertyValueFactory<Activites, String>("idcoach"));
+        cduree.setCellValueFactory(new PropertyValueFactory<Activites, String>("iduree"));
+        cdate.setCellValueFactory(new PropertyValueFactory<Activites, String>("date"));
+        cnbm.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("nombremax"));
+        ctype.setCellValueFactory(new PropertyValueFactory<Activites, String>("type"));
+        cdes.setCellValueFactory(new PropertyValueFactory<Activites, String>("description"));
+        clieu.setCellValueFactory(new PropertyValueFactory<Activites, String>("lieu"));
+
+
+
+
+        tabact.setItems(activit);
+    }
     
+             public void fillComboBox(){
     
-    
-    
+        try {
+                        String requete = "SELECT id FROM activite";
+
+           Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            
+            while(rs.next()){
+                 String id =rs.getString("id"); 
+                 combodel.getItems().addAll(id);
+                 
+            }
+            
+            st.close();
+            rs.close();
+        } catch (SQLException ex) { 
+        }        
+    }
+
+    @FXML
+    private void deleteact(ActionEvent event) {
+        Object b= combodel.getSelectionModel().getSelectedItem();
+int c  = Integer.parseInt((String) b);  
+ serviceActivites act = new serviceActivites();
+ act.supprimeractivite(c);
+    }
+  
 }

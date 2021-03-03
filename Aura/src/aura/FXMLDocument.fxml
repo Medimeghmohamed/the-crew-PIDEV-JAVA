@@ -1,29 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.FXMLDocumentController">
-    <children>
-        <Label layoutX="326.0" layoutY="5.0" minHeight="16" minWidth="69" prefHeight="40.0" prefWidth="164.0" text="duree" />
-      <Button layoutX="324.0" layoutY="480.0" mnemonicParsing="false" onAction="#addact" prefHeight="40.0" prefWidth="95.0" text="valider" />
-      <Text layoutX="25.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="idcoach" wrappingWidth="83.4658203125" />
-      <DatePicker fx:id="datee" layoutX="32.0" layoutY="160.0" />
-      <Text layoutX="43.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombremax" wrappingWidth="83.4658203125" />
-      <Text layoutX="44.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="type" wrappingWidth="123.4658203125" />
-      <Text layoutX="44.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="desc" wrappingWidth="123.4658203125" />
-      <Text layoutX="44.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lieu" wrappingWidth="123.4658203125" />
-      <TextField fx:id="id" layoutX="33.0" layoutY="25.0" text="id" />
-      <TextField fx:id="idcoach" layoutX="26.0" layoutY="87.0" text="idcoach" />
-      <TextField fx:id="duree" layoutX="303.0" layoutY="51.0" text="duree" />
-      <TextField fx:id="nombremax" layoutX="185.0" layoutY="231.0" text="nombre max" />
-      <TextField fx:id="type" layoutX="185.0" layoutY="270.0" text="type" />
-      <TextField fx:id="description" layoutX="185.0" layoutY="318.0" text="desc" />
-      <TextField fx:id="lieu" layoutX="185.0" layoutY="362.0" text="lieu" />
-      <Button fx:id="show" layoutX="649.0" layoutY="303.0" mnemonicParsing="false" onAction="#modify" text="show" />
-    </children>
-</AnchorPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="780.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.FXMLDocumentController">
+  <tabs>
+    <Tab text="ADD">
+         <content>
+            <AnchorPane id="AnchorPane" prefHeight="568.0" prefWidth="803.0">
+               <children>
+                  <Label layoutX="27.0" layoutY="178.0" minHeight="16" minWidth="69" prefHeight="40.0" prefWidth="164.0" text="duree" />
+                  <Button layoutX="325.0" layoutY="445.0" mnemonicParsing="false" onAction="#addact" prefHeight="40.0" prefWidth="95.0" text="valider" />
+                  <Text layoutX="20.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="idcoach" wrappingWidth="57.4658203125" />
+                  <DatePicker fx:id="datee" layoutX="92.0" layoutY="131.0" />
+                  <Text layoutX="43.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombremax" wrappingWidth="83.4658203125" />
+                  <Text layoutX="44.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="type" wrappingWidth="123.4658203125" />
+                  <Text layoutX="44.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="desc" wrappingWidth="123.4658203125" />
+                  <Text layoutX="44.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lieu" wrappingWidth="123.4658203125" />
+                  <TextField fx:id="id" layoutX="92.0" layoutY="31.0" />
+                  <TextField fx:id="idcoach" layoutX="92.0" layoutY="82.0" />
+                  <TextField fx:id="duree" layoutX="97.0" layoutY="182.0" />
+                  <TextField fx:id="nombremax" layoutX="185.0" layoutY="231.0" />
+                  <TextField fx:id="type" layoutX="185.0" layoutY="270.0" />
+                  <TextField fx:id="description" layoutX="185.0" layoutY="318.0" />
+                  <TextField fx:id="lieu" layoutX="185.0" layoutY="362.0" />
+                  <Button fx:id="show" layoutX="594.0" layoutY="303.0" mnemonicParsing="false" onAction="#modify" prefHeight="98.0" prefWidth="130.0" text="UPDATE" />
+                  <Label layoutX="26.0" layoutY="26.0" minHeight="16" minWidth="46.0" prefHeight="40.0" prefWidth="46.0" text="id" />
+                  <Text layoutX="20.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="57.4658203125" />
+               </children>
+            </AnchorPane>
+         </content>
+    </Tab>
+    <Tab text="SHOW">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="tabact" layoutX="14.0" layoutY="14.0" prefHeight="467.0" prefWidth="763.0">
+                    <columns>
+                      <TableColumn fx:id="cid" prefWidth="75.0" text="Id" />
+                      <TableColumn fx:id="cidcoach" prefWidth="75.0" text="Id Coach" />
+                        <TableColumn fx:id="cduree" prefWidth="75.0" text="Duree" />
+                        <TableColumn fx:id="cdate" prefWidth="103.0" text="Date" />
+                        <TableColumn fx:id="cnbm" prefWidth="118.0" text="Nombre max" />
+                        <TableColumn fx:id="ctype" prefWidth="81.0" text="Type" />
+                        <TableColumn fx:id="cdes" prefWidth="102.0" text="Description" />
+                        <TableColumn fx:id="clieu" prefWidth="133.0" text="Lieu" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="77.0" layoutY="482.0" mnemonicParsing="false" onAction="#loadtable" text="load" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="DELETE">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ComboBox fx:id="combodel" layoutX="186.0" layoutY="102.0" prefHeight="120.0" prefWidth="250.0" />
+                  <Button layoutX="285.0" layoutY="285.0" mnemonicParsing="false" onAction="#deleteact" prefHeight="46.0" prefWidth="90.0" style="-fx-background-color: red;" text="DELETE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>

@@ -4,15 +4,16 @@
  * and open the template in the editor.
  */
 package interfaces;
-import entities.Activites;
+import entities.Therapie;
 import java.util.List;
+
 /**
  *
  * @author Medimegh
  */
-public interface Iactivites {
-    public void addActivities(Activites a);
-    public List<Activites> showActivites();
-    public void supprimeractivite(int id);
-     public void modifierActivite(Activites a);
+public interface Itherapie {
+       public void addTherapie(Therapie a);
+    public List<Therapie> showTherapie();
+    public void supprimerTherapie(int id);
+     public void modifierTherapie(Therapie a);
 }
