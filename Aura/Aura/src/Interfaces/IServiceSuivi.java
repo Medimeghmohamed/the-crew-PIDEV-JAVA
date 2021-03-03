@@ -15,5 +15,12 @@ import javafx.collections.ObservableList;
 public interface IServiceSuivi {
     public void ajouterSuivi(Suivi s);
     public ObservableList<Suivi> afficherSuivi();
+    public ObservableList<Suivi> rechercherSuivi(String s);
+    public ObservableList<Suivi> trierSuiviparIdClient();
+    public ObservableList<Suivi> trierSuiviparId();
+    public ObservableList<Suivi> trierSuiviparIdObjectif();
+    public int getValeur(String idObj, String date);
+    public ObservableList<String> getObjectifBilan(String idClient);
+    public ObservableList<String> getDateBilan(String idObjectif);
     
 }

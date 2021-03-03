@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -11,41 +12,57 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.FXMLDocumentController">
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.FXMLDocumentController">
    <children>
-      <TabPane layoutX="191.0" prefHeight="540.0" prefWidth="744.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="121.0" prefHeight="540.0" prefWidth="814.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Admin">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TabPane prefHeight="509.0" prefWidth="744.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane prefHeight="510.0" prefWidth="935.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
                             <Tab text="Objectifs prédéfinis">
                               <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="479.0" prefWidth="935.0">
                                        <children>
                                           <TextField fx:id="tfid_pred" layoutX="116.0" layoutY="108.0" />
-                                          <TextField fx:id="tfdesc_pred" layoutX="116.0" layoutY="164.0" prefHeight="60.0" prefWidth="178.0" />
-                                          <TextField fx:id="tfduree_pred" layoutX="116.0" layoutY="252.0" prefHeight="26.0" prefWidth="72.0" />
+                                          <TextField fx:id="tfdesc_pred" layoutX="116.0" layoutY="164.0" prefHeight="64.0" prefWidth="149.0" />
+                                          <TextField fx:id="tfduree_pred" layoutX="116.0" layoutY="252.0" prefHeight="26.0" prefWidth="79.0" />
                                           <Button layoutX="64.0" layoutY="324.0" mnemonicParsing="false" onAction="#ajouterPred" text="Ajouter" />
                                           <Button layoutX="138.0" layoutY="324.0" mnemonicParsing="false" onAction="#modifierPred" text="Modifier" />
                                           <Button layoutX="226.0" layoutY="324.0" mnemonicParsing="false" onAction="#supprimerPred" text="Supprimer" />
                                           <Label layoutX="50.0" layoutY="112.0" text="ID:" />
-                                          <Label layoutX="50.0" layoutY="182.0" text="Description:" />
+                                          <Label layoutX="45.0" layoutY="168.0" text="Description:" />
                                           <Label layoutX="50.0" layoutY="256.0" text="Durée" />
                                           <Label layoutX="205.0" layoutY="257.0" text="/jours" />
                                           <Label layoutX="52.0" layoutY="289.0" text="ID Admin" />
                                           <TextField fx:id="tfidadP" layoutX="116.0" layoutY="285.0" />
-                                          <Button layoutX="330.0" layoutY="23.0" mnemonicParsing="false" text="Button" />
-                                          <TableView fx:id="tvObjectifPred" layoutX="315.0" layoutY="91.0" prefHeight="260.0" prefWidth="394.0">
+                                          <TableView fx:id="tvObjectifPred" layoutX="336.0" layoutY="56.0" onMouseClicked="#OnMouseObjectifPred" prefHeight="400.0" prefWidth="455.0">
                                             <columns>
                                               <TableColumn fx:id="colid_pred" prefWidth="75.0" text="ID" />
-                                              <TableColumn fx:id="coldes_pred" prefWidth="187.2000732421875" text="Description" />
-                                                <TableColumn fx:id="colduree_pred" prefWidth="63.99993896484375" text="Durée" />
-                                                <TableColumn fx:id="colidad_pred" prefWidth="68.0" text="ID Admin" />
+                                              <TableColumn fx:id="coldes_pred" prefWidth="251.199951171875" text="Description" />
+                                                <TableColumn fx:id="colduree_pred" prefWidth="58.40008544921875" text="Durée" />
+                                                <TableColumn fx:id="colidad_pred" prefWidth="70.39990234375" text="ID Admin" />
                                             </columns>
                                           </TableView>
+                                          <TextField fx:id="tfrechObjPred" layoutX="429.0" layoutY="23.0" onKeyReleased="#rechercherObjectifPred" />
+                                          <ComboBox fx:id="cbtriObjPred" layoutX="679.0" layoutY="22.0" onAction="#selectTriObjPred" prefHeight="26.0" prefWidth="107.0" />
+                                          <Label layoutX="14.0" layoutY="9.0" text="Gestion des objectifs prédéfinis">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="350.0" layoutY="28.0" text="Rechercher">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="627.0" layoutY="28.0" text="Trier">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </AnchorPane>
                               </content>
@@ -106,6 +123,18 @@
                                                 <Font name="Berlin Sans FB" size="12.0" />
                                              </font>
                                           </Label>
+                                          <Label layoutX="266.0" layoutY="29.0" text="Rechercher">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tfrechObj" layoutX="334.0" layoutY="25.0" onKeyReleased="#rechercherObjectif" />
+                                          <Label layoutX="549.0" layoutY="29.0" text="Trier">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cbtriObj" layoutX="590.0" layoutY="25.0" onAction="#selectTriObj" prefHeight="26.0" prefWidth="101.0" />
                                        </children>
                                     </AnchorPane>
                               </content>
@@ -115,7 +144,7 @@
                                 <AnchorPane fx:id="tab2" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
                                           <Label layoutX="94.0" layoutY="163.0" text="OBJECTIF" />
-                                          <Button layoutX="626.0" layoutY="334.0" mnemonicParsing="false" onAction="#ajouterSuivi" text="Confirmer" />
+                                          <Button layoutX="687.0" layoutY="196.0" mnemonicParsing="false" onAction="#ajouterSuivi" text="Confirmer" />
                                           <Label layoutX="21.0" layoutY="14.0" text="SUIVI DES OBJECTIFS DU :">
                                              <font>
                                                 <Font name="System Bold" size="20.0" />
@@ -135,23 +164,54 @@
                                           <Label layoutX="94.0" layoutY="121.0" text="ID saisie:" />
                                           <ComboBox fx:id="cbobjsuivi" layoutX="157.0" layoutY="159.0" prefHeight="26.0" prefWidth="317.0" />
                                           <ComboBox fx:id="cbrep_suivi" layoutX="502.0" layoutY="160.0" prefWidth="150.0" />
-                                          <TableView fx:id="tv_suivi" layoutX="157.0" layoutY="222.0" prefHeight="200.0" prefWidth="450.0">
+                                          <TableView fx:id="tv_suivi" layoutX="259.0" layoutY="245.0" prefHeight="200.0" prefWidth="450.0">
                                             <columns>
                                               <TableColumn fx:id="colid_suivi" prefWidth="75.0" text="ID Suivi" />
                                               <TableColumn fx:id="colidobj_suivi" prefWidth="75.0" text="ID Objectif" />
-                                                <TableColumn fx:id="coldesc_suivi" prefWidth="75.0" text="Description" />
-                                                <TableColumn fx:id="colvaleur_suivi" prefWidth="75.0" text="Réponse" />
-                                                <TableColumn fx:id="coldate_suivi" prefWidth="75.0" text="Date" />
-                                                <TableColumn fx:id="colidcli_suivi" prefWidth="75.0" text="ID Client" />
+                                                <TableColumn fx:id="colvaleur_suivi" prefWidth="87.20001220703125" text="Réponse" />
+                                                <TableColumn fx:id="coldate_suivi" prefWidth="113.60003662109375" text="Date" />
+                                                <TableColumn fx:id="colidcli_suivi" prefWidth="99.19989013671875" text="ID Client" />
                                             </columns>
                                           </TableView>
+                                          <Label layoutX="52.0" layoutY="282.0" text="Rechercher">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="52.0" layoutY="357.0" text="Trier">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tfrechSuivi" layoutX="66.0" layoutY="309.0" onKeyReleased="#rechercherSuivi" />
+                                          <ComboBox fx:id="cbtriSuivi" layoutX="69.0" layoutY="387.0" onAction="#selectTriSuivi" prefWidth="150.0" />
                                        </children>
                                     </AnchorPane>
                               </content>
                             </Tab>
                               <Tab text="bilan">
                                  <content>
-                                    <AnchorPane fx:id="tab21" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    <AnchorPane fx:id="tab21" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <PieChart fx:id="pcBilan" layoutX="128.0" layoutY="76.0" legendSide="LEFT" prefHeight="380.0" prefWidth="513.0" title="Réalisation de votre objectif:" />
+                                          <ComboBox fx:id="cbidObjectifBilan" layoutX="118.0" layoutY="35.0" onAction="#selectIdObjBilan" prefWidth="150.0" />
+                                          <Label layoutX="36.0" layoutY="39.0" text="ID Objectif">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="350.0" layoutY="39.0" prefHeight="19.0" prefWidth="98.0" text="Date de début">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cbDateBilan" layoutX="448.0" layoutY="35.0" onAction="#selectDateBilan" prefWidth="150.0" />
+                                          <Label fx:id="lbResultat" layoutX="509.0" layoutY="84.0" prefHeight="18.0" prefWidth="102.0">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children></AnchorPane>
                                  </content>
                               </Tab>
                           </tabs>

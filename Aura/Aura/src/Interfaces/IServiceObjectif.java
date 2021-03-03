@@ -18,5 +18,10 @@ public interface IServiceObjectif {
     public ObservableList<Objectif> afficherObjectifs();
     public void modifierObjectif(Objectif o);
     public void supprimerObjectif(String id);
+    public ObservableList<Objectif> rechercherObjectif(String s);
+    public ObservableList<Objectif> trierObjectifparRep();
+    public ObservableList<Objectif> trierObjectifparId();
+    public ObservableList<Objectif> trierObjectifparDesc();
+    public int getRepObj(String idObj);
     
 }

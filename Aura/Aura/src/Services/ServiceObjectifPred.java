@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entities.Objectif;
 import Entities.ObjectifPred;
 import Interfaces.IServiceObjectifPred;
 import Utils.MaConnexion;
@@ -72,7 +73,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
         try {
             Statement st = cnx.createStatement();
             //"', reponse = '" + o.getReponseP()+ ", duree = " + o.getDureeP()+
-            String query = "UPDATE  objectif_pred SET description  = '" + o.getDescriptionP()+ "', duree = '" + o.getDureeP()+ "'  WHERE id = " + o.getIdP()+ "";
+            String query = "UPDATE  objectif_pred SET description  = '" + o.getDescriptionP() + "', duree = '" + o.getDureeP() + "'  WHERE id ='" + o.getIdP() + "'";
             st.executeUpdate(query);
             System.out.println("modification avec succes");
         } catch (SQLException ex) {
@@ -85,18 +86,18 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
     public void supprimerObjectifPred(String id) {
         try {
             Statement st = cnx.createStatement();
-            String query = "DELETE FROM `objectif_pred` WHERE id='" + id +"'";
+            String query = "DELETE FROM `objectif_pred` WHERE id='"+ id +"'";
             st.executeUpdate(query);
-            System.out.println("suppression avec succes");
+            System.out.println("supprimer objectif pred succes");
         } catch (SQLException ex) {
             System.out.println("erreur supprimer objectif");
             System.out.println(ex);
-        } 
+        }
     }
 
     @Override
     public ObservableList<String> getValuesObjectifs() {
-    ObservableList<String> objectifsP = FXCollections.observableArrayList();
+        ObservableList<String> objectifsP = FXCollections.observableArrayList();
         try {
             Statement st = cnx.createStatement();
             String query = "SELECT `description` FROM `objectif_pred`";
@@ -109,6 +110,99 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
             System.out.println("erreur get values objectifs (pour comboBox)");
             System.out.println(ex);
         }
-        return objectifsP;    }
+        return objectifsP;
+    }
+
+    @Override
+    public ObservableList<ObjectifPred> rechercherObjectifPred(String s) {
+        ObservableList<ObjectifPred> objectifs = FXCollections.observableArrayList();
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from `objectif_pred` WHERE id LIKE '%" + s + "%' OR description LIKE '%" + s + "%' OR duree LIKE '%" + s + "%' OR idAdmin LIKE '%" + s + "%'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                ObjectifPred o = new ObjectifPred();
+                o.setIdP(rs.getString(1));
+                o.setDescriptionP(rs.getString(2));
+                o.setDureeP(rs.getInt(3));
+                o.setIdAdminP(rs.getString(4));
+                objectifs.add(o);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur rechercher objectif prédéfini");
+            System.out.println(ex);
+        }
+        return objectifs;
+    }
+
+    @Override
+    public ObservableList<ObjectifPred> trierObjectifPredparDuree() {
+        ObservableList<ObjectifPred> objectifs = FXCollections.observableArrayList();
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from `objectif_pred` ORDER BY duree";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                ObjectifPred o = new ObjectifPred();
+                o.setIdP(rs.getString(1));
+                o.setDescriptionP(rs.getString(2));
+                o.setDureeP(rs.getInt(3));
+                o.setIdAdminP(rs.getString(4));
+                objectifs.add(o);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur trier objectifs prédéfinis par durée objectifs");
+            System.out.println(ex);
+        }
+        return objectifs;
+    }
+
+    @Override
+    public ObservableList<ObjectifPred> trierObjectifPredparId() {
+        ObservableList<ObjectifPred> objectifs = FXCollections.observableArrayList();
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from `objectif_pred` ORDER BY id";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                ObjectifPred o = new ObjectifPred();
+                o.setIdP(rs.getString(1));
+                o.setDescriptionP(rs.getString(2));
+                o.setDureeP(rs.getInt(3));
+                o.setIdAdminP(rs.getString(4));
+                objectifs.add(o);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur trier objectifs prédéfinis par id objectifs");
+            System.out.println(ex);
+        }
+        return objectifs;
+    }
+
+    @Override
+    public ObservableList<ObjectifPred> trierObjectifPredparDesc() {
+        ObservableList<ObjectifPred> objectifs = FXCollections.observableArrayList();
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from `objectif_pred` ORDER BY description";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                ObjectifPred o = new ObjectifPred();
+                o.setIdP(rs.getString(1));
+                o.setDescriptionP(rs.getString(2));
+                o.setDureeP(rs.getInt(3));
+                o.setIdAdminP(rs.getString(4));
+                objectifs.add(o);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur trier objectifs prédéfinis par description objectifs");
+            System.out.println(ex);
+        }
+        return objectifs;
+    }
 
 }
