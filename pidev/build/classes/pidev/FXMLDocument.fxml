@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="941.0" prefWidth="1293.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.FXMLDocumentController">
+    <children>
+      <TabPane layoutX="8.0" layoutY="19.0" prefHeight="912.0" prefWidth="1284.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="admin" text="admin">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="465.0">
+                     <children>
+                        <TabPane layoutX="21.0" layoutY="16.0" prefHeight="851.0" prefWidth="1243.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab fx:id="admin_challenge" text="challenge">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1000.0">
+                                       <children>
+                                          <TextField fx:id="titre_challenge" layoutX="105.0" layoutY="156.0" />
+                                          <Label layoutX="65.0" layoutY="162.0" text="titre" />
+                                          <Label layoutX="63.0" layoutY="199.0" text="type" />
+                                          <Label layoutX="22.0" layoutY="233.0" text="description " />
+                                          <Label layoutX="40.0" layoutY="314.0" text="date fin" />
+                                          <Label layoutX="25.0" layoutY="277.0" text="date debut" />
+                                          <Label layoutX="65.0" layoutY="354.0" text="etat" />
+                                          <Label layoutX="56.0" layoutY="399.0" text="niveau" />
+                                          <TextField fx:id="type_challenge" layoutX="105.0" layoutY="192.0" />
+                                          <TextField fx:id="desc_challenge" layoutX="105.0" layoutY="231.0" />
+                                          <TextField fx:id="etat_challenge" layoutX="105.0" layoutY="349.0" />
+                                          <TextField fx:id="niveau_challenge" layoutX="106.0" layoutY="393.0" />
+                                          <Button fx:id="btn_ajout_challenge" layoutX="207.0" layoutY="440.0" mnemonicParsing="false" onAction="#ajouter_challenge" prefHeight="39.0" prefWidth="87.0" text="ajouter" />
+                                            <Button fx:id="btn_modif_challenge" layoutX="174.0" layoutY="566.0" onAction="#modifier_challege" prefHeight="34.0" prefWidth="90.0" text="modifier" />
+                                          <Button fx:id="btn_aff_challenge" layoutX="77.0" layoutY="441.0" mnemonicParsing="false" onAction="#afficher_challege" prefHeight="37.0" prefWidth="92.0" text="afficher" />
+                                          <Label fx:id="imd_challenge" layoutX="123.0" layoutY="24.0" prefHeight="124.0" prefWidth="154.0" />
+                                          <TableView fx:id="liste_challenge" layoutX="326.0" layoutY="143.0" prefHeight="633.0" prefWidth="834.0">
+                                            <columns>
+                                              <TableColumn fx:id="colid_challenge" prefWidth="75.0" text="id" />
+                                              <TableColumn fx:id="coltitre_challenge" prefWidth="75.0" text="titre" />
+                                                <TableColumn fx:id="coltype_challenge" prefWidth="75.0" text="type" />
+                                                <TableColumn fx:id="coltdescription_challenge" prefWidth="107.0" text="description" />
+                                                <TableColumn fx:id="coldatedebut_challenge" prefWidth="118.0" text="date_debut" />
+                                                <TableColumn minWidth="0.0" prefWidth="0.0" text="date_debut" />
+                                                <TableColumn fx:id="coldatefin_challenge" prefWidth="120.0" text="date_fin" />
+                                                <TableColumn fx:id="coletat_challenge" prefWidth="129.0" text="etat" />
+                                                <TableColumn fx:id="colniveau_challenge" prefWidth="134.0" text="niveau" />
+                                            </columns>
+                                          </TableView>
+                                          <Button fx:id="btn_supp_challenge" layoutX="61.0" layoutY="567.0" mnemonicParsing="false" onAction="#supprimer_challenge" text="supprimer" />
+                                          <DatePicker fx:id="date_debut_challenge" layoutX="108.0" layoutY="272.0" prefHeight="31.0" prefWidth="183.0" />
+                                          <DatePicker fx:id="date_fin_challenge" layoutX="108.0" layoutY="309.0" prefHeight="31.0" prefWidth="184.0" />
+                                          <TextField fx:id="id_challenge" layoutX="107.0" layoutY="507.0" />
+                                          <Label layoutX="44.0" layoutY="512.0" text="id" />
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                              <Tab fx:id="admin_classement" text="classement">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Label layoutX="37.0" layoutY="90.0" text="nom client" />
+                                          <Label layoutX="60.0" layoutY="131.0" text="niveau" />
+                                          <Label layoutX="55.0" layoutY="174.0" text="position" />
+                                          <Label layoutX="40.0" layoutY="214.0" text="nb_points" />
+                                          <TextField fx:id="client_classement" layoutX="120.0" layoutY="85.0" />
+                                          <TextField fx:id="niveau_classement" layoutX="120.0" layoutY="126.0" />
+                                          <TextField fx:id="position_classement" layoutX="120.0" layoutY="169.0" />
+                                          <TextField fx:id="nb_pts_classement" layoutX="120.0" layoutY="209.0" />
+                                          <TableView fx:id="liste_classement" layoutX="409.0" layoutY="85.0" prefHeight="471.0" prefWidth="384.0">
+                                            <columns>
+                                              <TableColumn prefWidth="75.0" text="niveau" />
+                                              <TableColumn prefWidth="75.0" text="position" />
+                                                <TableColumn prefWidth="75.0" text="client" />
+                                                <TableColumn prefWidth="170.0" text="nombre de point " />
+                                            </columns>
+                                          </TableView>
+                                          <Button fx:id="btn_aff_classement" layoutX="237.0" layoutY="290.0" mnemonicParsing="false" onAction="#afficher_classement" text="afficher" />
+                                          <Button fx:id="btn_modif_classement" layoutX="129.0" layoutY="290.0" mnemonicParsing="false" onAction="#modifier_classement" text="modifier" />
+                                          <Button fx:id="btn_supp_classement" layoutX="181.0" layoutY="346.0" mnemonicParsing="false" onAction="#supprimer_classement" text="supprimer" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                            <Tab fx:id="admin_niveau" text="niveau">
+                                 <content>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="liste_niveau" layoutX="513.0" layoutY="72.0" prefHeight="217.0" prefWidth="145.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="id" />
+                                                <TableColumn prefWidth="75.0" text="titre" />
+                                             </columns>
+                                          </TableView>
+                                          <Label layoutX="101.0" layoutY="108.0" text="titre" />
+                                          <TextField fx:id="titre_niveau" layoutX="154.0" layoutY="103.0" />
+                                          <Button fx:id="btn_ajout_niveau" layoutX="115.0" layoutY="180.0" mnemonicParsing="false" onAction="#ajouter_niveau" text="ajouter" />
+                                          <Button fx:id="btn_modif_niveau" layoutX="215.0" layoutY="180.0" mnemonicParsing="false" onAction="#modifier_niveau" text="modifier" />
+                                          <Button fx:id="btn_aff_niveau" layoutX="316.0" layoutY="180.0" mnemonicParsing="false" onAction="#afficher_niveau" text="afficher" />
+                                          <Button fx:id="btn_supp_niveau" layoutX="215.0" layoutY="245.0" mnemonicParsing="false" onAction="#supprimer_niveau" text="supprimer" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="coach">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane layoutX="15.0" layoutY="12.0" prefHeight="846.0" prefWidth="1180.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                              <Tab text="challenge">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1000.0">
+                                       <children>
+                                          <TextField fx:id="titre_challenge1" layoutX="105.0" layoutY="156.0" />
+                                          <Label layoutX="65.0" layoutY="162.0" text="titre" />
+                                          <Label layoutX="63.0" layoutY="199.0" text="type" />
+                                          <Label layoutX="22.0" layoutY="233.0" text="description " />
+                                          <Label layoutX="40.0" layoutY="314.0" text="date fin" />
+                                          <Label layoutX="25.0" layoutY="277.0" text="date debut" />
+                                          <Label layoutX="65.0" layoutY="354.0" text="etat" />
+                                          <Label layoutX="56.0" layoutY="399.0" text="niveau" />
+                                          <TextField fx:id="type_challenge1" layoutX="105.0" layoutY="192.0" />
+                                          <TextField fx:id="desc_challenge1" layoutX="105.0" layoutY="231.0" />
+                                          <TextField fx:id="date_debut_challenge1" layoutX="105.0" layoutY="272.0" />
+                                          <TextField fx:id="date_fin_challenge1" layoutX="105.0" layoutY="309.0" />
+                                          <TextField fx:id="etat_challenge1" layoutX="105.0" layoutY="349.0" />
+                                          <TextField fx:id="niveau_challenge1" layoutX="106.0" layoutY="393.0" />
+                                          <Button fx:id="btn_ajout_challenge1" layoutX="133.0" layoutY="440.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" text="ajouter" />
+                                          <Button fx:id="btn_modif_challenge1" layoutX="131.0" layoutY="500.0" onAction="#handleButtonAction" prefHeight="34.0" prefWidth="90.0" text="modifier" />
+                                          <Button fx:id="btn_aff_challenge1" layoutX="131.0" layoutY="553.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="92.0" text="afficher" />
+                                          <Label fx:id="imd_challenge1" layoutX="123.0" layoutY="24.0" prefHeight="124.0" prefWidth="154.0" />
+                                          <TableView fx:id="liste_challenge1" layoutX="326.0" layoutY="143.0" prefHeight="633.0" prefWidth="834.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="id" />
+                                                <TableColumn prefWidth="75.0" text="titre" />
+                                                <TableColumn prefWidth="75.0" text="type" />
+                                                <TableColumn prefWidth="107.0" text="description" />
+                                                <TableColumn prefWidth="118.0" text="date_debut" />
+                                                <TableColumn minWidth="0.0" prefWidth="0.0" text="date_debut" />
+                                                <TableColumn prefWidth="120.0" text="date_fin" />
+                                                <TableColumn prefWidth="129.0" text="etat" />
+                                                <TableColumn prefWidth="134.0" text="niveau" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                            <Tab text="classement">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView layoutX="151.0" layoutY="78.0" prefHeight="679.0" prefWidth="390.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="niveau" />
+                                                <TableColumn prefWidth="75.0" text="position" />
+                                                <TableColumn prefWidth="75.0" text="client" />
+                                                <TableColumn prefWidth="170.0" text="nombre de point " />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="client">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+        <Label fx:id="label" layoutX="188.0" layoutY="9.0" minHeight="11.0" minWidth="21.0" prefHeight="11.0" prefWidth="79.0" />
+    </children>
+</AnchorPane>
