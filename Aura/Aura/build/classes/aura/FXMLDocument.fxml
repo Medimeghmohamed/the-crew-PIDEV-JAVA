@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.FXMLDocumentController">
+   <children>
+      <TabPane layoutX="191.0" prefHeight="540.0" prefWidth="744.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Admin">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="509.0" prefWidth="744.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="Objectifs prédéfinis">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView layoutX="366.0" layoutY="49.0" prefHeight="318.0" prefWidth="337.0">
+                                            <columns>
+                                              <TableColumn prefWidth="75.0" text="C1" />
+                                              <TableColumn prefWidth="75.0" text="C2" />
+                                            </columns>
+                                          </TableView>
+                                          <TextField layoutX="116.0" layoutY="108.0" />
+                                          <TextField layoutX="116.0" layoutY="161.0" />
+                                          <ComboBox layoutX="115.0" layoutY="208.0" prefWidth="150.0" />
+                                          <TextField layoutX="116.0" layoutY="252.0" prefHeight="26.0" prefWidth="72.0" />
+                                          <Button layoutX="64.0" layoutY="324.0" mnemonicParsing="false" text="Ajouter" />
+                                          <Button layoutX="138.0" layoutY="324.0" mnemonicParsing="false" text="Modifier" />
+                                          <Button layoutX="226.0" layoutY="324.0" mnemonicParsing="false" text="Supprimer" />
+                                          <Label layoutX="50.0" layoutY="112.0" text="ID:" />
+                                          <Label layoutX="50.0" layoutY="165.0" text="Description:" />
+                                          <Label layoutX="50.0" layoutY="212.0" text="Réponse" />
+                                          <Label layoutX="50.0" layoutY="256.0" text="Durée" />
+                                          <Label layoutX="205.0" layoutY="257.0" text="/jours" />
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="...">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Client">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="540.0" prefWidth="817.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="Objectif">
+                              <content>
+                                <AnchorPane fx:id="tab1" minHeight="0.0" minWidth="0.0" prefHeight="510.0" prefWidth="914.0">
+                                       <children>
+                                          <TableView fx:id="tvobjectifs" layoutX="266.0" layoutY="59.0" onMouseClicked="#OnMouse" prefHeight="350.0" prefWidth="474.0">
+                                            <columns>
+                                              <TableColumn fx:id="colid" prefWidth="46.4000244140625" text="ID" />
+                                              <TableColumn fx:id="coldesc" prefWidth="211.199951171875" text="Description" />
+                                                <TableColumn fx:id="colrep" prefWidth="53.5999755859375" text="Réponse" />
+                                                <TableColumn fx:id="coldate" prefWidth="108.800048828125" text="Date début" />
+                                                <TableColumn fx:id="colduree" prefWidth="52.7999267578125" text="Durée" />
+                                            </columns>
+                                          </TableView>
+                                          <ComboBox fx:id="cbobj" layoutX="62.0" layoutY="123.0" onAction="#selectObj" prefWidth="150.0" />
+                                          <Label layoutX="22.0" layoutY="105.0" text="Choisir ou saisir un objectif:" />
+                                          <TextField fx:id="tfobj" layoutX="63.0" layoutY="161.0" />
+                                          <Label layoutX="21.0" layoutY="244.0" text="Réponse:" />
+                                          <ComboBox fx:id="cbrep" layoutX="85.0" layoutY="239.0" onAction="#selectRep" prefHeight="26.0" prefWidth="126.0" />
+                                          <Label layoutX="21.0" layoutY="331.0" text="Durée:" />
+                                          <Label layoutX="25.0" layoutY="74.0" text="ID:" />
+                                          <Label layoutX="20.0" layoutY="292.0" text="Date début :" />
+                                          <TextField fx:id="tfid" layoutX="63.0" layoutY="70.0" />
+                                          <TextField fx:id="tfduree" layoutX="77.0" layoutY="326.0" prefHeight="26.0" prefWidth="87.0" />
+                                          <TextField fx:id="tfdate" layoutX="93.0" layoutY="288.0" />
+                                          <Button layoutX="28.0" layoutY="407.0" mnemonicParsing="false" onAction="#ajouterObjectif" text="Ajouter" />
+                                          <Button layoutX="95.0" layoutY="407.0" mnemonicParsing="false" onAction="#modifierObjectif" text="Modifier" />
+                                          <Button layoutX="164.0" layoutY="407.0" mnemonicParsing="false" onAction="#supprimerObjectif" text="Supprimer" />
+                                          <Label layoutX="23.0" layoutY="14.0" text="OBJECTIFS">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tfidCli" layoutX="85.0" layoutY="363.0" />
+                                          <Label layoutX="19.0" layoutY="367.0" text="ID Client:" />
+                                          <Label fx:id="erreurObj" layoutX="56.0" layoutY="197.0" prefHeight="18.0" prefWidth="177.0" textFill="RED">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="fiche de suivi">
+                              <content>
+                                <AnchorPane fx:id="tab2" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Label layoutX="80.0" layoutY="54.0" text="OBJECTIF1" />
+                                          <Label layoutX="80.0" layoutY="83.0" text="OBJECTIF2" />
+                                          <Label layoutX="80.0" layoutY="115.0" text="OBJECTIF3" />
+                                          <Label layoutX="80.0" layoutY="148.0" text="OBJECTIF4" />
+                                          <Label layoutX="80.0" layoutY="177.0" text="OBJECTIF5" />
+                                          <ComboBox layoutX="163.0" layoutY="50.0" prefWidth="150.0" />
+                                          <ComboBox layoutX="163.0" layoutY="79.0" prefWidth="150.0" />
+                                          <ComboBox layoutX="163.0" layoutY="111.0" prefWidth="150.0" />
+                                          <ComboBox layoutX="163.0" layoutY="144.0" prefWidth="150.0" />
+                                          <ComboBox layoutX="163.0" layoutY="173.0" prefWidth="150.0" />
+                                          <Button layoutX="374.0" layoutY="248.0" mnemonicParsing="false" text="Confirmer" />
+                                          <Label layoutX="21.0" layoutY="14.0" text="SUIVI DES OBJECTIFS:">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                              <Tab text="bilan">
+                                 <content>
+                                    <AnchorPane fx:id="tab21" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

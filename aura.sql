@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 01 mars 2021 à 17:59
+-- Généré le : mer. 03 mars 2021 à 09:39
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -62,7 +62,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`id`, `nom`, `prenom`, `email`, `tel`) VALUES
-('12', 'Ahmed', 'ou', 'aa', 'aa');
+('12', 'Ahmed', 'ou', 'aa', 'aa'),
+('2', 'nasri', 'chirine', 'aaaa', '55');
 
 -- --------------------------------------------------------
 
@@ -77,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `theme` varchar(255) NOT NULL,
   `nom_auteur` varchar(255) NOT NULL,
   `date` date NOT NULL,
-  `article` varchar(255) NOT NULL,
+  `article` longtext NOT NULL,
   `id_coach` varchar(255) NOT NULL,
   `id_client` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
@@ -123,6 +124,13 @@ CREATE TABLE IF NOT EXISTS `client` (
   `adresse` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `client`
+--
+
+INSERT INTO `client` (`id`, `nom`, `prenom`, `email`, `tel`, `adresse`) VALUES
+('1', 'nasri', 'chirine', 'chirine.nasri@esprit.tn', '53452940', 'aaaaa');
 
 -- --------------------------------------------------------
 
@@ -242,12 +250,29 @@ CREATE TABLE IF NOT EXISTS `objectif` (
   `id` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,
   `reponse` int(11) NOT NULL,
-  `dateDebut` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateDebut` varchar(50) NOT NULL,
   `duree` int(11) NOT NULL,
   `idClient` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_ObjCli` (`idClient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `objectif`
+--
+
+INSERT INTO `objectif` (`id`, `description`, `reponse`, `dateDebut`, `duree`, `idClient`) VALUES
+('1', 'bbbb', 3, '01/03/2021', 2, '1'),
+('10', 'vv', 2, '01/03/2021', 4, '1'),
+('100', 'Je veux lire pendant X heures', 2, '03/03/2021', 5, '1'),
+('2', 'bbbb', 2, '01/03/2021', 2, '1'),
+('3', 'hh', 1, '01/03/2021', 7, '1'),
+('4', 'aaaa', 1, '01/03/2021', 7, '1'),
+('5', 'null', 2, '01/03/2021', 5, '1'),
+('55', 'Je veux parler à X personnes', 2, '03/03/2021', 5, '1'),
+('6', 'null', 1, '01/03/2021', 3, '1'),
+('7', '4', 4, '01/03/2021', 4, '1'),
+('9', 'Je veux parler à X personnes', 3, '03/03/2021', 2, '1');
 
 -- --------------------------------------------------------
 
@@ -259,10 +284,24 @@ DROP TABLE IF EXISTS `objectif_pred`;
 CREATE TABLE IF NOT EXISTS `objectif_pred` (
   `id` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `reponse` int(11) NOT NULL,
   `duree` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `idAdmin` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ObjPAdmin` (`idAdmin`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `objectif_pred`
+--
+
+INSERT INTO `objectif_pred` (`id`, `description`, `duree`, `idAdmin`) VALUES
+('P1', 'Je veux attribuer la note X à ma journée', 1, '2'),
+('P2', 'Je veux parler à X personnes', 3, '2'),
+('P3', 'Je veux lire pendant X heures', 7, '2'),
+('P4', 'Je veux diminuer mon temps d écran de X heures', 7, '2'),
+('P5', 'Je veux boire X litres d\'eau', 1, '2'),
+('P6', 'Je veux faire X pas', 1, '2'),
+('P7', 'Je veux faire X minutes de médiation', 1, '2');
 
 -- --------------------------------------------------------
 
@@ -325,11 +364,18 @@ CREATE TABLE IF NOT EXISTS `suivi` (
   `valeur` int(11) NOT NULL,
   `idClient` varchar(50) NOT NULL,
   `idObjectif` varchar(50) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_SuivCli` (`idClient`),
   KEY `fk_SuivObj` (`idObjectif`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `suivi`
+--
+
+INSERT INTO `suivi` (`id`, `valeur`, `idClient`, `idObjectif`, `date`) VALUES
+('4', 3, '1', '100', '03/03/2021');
 
 -- --------------------------------------------------------
 
@@ -404,6 +450,12 @@ ALTER TABLE `ligne_classement`
 --
 ALTER TABLE `objectif`
   ADD CONSTRAINT `fk_ObjCli` FOREIGN KEY (`idClient`) REFERENCES `client` (`id`);
+
+--
+-- Contraintes pour la table `objectif_pred`
+--
+ALTER TABLE `objectif_pred`
+  ADD CONSTRAINT `fk_ObjPAdmin` FOREIGN KEY (`idAdmin`) REFERENCES `admin` (`id`);
 
 --
 -- Contraintes pour la table `participationactivté`
