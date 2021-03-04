@@ -29,11 +29,15 @@ public class ServiceContact implements IServiceContact {
     }
 
     @Override
-    public void ajouterContact(Contact c) {
+    public void AjouterContact(Contact c) {
 
         try {
 
             Statement stm = cnx.createStatement();
+            
+            
+            
+            
             String query = "INSERT INTO `contact`( `id`,`type`, `id_client`, `id_coach`, `champ`, `date`,`etat`)"
                     + "VALUES ('"
                     + c.getId() + "','"
@@ -42,7 +46,7 @@ public class ServiceContact implements IServiceContact {
                     + c.getId_coach() + "','"
                     + c.getChamp() + "','"
                     + c.getDate() + "','"
-                    + "non verif" + "')";
+                    + "non verifié" + "')";
 
             stm.executeUpdate(query);
             System.out.println("ajout avec succes");
@@ -70,9 +74,9 @@ public class ServiceContact implements IServiceContact {
                 c.setId_client(rst.getString(3));
                 c.setId_coach(rst.getString(4));
                 c.setChamp(rst.getString(5));
-                c.setDate(rst.getString(6));
+                c.setDate(rst.getDate(6));
                 c.setEtat(rst.getString(7));
-                //c.setDate(rs.getTimestamp(4).toString());
+
                 contacts.add(c);
 
             }
@@ -100,28 +104,15 @@ public class ServiceContact implements IServiceContact {
         }
     }
 
-    /*public void ModifierContact(Contact c) {
-        try {
-            Statement stm = cnx.createStatement();
-
-            String query = "UPDATE  contact SET etat  = '" + c.getEtat() + " WHERE id = " + c.getId() + "";
-            stm.executeUpdate(query);
-            System.out.println(" succes");
-        } catch (SQLException ex) {
-            System.out.println("erreur ");
-            System.out.println(ex);
-        }
-    }*/
+   
     @Override
     public void ModifierContact(String id, String etat) {
         try {
             Statement stm = cnx.createStatement();
 
-            String query = "UPDATE  contact SET etat= "+etat+" WHERE id ="+ id+"";
-            
-           
-            
-            
+         
+            String query = "UPDATE  contact SET etat= '" + etat + "' WHERE id ='" + id + "'";
+
             stm.executeUpdate(query);
             System.out.println(" succes");
         } catch (SQLException ex) {

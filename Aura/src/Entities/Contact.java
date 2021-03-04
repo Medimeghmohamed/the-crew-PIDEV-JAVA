@@ -5,6 +5,8 @@
  */
 package Entities;
 
+import java.util.Date;
+
 /**
  *
  * @author Nour Dekhil
@@ -15,13 +17,13 @@ public class Contact {
     private String id_client;
     private String id_coach;
     private String champ;
-    private String date;
+    private Date date;
     private String etat;
 
     public Contact() {
     }
 
-    public Contact(int id, String type, String id_client, String id_coach, String champ, String date, String etat) {
+    public Contact(int id, String type, String id_client, String id_coach, String champ, Date date, String etat) {
         this.id = id;
         this.type = type;
         this.id_client = id_client;
@@ -58,7 +60,7 @@ public class Contact {
         return champ;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -82,7 +84,7 @@ public class Contact {
         this.champ = champ;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

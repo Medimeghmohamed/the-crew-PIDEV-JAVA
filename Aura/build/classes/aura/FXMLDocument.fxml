@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -18,33 +19,36 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TextArea fx:id="tfMsgContact" layoutX="75.0" layoutY="265.0" prefHeight="99.0" prefWidth="339.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="265.0" />
-                  <Label layoutX="96.0" layoutY="34.0" text="Objet " AnchorPane.leftAnchor="96.0" AnchorPane.topAnchor="34.0">
+                  <TextArea fx:id="tfMsgContact" layoutX="86.0" layoutY="331.0" prefHeight="99.0" prefWidth="344.0" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="331.0" AnchorPane.topAnchor="331.0" />
+                  <Label layoutX="96.0" layoutY="14.0" text="Objet ">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="484.0" layoutY="275.0" prefHeight="20.0" prefWidth="36.0" text="Date" AnchorPane.leftAnchor="484.0" AnchorPane.topAnchor="275.0">
+                  <Label layoutX="100.0" layoutY="218.0" prefHeight="20.0" prefWidth="36.0" text="Date">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="73.0" layoutY="230.0" text="Message que vous souhaitez nous faire parvenir " AnchorPane.leftAnchor="73.0" AnchorPane.topAnchor="230.0">
+                  <Label layoutX="86.0" layoutY="292.0" text="Message que vous souhaitez nous faire parvenir " AnchorPane.leftAnchor="86.0" AnchorPane.topAnchor="292.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnValider" layoutX="359.0" layoutY="397.0" mnemonicParsing="false" onAction="#AjouterContact" prefHeight="31.0" prefWidth="80.0" text="Valider" textFill="#1f7a91" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="322.0" />
-                  <TextField fx:id="tfClient" layoutX="103.0" layoutY="146.0" onAction="#idclient" prefHeight="25.0" prefWidth="211.0" AnchorPane.leftAnchor="103.0" AnchorPane.topAnchor="146.0" />
-                  <Label layoutX="96.0" layoutY="110.0" text="Identifiant client" AnchorPane.bottomAnchor="314.0" AnchorPane.leftAnchor="96.0" AnchorPane.topAnchor="110.0">
+                  <Button fx:id="btnValider" layoutX="593.0" layoutY="399.0" mnemonicParsing="false" onAction="#AjouterContact" prefHeight="31.0" prefWidth="68.0" text="Valider" textFill="#1f7a91" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="100.0" />
+                  <TextField fx:id="tfClient" layoutX="96.0" layoutY="115.0" onAction="#idclient" prefHeight="34.0" prefWidth="215.0" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="115.0" />
+                  <Label layoutX="97.0" layoutY="87.0" text="Identifiant client">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tfTypec" layoutX="95.0" layoutY="74.0" />
-                  <TextField fx:id="tfCoach" layoutX="96.0" layoutY="200.0" prefHeight="25.0" prefWidth="212.0" />
-                  <Label layoutX="102.0" layoutY="183.0" text="Identifiant coach" />
-                  <TextField fx:id="tfDate" layoutX="546.0" layoutY="275.0" />
+                  <TextField fx:id="tfCoach" layoutX="96.0" layoutY="181.0" prefHeight="34.0" prefWidth="215.0" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="450.0" />
+                  <Label layoutX="96.0" layoutY="156.0" text="Identifiant coach">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <DatePicker fx:id="tfDate" layoutX="101.0" layoutY="253.0" prefHeight="25.0" prefWidth="223.0" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="450.0" />
+                  <ComboBox fx:id="combo_obj" layoutX="100.0" layoutY="46.0" prefHeight="25.0" prefWidth="208.0" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -54,18 +58,18 @@
                <children>
                   <TableView fx:id="tableAfficher" layoutX="59.0" layoutY="72.0" prefHeight="328.0" prefWidth="662.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
                     <columns>
-                      <TableColumn fx:id="Id" prefWidth="57.0" text="Id" />
-                      <TableColumn fx:id="Type" prefWidth="83.0" text="Type" />
-                        <TableColumn fx:id="Id_Client" prefWidth="139.0" text="id_client" />
-                        <TableColumn fx:id="Id_Coach" prefWidth="144.0" text="id_coach" />
-                        <TableColumn fx:id="Champ" minWidth="0.0" prefWidth="138.0" text="champ" />
-                        <TableColumn fx:id="Date" maxWidth="429.0" prefWidth="83.0" text="date" />
-                        <TableColumn fx:id="etat" maxWidth="429.0" prefWidth="83.0" text="etat" />
+                      <TableColumn fx:id="Id" prefWidth="57.0" text="ID" />
+                      <TableColumn fx:id="Type" prefWidth="83.0" text="TYPE" />
+                        <TableColumn fx:id="Id_Client" prefWidth="139.0" text="ID_client" />
+                        <TableColumn fx:id="Id_Coach" prefWidth="144.0" text="ID_coach" />
+                        <TableColumn fx:id="Champ" minWidth="0.0" prefWidth="138.0" text="CHAMP" />
+                        <TableColumn fx:id="Date" maxWidth="429.0" prefWidth="83.0" text="DATE" />
+                        <TableColumn fx:id="etat" maxWidth="429.0" prefWidth="83.0" text="ETAT" />
                     </columns>
                   </TableView>
-                  <Button fx:id="btnAfficher" layoutX="35.0" layoutY="421.0" mnemonicParsing="false" onAction="#AfficherContact" text="Afficher" />
-                  <Button fx:id="btnSupprimer" layoutX="127.0" layoutY="421.0" mnemonicParsing="false" onAction="#SupprimerContact" text="Supprimer" />
-                  <TextField fx:id="tfSupp" layoutX="232.0" layoutY="421.0" prefHeight="25.0" prefWidth="89.0" />
+                  <Button fx:id="btnAfficher" layoutX="35.0" layoutY="421.0" mnemonicParsing="false" onAction="#AfficherContact" text="Afficher" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="35.0" />
+                  <Button fx:id="btnSupprimer" layoutX="127.0" layoutY="421.0" mnemonicParsing="false" onAction="#SupprimerContact" text="Supprimer" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="127.0" />
+                  <TextField fx:id="tfSupp" layoutX="232.0" layoutY="421.0" prefHeight="25.0" prefWidth="89.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="232.0" />
                   <TextField fx:id="tfID" layoutX="53.0" layoutY="25.0" prefHeight="25.0" prefWidth="55.0" />
                   <TextField fx:id="tfETAT" layoutX="148.0" layoutY="25.0" prefHeight="25.0" prefWidth="51.0" />
                   <Label fx:id="ID" layoutX="50.0" layoutY="6.0" text="ID" />
@@ -74,23 +78,54 @@
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="Entraide">
+      <Tab fx:id="tfIDe" text="Entraide">
          <content>
             <AnchorPane minHeight="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TextField layoutX="170.0" layoutY="115.0" prefHeight="25.0" prefWidth="157.0" />
-                  <TextField layoutX="172.0" layoutY="174.0" prefHeight="25.0" prefWidth="161.0" />
-                  <TextField layoutX="172.0" layoutY="239.0" prefHeight="49.0" prefWidth="232.0" />
-                  <DatePicker layoutX="172.0" layoutY="323.0" prefHeight="25.0" prefWidth="233.0" />
-                  <Label layoutX="173.0" layoutY="150.0" text="Categorie" />
-                  <Label layoutX="173.0" layoutY="213.0" text="Question" />
-                  <Label layoutX="172.0" layoutY="297.0" text="Date" />
-                  <Button layoutX="356.0" layoutY="360.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="62.0" text="Valider" />
-                  <Label layoutX="170.0" layoutY="83.0" text="Addresse électronique">
+                  <TextField fx:id="tf_id" layoutX="43.0" layoutY="46.0" prefHeight="25.0" prefWidth="157.0" />
+                  <TextField fx:id="tf_quest" layoutX="46.0" layoutY="143.0" prefHeight="32.0" prefWidth="162.0" />
+                  <DatePicker fx:id="tf_date" layoutX="46.0" layoutY="192.0" prefHeight="25.0" prefWidth="163.0" />
+                  <Label layoutX="45.0" layoutY="75.0" text="Categorie" />
+                  <Label layoutX="48.0" layoutY="121.0" text="Question" />
+                  <Label layoutX="46.0" layoutY="175.0" text="Date" />
+                  <Button fx:id="btnEnvoyer" layoutX="143.0" layoutY="230.0" mnemonicParsing="false" onAction="#AjouterEntraide" prefHeight="22.0" prefWidth="66.0" text="Envoyer" />
+                  <Label layoutX="46.0" layoutY="29.0" text="ID client">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
+                  <TableView fx:id="tableEntraide" layoutX="229.0" layoutY="4.0" prefHeight="312.0" prefWidth="526.0" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="231.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                    <columns>
+                      <TableColumn fx:id="tb_idclient" prefWidth="75.0" text="ID Client" />
+                      <TableColumn fx:id="tb_cat" prefWidth="75.0" text="Categorie" />
+                        <TableColumn fx:id="tb_quest" prefWidth="187.0" text="Question" />
+                        <TableColumn fx:id="tb_date" prefWidth="77.0" text="Date" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="btnTrier" layoutX="578.0" layoutY="383.0" mnemonicParsing="false" onAction="#TrierEntraide" prefHeight="25.0" prefWidth="131.0" text="Trier" AnchorPane.bottomAnchor="52.0" />
+                  <Label layoutX="460.0" layoutY="425.0" text="Recherche par Client" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="460.0" />
+                  <Label layoutX="460.0" layoutY="387.0" prefHeight="17.0" prefWidth="126.0" text="Tri par date" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="460.0" />
+                  <ComboBox fx:id="combo_cat" layoutX="44.0" layoutY="91.0" prefHeight="25.0" prefWidth="160.0" />
+                  <Button fx:id="btnAfficher2" layoutX="547.0" layoutY="340.0" mnemonicParsing="false" onAction="#AfficherEntraide" prefHeight="25.0" prefWidth="69.0" text="Afficher" AnchorPane.bottomAnchor="95.0" />
+                  <Button fx:id="btnModifier2" layoutX="238.0" layoutY="421.0" mnemonicParsing="false" onAction="#ModifierEntraide" prefHeight="25.0" prefWidth="64.0" text="Modifier" />
+                  <Button fx:id="btnSupprimer2" layoutX="620.0" layoutY="340.0" mnemonicParsing="false" onAction="#SupprimerEntraide" text="Supprimer" AnchorPane.bottomAnchor="95.0" />
+                  <TextField fx:id="tf_IDc" layoutX="700.0" layoutY="340.0" prefHeight="25.0" prefWidth="36.0" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="25.0" />
+                  <Label layoutX="10.0" layoutY="246.0" prefHeight="30.0" prefWidth="189.0" text="Modifier Question" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="4.0" text="Ajouter Question" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="46.0" layoutY="352.0" text="Question" />
+                  <Label layoutX="53.0" layoutY="293.0" text="ID" />
+                  <TextField fx:id="ID_m" layoutX="47.0" layoutY="316.0" />
+                  <TextField fx:id="Q_m" layoutX="47.0" layoutY="371.0" />
+                  <TextField fx:id="rech_client" layoutX="579.0" layoutY="421.0" prefHeight="25.0" prefWidth="131.0" />
+                  <Button fx:id="btnRechercher" layoutX="724.0" layoutY="421.0" mnemonicParsing="false" onAction="#RechercherEntraide" prefHeight="25.0" prefWidth="14.0" text="R" />
                </children>
             </AnchorPane>
          </content>
