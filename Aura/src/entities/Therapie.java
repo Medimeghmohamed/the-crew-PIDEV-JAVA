@@ -10,8 +10,16 @@ package entities;
  * @author Medimegh
  */
 public class Therapie {
-    int id,nombremax;
+    int id,nombremax,nombre_parti;
     String sujet,date,lieu,idcoach;
+
+    public int getNombre_parti() {
+        return nombre_parti;
+    }
+
+    public void setNombre_parti(int nombre_parti) {
+        this.nombre_parti = nombre_parti;
+    }
 
     public Therapie() {
     }
@@ -27,8 +35,10 @@ public class Therapie {
 
     @Override
     public String toString() {
-        return "Therapie{" + "id=" + id + ", nombremax=" + nombremax + ", sujet=" + sujet + ", date=" + date + ", lieu=" + lieu + ", idcoach=" + idcoach + '}';
+        return "Therapie{" + "id=" + id + ", nombremax=" + nombremax + ", nombre_parti=" + nombre_parti + ", sujet=" + sujet + ", date=" + date + ", lieu=" + lieu + ", idcoach=" + idcoach + '}';
     }
+
+    
 
     public int getId() {
         return id;

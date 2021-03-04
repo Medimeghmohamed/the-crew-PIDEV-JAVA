@@ -265,8 +265,48 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
             System.out.println(ex.getMessage());
         }
     }
+public void updatenumpart(Activites a){
+    try {
+         String requete = " UPDATE activite SET nombre_parti=nombre_parti+1 WHERE id='"+a.getId()+"'" ;
+            PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
+             pst.executeUpdate();
 
+    } 
+catch (Exception e) {
+    }}
+    
+    public void addclientact(Activites a)
+    {  try {
+            String requete  = "INSERT INTO `participationtherapie` (`id_client`,`id_activite`) VALUES (10,'"+a.getId()+"') ";
+            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            st.executeUpdate(requete);
+            System.out.println("Client ajouté");
+            Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Client ACT");
+                alert.setHeaderText(null);
+                alert.setContentText("Client ajouté");
+                alert.showAndWait();
+                
+        } catch (SQLException ex) {
+           System.out.println(ex.getMessage());
+        }
+    }
+        
+
+            public void joinact(Activites a){
+                updatenumpart(a);
+                if(a.getNombremax()==a.getNombre_parti())
+                { Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Nombre max");
+                alert.setHeaderText(null);
+                alert.setContentText("FULL");
+                alert.showAndWait(); }
+                else
+                 addclientact( a);
+                
             
+            }
+    
  }
     
 

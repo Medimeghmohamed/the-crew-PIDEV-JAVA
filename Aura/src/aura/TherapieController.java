@@ -25,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import services.serviceActivites;
 import services.serviceTherapie;
@@ -82,6 +83,64 @@ public class TherapieController implements Initializable {
     private ComboBox combotype;
     @FXML
     private ComboBox combodate;
+    @FXML
+    private TableView<Therapie> tabth1;
+    @FXML
+    private TableColumn<Therapie, Integer> cid1;
+    @FXML
+    private TableColumn<Therapie, String> cidcoach1;
+    @FXML
+    private TableColumn<Therapie, String> csujet1;
+    @FXML
+    private TableColumn<Therapie, String> cdate1;
+    @FXML
+    private TableColumn<Therapie, Integer> cnbm1;
+    @FXML
+    private TableColumn<Therapie, String> clieu1;
+    @FXML
+    private Button addact1;
+    @FXML
+    private DatePicker datee1;
+    @FXML
+    private TextField id1;
+    @FXML
+    private TextField idcoach1;
+    @FXML
+    private TextField nombremax1;
+    @FXML
+    private TextField sujet1;
+    @FXML
+    private TextField lieu1;
+    @FXML
+    private Button show1;
+    @FXML
+    private Label lidd1;
+    @FXML
+    private ComboBox<?> comboth1;
+    @FXML
+    private Text lidm11;
+    @FXML
+    private Text lid11;
+    @FXML
+    private Button modifier1;
+    @FXML
+    private AnchorPane tabpropoact;
+    @FXML
+    private TableView<Therapie> tabth2;
+    @FXML
+    private TableColumn<Therapie,Integer> cid2;
+    @FXML
+    private TableColumn<Therapie,String> cidcoach2;
+    @FXML
+    private TableColumn<Therapie,String> csujet2;
+    @FXML
+    private TableColumn<Therapie,String> cdate2;
+    @FXML
+    private TableColumn<Therapie,Integer> cnbm2;
+    @FXML
+    private TableColumn<Therapie,String> clieu2;
+    @FXML
+    private TableColumn<Therapie,Integer> nbpth;
 
     /**
      * Initializes the controller class.
@@ -95,21 +154,10 @@ public class TherapieController implements Initializable {
         lidm1.setVisible(false);
         lid1.setVisible(false);
         modifier.setVisible(false);
+        loadtablepropo();
 
-        
-        serviceTherapie th = new serviceTherapie();
-        ObservableList<Therapie> therapie = th.showTherapie();
-                tabth.setItems(therapie);
-
-        cid.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("id"));
-        cidcoach.setCellValueFactory(new PropertyValueFactory<Therapie, String>("idcoach"));
-        csujet.setCellValueFactory(new PropertyValueFactory<Therapie, String>("sujet"));
-        cdate.setCellValueFactory(new PropertyValueFactory<Therapie, String>("date"));
-        cnbm.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("nombremax"));
-        clieu.setCellValueFactory(new PropertyValueFactory<Therapie, String>("lieu"));
-
-
-                tabth.setItems(therapie);
+        loadetableclth();
+        loadtableth();
     }    
 
     @FXML
@@ -122,8 +170,12 @@ T.setLieu(lieu.getText());
 T.setDate(datee.getEditor().getText());
 T.setNombremax(Integer.parseInt(nombremax.getText()));
 T.setId(Integer.parseInt(id.getText()));
-st.addTherapie(T);
+T.setNombre_parti(0);
 
+st.addTherapie(T);
+ loadtableth();
+  fillComboBox();
+  loadetableclth();
 clearfields();
    
     }
@@ -164,6 +216,7 @@ addact.setVisible(false);
 show.setVisible(false);
 lid.setVisible(false);
 id.setVisible(false);
+loadetableclth();loadtableth();
     }
 
     @FXML
@@ -190,7 +243,7 @@ id.setVisible(false);
          Object b= combodel.getSelectionModel().getSelectedItem();
 int c  = Integer.parseInt((String) b);  
  serviceTherapie th = new serviceTherapie();
- th.supprimerTherapie(c);
+ th.supprimerTherapie(c); loadtableth();loadetableclth();
     }
 
     @FXML
@@ -215,7 +268,8 @@ addact.setVisible(true);
 show.setVisible(true);
 lid.setVisible(true);
 id.setVisible(true);
-           
+           loadtableth();
+           loadetableclth();
 
     }
 
@@ -321,5 +375,106 @@ int c  = Integer.parseInt((String) b);
 
                 tabth.setItems(therapie);
     }
+
+    @FXML
+    private void approuverth(ActionEvent event) {
+        Therapie t=   tabth1.getSelectionModel().getSelectedItem();
+        System.out.println( t.getId());
+         serviceTherapie th=new serviceTherapie();
+         th.approuverTherapie(t);
+         loadtablepropo();
+         loadtableth();
+         loadetableclth();
+    }
+
+    @FXML
+    private void delpropoth(ActionEvent event) {
+         Therapie t=  tabth1.getSelectionModel().getSelectedItem();
+        System.out.println( t.getId());
+        serviceTherapie th=new serviceTherapie();
+        th.supprimerpropoTherapie(t.getId());
+         loadtablepropo();
+         loadtableth();
+    }
+
+    @FXML
+    private void addpropTh(ActionEvent event) {
+        serviceTherapie st=new serviceTherapie();
+       Therapie T =new  Therapie();
+T.setIdcoach(idcoach1.getText());
+T.setSujet(sujet1.getText());
+T.setLieu(lieu1.getText());
+T.setDate(datee1.getEditor().getText());
+T.setNombremax(Integer.parseInt(nombremax1.getText()));
+T.setId(Integer.parseInt(id1.getText()));
+T.setNombremax(0);
+
+st.addpropTherapie(T);
+ loadtablepropo();
+    }
+
+     private void loadtablepropo() {
+        serviceTherapie th = new serviceTherapie();
+        ObservableList<Therapie> therapie = th.showpropTherapie();
+                tabth1.setItems(therapie);
+
+        cid1.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("id"));
+        cidcoach1.setCellValueFactory(new PropertyValueFactory<Therapie, String>("idcoach"));
+        csujet1.setCellValueFactory(new PropertyValueFactory<Therapie, String>("sujet"));
+        cdate1.setCellValueFactory(new PropertyValueFactory<Therapie, String>("date"));
+        cnbm1.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("nombremax"));
+        clieu1.setCellValueFactory(new PropertyValueFactory<Therapie, String>("lieu"));
+
+
+                tabth1.setItems(therapie);
+
+
+    }
+      private void loadtableth()
+     {serviceTherapie th = new serviceTherapie();
+        ObservableList<Therapie> therapie = th.showTherapie();
+                tabth.setItems(therapie);
+
+        cid.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("id"));
+        cidcoach.setCellValueFactory(new PropertyValueFactory<Therapie, String>("idcoach"));
+        csujet.setCellValueFactory(new PropertyValueFactory<Therapie, String>("sujet"));
+        cdate.setCellValueFactory(new PropertyValueFactory<Therapie, String>("date"));
+        cnbm.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("nombremax"));
+        clieu.setCellValueFactory(new PropertyValueFactory<Therapie, String>("lieu"));
+
+
+                tabth.setItems(therapie);}
+
+    @FXML
+    private void jointh(ActionEvent event) {
+        
+        
+        Therapie t=   tabth2.getSelectionModel().getSelectedItem();
+        System.out.println( t.getId());
+         serviceTherapie sa=new serviceTherapie();
+         sa.jointh(t);
+         loadtableth();
+         loadtablepropo();
+         loadetableclth();
+    }
     
+    private void loadetableclth()
+    {
+    
+    serviceTherapie th = new serviceTherapie();
+        ObservableList<Therapie> therapie = th.showTherapie();
+                tabth2.setItems(therapie);
+
+        cid2.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("id"));
+        cidcoach2.setCellValueFactory(new PropertyValueFactory<Therapie, String>("idcoach"));
+        csujet2.setCellValueFactory(new PropertyValueFactory<Therapie, String>("sujet"));
+        cdate2.setCellValueFactory(new PropertyValueFactory<Therapie, String>("date"));
+        cnbm2.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("nombremax"));
+        clieu2.setCellValueFactory(new PropertyValueFactory<Therapie, String>("lieu"));
+        nbpth.setCellValueFactory(new PropertyValueFactory<Therapie,Integer>("nombre_parti"));
+
+
+                tabth2.setItems(therapie);
+
+    }
 }

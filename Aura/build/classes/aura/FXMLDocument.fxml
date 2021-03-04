@@ -88,32 +88,26 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="tabact1" prefHeight="490.0" prefWidth="831.0">
+                                    <TableView fx:id="tabact1" prefHeight="456.0" prefWidth="831.0">
                                        <columns>
                                           <TableColumn fx:id="cid1" prefWidth="75.0" text="Id" />
                                           <TableColumn fx:id="cidcoach1" prefWidth="75.0" text="Id Coach" />
                                           <TableColumn fx:id="cduree1" prefWidth="75.0" text="Duree" />
                                           <TableColumn fx:id="cdate1" prefWidth="103.0" text="Date" />
-                                          <TableColumn fx:id="cnbm1" prefWidth="107.0" text="Nombre max" />
-                                          <TableColumn fx:id="ctype1" prefWidth="92.0" text="Type" />
-                                          <TableColumn fx:id="cdes1" prefWidth="102.0" text="Description" />
-                                          <TableColumn fx:id="clieu1" prefWidth="65.0" text="Lieu" />
-                                          <TableColumn fx:id="colBtn" prefWidth="124.0" text="proposition" />
+                                          <TableColumn fx:id="cnbm1" prefWidth="111.0" text="Nombre max" />
+                                          <TableColumn fx:id="ctype1" prefWidth="121.0" text="Type" />
+                                          <TableColumn fx:id="cdes1" prefWidth="133.0" text="Description" />
+                                          <TableColumn fx:id="clieu1" prefWidth="137.0" text="Lieu" />
                                        </columns>
                                     </TableView>
+                                    <Button layoutX="172.0" layoutY="466.0" mnemonicParsing="false" onAction="#appro" text="approuver" />
+                                    <Button layoutX="55.0" layoutY="466.0" mnemonicParsing="false" onAction="#decline" text="Decline" />
                                  </children>
                               </AnchorPane>
                           </content>
                         </Tab>
-                        <Tab text="approuver therapie">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                          </content>
-                        </Tab>
                      </tabs>
                   </TabPane>
-                  <Button layoutX="96.0" layoutY="535.0" mnemonicParsing="false" onAction="#appro" text="approuver" />
-                  <Button layoutX="241.0" layoutY="535.0" mnemonicParsing="false" onAction="#decline" text="Decline" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -121,20 +115,20 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TabPane prefHeight="598.0" prefWidth="783.0" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                      <Tab text="Activites">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        </content>
-                      </Tab>
-                      <Tab text="Therapies">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        </content>
-                      </Tab>
-                    </tabs>
-                  </TabPane>
+                  <TableView fx:id="tabact11" layoutX="10.0" layoutY="10.0" prefHeight="459.0" prefWidth="831.0">
+                     <columns>
+                        <TableColumn fx:id="cid11" prefWidth="75.0" text="Id" />
+                        <TableColumn fx:id="cidcoach11" prefWidth="75.0" text="Id Coach" />
+                        <TableColumn fx:id="cduree11" prefWidth="75.0" text="Duree" />
+                        <TableColumn fx:id="cdate11" prefWidth="103.0" text="Date" />
+                        <TableColumn fx:id="cnbm11" prefWidth="107.0" text="Nombre max" />
+                        <TableColumn fx:id="ctype11" prefWidth="92.0" text="Type" />
+                        <TableColumn fx:id="cdes11" prefWidth="102.0" text="Description" />
+                        <TableColumn fx:id="clieu11" prefWidth="65.0" text="Lieu" />
+                        <TableColumn fx:id="cnbpar" prefWidth="124.0" text="nombre de parti" />
+                     </columns>
+                  </TableView>
+                  <Button layoutX="14.0" layoutY="477.0" mnemonicParsing="false" onAction="#joinact" text="Join" />
                </children>
             </AnchorPane>
         </content>
@@ -145,7 +139,7 @@
                <children>
                   <TabPane prefHeight="597.0" prefWidth="783.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                        <Tab text="ADD">
+                        <Tab text="ajouter proposition">
                            <content>
                               <AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="780.0">
                                  <children>

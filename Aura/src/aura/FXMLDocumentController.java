@@ -125,8 +125,27 @@ public class FXMLDocumentController implements Initializable {
     private TextField lieu1;
     @FXML
     private Button show1;
-    @FXML
     private TableColumn<Activites,Button> colBtn;
+    @FXML
+    private TableView<Activites> tabact11;
+    @FXML
+    private TableColumn<Activites, Integer> cid11;
+    @FXML
+    private TableColumn<Activites, String> cidcoach11;
+    @FXML
+    private TableColumn<Activites, String> cduree11;
+    @FXML
+    private TableColumn<Activites, String> cdate11;
+    @FXML
+    private TableColumn<Activites, Integer> cnbm11;
+    @FXML
+    private TableColumn<Activites, String> ctype11;
+    @FXML
+    private TableColumn<Activites, String> cdes11;
+    @FXML
+    private TableColumn<Activites, String>clieu11;
+    @FXML
+    private TableColumn<Activites, Integer> cnbpar;
     
   
     
@@ -136,6 +155,7 @@ public class FXMLDocumentController implements Initializable {
                   fillComboBoxtype();
                   fillcomboboxdate();
                   loadtablepropo();
+                  loadtablejoin();
                    // addButtonToTable();
 
 //show tab
@@ -344,49 +364,10 @@ sa.addpropActivities(A);
         ctype1.setCellValueFactory(new PropertyValueFactory<Activites, String>("type"));
         cdes1.setCellValueFactory(new PropertyValueFactory<Activites, String>("description"));
         clieu1.setCellValueFactory(new PropertyValueFactory<Activites, String>("lieu"));
-                        colBtn.setCellValueFactory(new PropertyValueFactory<Activites,Button>("btn"));
-
         tabact1.setItems(activit);
 
     }
-// private void addButtonToTable() {
-//      colBtn = new TableColumn("Button Column");
-//
-//        Callback<TableColumn<Activites, Void>, TableCell<Activites, Void>> cellFactory = new Callback<TableColumn<Activites, Void>, TableCell<Activites, Void>>() {
-//            @Override
-//            public TableCell<Activites, Void> call(final TableColumn<Activites, Void> param) {
-//                final TableCell<Activites, Void> cell = new TableCell<Activites, Void>() {
-//
-//                    private final Button btn = new Button("Action");
-//
-//                    {
-//                        btn.setOnAction((ActionEvent event) -> {
-//                            Activites data = getTableView().getItems().get(getIndex());
-//                            System.out.println("selectedData: " + data);
-//                        });
-//                    }
-//
-//                    @Override
-//                    public void updateItem(Void item, boolean empty) {
-//                        super.updateItem(item, empty);
-//                        if (empty) {
-//                            setGraphic(null);
-//                        } else {
-//                            setGraphic(btn);
-//                        }
-//                    }
-//                };
-//                return cell;
-//            }
-//        };
-//
-//        colBtn.setCellFactory(cellFactory);
-//
-//        tabact1.getColumns().add(colBtn);
-//
-//    }
-//    
-// 
+
 
     @FXML
     private void appro(ActionEvent event) {
@@ -405,5 +386,34 @@ sa.addpropActivities(A);
          sa.supprimerpropoactivite(a.getId());
          loadtablepropo();
     }
-  
+
+    @FXML
+    private void joinact(ActionEvent event) {
+        
+        
+        Activites a=   tabact11.getSelectionModel().getSelectedItem();
+        System.out.println( a.getId());
+         serviceActivites sa=new serviceActivites();
+         sa.joinact(a);
+         loadtablejoin();
+         loadtablepropo();}
+        
+  private void loadtablejoin() {
+        
+        serviceActivites sa = new serviceActivites();
+        ObservableList<Activites> activit = sa.showActivites();
+
+        cid11.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("id"));
+        cidcoach11.setCellValueFactory(new PropertyValueFactory<Activites, String>("idcoach"));
+        cduree11.setCellValueFactory(new PropertyValueFactory<Activites, String>("iduree"));
+        cdate11.setCellValueFactory(new PropertyValueFactory<Activites, String>("date"));
+        cnbm11.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("nombremax"));
+        ctype11.setCellValueFactory(new PropertyValueFactory<Activites, String>("type"));
+        cdes11.setCellValueFactory(new PropertyValueFactory<Activites, String>("description"));
+        clieu11.setCellValueFactory(new PropertyValueFactory<Activites, String>("lieu"));
+
+                cnbpar.setCellValueFactory(new PropertyValueFactory<Activites, Integer>("nombre_parti"));
+
+        tabact11.setItems(activit);
+    }
 }
