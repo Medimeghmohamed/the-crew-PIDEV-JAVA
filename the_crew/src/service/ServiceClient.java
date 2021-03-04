@@ -18,6 +18,8 @@ import java.sql.Statement ;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 ;
 
@@ -86,6 +88,39 @@ public class ServiceClient implements IServiceClient {
             Logger.getLogger(ServiceClient.class.getName()).log(Level.SEVERE, null, ex);
         }
         return clients;
+    }
+     public ObservableList<classement> trierClassement() {
+          Statement stm = null;
+        ObservableList<classement> classements = FXCollections.observableArrayList();
+
+        try {
+
+            stm = Myconnexion.getInstance().getConnection().createStatement();
+
+            String query = "SELECT * FROM `ligne_classement` ORDER BY position  ";
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                classement c = new classement();
+                c.setId(rst.getInt(1));
+                c.setClient(rst.getString("id_client"));
+                c.setNiveau(rst.getInt("id_niveau"));
+                c.setPosition(rst.getInt("position"));
+                c.setNb_points(rst.getInt("nb_points"));
+
+                classements.add(c);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return classements;
+        
+        
+        
+        
+      
     }
                 
 
