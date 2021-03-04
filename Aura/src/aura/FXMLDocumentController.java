@@ -28,6 +28,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
@@ -184,7 +185,19 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void addact(ActionEvent event) {
-        serviceActivites sa=new serviceActivites();
+       
+        if((description.getText().equals("") ) || (idcoach.getText().equals("")) || (duree.getText().equals("")) || (lieu.getText().equals("")) || (type.getText().equals("")) || (datee.getEditor().getText().equals(""))
+                || (nombremax.getText().equals(""))||(id.getText().equals(""))){
+            System.out.println("noooo");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Champ manquant");
+                alert.setHeaderText(null);
+                alert.setContentText("IL FAUT REMPLIR TOUS LES CHAMPS");
+                alert.showAndWait();
+        }
+        else
+        {System.out.println("yes");
+         serviceActivites sa=new serviceActivites();
         Activites A =new Activites();
 A.setDescription(description.getText());
 A.setIdcoach(idcoach.getText());
@@ -197,7 +210,7 @@ A.setId(Integer.parseInt(id.getText()));
 
 sa.addActivities(A);lodtabth();
 clearfields();
-    }
+    }}
 
     @FXML
     private void modify(ActionEvent event) throws IOException {

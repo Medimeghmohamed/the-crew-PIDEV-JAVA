@@ -26,18 +26,18 @@
                            <content>
                               <AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="780.0">
                                  <children>
-                                    <Label layoutX="27.0" layoutY="178.0" minHeight="16" minWidth="69" prefHeight="40.0" prefWidth="164.0" text="duree" />
+                                    <Label layoutX="27.0" layoutY="178.0" minHeight="16" minWidth="69" prefHeight="40.0" prefWidth="82.0" text="duree(min)" />
                                     <Button layoutX="325.0" layoutY="445.0" mnemonicParsing="false" onAction="#addact" prefHeight="40.0" prefWidth="95.0" text="valider" />
                                     <Text layoutX="20.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="idcoach" wrappingWidth="57.4658203125" />
                                     <DatePicker fx:id="datee" layoutX="92.0" layoutY="131.0" />
                                     <Text layoutX="43.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombremax" wrappingWidth="83.4658203125" />
-                                    <Text layoutX="44.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="type" wrappingWidth="123.4658203125" />
+                                    <Text layoutX="48.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="type" wrappingWidth="87.4658203125" />
                                     <Text layoutX="44.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="desc" wrappingWidth="123.4658203125" />
                                     <Text layoutX="44.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lieu" wrappingWidth="123.4658203125" />
                                     <TextField fx:id="id" layoutX="92.0" layoutY="31.0" />
                                     <TextField fx:id="idcoach" layoutX="92.0" layoutY="82.0" />
-                                    <TextField fx:id="duree" layoutX="138.0" layoutY="270.0" />
-                                    <TextField fx:id="nombremax" layoutX="138.0" layoutY="187.0" />
+                                    <TextField fx:id="duree" layoutX="123.0" layoutY="183.0" />
+                                    <TextField fx:id="nombremax" layoutX="138.0" layoutY="270.0" />
                                     <TextField fx:id="type" layoutX="138.0" layoutY="231.0" />
                                     <TextField fx:id="description" layoutX="138.0" layoutY="318.0" />
                                     <TextField fx:id="lieu" layoutX="138.0" layoutY="362.0" />
@@ -56,10 +56,10 @@
                                        <columns>
                                           <TableColumn fx:id="cid" prefWidth="75.0" text="Id" />
                                           <TableColumn fx:id="cidcoach" prefWidth="75.0" text="Id Coach" />
-                                          <TableColumn fx:id="cduree" prefWidth="75.0" text="Duree" />
+                                          <TableColumn fx:id="cduree" prefWidth="75.0" text="Type" />
                                           <TableColumn fx:id="cdate" prefWidth="103.0" text="Date" />
                                           <TableColumn fx:id="cnbm" prefWidth="118.0" text="Nombre max" />
-                                          <TableColumn fx:id="ctype" prefWidth="81.0" text="Type" />
+                                          <TableColumn fx:id="ctype" prefWidth="81.0" text="Duree" />
                                           <TableColumn fx:id="cdes" prefWidth="102.0" text="Description" />
                                           <TableColumn fx:id="clieu" prefWidth="133.0" text="Lieu" />
                                        </columns>

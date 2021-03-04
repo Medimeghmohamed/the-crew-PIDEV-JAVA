@@ -40,7 +40,7 @@
                               <Button fx:id="show" layoutX="560.0" layoutY="130.0" mnemonicParsing="false" onAction="#modifyth" prefHeight="62.0" prefWidth="172.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="update Therapie" />
                               <Label fx:id="lid" layoutX="26.0" layoutY="26.0" minHeight="16" minWidth="57.0" prefHeight="40.0" prefWidth="57.0" text="id" />
                               <ComboBox fx:id="comboth" layoutX="89.0" layoutY="31.0" onAction="#fillth" prefHeight="31.0" prefWidth="195.0" />
-                              <Text fx:id="lidm1" layoutX="434.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="83.4658203125">
+                              <Text fx:id="lidm1" layoutX="446.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="271.4658203125">
                                  <font>
                                     <Font size="65.0" />
                                  </font>

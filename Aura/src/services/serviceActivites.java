@@ -155,8 +155,8 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
         }
         return myList;   }
 
-    @Override
-    public List<Activites> finddate(String t) {
+@Override
+            public List<Activites> finddate(String t) {
         ObservableList<Activites> myList = FXCollections.observableArrayList();
 
  try {
@@ -182,8 +182,8 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
             System.out.println(ex.getMessage());
         }
         return myList;     }
-     @Override
-    public void approuveract(Activites a){
+@Override
+            public void approuveract(Activites a){
     addActivities(a);
     
      try {
@@ -203,7 +203,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
     
     
     }
-     @Override
+ @Override
             public ObservableList<Activites> showpropActivites() {
       ObservableList<Activites> myList = FXCollections.observableArrayList();
         try {
@@ -231,7 +231,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
         return myList;
     }
  @Override
-                public void addpropActivities(Activites a) {
+            public void addpropActivities(Activites a) {
              try {
             String requete  = "INSERT INTO `propoact` (`id`, `idcoach`, `duree`,`date`, `nombremax`, `type`, `description`, `lieu`,`nombre_parti`) VALUES ('"+a.getId()+"', '"+a.getIdcoach()+"', '"+a.getDuree()+"','"+a.getDate()+"', '"+a.getNombremax()+"', '"+a.getType()+"', '"+a.getDescription()+"', '"+a.getLieu()+"', '"+a.getNombre_parti()+"') ";
             Statement st = MyConnection.getInstance().getCnx().createStatement() ;
@@ -250,7 +250,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
         
     }
             @Override
-                        public void supprimerpropoactivite(int id) {
+            public void supprimerpropoactivite(int id) {
         try {
             String requete = "DELETE FROM propoact WHERE id = " + id +"";
             Statement st = MyConnection.getInstance().getCnx().createStatement() ;
@@ -265,7 +265,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
             System.out.println(ex.getMessage());
         }
     }
-public void updatenumpart(Activites a){
+            public void updatenumpart(Activites a){
     try {
          String requete = " UPDATE activite SET nombre_parti=nombre_parti+1 WHERE id='"+a.getId()+"'" ;
             PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
@@ -275,7 +275,7 @@ public void updatenumpart(Activites a){
 catch (Exception e) {
     }}
     
-    public void addclientact(Activites a)
+             public void addclientact(Activites a)
     {  try {
             String requete  = "INSERT INTO `participationactivté` (`id_client`,`id_activite`) VALUES (10,'"+a.getId()+"') ";
             Statement st = MyConnection.getInstance().getCnx().createStatement() ;
