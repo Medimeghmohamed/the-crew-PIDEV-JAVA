@@ -1,60 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="554.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test_cnx.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test_cnx.FXMLDocumentController">
     <children>
-      <TextField fx:id="id_a" layoutX="63.0" layoutY="54.0" prefHeight="38.0" prefWidth="161.0" />
+      <TextField fx:id="id_a" layoutX="14.0" layoutY="34.0" prefHeight="38.0" prefWidth="221.0" promptText="CIN" />
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TextField fx:id="nom_a" layoutX="62.0" layoutY="101.0" prefHeight="38.0" prefWidth="162.0" />
-      <TextField fx:id="prenom_a" layoutX="62.0" layoutY="148.0" prefHeight="38.0" prefWidth="162.0" />
-      <TextField fx:id="email_a" layoutX="62.0" layoutY="191.0" prefHeight="38.0" prefWidth="162.0" />
-      <TextField fx:id="tel_a" layoutX="62.0" layoutY="239.0" prefHeight="38.0" prefWidth="162.0" />
-      <Button layoutX="92.0" layoutY="294.0" mnemonicParsing="false" onAction="#ajouter_admin" prefHeight="45.0" prefWidth="101.0" text="Ajouter" textFill="#b20f0f">
+      <TextField fx:id="nom_a" layoutX="12.0" layoutY="82.0" prefHeight="38.0" prefWidth="222.0" promptText="NOM" />
+      <TextField fx:id="prenom_a" layoutX="12.0" layoutY="120.0" prefHeight="38.0" prefWidth="222.0" promptText="PRENOM" />
+      <TextField fx:id="email_a" layoutX="12.0" layoutY="167.0" onKeyReleased="#test_Mail" prefHeight="38.0" prefWidth="222.0" promptText="EMAIL" />
+      <Button layoutX="80.0" layoutY="374.0" mnemonicParsing="false" onAction="#ajouter_admin" prefHeight="45.0" prefWidth="101.0" text="Ajouter" textFill="#b20f0f">
          <font>
             <Font name="Maiandra GD" size="21.0" />
          </font></Button>
-      <Label layoutX="32.0" layoutY="64.0" text="CIN" />
-      <Label layoutX="27.0" layoutY="117.0" text="NOM" />
-      <Label layoutX="8.0" layoutY="158.0" text="PRENOM" />
-      <Label layoutX="24.0" layoutY="201.0" text="EMAIL" />
-      <Label layoutX="33.0" layoutY="249.0" text="TEL" />
-      <Label layoutX="79.0" layoutY="11.0" prefHeight="30.0" prefWidth="162.0" text="Ajouter Admin" textFill="#a70a0a" textOverrun="CENTER_ELLIPSIS">
+      <Label layoutX="69.0" layoutY="-1.0" prefHeight="30.0" prefWidth="162.0" text="Ajouter Admin" textFill="#a70a0a" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Franklin Gothic Demi Italic" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="nom_am" layoutX="460.0" layoutY="101.0" prefHeight="38.0" prefWidth="162.0" />
-      <TextField fx:id="prenom_am" layoutX="460.0" layoutY="148.0" prefHeight="38.0" prefWidth="162.0" />
-      <TextField fx:id="email_am" layoutX="460.0" layoutY="191.0" prefHeight="38.0" prefWidth="162.0" />
-      <TextField fx:id="tel_am" layoutX="460.0" layoutY="239.0" prefHeight="38.0" prefWidth="162.0" />
-      <Button layoutX="480.0" layoutY="289.0" mnemonicParsing="false" onAction="#modifier_admin" prefHeight="55.0" prefWidth="122.0" text="Modifier" textFill="#b20f0f">
+      <TextField fx:id="nom_am" layoutX="460.0" layoutY="101.0" prefHeight="38.0" prefWidth="222.0" promptText="NOM" />
+      <TextField fx:id="prenom_am" layoutX="460.0" layoutY="148.0" prefHeight="38.0" prefWidth="222.0" promptText="PRENOM" />
+      <TextField fx:id="email_am" layoutX="460.0" layoutY="191.0" prefHeight="38.0" prefWidth="222.0" promptText="EMAIL" />
+      <TextField fx:id="tel_am" layoutX="463.0" layoutY="331.0" prefHeight="38.0" prefWidth="222.0" promptText="Numéro de téléphone" />
+      <Button layoutX="486.0" layoutY="374.0" mnemonicParsing="false" onAction="#modifier_admin" prefHeight="55.0" prefWidth="122.0" text="Modifier" textFill="#b20f0f">
          <font>
             <Font name="Maiandra GD" size="21.0" />
          </font>
       </Button>
-      <Label layoutX="430.0" layoutY="64.0" text="CIN" />
-      <Label layoutX="425.0" layoutY="117.0" text="NOM" />
-      <Label layoutX="406.0" layoutY="158.0" text="PRENOM" />
-      <Label layoutX="422.0" layoutY="201.0" text="EMAIL" />
-      <Label layoutX="431.0" layoutY="249.0" text="TEL" />
       <Label layoutX="477.0" layoutY="11.0" prefHeight="30.0" prefWidth="162.0" text="Modifier Admin" textFill="#a70a0a" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Franklin Gothic Demi Italic" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="488.0" layoutY="394.0" text="CIN" />
-      <Button layoutX="545.0" layoutY="433.0" mnemonicParsing="false" onAction="#supprimer_admin" prefHeight="39.0" prefWidth="122.0" text="Supprimer" textFill="#b20f0f">
+      <Button layoutX="539.0" layoutY="591.0" mnemonicParsing="false" onAction="#supprimer_admin" prefHeight="39.0" prefWidth="122.0" text="Supprimer" textFill="#b20f0f">
          <font>
             <Font name="Maiandra GD" size="21.0" />
          </font>
       </Button>
-      <Label fx:id="tab_admins" layoutX="14.0" layoutY="353.0" prefHeight="198.0" prefWidth="303.0" text="Label" />
-      <TextField fx:id="id_am" layoutX="460.0" layoutY="54.0" prefHeight="38.0" prefWidth="161.0" />
-      <TextField fx:id="id_as" layoutX="525.0" layoutY="383.0" prefHeight="38.0" prefWidth="161.0" />
+      <ComboBox fx:id="combobox_ida" layoutX="513.0" layoutY="541.0" prefHeight="39.0" prefWidth="174.0" />
+      <ComboBox fx:id="combobox_ida_m" layoutX="460.0" layoutY="53.0" onAction="#combobox_load_data_modify" prefHeight="39.0" prefWidth="222.0" />
+      <TableView fx:id="tab_admins" layoutX="8.0" layoutY="430.0" prefHeight="270.0" prefWidth="463.0">
+        <columns>
+          <TableColumn fx:id="tab_id" prefWidth="121.5999813079834" text="ID" />
+          <TableColumn fx:id="nom_id" prefWidth="94.4000244140625" text="NOM" />
+            <TableColumn fx:id="prenom_id" prefWidth="75.199951171875" text="PRENOM" />
+            <TableColumn fx:id="email_id" prefWidth="96.0" text="EMAIL" />
+            <TableColumn fx:id="tel_id" prefWidth="74.39998168945311" text="TEL" />
+        </columns>
+      </TableView>
+      <PasswordField fx:id="password_a" layoutX="12.0" layoutY="229.0" prefHeight="38.0" prefWidth="222.0" promptText="Mot De Passe" />
+      <PasswordField fx:id="c_password_a" layoutX="12.0" layoutY="266.0" onKeyReleased="#Confirmer_MotDePasse" prefHeight="39.0" prefWidth="222.0" promptText="Confimer Mot De Passe" />
+      <PasswordField fx:id="password_am" layoutX="460.0" layoutY="236.0" prefHeight="38.0" prefWidth="222.0" promptText="Mot De Passe" />
+      <PasswordField fx:id="c_password_am" layoutX="460.0" layoutY="285.0" prefHeight="39.0" prefWidth="222.0" promptText="Confimer Mot De Passe" />
+      <TextField fx:id="tel_a" layoutX="12.0" layoutY="331.0" prefHeight="38.0" prefWidth="222.0" promptText="Numéro de téléphone" />
+      <Label fx:id="Confirmer_MotDePasse_label" layoutX="14.0" layoutY="305.0" prefHeight="18.0" prefWidth="222.0" textFill="#cf0404" />
+      <Label fx:id="test_mail_label" layoutX="14.0" layoutY="210.0" prefHeight="18.0" prefWidth="222.0" textFill="#aa1010" />
+      <Label fx:id="user_name_label" layoutX="257.0" layoutY="5.0" prefHeight="18.0" prefWidth="174.0" />
+      <Hyperlink fx:id="log_out" layoutX="615.0" layoutY="674.0" onAction="#log_out" text="Se Deconnecter" />
     </children>
 </AnchorPane>

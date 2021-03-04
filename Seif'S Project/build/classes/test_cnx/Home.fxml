@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test_cnx.HomeController">
+    <children>
+      <TabPane prefHeight="700.0" prefWidth="708.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Untitled Tab 1">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="663.0" prefWidth="723.0">
+                     <children>
+                        <ComboBox fx:id="combobox_ida_m" layoutX="33.0" layoutY="46.0" onAction="#combobox_load_data_modify" prefHeight="39.0" prefWidth="222.0" />
+                        <Label fx:id="user_name_label1" layoutX="517.0" layoutY="18.0" prefHeight="18.0" prefWidth="174.0">
+                           <font>
+                              <Font name="Berlin Sans FB" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="64.0" layoutY="6.0" prefHeight="30.0" prefWidth="162.0" text="Modifier Admin" textFill="#a70a0a" textOverrun="CENTER_ELLIPSIS">
+                           <font>
+                              <Font name="Franklin Gothic Demi Italic" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nom_am" layoutX="31.0" layoutY="103.0" prefHeight="38.0" prefWidth="222.0" promptText="NOM" />
+                        <TextField fx:id="prenom_am" layoutX="31.0" layoutY="150.0" prefHeight="38.0" prefWidth="222.0" promptText="PRENOM" />
+                        <TextField fx:id="email_am" layoutX="31.0" layoutY="193.0" prefHeight="38.0" prefWidth="222.0" promptText="EMAIL" />
+                        <TextField fx:id="tel_am" layoutX="34.0" layoutY="333.0" prefHeight="38.0" prefWidth="222.0" promptText="Numéro de téléphone" />
+                        <Button layoutX="57.0" layoutY="376.0" mnemonicParsing="false" onAction="#modifier_admin" prefHeight="55.0" prefWidth="122.0" text="Modifier" textFill="#b20f0f">
+                           <font>
+                              <Font name="Maiandra GD" size="21.0" />
+                           </font>
+                        </Button>
+                        <PasswordField fx:id="c_password_am" layoutX="31.0" layoutY="287.0" prefHeight="39.0" prefWidth="222.0" promptText="Confimer Mot De Passe" />
+                        <PasswordField fx:id="password_am" layoutX="31.0" layoutY="238.0" prefHeight="38.0" prefWidth="222.0" promptText="Mot De Passe" />
+                        <Button layoutX="447.0" layoutY="537.0" mnemonicParsing="false" onAction="#supprimer_admin" prefHeight="39.0" prefWidth="122.0" text="Supprimer" textFill="#b20f0f">
+                           <font>
+                              <Font name="Maiandra GD" size="21.0" />
+                           </font>
+                        </Button>
+                        <ComboBox fx:id="combobox_ida" layoutX="421.0" layoutY="487.0" prefHeight="39.0" prefWidth="174.0" />
+                        <Hyperlink fx:id="log_out" layoutX="605.0" layoutY="632.0" onAction="#log_out" text="Se Deconnecter" />
+                          <Label fx:id="label" layoutX="167.0" layoutY="28.0" minHeight="16" minWidth="69" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Untitled Tab 2">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tab_admins" layoutX="55.0" layoutY="119.0" prefHeight="349.0" prefWidth="598.0">
+                          <columns>
+                            <TableColumn fx:id="tab_id" prefWidth="131.20001983642578" text="ID" />
+                            <TableColumn fx:id="nom_id" prefWidth="105.5999755859375" text="NOM" />
+                              <TableColumn fx:id="prenom_id" minWidth="8.0" prefWidth="99.20001220703125" text="PRENOM" />
+                              <TableColumn fx:id="email_id" prefWidth="138.39993286132812" text="EMAIL" />
+                              <TableColumn fx:id="tel_id" prefWidth="122.4000244140625" text="TEL" />
+                          </columns>
+                        </TableView>
+                        <Label fx:id="user_name_label2" layoutX="519.0" layoutY="21.0" prefHeight="18.0" prefWidth="174.0">
+                           <font>
+                              <Font name="Berlin Sans FB" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+    </children>
+</AnchorPane>
