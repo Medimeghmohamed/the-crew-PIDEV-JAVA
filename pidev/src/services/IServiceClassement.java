@@ -7,6 +7,7 @@ package services;
 
 import entities.classement;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -21,5 +22,7 @@ public interface IServiceClassement {
     public void modifierClassement(classement o);
 
     public void supprimerClassement(String id);
+
+    public ObservableList<classement> trierClassement();
 
 }

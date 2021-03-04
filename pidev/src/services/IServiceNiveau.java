@@ -7,6 +7,7 @@ package services;
 
 import entities.niveau;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -21,5 +22,6 @@ public interface IServiceNiveau {
     public void modifierNiveau(niveau o);
 
     public void supprimerNiveau(String id);
+     public ObservableList<niveau> RechercherNiveau(String tr);
 
 }

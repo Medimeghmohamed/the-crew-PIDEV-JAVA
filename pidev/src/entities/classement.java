@@ -12,13 +12,16 @@ package entities;
 public class classement {
     private int id ;
     private String client;
-    private String niveau;
-    private String position ;
+    private int niveau;
+    private int position ;
     private int nb_points;
+    
+    // integration badel les int becl varchar 
+    
     
     
     public classement(){}
-    public classement(int id, String client, String niveau, String position, int nb_points)
+    public classement(int id, String client, int niveau, int position, int nb_points)
     {
         this.id=id;
         this.client=client;
@@ -35,11 +38,11 @@ public class classement {
         return client;
     }
 
-    public String getNiveau() {
+    public int getNiveau() {
         return niveau;
     }
 
-    public String getPosition() {
+    public int getPosition() {
         return position;
     }
 
@@ -55,11 +58,11 @@ public class classement {
         this.client = client;
     }
 
-    public void setNiveau(String niveau) {
+    public void setNiveau(int niveau) {
         this.niveau = niveau;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(int position) {
         this.position = position;
     }
 

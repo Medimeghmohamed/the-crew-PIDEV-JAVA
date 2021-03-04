@@ -7,6 +7,7 @@ package services;
 
 import entities.challenge;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -21,5 +22,8 @@ public interface IServiceChallege {
     public void modifierChallenge(challenge o);
 
     public void supprimerChallenge(String id);
+
+   
+    public ObservableList<challenge> trierChallenge();
 
 }

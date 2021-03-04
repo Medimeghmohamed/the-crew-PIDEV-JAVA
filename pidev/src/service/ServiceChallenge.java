@@ -6,6 +6,8 @@
 package service;
 
 import entities.challenge;
+import entities.classement;
+import entities.niveau;
 import services.IServiceChallege;
 import utils.Myconnexion;
 import java.sql.Connection;
@@ -37,10 +39,10 @@ public class ServiceChallenge implements IServiceChallege {
 
     @Override
     public void ajouterChallenge(challenge c) {
-     
+
         c.setNb_participants(5);
         c.setImg("hello");
-     
+
         try {
             if (cnx != null) {
 
@@ -68,21 +70,21 @@ public class ServiceChallenge implements IServiceChallege {
                 System.out.println("cnx NULL");
             }
         } catch (SQLException ex) {
-           
+
             Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public challenge recup_challenge(int id){
+
+    public challenge recup_challenge(int id) {
         challenge ch = new challenge();
-        
-          try {
+
+        try {
             Statement st = cnx.createStatement();
             String query = "select * FROM `challenge` WHERE id='" + id + "'";
             ResultSet rst = st.executeQuery(query);
-            while (rst.next()) {   
-             
-              
-               ch.setId(rst.getInt(1));
+            while (rst.next()) {
+
+                ch.setId(rst.getInt(1));
                 ch.setTitre(rst.getString(2));
                 ch.setType(rst.getString(3));
                 ch.setDescription(rst.getString(4));
@@ -92,29 +94,26 @@ public class ServiceChallenge implements IServiceChallege {
                 ch.setNb_participants(rst.getInt(8));
                 ch.setEtat(rst.getString(9));
                 System.out.println("hhhhhh");
-                ch.setNiveau(rst.getInt(10)) ;
-              
-               
+                ch.setNiveau(rst.getInt(10));
+
             }
-            
+
         } catch (SQLException ex) {
             System.out.println("erreur get IdOBJ pour suivi");
             System.out.println(ex);
         }
-        
-            return ch;
-        
+
+        return ch;
+
     }
 
     @Override
     public ObservableList<challenge> afficherChallenge() {
         Statement stm = null;
         ObservableList<challenge> challenges = FXCollections.observableArrayList();
-        
 
         try {
 
-          
             stm = Myconnexion.getInstance().getConnection().createStatement();
 
             String query = "SELECT * FROM `challenge` ";
@@ -126,7 +125,7 @@ public class ServiceChallenge implements IServiceChallege {
                 c.setTitre(rst.getString("titre"));
                 c.setType(rst.getString("type"));
                 c.setDescription(rst.getString("description"));
-              // c.setImg(rst.getString(5));
+                // c.setImg(rst.getString(5));
                 c.setDate_debut(rst.getDate("date_debut"));
                 c.setDate_fin(rst.getDate("date_fin"));
                 c.setNb_participants(rst.getInt("nb_participants"));
@@ -135,7 +134,7 @@ public class ServiceChallenge implements IServiceChallege {
 
                 challenges.add(c);
             }
-          
+
         } catch (SQLException ex) {
             Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -147,8 +146,8 @@ public class ServiceChallenge implements IServiceChallege {
     public void modifierChallenge(challenge c) {
         try {
             Statement st = cnx.createStatement();
-           
-            String query = "UPDATE  challenge SET titre= '" + c.getTitre()+ "', type = '" + c.getType()+ "', description = '" + c.getDescription()+ "', date_debut = '" + c.getDate_debut()+ "', date_fin = '" + c.getDate_fin()+ "', etat = '" + c.getEtat()+ "', id_niveau = '" + c.getNiveau()+ "'  WHERE id = " + c.getId()+ "";
+
+            String query = "UPDATE  challenge SET titre= '" + c.getTitre() + "', type = '" + c.getType() + "', description = '" + c.getDescription() + "', date_debut = '" + c.getDate_debut() + "', date_fin = '" + c.getDate_fin() + "', etat = '" + c.getEtat() + "', id_niveau = '" + c.getNiveau() + "'  WHERE id = " + c.getId() + "";
             st.executeUpdate(query);
             System.out.println("modification avec succes");
         } catch (SQLException ex) {
@@ -156,11 +155,12 @@ public class ServiceChallenge implements IServiceChallege {
             System.out.println(ex);
         }
     }
+
     @Override
     public void supprimerChallenge(String id) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-       
-       int Id=Integer.parseInt(id);
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        int Id = Integer.parseInt(id);
         try {
             Statement st = cnx.createStatement();
             String query = "DELETE FROM `challenge` WHERE id = " + Id + "";
@@ -171,9 +171,45 @@ public class ServiceChallenge implements IServiceChallege {
             System.out.println(ex);
         }
     }
-    
-   
-  
-    
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public ObservableList<challenge> trierChallenge() {
+        Statement stm = null;
+        ObservableList<challenge> challenges = FXCollections.observableArrayList();
+
+        try {
+
+            stm = Myconnexion.getInstance().getConnection().createStatement();
+
+            String query = "SELECT * FROM `challenge` ORDER BY date_debut";
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                challenge c = new challenge();
+                c.setId(rst.getInt(1));
+                c.setTitre(rst.getString("titre"));
+                c.setType(rst.getString("type"));
+                c.setDescription(rst.getString("description"));
+                // c.setImg(rst.getString(5));
+                c.setDate_debut(rst.getDate("date_debut"));
+                c.setDate_fin(rst.getDate("date_fin"));
+                c.setNb_participants(rst.getInt("nb_participants"));
+                c.setEtat(rst.getString("etat"));
+                c.setNiveau(rst.getInt(10));
+
+                challenges.add(c);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return challenges;
+
+    }
 
 }
