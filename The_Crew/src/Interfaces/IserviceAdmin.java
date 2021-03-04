@@ -34,8 +34,14 @@ public interface IserviceAdmin {
     public boolean test_Email(String cin);
 
     public boolean test_Password(String password);
-    
-   public boolean verifier_id_email_bd(String id,String email);
-   public void modifier_password(String id,String password);
+
+    public boolean verifier_id_email_bd(String id, String email);
+
+    public void modifier_password(String id, String password);
+
+    public boolean verifier_data(String id, String password);
+        public boolean verifier_id_bd(String id);
+
+    public Admin load_user_name(String id);
 
 }
