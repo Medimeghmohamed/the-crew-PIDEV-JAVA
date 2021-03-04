@@ -6,7 +6,7 @@
 package Service;
 
 import Entities.Admin;
-import Services.IserviceAdmin;
+import Interfaces.IserviceAdmin;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -268,21 +268,20 @@ public class ServiceAdmin implements IserviceAdmin {
             rst = stm.executeQuery(query);
             if (rst.next()) {
                 return true;
-            } 
+            }
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
         }
 
-
         return false;
 
     }
-    
-       public void modifier_password(String id,String password){
-       
-       Statement stm;
+
+    public void modifier_password(String id, String password) {
+
+        Statement stm;
         try {
             stm = cnx.createStatement();
 
@@ -292,8 +291,75 @@ public class ServiceAdmin implements IserviceAdmin {
         } catch (SQLException ex) {
             Logger.getLogger(ServiceAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-       }
 
+    }
+
+    public boolean verifier_data(String id, String password) {
+
+        Statement stm = null;
+        ResultSet rst = null;
+
+        try {
+            stm = cnx.createStatement();
+            String query = "SELECT * FROM `admin` WHERE id='" + id + "' AND password='" + password + "'  ";
+            rst = stm.executeQuery(query);
+            if (rst.next()) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+
+        return false;
+    }
+            public boolean verifier_id_bd(String id){
+                Statement stm = null;
+        ResultSet rst = null;
+
+        try {
+            stm = cnx.createStatement();
+            String query = "SELECT * FROM `admin` WHERE id='" + id + "'";
+            rst = stm.executeQuery(query);
+            if (rst.next()) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+
+        return false;
+            }
+
+    public Admin load_user_name(String id) {
+
+        Statement stm = null;
+        List<Admin> Admins = new ArrayList<>();
+        Admin a = new Admin();
+
+        try {
+            stm = cnx.createStatement();
+            String query = "SELECT * FROM `admin` WHERE id='" + id + "'  ";
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                a.setId(rst.getString("id"));
+                a.setNom(rst.getString("nom"));
+                a.setPrenom(rst.getString("prenom"));
+                a.setEmail(rst.getString("email"));
+                a.setPassword(rst.getString("password"));
+                a.setTel(rst.getString("tel"));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        return a;
+
+    }
 
 }
