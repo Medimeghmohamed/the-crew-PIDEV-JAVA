@@ -122,7 +122,7 @@ public class ServiceObjectif implements IServiceObjectif {
     }
 
     @Override
-    public String getIdObj(String obj, int idd) {
+    public String getIdObj(String obj, String idd) {
         String id = "";
         try {
             Statement st = cnx.createStatement();
@@ -260,6 +260,42 @@ public class ServiceObjectif implements IServiceObjectif {
             System.out.println(ex);
         }
         return objectifs;
+    }
+
+    @Override
+    public String getJourDateDebutObj(String idObj, String idCli) {
+        String jour = "";
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select SUBSTRING(dateDebut, 1, 2)  from `objectif` WHERE id = '" + idObj + "' AND idClient ='" + idCli + "'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                jour = rs.getString("SUBSTRING(dateDebut, 1, 2)");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur get jour date debut objectif");
+            System.out.println(ex);
+        }
+        return jour;
+    }
+
+    @Override
+    public int getDureeObj(String idObj, String idCli) {
+        int duree=0;
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select duree  from `objectif` WHERE id = '" + idObj + "' AND idClient ='" + idCli + "'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                duree = rs.getInt("duree");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur get jour date debut objectif");
+            System.out.println(ex);
+        }
+        return duree;
     }
 
 }

@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Chirine/Desktop/Aura/Aura/src/Interfaces/IServiceObjectif.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/Aura/Aura/src/aura/FXMLDocumentController.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/Aura/Aura/src/Services/ServiceObjectif.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/Aura/Aura/src/Entities/Objectif.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/Aura/Aura/src/Utils/MaConnexion.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v2/Aura/Aura/src/Services/ServiceObjectif.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v2/Aura/Aura/src/aura/FXMLDocumentController.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v2/Aura/Aura/src/Entities/ObjectifPred.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v2/Aura/Aura/src/Utils/MaConnexion.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v2/Aura/Aura/src/Entities/Objectif.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v2/Aura/Aura/src/Interfaces/IServiceObjectifPred.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v2/Aura/Aura/src/Services/ServiceObjectifPred.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v2/Aura/Aura/src/Services/ServiceSuivi.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v2/Aura/Aura/src/Interfaces/IServiceObjectif.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v2/Aura/Aura/src/Interfaces/IServiceSuivi.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v2/Aura/Aura/src/Entities/Suivi.java</file>
         </group>
     </open-files>
 </project-private>

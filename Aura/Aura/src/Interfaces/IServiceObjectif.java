@@ -5,7 +5,6 @@
  */
 package Interfaces;
 import Entities.Objectif;
-import java.util.List;
 import javafx.collections.ObservableList;
 /**
  *
@@ -14,7 +13,7 @@ import javafx.collections.ObservableList;
 public interface IServiceObjectif {
     public void ajouterObjectif(Objectif o);
     public ObservableList<String> getMesObjectifs(int id);
-    public String getIdObj(String obj, int id);
+    public String getIdObj(String obj, String id);
     public ObservableList<Objectif> afficherObjectifs();
     public void modifierObjectif(Objectif o);
     public void supprimerObjectif(String id);
@@ -23,5 +22,7 @@ public interface IServiceObjectif {
     public ObservableList<Objectif> trierObjectifparId();
     public ObservableList<Objectif> trierObjectifparDesc();
     public int getRepObj(String idObj);
+    public String getJourDateDebutObj(String idObj, String idCli);
+    public int getDureeObj(String idObj, String idCli);
     
 }

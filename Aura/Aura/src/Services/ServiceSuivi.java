@@ -220,4 +220,21 @@ public class ServiceSuivi implements IServiceSuivi {
         }
         return suivis;    }
 
+    @Override
+    public String getJour(String idSuiv) {
+        String jour="";
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select SUBSTR(date, 1, 2)  from `suivi` WHERE id = '" +idSuiv+"'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                jour=rs.getString("SUBSTR(date, 1, 2)");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur get jour suivi");
+            System.out.println(ex);
+        }
+        return jour;    }
+
 }

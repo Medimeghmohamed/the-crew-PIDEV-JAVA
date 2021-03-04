@@ -11,16 +11,22 @@ import Entities.Suivi;
 import Services.ServiceObjectif;
 import Services.ServiceObjectifPred;
 import Services.ServiceSuivi;
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.ComboBox;
@@ -33,6 +39,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 //import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import Entities.AlertBoxSuivi;
 
 /**
  *
@@ -246,6 +254,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void supprimerObjectif(ActionEvent event) {
         ServiceObjectif sp = new ServiceObjectif();
+        // tvobjectifs.getItems().removeAll(tvobjectifs.getSelectionModel().getSelectedItem());
         sp.supprimerObjectif(tfid.getText());
         afficherObjectifs();
         tfid.setText(null);
@@ -255,6 +264,7 @@ public class FXMLDocumentController implements Initializable {
         tfduree.setText(null);
         tfidCli.setText(null);
         erreurObj.setText(null);
+
     }
 
     private void afficherObjectifs() {
@@ -401,11 +411,18 @@ public class FXMLDocumentController implements Initializable {
         s.setIdSuiv(tfid_suiv.getText());
         s.setValeurSuiv(cbrep_suivi.getValue());
         s.setIdClientSuiv("1"); //!!! a changer !!!
-        s.setIdObjectifSuiv(sp.getIdObj(cbobjsuivi.getValue(), 1));
+        s.setIdObjectifSuiv(sp.getIdObj(cbobjsuivi.getValue(), "1"));
         s.setDateSuiv(dateFicheSuivi.getText());
         ss.ajouterSuivi(s);
         afficherSuivi();
-
+        
+        int jourCourant =Integer.parseInt( new SimpleDateFormat("dd").format(Calendar.getInstance().getTime()));
+        System.out.println("jour courant" + jourCourant);
+        System.out.println("Jour date debut  " + Integer.parseInt(sp.getJourDateDebutObj(sp.getIdObj(cbobjsuivi.getValue(), "1"), "1"))); 
+        System.out.println("durée "+ sp.getDureeObj(sp.getIdObj(cbobjsuivi.getValue(), "1"), "1"));
+        
+        int reste =sp.getDureeObj(sp.getIdObj(cbobjsuivi.getValue(), "1"), "1")-(jourCourant -Integer.parseInt(sp.getJourDateDebutObj(sp.getIdObj(cbobjsuivi.getValue(), "1"), "1")));
+        AlertBoxSuivi.display("Rappel","   Il vous reste   " + reste + "  jours pour terminer cet objectif");
     }
 
     private void afficherSuivi() {

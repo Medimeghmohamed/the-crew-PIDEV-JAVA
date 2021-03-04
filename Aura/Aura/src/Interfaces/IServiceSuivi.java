@@ -22,5 +22,6 @@ public interface IServiceSuivi {
     public int getValeur(String idObj, String date);
     public ObservableList<String> getObjectifBilan(String idClient);
     public ObservableList<String> getDateBilan(String idObjectif);
+    public String getJour(String idSuiv);
     
 }

@@ -211,7 +211,8 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </Label>
-                                       </children></AnchorPane>
+                                       </children>
+                                    </AnchorPane>
                                  </content>
                               </Tab>
                           </tabs>
