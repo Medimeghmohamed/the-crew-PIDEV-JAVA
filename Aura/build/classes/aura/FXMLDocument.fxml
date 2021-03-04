@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -51,7 +52,7 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="tabact" layoutX="9.0" prefHeight="467.0" prefWidth="763.0">
+                                    <TableView fx:id="tabact" layoutX="9.0" prefHeight="467.0" prefWidth="763.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/JavaFX%20TC%20.css">
                                        <columns>
                                           <TableColumn fx:id="cid" prefWidth="75.0" text="Id" />
                                           <TableColumn fx:id="cidcoach" prefWidth="75.0" text="Id Coach" />
@@ -63,9 +64,9 @@
                                           <TableColumn fx:id="clieu" prefWidth="133.0" text="Lieu" />
                                        </columns>
                                     </TableView>
-                                    <Button layoutX="58.0" layoutY="467.0" mnemonicParsing="false" onAction="#loadtable" text="load" />
-                                    <ComboBox fx:id="combotype" layoutX="163.0" layoutY="467.0" onAction="#findtype" prefWidth="150.0" />
-                                    <ComboBox fx:id="comboate" layoutX="353.0" layoutY="467.0" onAction="#finddate" prefWidth="150.0" />
+                                    <Button layoutX="58.0" layoutY="467.0" mnemonicParsing="false" onAction="#loadtable" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="load" />
+                                    <ComboBox fx:id="combotype" layoutX="163.0" layoutY="467.0" onAction="#findtype" prefWidth="150.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" />
+                                    <ComboBox fx:id="comboate" layoutX="353.0" layoutY="467.0" onAction="#finddate" prefWidth="150.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -88,7 +89,7 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="tabact1" prefHeight="456.0" prefWidth="831.0">
+                                    <TableView fx:id="tabact1" prefHeight="366.0" prefWidth="831.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/JavaFX%20TC%20.css">
                                        <columns>
                                           <TableColumn fx:id="cid1" prefWidth="75.0" text="Id" />
                                           <TableColumn fx:id="cidcoach1" prefWidth="75.0" text="Id Coach" />
@@ -100,8 +101,10 @@
                                           <TableColumn fx:id="clieu1" prefWidth="137.0" text="Lieu" />
                                        </columns>
                                     </TableView>
-                                    <Button layoutX="172.0" layoutY="466.0" mnemonicParsing="false" onAction="#appro" text="approuver" />
-                                    <Button layoutX="55.0" layoutY="466.0" mnemonicParsing="false" onAction="#decline" text="Decline" />
+                                    <Button layoutX="48.0" layoutY="453.0" mnemonicParsing="false" onAction="#appro" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="approuver" />
+                                    <Button layoutX="52.0" layoutY="393.0" mnemonicParsing="false" onAction="#decline" prefHeight="48.0" prefWidth="103.0" style="-fx-background-color: red;" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="DELETE" />
+                                    <Button layoutX="200.0" layoutY="410.0" mnemonicParsing="false" onAction="#sendmailact" prefHeight="63.0" prefWidth="175.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="Contacter coach" />
+                                    <TextArea fx:id="reasact" layoutX="403.0" layoutY="373.0" prefHeight="128.0" prefWidth="356.0" />
                                  </children>
                               </AnchorPane>
                           </content>

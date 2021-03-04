@@ -277,7 +277,7 @@ catch (Exception e) {
     
     public void addclientact(Activites a)
     {  try {
-            String requete  = "INSERT INTO `participationtherapie` (`id_client`,`id_activite`) VALUES (10,'"+a.getId()+"') ";
+            String requete  = "INSERT INTO `participationactivté` (`id_client`,`id_activite`) VALUES (10,'"+a.getId()+"') ";
             Statement st = MyConnection.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("Client ajouté");
@@ -294,7 +294,7 @@ catch (Exception e) {
         
 
             public void joinact(Activites a){
-                updatenumpart(a);
+                
                 if(a.getNombremax()==a.getNombre_parti())
                 { Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Nombre max");
@@ -302,7 +302,8 @@ catch (Exception e) {
                 alert.setContentText("FULL");
                 alert.showAndWait(); }
                 else
-                 addclientact( a);
+                {addclientact( a);
+                updatenumpart(a);}
                 
             
             }

@@ -279,7 +279,7 @@ catch (Exception e) {
         
 
             public void jointh(Therapie a){
-                updatenumpartth(a);
+               
                 if(a.getNombremax()==a.getNombre_parti())
                 { Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Nombre max");
@@ -287,7 +287,7 @@ catch (Exception e) {
                 alert.setContentText("FULL");
                 alert.showAndWait(); }
                 else
-                 addclientth( a);
+                {addclientth( a); updatenumpartth(a);}
                 
             
             }

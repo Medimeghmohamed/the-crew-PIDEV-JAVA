@@ -16,6 +16,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import entities.Activites;
+import entities.Therapie;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,12 +33,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javax.swing.text.TabableView;
 import services.serviceActivites;
+import services.service_mail;
 
 /**
  *
@@ -146,6 +149,8 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Activites, String>clieu11;
     @FXML
     private TableColumn<Activites, Integer> cnbpar;
+    @FXML
+    private TextArea reasact;
     
   
     
@@ -167,16 +172,12 @@ public class FXMLDocumentController implements Initializable {
         // ... + noms de colonnesa
         cid.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("id"));
         cidcoach.setCellValueFactory(new PropertyValueFactory<Activites, String>("idcoach"));
-        cduree.setCellValueFactory(new PropertyValueFactory<Activites, String>("iduree"));
+        cduree.setCellValueFactory(new PropertyValueFactory<Activites, String>("duree"));
         cdate.setCellValueFactory(new PropertyValueFactory<Activites, String>("date"));
         cnbm.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("nombremax"));
         ctype.setCellValueFactory(new PropertyValueFactory<Activites, String>("type"));
         cdes.setCellValueFactory(new PropertyValueFactory<Activites, String>("description"));
         clieu.setCellValueFactory(new PropertyValueFactory<Activites, String>("lieu"));
-
-
-
-
         tabact.setItems(activit);
          
     }    
@@ -194,7 +195,7 @@ A.setDate(datee.getEditor().getText());
 A.setNombremax(Integer.parseInt(nombremax.getText()));
 A.setId(Integer.parseInt(id.getText()));
 
-sa.addActivities(A);
+sa.addActivities(A);lodtabth();
 clearfields();
     }
 
@@ -204,7 +205,7 @@ clearfields();
 Parent modif = (Parent) fxmlLoader.load();
 Stage stage = new Stage();
 stage.setScene(new Scene(modif));  
-stage.show();
+stage.show();lodtabth();
     }
 
     private void clearfields() {
@@ -226,7 +227,7 @@ duree.clear();
 
         cid.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("id"));
         cidcoach.setCellValueFactory(new PropertyValueFactory<Activites, String>("idcoach"));
-        cduree.setCellValueFactory(new PropertyValueFactory<Activites, String>("iduree"));
+        cduree.setCellValueFactory(new PropertyValueFactory<Activites, String>("duree"));
         cdate.setCellValueFactory(new PropertyValueFactory<Activites, String>("date"));
         cnbm.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("nombremax"));
         ctype.setCellValueFactory(new PropertyValueFactory<Activites, String>("type"));
@@ -261,7 +262,7 @@ duree.clear();
         Object b= combodel.getSelectionModel().getSelectedItem();
 int c  = Integer.parseInt((String) b);  
  serviceActivites act = new serviceActivites();
- act.supprimeractivite(c);
+ act.supprimeractivite(c);lodtabth();
     }
     public void fillComboBoxtype(){
     
@@ -304,7 +305,7 @@ public void fillcomboboxdate(){
 
         cid.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("id"));
         cidcoach.setCellValueFactory(new PropertyValueFactory<Activites, String>("idcoach"));
-        cduree.setCellValueFactory(new PropertyValueFactory<Activites, String>("iduree"));
+        cduree.setCellValueFactory(new PropertyValueFactory<Activites, String>("duree"));
         cdate.setCellValueFactory(new PropertyValueFactory<Activites, String>("date"));
         cnbm.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("nombremax"));
         ctype.setCellValueFactory(new PropertyValueFactory<Activites, String>("type"));
@@ -322,7 +323,7 @@ public void fillcomboboxdate(){
 
         cid.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("id"));
         cidcoach.setCellValueFactory(new PropertyValueFactory<Activites, String>("idcoach"));
-        cduree.setCellValueFactory(new PropertyValueFactory<Activites, String>("iduree"));
+        cduree.setCellValueFactory(new PropertyValueFactory<Activites, String>("duree"));
         cdate.setCellValueFactory(new PropertyValueFactory<Activites, String>("date"));
         cnbm.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("nombremax"));
         ctype.setCellValueFactory(new PropertyValueFactory<Activites, String>("type"));
@@ -345,7 +346,7 @@ A.setDate(datee1.getEditor().getText());
 A.setNombremax(Integer.parseInt(nombremax1.getText()));
 A.setId(Integer.parseInt(id1.getText()));
 A.setNombre_parti(0);
-
+loadtablepropo();
 sa.addpropActivities(A);
 
     }
@@ -375,7 +376,9 @@ sa.addpropActivities(A);
         System.out.println( a.getId());
          serviceActivites sa=new serviceActivites();
          sa.approuveract(a);
-         loadtablepropo();
+                  sendresp("proposition acceptée");
+
+         loadtablepropo();lodtabth();
     }
 
     @FXML
@@ -384,7 +387,9 @@ sa.addpropActivities(A);
         System.out.println( a.getId());
          serviceActivites sa=new serviceActivites();
          sa.supprimerpropoactivite(a.getId());
+                  sendresp("proposition refusée");
          loadtablepropo();
+         
     }
 
     @FXML
@@ -396,7 +401,7 @@ sa.addpropActivities(A);
          serviceActivites sa=new serviceActivites();
          sa.joinact(a);
          loadtablejoin();
-         loadtablepropo();}
+         loadtablepropo();lodtabth();}
         
   private void loadtablejoin() {
         
@@ -405,7 +410,7 @@ sa.addpropActivities(A);
 
         cid11.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("id"));
         cidcoach11.setCellValueFactory(new PropertyValueFactory<Activites, String>("idcoach"));
-        cduree11.setCellValueFactory(new PropertyValueFactory<Activites, String>("iduree"));
+        cduree11.setCellValueFactory(new PropertyValueFactory<Activites, String>("duree"));
         cdate11.setCellValueFactory(new PropertyValueFactory<Activites, String>("date"));
         cnbm11.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("nombremax"));
         ctype11.setCellValueFactory(new PropertyValueFactory<Activites, String>("type"));
@@ -416,4 +421,76 @@ sa.addpropActivities(A);
 
         tabact11.setItems(activit);
     }
+
+    @FXML
+    private void sendmailact(ActionEvent event) {
+        Activites t=tabact1.getSelectionModel().getSelectedItem();
+         String n=t.getIdcoach();
+        System.out.println("1");
+        try {
+             String requete = "SELECT email FROM coach  WHERE id='"+n+"'";
+             System.out.println("2");
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            System.out.println("3");
+            while (rs.next()) {
+              rs.getString("email"); 
+              
+              System.out.println("4");
+                 service_mail mai =new service_mail();
+        System.out.println( rs.getString("email"));
+      String reaso= reasact.getText();
+        System.out.println(reaso);
+            mai.send_mail( rs.getString("email"),reaso);
+            }
+                 
+         }catch (Exception e) {
+        }
+    }
+    
+    
+    
+    private void sendresp(String etat)
+    {Activites t=tabact1.getSelectionModel().getSelectedItem();
+         String n=t.getIdcoach();
+        try {
+             String requete = "SELECT email FROM coach  WHERE id='"+n+"'";
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while (rs.next()) {
+              rs.getString("email"); 
+              
+                 service_mail mai =new service_mail();
+        System.out.println( rs.getString("email"));
+      String reaso= reasact.getText();
+            mai.send_mail( rs.getString("email"),etat);
+            }
+                 
+         }catch (Exception e) {
+        }
+    }
+    private void lodtabth() {
+        serviceActivites sa = new serviceActivites();
+        ObservableList<Activites> activit = sa.showActivites();
+                tabact.setItems(activit);
+
+        cid.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("id"));
+        cidcoach.setCellValueFactory(new PropertyValueFactory<Activites, String>("idcoach"));
+        cduree.setCellValueFactory(new PropertyValueFactory<Activites, String>("duree"));
+        cdate.setCellValueFactory(new PropertyValueFactory<Activites, String>("date"));
+        cnbm.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("nombremax"));
+        ctype.setCellValueFactory(new PropertyValueFactory<Activites, String>("type"));
+        cdes.setCellValueFactory(new PropertyValueFactory<Activites, String>("description"));
+        clieu.setCellValueFactory(new PropertyValueFactory<Activites, String>("lieu"));
+
+        tabact.setItems(activit);
+        
+        
+    }
+
+   
 }
+
+
+
+

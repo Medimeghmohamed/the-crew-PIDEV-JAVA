@@ -6,6 +6,7 @@
 package aura;
 
 import MaConnexion.MyConnection;
+import services.service_mail;
 import entities.Activites;
 import entities.Therapie;
 import java.net.URL;
@@ -13,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,12 +26,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import services.serviceActivites;
 import services.serviceTherapie;
+
 
 /**
  * FXML Controller class
@@ -112,17 +117,11 @@ public class TherapieController implements Initializable {
     @FXML
     private TextField lieu1;
     @FXML
-    private Button show1;
-    @FXML
     private Label lidd1;
     @FXML
     private ComboBox<?> comboth1;
     @FXML
     private Text lidm11;
-    @FXML
-    private Text lid11;
-    @FXML
-    private Button modifier1;
     @FXML
     private AnchorPane tabpropoact;
     @FXML
@@ -141,6 +140,8 @@ public class TherapieController implements Initializable {
     private TableColumn<Therapie,String> clieu2;
     @FXML
     private TableColumn<Therapie,Integer> nbpth;
+    @FXML
+    private TextArea reason;
 
     /**
      * Initializes the controller class.
@@ -382,6 +383,8 @@ int c  = Integer.parseInt((String) b);
         System.out.println( t.getId());
          serviceTherapie th=new serviceTherapie();
          th.approuverTherapie(t);
+                 mailcoach("proposition acceptée");
+
          loadtablepropo();
          loadtableth();
          loadetableclth();
@@ -393,6 +396,7 @@ int c  = Integer.parseInt((String) b);
         System.out.println( t.getId());
         serviceTherapie th=new serviceTherapie();
         th.supprimerpropoTherapie(t.getId());
+        mailcoach("proposition refusée");
          loadtablepropo();
          loadtableth();
     }
@@ -476,5 +480,59 @@ st.addpropTherapie(T);
 
                 tabth2.setItems(therapie);
 
+    }
+
+    @FXML
+    private void mailcoach(ActionEvent event) {
+        
+         Therapie t=tabth1.getSelectionModel().getSelectedItem();
+         String n=t.getIdcoach();
+        System.out.println("1");
+        try {
+             String requete = "SELECT email FROM coach  WHERE id='"+n+"'";
+             System.out.println("2");
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            System.out.println("3");
+            while (rs.next()) {
+              rs.getString("email"); 
+              
+              System.out.println("4");
+                 service_mail mai =new service_mail();
+        System.out.println( rs.getString("email"));
+      String reaso= reason.getText();
+        System.out.println(reaso);
+            mai.send_mail( rs.getString("email"),reaso);
+            }
+                 
+         }catch (Exception e) {
+        }
+        
+        
+    }
+    private void mailcoach(String etat)
+    {  Therapie t=tabth1.getSelectionModel().getSelectedItem();
+         String n=t.getIdcoach();
+        try {
+             String requete = "SELECT email FROM coach  WHERE id='"+n+"'";
+             System.out.println("2");
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while (rs.next()) {
+              rs.getString("email"); 
+              
+                 service_mail mai =new service_mail();
+        System.out.println( rs.getString("email"));
+     // String reaso= reason.getText();
+       // System.out.println(reaso);
+            mai.send_mail( rs.getString("email"),etat);
+            }
+                 
+         }catch (Exception e) {
+        }
+   
+ 
+    
+    
     }
 }

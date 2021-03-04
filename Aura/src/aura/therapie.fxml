@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,7 +26,7 @@
                      <content>
                         <AnchorPane id="AnchorPane" prefHeight="568.0" prefWidth="803.0">
                            <children>
-                              <Button fx:id="addact" layoutX="582.0" layoutY="226.0" mnemonicParsing="false" onAction="#addTh" prefHeight="71.0" prefWidth="128.0" text="ADD" />
+                              <Button fx:id="addact" layoutX="582.0" layoutY="226.0" mnemonicParsing="false" onAction="#addTh" prefHeight="71.0" prefWidth="128.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="ADD" />
                               <Text layoutX="13.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="idcoach" wrappingWidth="83.4658203125" />
                               <DatePicker fx:id="datee" layoutX="92.0" layoutY="129.0" />
                               <Text layoutX="21.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombremax" wrappingWidth="83.4658203125" />
@@ -35,20 +37,20 @@
                               <TextField fx:id="nombremax" layoutX="108.0" layoutY="246.0" />
                               <TextField fx:id="sujet" layoutX="93.0" layoutY="82.0" />
                               <TextField fx:id="lieu" layoutX="108.0" layoutY="189.0" />
-                              <Button fx:id="show" layoutX="582.0" layoutY="129.0" mnemonicParsing="false" onAction="#modifyth" prefHeight="63.0" prefWidth="127.0" text="update Therapie" />
+                              <Button fx:id="show" layoutX="560.0" layoutY="130.0" mnemonicParsing="false" onAction="#modifyth" prefHeight="62.0" prefWidth="172.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="update Therapie" />
                               <Label fx:id="lid" layoutX="26.0" layoutY="26.0" minHeight="16" minWidth="57.0" prefHeight="40.0" prefWidth="57.0" text="id" />
                               <ComboBox fx:id="comboth" layoutX="89.0" layoutY="31.0" onAction="#fillth" prefHeight="31.0" prefWidth="195.0" />
-                              <Text fx:id="lidm1" layoutX="434.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="83.4658203125">
+                              <Text fx:id="lidm1" layoutX="446.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="271.4658203125">
                                  <font>
                                     <Font size="65.0" />
                                  </font>
                               </Text>
                               <Text fx:id="lid1" layoutX="343.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id:" wrappingWidth="83.4658203125">
                                  <font>
-                                    <Font size="65.0" />
+                                    <Font name="Bradley Hand ITC" size="65.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="modifier" layoutX="550.0" layoutY="161.0" mnemonicParsing="false" onAction="#modifierth" prefHeight="89.0" prefWidth="175.0" text="modifier" wrapText="true" />
+                              <Button fx:id="modifier" layoutX="550.0" layoutY="161.0" mnemonicParsing="false" onAction="#modifierth" prefHeight="89.0" prefWidth="175.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="modifier" wrapText="true" />
                               <Text layoutX="21.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="51.4658203125" />
                            </children>
                         </AnchorPane>
@@ -58,23 +60,27 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="446.0" prefWidth="780.0">
                            <children>
-                              <TableView fx:id="tabth" layoutX="14.0" layoutY="14.0" prefHeight="333.0" prefWidth="763.0">
+                              <TableView fx:id="tabth" layoutX="14.0" layoutY="14.0" prefHeight="333.0" prefWidth="763.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/JavaFX%20TC%20.css">
                                  <columns>
                                     <TableColumn fx:id="cid" prefWidth="75.0" text="Id" />
                                     <TableColumn fx:id="cidcoach" prefWidth="114.0" text="Id Coach" />
-                                    <TableColumn fx:id="csujet" prefWidth="125.0" text="Sujet" />
-                                    <TableColumn fx:id="cdate" prefWidth="124.0" text="Date" />
-                                    <TableColumn fx:id="cnbm" prefWidth="112.0" text="Nombre max" />
-                                    <TableColumn fx:id="clieu" prefWidth="212.0" text="Lieu" />
+                                    <TableColumn fx:id="csujet" prefWidth="108.0" text="Sujet" />
+                                    <TableColumn fx:id="cdate" prefWidth="230.0" text="Date" />
+                                    <TableColumn fx:id="cnbm" prefWidth="83.0" text="Nombre max" />
+                                    <TableColumn fx:id="clieu" prefWidth="152.0" text="Lieu" />
                                  </columns>
+                                 <styleClass>
+                                    <String fx:value="table-row" />
+                                    <String fx:value="cell" />
+                                 </styleClass>
                               </TableView>
-                              <Button layoutX="75.0" layoutY="399.0" mnemonicParsing="false" onAction="#loadtable" text="load" />
-                              <ComboBox fx:id="combotype" layoutX="165.0" layoutY="408.0" onAction="#findtype" prefWidth="150.0">
+                              <Button layoutX="51.0" layoutY="400.0" mnemonicParsing="false" onAction="#loadtable" prefHeight="48.0" prefWidth="74.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="load" />
+                              <ComboBox fx:id="combotype" layoutX="165.0" layoutY="408.0" onAction="#findtype" prefWidth="150.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css">
                                  <effect>
                                     <Glow />
                                  </effect>
                               </ComboBox>
-                              <ComboBox fx:id="combodate" layoutX="369.0" layoutY="408.0" onAction="#finddate" prefWidth="150.0" />
+                              <ComboBox fx:id="combodate" layoutX="369.0" layoutY="408.0" onAction="#finddate" prefWidth="150.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -83,7 +89,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ComboBox fx:id="combodel" layoutX="186.0" layoutY="102.0" prefHeight="120.0" prefWidth="250.0" />
+                              <ComboBox fx:id="combodel" layoutX="186.0" layoutY="102.0" prefHeight="120.0" prefWidth="250.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" />
                               <Button layoutX="285.0" layoutY="285.0" mnemonicParsing="false" onAction="#deleteth" prefHeight="46.0" prefWidth="90.0" style="-fx-background-color: red;" text="DELETE" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
@@ -97,7 +103,7 @@
                      <content>
                         <AnchorPane fx:id="tabpropoact" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tabth1" layoutX="14.0" layoutY="31.0" prefHeight="333.0" prefWidth="763.0">
+                              <TableView fx:id="tabth1" layoutX="14.0" layoutY="31.0" prefHeight="333.0" prefWidth="763.0" styleClass="table-row" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/JavaFX%20TC%20.css">
                                  <columns>
                                     <TableColumn fx:id="cid1" prefWidth="75.0" text="Id" />
                                     <TableColumn fx:id="cidcoach1" prefWidth="114.0" text="Id Coach" />
@@ -107,8 +113,13 @@
                                     <TableColumn fx:id="clieu1" prefWidth="212.0" text="Lieu" />
                                  </columns>
                               </TableView>
-                              <Button layoutX="61.0" layoutY="383.0" mnemonicParsing="false" onAction="#approuverth" prefHeight="40.0" prefWidth="81.0" text="valider" />
-                              <Button layoutX="175.0" layoutY="381.0" mnemonicParsing="false" onAction="#delpropoth" prefHeight="44.0" prefWidth="84.0" text="Delete" />
+                              <Button layoutX="49.0" layoutY="380.0" mnemonicParsing="false" onAction="#approuverth" prefHeight="47.0" prefWidth="105.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="valider" />
+                              <Button layoutX="60.0" layoutY="445.0" mnemonicParsing="false" onAction="#delpropoth" prefHeight="44.0" prefWidth="84.0" style="-fx-background-color: red;" text="Delete" textFill="#f8f8f8">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font></Button>
+                              <Button layoutX="201.0" layoutY="414.0" mnemonicParsing="false" onAction="#mailcoach" prefHeight="62.0" prefWidth="157.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="Contact coach" />
+                              <TextArea fx:id="reason" layoutX="396.0" layoutY="368.0" prefHeight="129.0" prefWidth="364.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -117,13 +128,33 @@
             </TabPane>
          </content>
     </Tab>
+      <Tab text="Client">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="tabth2" layoutX="14.0" layoutY="8.0" prefHeight="411.0" prefWidth="811.0">
+                     <columns>
+                        <TableColumn fx:id="cid2" prefWidth="75.0" text="Id" />
+                        <TableColumn fx:id="cidcoach2" prefWidth="114.0" text="Id Coach" />
+                        <TableColumn fx:id="csujet2" prefWidth="125.0" text="Sujet" />
+                        <TableColumn fx:id="cdate2" prefWidth="124.0" text="Date" />
+                        <TableColumn fx:id="cnbm2" prefWidth="112.0" text="Nombre max" />
+                        <TableColumn fx:id="clieu2" prefWidth="139.0" text="Lieu" />
+                        <TableColumn fx:id="nbpth" prefWidth="121.0" text="nombre de participant" />
+                     </columns>
+                  </TableView>
+                  <Button layoutX="39.0" layoutY="450.0" mnemonicParsing="false" onAction="#jointh" prefHeight="51.0" prefWidth="81.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="Join" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
     <Tab text="Coach">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <AnchorPane id="AnchorPane" prefHeight="568.0" prefWidth="803.0">
                      <children>
-                        <Button fx:id="addact1" layoutX="580.0" layoutY="154.0" mnemonicParsing="false" onAction="#addpropTh" prefHeight="71.0" prefWidth="128.0" text="ADD" />
+                        <Button fx:id="addact1" layoutX="556.0" layoutY="140.0" mnemonicParsing="false" onAction="#addpropTh" prefHeight="84.0" prefWidth="146.0" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="ADD" />
                         <Text layoutX="13.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="idcoach" wrappingWidth="83.4658203125" />
                         <DatePicker fx:id="datee1" layoutX="92.0" layoutY="129.0" />
                         <Text layoutX="21.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombremax" wrappingWidth="83.4658203125" />
@@ -147,25 +178,5 @@
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="Client">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TableView fx:id="tabth2" layoutX="14.0" layoutY="8.0" prefHeight="411.0" prefWidth="811.0">
-                     <columns>
-                        <TableColumn fx:id="cid2" prefWidth="75.0" text="Id" />
-                        <TableColumn fx:id="cidcoach2" prefWidth="114.0" text="Id Coach" />
-                        <TableColumn fx:id="csujet2" prefWidth="125.0" text="Sujet" />
-                        <TableColumn fx:id="cdate2" prefWidth="124.0" text="Date" />
-                        <TableColumn fx:id="cnbm2" prefWidth="112.0" text="Nombre max" />
-                        <TableColumn fx:id="clieu2" prefWidth="139.0" text="Lieu" />
-                        <TableColumn fx:id="nbpth" prefWidth="121.0" text="nombre de participant" />
-                     </columns>
-                  </TableView>
-                  <Button layoutX="39.0" layoutY="450.0" mnemonicParsing="false" onAction="#jointh" prefHeight="51.0" prefWidth="81.0" text="Join" />
-               </children>
-            </AnchorPane>
-        </content>
-      </Tab>
   </tabs>
 </TabPane>
