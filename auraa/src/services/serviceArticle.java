@@ -169,4 +169,87 @@ public class serviceArticle implements Iarticle {
             return A;
         
     }
+    
+    
+    @Override
+    public ObservableList<article> trier() {
+        Statement stm = null;
+        ObservableList<article> articles = FXCollections.observableArrayList();
+        
+
+        try {
+
+            //try {
+            stm = MyConnection.getInstance().getCnx().createStatement();
+
+            String query = "SELECT * FROM article ORDER BY titre ";
+            ResultSet rs = stm.executeQuery(query);
+            
+            while (rs.next()) {
+                article A= new article();
+            
+              
+                A.setTitre(rs.getString(2));
+                A.setTheme(rs.getString(3));
+                A.setNom_auteur(rs.getString(4));
+                A.setArticle(rs.getString(6));
+                A.setDate(rs.getString(5));
+                
+                A.setId_coach(rs.getString(7));
+                A.setId_client(rs.getString(8));
+                articles.add(A);
+            }
+            /* } catch (SQLException ex) {
+            System.out.println(ex.getMessage());*/
+
+            //}
+        } catch (SQLException ex) {
+            Logger.getLogger(serviceArticle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return articles;
+    }
+    
+    @Override
+    public ObservableList<article> recherche(String theme) {
+        Statement stm = null;
+        ObservableList<article> articles = FXCollections.observableArrayList();
+        
+
+        try {
+
+            //try {
+            stm = MyConnection.getInstance().getCnx().createStatement();
+
+            String query = " select * from article  WHERE theme = themes ";
+            ResultSet rs = stm.executeQuery(query);
+            
+            while (rs.next()) {
+                article A= new article();
+            
+              
+                A.setTitre(rs.getString(2));
+                A.setTheme(rs.getString(3));
+                A.setNom_auteur(rs.getString(4));
+                A.setArticle(rs.getString(6));
+                A.setDate(rs.getString(5));
+                
+                A.setId_coach(rs.getString(7));
+                A.setId_client(rs.getString(8));
+                articles.add(A);
+            }
+            /* } catch (SQLException ex) {
+            System.out.println(ex.getMessage());*/
+
+            //}
+        } catch (SQLException ex) {
+            Logger.getLogger(serviceArticle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return articles;
+    }
+    
+    
 }

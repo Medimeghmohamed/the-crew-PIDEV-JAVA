@@ -16,5 +16,5 @@ import java.util.List;
     public void ajouter (article o);
     public List<article> showArticle();
     public void modifier (article a);
-    
+    public List<article> trier();
  }

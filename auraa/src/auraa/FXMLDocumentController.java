@@ -6,6 +6,7 @@
 package auraa;
 
 import entities.article;
+import entities.commentaire;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import services.serviceCommentaire;
 
 /**
  *
@@ -56,6 +58,12 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<article, String> colidcl;
     @FXML
     private TextField modtitre;
+    @FXML
+    private Label labcom;
+    @FXML
+    private Label espart;
+    @FXML
+    private TextField espcom;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -145,7 +153,53 @@ public class FXMLDocumentController implements Initializable {
         colidcl.setCellValueFactory(new PropertyValueFactory<>("id_client"));
         lab.setItems(articles);
     }
+
+    @FXML
+    private void ajoutcom(ActionEvent event) {
+           serviceCommentaire s = new serviceCommentaire();
+        commentaire a = new commentaire();
+        a.setCommentaire(espcom.getText());
+       s.ajouterc(a);
+        labcom.setText(s.recup_commentaire(espcom.getText()));
+        
+    }
+
+   /* @FXML
+    private void suppcom(ActionEvent event) {
+        
+        serviceCommentaire sp = new serviceCommentaire();
+       
+     
+        sp.supprimerc(labcom.getText());
+        labcom.setText(null);
+        espcom.setText(null);
+    }*/
+
+    @FXML
+    private void modcom(ActionEvent event) {
+    }
+
+    @FXML
+    private void triert(ActionEvent event) {
+        
+          serviceArticle sop = new serviceArticle();
+        ObservableList <article> articles= sop.trier();
+        coltitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        coltheme.setCellValueFactory(new PropertyValueFactory<>("theme"));
+        colauteur.setCellValueFactory(new PropertyValueFactory<>("auteur"));
+        coldate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colarticle.setCellValueFactory(new PropertyValueFactory<>("article"));
+        colidc.setCellValueFactory(new PropertyValueFactory<>("id_coach"));
+        colidcl.setCellValueFactory(new PropertyValueFactory<>("id_client"));
+        lab.setItems(articles);
+    }
 }
+
+   /* @FXML
+    private void suppcom(ActionEvent event) {
+    }
+    
+}*/
 
 
   /*  @FXML
