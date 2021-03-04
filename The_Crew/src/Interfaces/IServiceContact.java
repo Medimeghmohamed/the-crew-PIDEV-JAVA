@@ -12,7 +12,7 @@ import java.util.List;
  * @author Nour Dekhil
  */
 public interface IServiceContact {
-    public void ajouterContact(Contact c );
+    public void AjouterContact(Contact c );
     public List<Contact> AfficherContact();
     public void  SupprimerContact(String id);
     public void ModifierContact(String id, String etat);
