@@ -30,12 +30,15 @@ public class ServiceAdmin implements IserviceAdmin {
     }
 
     public void ajouterAdmin(Admin a) {
+        String id;
 
         Statement stm;
         try {
             stm = cnx.createStatement();
+            id="A"+a.getId();
+            
 
-            String query = "	INSERT INTO `admin`(`id`, `nom`, `prenom`, `email`, `password`, `tel`) VALUES ('" + a.getId() + "','" + a.getNom() + "','" + a.getPrenom() + "','" + a.getEmail() + "','" + a.getPassword() + "','" + a.getTel() + "')";
+            String query = "	INSERT INTO `admin`(`id`, `nom`, `prenom`, `email`, `password`, `tel`) VALUES ('" + id + "','" + a.getNom() + "','" + a.getPrenom() + "','" + a.getEmail() + "','" + a.getPassword() + "','" + a.getTel() + "')";
 
             stm.executeUpdate(query);
 
@@ -207,9 +210,11 @@ public class ServiceAdmin implements IserviceAdmin {
 
     public boolean test_Email(String mail) {
         int test = 0;
+        int position=0;
         for (int i = 0; i < mail.length(); i++) {
             if (mail.charAt(i) == "@".charAt(0)) {
                 test++;
+                position=i;
             }
             if (mail.charAt(i) == " ".charAt(0)) {
                 return false;
@@ -217,7 +222,7 @@ public class ServiceAdmin implements IserviceAdmin {
         }
         for (int i = 0; i < mail.length(); i++) {
             if ((test == 1) && (mail.charAt(i) == ".".charAt(0))) {
-                if (((mail.length() > i + 1) && (i - test > 2))) {
+                if (((mail.length() > i + 2) && (i  > position))) {
                     return true;
                 }
 
@@ -317,10 +322,11 @@ public class ServiceAdmin implements IserviceAdmin {
             public boolean verifier_id_bd(String id){
                 Statement stm = null;
         ResultSet rst = null;
+        String id_true="A"+id;
 
         try {
             stm = cnx.createStatement();
-            String query = "SELECT * FROM `admin` WHERE id='" + id + "'";
+                String query = "SELECT * FROM `admin` WHERE id='" + id_true + "'";
             rst = stm.executeQuery(query);
             if (rst.next()) {
                 return true;
@@ -359,6 +365,49 @@ public class ServiceAdmin implements IserviceAdmin {
 
         }
         return a;
+
+    }
+    
+        public List<Admin> rechercherAdmin(String id) {
+        Statement stm = null;
+        List<Admin> Admins = new ArrayList<>();
+
+        try {
+            stm = cnx.createStatement();
+            String query = "SELECT * FROM `admin` WHERE id LIKE '%"+id+"%'  ";
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                Admin a = new Admin();
+                a.setId(rst.getString("id"));
+                a.setNom(rst.getString("nom"));
+                a.setPrenom(rst.getString("prenom"));
+                a.setEmail(rst.getString("email"));
+                a.setPassword(rst.getString("password"));
+                a.setTel(rst.getString("tel"));
+
+                Admins.add(a);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        return Admins;
+
+    }
+        
+        public void accepter_coach(String id) {
+
+        Statement stm;
+        try {
+            stm = cnx.createStatement();
+
+            String query = "UPDATE coach SET etat='OUI' WHERE id='" + id + "'";
+            stm.executeUpdate(query);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
