@@ -15,18 +15,23 @@ public class Admin {
     private String nom;
     private String prenom;
     private String email;
+    private String password;
     private String tel;
 
-    public Admin() {
-    }
-    
-
-    public Admin(String id, String nom, String prenom, String email, String tel) {
+    public Admin(String id, String nom, String prenom, String email, String password, String tel) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
+        this.password = password;
         this.tel = tel;
+    }
+
+    public Admin() {
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getId() {
@@ -47,6 +52,10 @@ public class Admin {
 
     public String getTel() {
         return tel;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setId(String id) {
@@ -71,8 +80,7 @@ public class Admin {
 
     @Override
     public String toString() {
-        return "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", tel=" + tel + "\n";
+        return "Admin{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", password=" + password + ", tel=" + tel + '}';
     }
-    
 
 }
