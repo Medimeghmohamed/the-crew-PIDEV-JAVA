@@ -25,5 +25,6 @@ public interface IServiceChallege {
 
    
     public ObservableList<challenge> trierChallenge();
+    public ObservableList<challenge> RechercherChallenge(String tr);
 
 }

@@ -115,8 +115,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableView<challenge> liste_challenge_client;
     @FXML
-    private TableColumn<challenge, Integer> colid_challenge_client;
-    @FXML
     private TableColumn<challenge, String> coltitre_challenge_client;
     @FXML
     private TableColumn<challenge, String> coldescription_challenge_client;
@@ -228,6 +226,10 @@ public class FXMLDocumentController implements Initializable {
     private Button btn_affich_classement_coach;
     @FXML
     private Button btn_trier_niveau;
+    @FXML
+    private Button btn_aff_challenge_client;
+    @FXML
+    private TableColumn<?,?> colniv_challenge_client;
 
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -397,10 +399,34 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void chercher_challenge(ActionEvent event) {
+           ServiceChallenge sn = new ServiceChallenge();
+         challenge n=new challenge ();
+        ObservableList<challenge> Ochallenges = sn.RechercherChallenge(chercher_titre_challenge_coach.getText());
+       colid_challenge.setCellValueFactory(new PropertyValueFactory<>("id"));
+        coltitre_challenge.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        coltype_challenge.setCellValueFactory(new PropertyValueFactory<>("type"));
+        coltdescription_challenge.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+        coldatedebut_challenge.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+        coldatefin_challenge.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+        coletat_challenge.setCellValueFactory(new PropertyValueFactory<>("etat"));
+        colniveau_challenge.setCellValueFactory(new PropertyValueFactory<>("niveau"));
+        liste_challenge.setItems(Ochallenges);
     }
 
     @FXML
     private void chercherClassement_coach(ActionEvent event) {
+          ServiceClassement sn = new ServiceClassement();
+         classement n=new classement ();
+        ObservableList<classement> Oclassements = sn.RechercherClassement(chercher_position_coach.getText());
+        colposition_classement.setCellValueFactory(new PropertyValueFactory<>("niveau"));
+        colposition_classement.setCellValueFactory(new PropertyValueFactory<>("position"));
+        colclient_classement.setCellValueFactory(new PropertyValueFactory<>("client"));
+
+        colnb_pt_classement.setCellValueFactory(new PropertyValueFactory<>("nb_points"));
+
+        liste_classement_coach.setItems(Oclassements);
+        
     }
 
     @FXML
@@ -409,10 +435,30 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void supprimerChallenge_admin(ActionEvent event) {
+        
+        ServiceChallenge sp = new ServiceChallenge();
+        sp.supprimerChallenge(id_challenge_admin.getText());
+        afficher_challenge_admin();
+
     }
 
     @FXML
     private void chercherChallenge_admin(ActionEvent event) {
+          ServiceChallenge sn = new ServiceChallenge();
+         challenge n=new challenge ();
+        ObservableList<challenge> Ochallenges = sn.RechercherChallenge(titre_challenge_admin.getText());
+       colid_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colititre_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        coltype_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colString_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+        coldate_debut_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+        coldate_fin_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+        coldetet_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("etat"));
+        colniveau_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("niveau"));
+        liste_challenge_admin.setItems(Ochallenges);
+
+       
     }
 
     @FXML
@@ -439,6 +485,20 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void chercherPosition_admin(ActionEvent event) {
+        ServiceClassement sn = new ServiceClassement();
+         classement n=new classement ();
+        ObservableList<classement> Oclassement = sn.RechercherClassement(position_classement_admin2.getText());
+        colid_calassement_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colniveau_calassement_admin.setCellValueFactory(new PropertyValueFactory<>("niveau"));
+        colnposition_calassement_admin.setCellValueFactory(new PropertyValueFactory<>("position"));
+        colclient_classement_admin.setCellValueFactory(new PropertyValueFactory<>("client"));
+
+        colpts_classement_admin.setCellValueFactory(new PropertyValueFactory<>("nb_points"));
+
+        liste_clessement_admin.setItems(Oclassement);
+        
+
+        
     }
 
     @FXML
@@ -509,6 +569,19 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void chercherChallenge_client(ActionEvent event) {
+          ServiceChallenge sn = new ServiceChallenge();
+         challenge n=new challenge ();
+        ObservableList<challenge> Ochallenge = sn.RechercherChallenge(titre_challenge_client.getText());
+        colniv_challenge_client.setCellValueFactory(new PropertyValueFactory<>("niveau"));
+        coltitre_challenge_client.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        coldescription_challenge_client.setCellValueFactory(new PropertyValueFactory<>("description"));
+        coldete_debut_challenge_client.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+
+        coldete_fin_challenge_client.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+        coletat_challenge.setCellValueFactory(new PropertyValueFactory<>("etat"));
+
+        liste_challenge_client.setItems(Ochallenge);
+        
     }
 
     @FXML
@@ -576,6 +649,30 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void trier_niveau(ActionEvent event) {
+          ServiceNiveau nv = new ServiceNiveau();
+
+        ObservableList<niveau> Oniveaux = nv.trierNiveau();
+        colid_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
+        coltitre_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("titre"));
+
+        liste_niveau_admin.setItems(Oniveaux);
+    }
+
+    @FXML
+    private void afficher_challege_client(ActionEvent event) {
+         ServiceChallenge sc = new ServiceChallenge();
+        // liste_challenge.SetCollumn(sc.afficherChallenge().toString());
+
+        ObservableList<challenge> Ochallenges = sc.afficherChallenge();
+        coltitre_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, String>("titre"));
+        coldescription_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, String>("description"));
+
+        coldete_debut_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, Date>("date_debut"));
+        coldete_fin_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, Date>("date_fin"));
+        coletat_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("etat"));
+        colniv_challenge_client.setCellValueFactory(new PropertyValueFactory< >("niveau"));
+        liste_challenge_client.setItems(Ochallenges);
+        
     }
     
     

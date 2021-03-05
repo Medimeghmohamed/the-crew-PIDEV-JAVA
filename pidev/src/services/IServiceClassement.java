@@ -25,4 +25,5 @@ public interface IServiceClassement {
 
     public ObservableList<classement> trierClassement();
 
+    public ObservableList<classement> RechercherClassement(String pos);
 }

@@ -212,4 +212,36 @@ public class ServiceChallenge implements IServiceChallege {
 
     }
 
+    @Override
+    public ObservableList<challenge> RechercherChallenge(String tr) {
+        ObservableList<challenge> Ochallenge = FXCollections.observableArrayList();
+        try {
+            Statement stm = cnx.createStatement();
+            String query = " select * from challenge  WHERE  titre='" + tr + "'";
+
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                challenge ch = new challenge();
+
+                ch.setId(rst.getInt(1));
+                ch.setTitre(rst.getString(2));
+                ch.setType(rst.getString(3));
+                ch.setDescription(rst.getString(4));
+                ch.setImg(rst.getString(5));
+                ch.setDate_debut(rst.getDate(6));
+                ch.setDate_fin(rst.getDate(7));
+                ch.setNb_participants(rst.getInt(8));
+                ch.setEtat(rst.getString(9));
+
+                ch.setNiveau(rst.getInt(10));
+                Ochallenge.add(ch);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceNiveau.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Ochallenge;
+    }
+
 }

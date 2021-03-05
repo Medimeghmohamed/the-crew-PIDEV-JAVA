@@ -149,7 +149,7 @@ public class ServiceClassement {
     }
 
     public ObservableList<classement> trierClassement() {
-          Statement stm = null;
+        Statement stm = null;
         ObservableList<classement> classements = FXCollections.observableArrayList();
 
         try {
@@ -175,10 +175,39 @@ public class ServiceClassement {
         }
 
         return classements;
-        
-        
-        
-        
-      
+
     }
+
+    public ObservableList<classement> RechercherClassement(String pos) {
+
+        ObservableList<classement> Oclassement = FXCollections.observableArrayList();
+        try {
+            Statement stm = cnx.createStatement();
+            String query = " select * from ligne_classement  WHERE  position='" + pos + "'";
+            //" select * from niveau  WHERE titre = LIKE '%tr%'";
+
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                classement nv = new classement();
+
+                nv.setId(rst.getInt(1));
+                nv.setClient(rst.getString(2));
+                nv.setNiveau(rst.getInt(3));
+                nv.setPosition(rst.getInt(4));
+                nv.setNb_points(rst.getInt(5));
+
+                Oclassement.add(nv);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceNiveau.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Oclassement;
+    }
+
+
+         
+        
+    
 }

@@ -183,6 +183,7 @@
                                           <Button fx:id="btn_chercher_niveau_admin" layoutX="163.0" layoutY="157.0" mnemonicParsing="false" onAction="#chercher_niveau" text="chercher" />
                                           <Label layoutX="770.0" layoutY="82.0" text="ID" />
                                           <TextField fx:id="id_niveau_admin" layoutX="813.0" layoutY="77.0" />
+                                          <Button fx:id="btn_trier_niveau" layoutX="553.0" layoutY="305.0" mnemonicParsing="false" onAction="#trier_niveau" text="trier" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -205,12 +206,12 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="789.0" prefWidth="1224.0">
                                              <children>
-                                                <TableView fx:id="liste_challenge_client" layoutX="73.0" layoutY="175.0" prefHeight="510.0" prefWidth="799.0">
+                                                <TableView fx:id="liste_challenge_client" layoutX="90.0" layoutY="175.0" prefHeight="510.0" prefWidth="782.0">
                                                   <columns>
-                                                    <TableColumn fx:id="colid_challenge_client" prefWidth="146.00003051757812" text="ID challenge" />
+                                                    <TableColumn fx:id="colniv_challenge_client" prefWidth="146.00003051757812" text="Niveau" />
                                                     <TableColumn minWidth="0.0" prefWidth="0.0" text="C2" />
-                                                      <TableColumn fx:id="coltitre_challenge_client" prefWidth="87.0" text="titre" />
-                                                      <TableColumn fx:id="coldescription_challenge_client" prefWidth="140.0" text="description" />
+                                                      <TableColumn fx:id="coltitre_challenge_client" prefWidth="90.0" text="titre" />
+                                                      <TableColumn fx:id="coldescription_challenge_client" prefWidth="137.0" text="description" />
                                                       <TableColumn fx:id="coldete_debut_challenge_client" prefWidth="175.0" text="date debut" />
                                                       <TableColumn fx:id="coldete_fin_challenge_client" prefWidth="114.0" text="date fin" />
                                                       <TableColumn fx:id="coletat_challenge" prefWidth="114.0" text="etat" />
@@ -221,6 +222,7 @@
                                                 <Label layoutX="911.0" layoutY="232.0" prefHeight="34.0" prefWidth="39.0" text="Titre" />
                                                 <Button fx:id="rejoindre_challenge" layoutX="1083.0" layoutY="294.0" mnemonicParsing="false" onAction="#rejoidreChallenge" text="rejoindre" />
                                                 <Button fx:id="btn_chercher_challenge_client" layoutX="960.0" layoutY="294.0" mnemonicParsing="false" onAction="#chercherChallenge_client" text="rechercher" />
+                                                <Button fx:id="btn_aff_challenge_client" layoutX="986.0" layoutY="354.0" mnemonicParsing="false" onAction="#afficher_challege_client" text="afficher challenge" />
                                              </children>
                                           </AnchorPane>
                                     </content>

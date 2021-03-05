@@ -152,4 +152,32 @@ public class ServiceNiveau {
         }
         return Oniveaux;
     }
+     
+    public ObservableList<niveau> trierNiveau() {
+          
+            Statement stm = null;
+        ObservableList<niveau> Oniveau = FXCollections.observableArrayList();
+
+        try {
+
+            stm = Myconnexion.getInstance().getConnection().createStatement();
+
+            String query = "SELECT * FROM `niveau` ORDER BY titre  ";
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                niveau n = new niveau();
+                 n.setId(rst.getInt(1));
+                n.setTitre(rst.getString("titre"));
+
+                Oniveau.add(n);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return Oniveau;
+        
+      }
 }

@@ -23,5 +23,6 @@ public interface IServiceNiveau {
 
     public void supprimerNiveau(String id);
      public ObservableList<niveau> RechercherNiveau(String tr);
+       public ObservableList<niveau> trierNiveau() ;
 
 }
