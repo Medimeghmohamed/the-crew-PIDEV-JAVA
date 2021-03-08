@@ -9,70 +9,36 @@ package Entities;
  *
  * @author SeifBS
  */
-public class Admin {
+public class Admin extends User {
 
-    private String id;
-    private String nom;
-    private String prenom;
-    private String email;
-    private String tel;
+    public Admin(String id, String nom, String prenom, String email, String password, String tel, String role) {
+        super(id, nom, prenom, email, password, tel, role);
+    }
 
     public Admin() {
-    }
-    
-
-    public Admin(String id, String nom, String prenom, String email, String tel) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.tel = tel;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
     }
 
     @Override
     public String toString() {
-        return "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", tel=" + tel + "\n";
+        return "Admin:" + super.toString();
     }
-    
+
+    public boolean equals(Admin a) {
+        boolean id = this.getId().equals(a.getId());
+        boolean nom = this.getNom().equals(a.getNom());
+        boolean prenom = this.getPrenom().equals(a.getPrenom());
+        boolean email = this.getEmail().equals(a.getEmail());
+        boolean tel = this.getTel().equals(a.getTel());
+
+        if (id == true && nom == true && prenom == true && email == true && tel == true) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+
 
 }
