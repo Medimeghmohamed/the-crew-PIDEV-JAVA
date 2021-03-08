@@ -5,6 +5,8 @@
  */
 package Interfaces;
 
+import java.util.List;
+
 /**
  *
  * @author SeifBS
@@ -30,5 +32,25 @@ public interface IServiceUser {
     public boolean check_password(String id, String password);
 
     public void modifierPassword(String id, String password);
+
+    public boolean verifier_tel_bd(String tel);
+
+    public boolean verifier_email_bd(String email);
+
+    public boolean verifier_tel_bd_modify(String tel, String id);
+
+    public boolean verifier_email_bd_modify(String email, String id);
+
+    public int nb_admins();
+
+    public int nb_clients();
+
+    public int nb_coachsV();
+
+    public int nb_coachsNV();
+
+    public String crypter_password(String password);
+
+    public String decrypter_password(String password);
 
 }
