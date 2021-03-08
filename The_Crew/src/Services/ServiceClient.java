@@ -6,6 +6,7 @@
 package Service;
 
 import Entities.Client;
+import Interfaces.IServiceClient;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ import utils.Connexion;
  *
  * @author SeifBS
  */
-public class ServiceClient {
+public class ServiceClient implements IServiceClient {
     Connection cnx;
 
     public ServiceClient() {
