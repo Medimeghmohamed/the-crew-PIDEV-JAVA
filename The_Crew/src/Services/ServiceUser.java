@@ -5,16 +5,18 @@
  */
 package Service;
 
+import Entities.Admin;
+import Entities.Client;
+import Entities.Coach;
 import Interfaces.IServiceUser;
 
-import Entities.User;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import utils.Connexion;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,17 +41,24 @@ public class ServiceUser implements IServiceUser {
 
         try {
             stm = cnx.createStatement();
-            String query = "SELECT * FROM `user` WHERE id='" + id + "' AND password='" + password + "'  ";
+            String query = "SELECT * FROM `user` WHERE (id='" + id + "' OR tel='" + id + "'OR email='" + id + "') AND password='" + password + "'  ";
             rst = stm.executeQuery(query);
             if (rst.next()) {
-                  if("CoachV".equals(rst.getString("role")))
-                return "CoachV";
-                if("CoachNV".equals(rst.getString("role")))
-                return "CoachNV";
-                if("Admin".equals(rst.getString("role")))
-                return "Admin";
-                  if("SAdmin".equals(rst.getString("role")))
-                return "SAdmin";
+                if ("CoachV".equals(rst.getString("role"))) {
+                    return "CoachV";
+                }
+                if ("CoachNV".equals(rst.getString("role"))) {
+                    return "CoachNV";
+                }
+                if ("Admin".equals(rst.getString("role"))) {
+                    return "Admin";
+                }
+                if ("SAdmin".equals(rst.getString("role"))) {
+                    return "SAdmin";
+                }
+                if ("Client".equals(rst.getString("role"))) {
+                    return "Client";
+                }
             }
 
         } catch (SQLException ex) {
@@ -58,6 +67,7 @@ public class ServiceUser implements IServiceUser {
         }
         return "No";
     }
+
     public boolean check_password(String id, String password) { //Check password for modifier password
 
         Statement stm = null;
@@ -68,7 +78,7 @@ public class ServiceUser implements IServiceUser {
             String query = "SELECT * FROM `user` WHERE id='" + id + "' AND password='" + password + "'  ";
             rst = stm.executeQuery(query);
             if (rst.next()) {
-                  return true;
+                return true;
             }
 
         } catch (SQLException ex) {
@@ -77,8 +87,7 @@ public class ServiceUser implements IServiceUser {
         }
         return false;
     }
-    
-    
+
     @Override
     public boolean verifier_id_email_bd(String id, String email) { //Mot De Passe oublié verification id et email
 
@@ -101,7 +110,7 @@ public class ServiceUser implements IServiceUser {
         return false;
 
     }
-    
+
     public void modifier_password(String id, String password) {
 
         Statement stm;
@@ -136,6 +145,7 @@ public class ServiceUser implements IServiceUser {
 
         return false;
     }
+
     public boolean verifier_email_bd(String email) { //Controle De Saisie si id existe
         Statement stm = null;
         ResultSet rst = null;
@@ -155,6 +165,7 @@ public class ServiceUser implements IServiceUser {
 
         return false;
     }
+
     public boolean verifier_tel_bd(String tel) { //Controle De Saisie si id existe
         Statement stm = null;
         ResultSet rst = null;
@@ -162,6 +173,28 @@ public class ServiceUser implements IServiceUser {
         try {
             stm = cnx.createStatement();
             String query = "SELECT * FROM `user` WHERE tel='" + tel + "'";
+            rst = stm.executeQuery(query);
+            if (rst.next()) {
+
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean verifier_email_bd_modify(String email, String id) { //Controle De Saisie si id existe lors de la modifciation
+        Statement stm = null;
+        ResultSet rst = null;
+
+        try {
+            stm = cnx.createStatement();
+            String query = "SELECT * FROM `user` WHERE email='" + email + "' AND id!='" + id + "'";
             rst = stm.executeQuery(query);
             if (rst.next()) {
                 return true;
@@ -174,7 +207,27 @@ public class ServiceUser implements IServiceUser {
 
         return false;
     }
-    
+
+    public boolean verifier_tel_bd_modify(String tel, String id) { //Controle De Saisie si id existe lors de la modifciation
+        Statement stm = null;
+        ResultSet rst = null;
+
+        try {
+            stm = cnx.createStatement();
+            String query = "SELECT * FROM `user` WHERE tel='" + tel + "' AND id!='" + id + "'";
+            rst = stm.executeQuery(query);
+            if (rst.next()) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+
+        return false;
+    }
+
     public boolean test_Cin(String cin) {
 
         int i, length;
@@ -194,7 +247,6 @@ public class ServiceUser implements IServiceUser {
         return true;
 
     }
-    
 
     boolean test_num_telephonique(String tel) {
         int i;
@@ -280,7 +332,7 @@ public class ServiceUser implements IServiceUser {
         return false;
 
     }
-    
+
     public void modifierPassword(String id, String password) {
         Statement stm;
         try {
@@ -295,6 +347,115 @@ public class ServiceUser implements IServiceUser {
 
     }
 
-  
+    public int nb_admins() {
+        Statement stm = null;
+        List<Admin> Admins = new ArrayList<>();
+
+        try {
+            stm = cnx.createStatement();
+            String AdminQ = "SELECT id FROM `user` WHERE role LIKE '%Admin%'";
+            ResultSet rst = stm.executeQuery(AdminQ);
+
+            while (rst.next()) {
+                Admin a = new Admin();
+                a.setId(rst.getString("id"));
+
+                Admins.add(a);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+
+        return Admins.size();
+
+    }
+
+    public int nb_coachsV() {
+        Statement stm = null;
+        List<Coach> Coachs = new ArrayList<>();
+
+        try {
+            stm = cnx.createStatement();
+            String CoachQ = "SELECT id FROM `user` WHERE role='CoachV'";
+            ResultSet rst = stm.executeQuery(CoachQ);
+
+            while (rst.next()) {
+                Coach c = new Coach();
+                c.setId(rst.getString("id"));
+
+                Coachs.add(c);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        return Coachs.size();
+
+    }
+     public int nb_coachsNV() {
+        Statement stm = null;
+        List<Coach> Coachs = new ArrayList<>();
+
+        try {
+            stm = cnx.createStatement();
+            String CoachQ = "SELECT id FROM `user` WHERE role='CoachNV'";
+            ResultSet rst = stm.executeQuery(CoachQ);
+
+            while (rst.next()) {
+                Coach c = new Coach();
+                c.setId(rst.getString("id"));
+
+                Coachs.add(c);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        return Coachs.size();
+
+    }
+
+    public int nb_clients() {
+        Statement stm = null;
+        List<Client> Clients = new ArrayList<>();
+
+        try {
+            stm = cnx.createStatement();
+            String ClientQ = "SELECT id FROM `user` WHERE role='Client'";
+            ResultSet rst = stm.executeQuery(ClientQ);
+
+            while (rst.next()) {
+                Client cl = new Client();
+                cl.setId(rst.getString("id"));
+
+                Clients.add(cl);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+
+        return Clients.size();
+
+    }
+
+    public String crypter_password(String password) {
+        String crypte = "";
+        for (int i = 0; i < password.length(); i++) {
+            int c = password.charAt(i) ^ 48;
+            crypte = crypte + (char) c;
+        }
+        return crypte;
+    }
+
+    public String decrypter_password(String password) {
+        String aCrypter = "";
+        for (int i = 0; i < password.length(); i++) {
+            int c = password.charAt(i) ^ 48;
+            aCrypter = aCrypter + (char) c;
+        }
+        return aCrypter;
+    }
 
 }
