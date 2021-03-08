@@ -22,23 +22,21 @@ import utils.Connexion;
  * @author SeifBS
  */
 public class ServiceClient implements IServiceClient {
+
     Connection cnx;
 
     public ServiceClient() {
-                cnx = Connexion.getInstance().getConnection();
+        cnx = Connexion.getInstance().getConnection();
 
     }
 
-    
-    
     public void ajouterClient(Client cl) {
 
         Statement stm;
         try {
             stm = cnx.createStatement();
-            
 
-            String query = "	INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`) VALUES ('" + cl.getId() + "','" + cl.getNom() + "','" + cl.getPrenom() + "','" + cl.getEmail() + "','" + cl.getPassword() + "','" + cl.getTel() + "','" +""+ "','" + cl.getAdresse() + " ','Client')";
+            String query = "	INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`) VALUES ('" + cl.getId() + "','" + cl.getNom() + "','" + cl.getPrenom() + "','" + cl.getEmail() + "','" + cl.getPassword() + "','" + cl.getTel() + "','" + "" + "','" + cl.getAdresse() + " ','Client')";
 
             stm.executeUpdate(query);
 
@@ -63,36 +61,7 @@ public class ServiceClient implements IServiceClient {
 
     }
 
-    public List<Client> afficherClient() {
-        Statement stm = null;
-        List<Client> Clients = new ArrayList<>();
-       
-
-        try {
-            stm = cnx.createStatement();
-            String query = "SELECT * FROM `Client` ";
-            ResultSet rst = stm.executeQuery(query);
-
-            while (rst.next()) {
-                Client a = new Client();
-                a.setId(rst.getString("id"));
-                a.setNom(rst.getString("nom"));
-                a.setPrenom(rst.getString("prenom"));
-                a.setEmail(rst.getString("email"));
-                a.setPassword(rst.getString("password"));
-                a.setTel(rst.getString("tel"));
-
-                Clients.add(a);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-
-        }
-        return Clients;
-
-    }
-    
-     public void supprimerClient(String id) {
+    public void supprimerClient(String id) {
         Statement stm;
         try {
             stm = cnx.createStatement();
@@ -134,7 +103,7 @@ public class ServiceClient implements IServiceClient {
         return c;
 
     }
-    
+
     public Client load_user_name(String id) { //get nom de l'identifiant apres login
 
         Statement stm = null;
@@ -161,5 +130,5 @@ public class ServiceClient implements IServiceClient {
         return c;
 
     }
-    
+
 }
