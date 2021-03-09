@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Entities.Client;
+import java.util.List;
 
 /**
  *
@@ -22,5 +23,7 @@ public interface IServiceClient {
     public Client load_user_name(String id);
 
     public void supprimerClient(String id);
+
+    public List<Client> afficherClient();
 
 }

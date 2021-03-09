@@ -23,6 +23,8 @@ public interface IServiceUser {
 
     public boolean test_Cin(String cin);
 
+    boolean test_num_telephonique(String tel);
+
     public boolean test_Tel(String tel);
 
     public boolean test_Email(String cin);
@@ -50,7 +52,5 @@ public interface IServiceUser {
     public int nb_coachsNV();
 
     public String crypter_password(String password);
-
-    public String decrypter_password(String password);
 
 }

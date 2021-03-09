@@ -29,11 +29,12 @@ public interface IserviceAdmin {
 
     public Admin load_user_name(String id);
 
-    public List<Admin> rechercherAdmin(String id,String critere);
+    public List<Admin> rechercherAdmin(String id, String critere);
 
     public void accepter_coach(String id);
 
-    public boolean verif_super_admin(String id);
+    public void rejeter_coach(String id);
 
+    public boolean verif_super_admin(String id);
 
 }
