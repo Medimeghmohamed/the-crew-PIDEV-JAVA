@@ -24,5 +24,7 @@ public interface IServiceObjectif {
     public int getRepObj(String idObj);
     public String getJourDateDebutObj(String idObj, String idCli);
     public int getDureeObj(String idObj, String idCli);
+    public Objectif load_data_modify(String id);
+
     
 }

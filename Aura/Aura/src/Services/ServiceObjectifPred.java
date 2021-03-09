@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package Services;
-
-import Entities.Objectif;
 import Entities.ObjectifPred;
 import Interfaces.IServiceObjectifPred;
 import Utils.MaConnexion;
@@ -36,7 +34,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
                     + "VALUES ('" + o.getIdP() + "','"
                     + o.getDescriptionP() + "','"
                     + o.getDureeP() + "','"
-                    + o.getIdAdminP() + "')";
+                    + o.getAdmin().getId() + "')";
             st.executeUpdate(query);
             System.out.println("ajout objectif pred avec succes");
         } catch (SQLException ex) {
@@ -48,6 +46,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
     @Override
     public ObservableList<ObjectifPred> afficherObjectifsPred() {
         ObservableList<ObjectifPred> objectifsP = FXCollections.observableArrayList();
+        ServiceAdmin sa = new ServiceAdmin();
         try {
             Statement st = cnx.createStatement();
             String query = "SELECT * FROM `objectif_pred`";
@@ -57,7 +56,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
                 o.setIdP(rs.getString(1));
                 o.setDescriptionP(rs.getString(2));
                 o.setDureeP(rs.getInt(3));
-                o.setIdAdminP(rs.getString(4));
+                o.setAdmin(sa.load_data_modify(rs.getString(4)));
                 objectifsP.add(o);
             }
 
@@ -86,7 +85,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
     public void supprimerObjectifPred(String id) {
         try {
             Statement st = cnx.createStatement();
-            String query = "DELETE FROM `objectif_pred` WHERE id='"+ id +"'";
+            String query = "DELETE FROM `objectif_pred` WHERE id='" + id + "'";
             st.executeUpdate(query);
             System.out.println("supprimer objectif pred succes");
         } catch (SQLException ex) {
@@ -116,6 +115,8 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
     @Override
     public ObservableList<ObjectifPred> rechercherObjectifPred(String s) {
         ObservableList<ObjectifPred> objectifs = FXCollections.observableArrayList();
+        ServiceAdmin sa = new ServiceAdmin();
+
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `objectif_pred` WHERE id LIKE '%" + s + "%' OR description LIKE '%" + s + "%' OR duree LIKE '%" + s + "%' OR idAdmin LIKE '%" + s + "%'";
@@ -125,7 +126,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
                 o.setIdP(rs.getString(1));
                 o.setDescriptionP(rs.getString(2));
                 o.setDureeP(rs.getInt(3));
-                o.setIdAdminP(rs.getString(4));
+                o.setAdmin(sa.load_data_modify(rs.getString(4)));
                 objectifs.add(o);
             }
 
@@ -139,6 +140,8 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
     @Override
     public ObservableList<ObjectifPred> trierObjectifPredparDuree() {
         ObservableList<ObjectifPred> objectifs = FXCollections.observableArrayList();
+        ServiceAdmin sa = new ServiceAdmin();
+
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `objectif_pred` ORDER BY duree";
@@ -148,7 +151,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
                 o.setIdP(rs.getString(1));
                 o.setDescriptionP(rs.getString(2));
                 o.setDureeP(rs.getInt(3));
-                o.setIdAdminP(rs.getString(4));
+                o.setAdmin(sa.load_data_modify(rs.getString(4)));
                 objectifs.add(o);
             }
 
@@ -162,6 +165,8 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
     @Override
     public ObservableList<ObjectifPred> trierObjectifPredparId() {
         ObservableList<ObjectifPred> objectifs = FXCollections.observableArrayList();
+        ServiceAdmin sa = new ServiceAdmin();
+
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `objectif_pred` ORDER BY id";
@@ -171,7 +176,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
                 o.setIdP(rs.getString(1));
                 o.setDescriptionP(rs.getString(2));
                 o.setDureeP(rs.getInt(3));
-                o.setIdAdminP(rs.getString(4));
+                o.setAdmin(sa.load_data_modify(rs.getString(4)));
                 objectifs.add(o);
             }
 
@@ -185,6 +190,8 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
     @Override
     public ObservableList<ObjectifPred> trierObjectifPredparDesc() {
         ObservableList<ObjectifPred> objectifs = FXCollections.observableArrayList();
+        ServiceAdmin sa = new ServiceAdmin();
+
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `objectif_pred` ORDER BY description";
@@ -194,7 +201,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
                 o.setIdP(rs.getString(1));
                 o.setDescriptionP(rs.getString(2));
                 o.setDureeP(rs.getInt(3));
-                o.setIdAdminP(rs.getString(4));
+                o.setAdmin(sa.load_data_modify(rs.getString(4)));
                 objectifs.add(o);
             }
 

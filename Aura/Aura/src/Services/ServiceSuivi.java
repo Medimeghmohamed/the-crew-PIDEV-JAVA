@@ -34,8 +34,8 @@ public class ServiceSuivi implements IServiceSuivi {
             String query = "INSERT INTO `suivi`(`id`, `valeur`, `idClient`, `idObjectif`, `date`) "
                     + "VALUES ('" + s.getIdSuiv() + "','"
                     + s.getValeurSuiv() + "','"
-                    + s.getIdClientSuiv() + "','"
-                    + s.getIdObjectifSuiv() + "','"
+                    + s.getClient().getId() + "','"
+                    + s.getObjectif().getId() + "','"
                     + s.getDateSuiv() + "')";
             st.executeUpdate(query);
             System.out.println("ajout suivi avec succes");
@@ -48,6 +48,9 @@ public class ServiceSuivi implements IServiceSuivi {
     @Override
     public ObservableList<Suivi> afficherSuivi() {
         ObservableList<Suivi> suivis = FXCollections.observableArrayList();
+        ServiceClient sc = new ServiceClient();
+        ServiceObjectif so = new ServiceObjectif();
+
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `suivi`";
@@ -56,8 +59,8 @@ public class ServiceSuivi implements IServiceSuivi {
                 Suivi s = new Suivi();
                 s.setIdSuiv(rs.getString(1));
                 s.setValeurSuiv(rs.getInt(2));
-                s.setIdClientSuiv(rs.getString(3));
-                s.setIdObjectifSuiv(rs.getString(4));
+                s.setClient(sc.load_data_modify(rs.getString(3)));
+                s.setObjectif(so.load_data_modify(rs.getString(4)));
                 s.setDateSuiv(rs.getString(5));
 
                 suivis.add(s);
@@ -91,6 +94,9 @@ public class ServiceSuivi implements IServiceSuivi {
     @Override
     public ObservableList<Suivi> rechercherSuivi(String s) {
         ObservableList<Suivi> suivis = FXCollections.observableArrayList();
+        ServiceClient sc = new ServiceClient();
+        ServiceObjectif so = new ServiceObjectif();
+
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `suivi` WHERE id LIKE '%" + s + "%' OR valeur LIKE '%" + s + "%' OR idClient LIKE '%" + s + "%' OR idObjectif LIKE '%" + s + "%' OR date LIKE '%" + s + "%'";
@@ -99,8 +105,8 @@ public class ServiceSuivi implements IServiceSuivi {
                 Suivi ss = new Suivi();
                 ss.setIdSuiv(rs.getString(1));
                 ss.setValeurSuiv(rs.getInt(2));
-                ss.setIdClientSuiv(rs.getString(3));
-                ss.setIdObjectifSuiv(rs.getString(4));
+                ss.setClient(sc.load_data_modify(rs.getString(3)));
+                ss.setObjectif(so.load_data_modify(rs.getString(4)));
                 ss.setDateSuiv(rs.getString(5));
 
                 suivis.add(ss);
@@ -116,6 +122,9 @@ public class ServiceSuivi implements IServiceSuivi {
     @Override
     public ObservableList<Suivi> trierSuiviparIdClient() {
         ObservableList<Suivi> suivis = FXCollections.observableArrayList();
+        ServiceClient sc = new ServiceClient();
+        ServiceObjectif so = new ServiceObjectif();
+
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `suivi` ORDER BY idClient";
@@ -124,8 +133,8 @@ public class ServiceSuivi implements IServiceSuivi {
                 Suivi s = new Suivi();
                 s.setIdSuiv(rs.getString(1));
                 s.setValeurSuiv(rs.getInt(2));
-                s.setIdClientSuiv(rs.getString(3));
-                s.setIdObjectifSuiv(rs.getString(4));
+                s.setClient(sc.load_data_modify(rs.getString(3)));
+                s.setObjectif(so.load_data_modify(rs.getString(4)));
                 s.setDateSuiv(rs.getString(5));
                 suivis.add(s);
             }
@@ -140,6 +149,9 @@ public class ServiceSuivi implements IServiceSuivi {
     @Override
     public ObservableList<Suivi> trierSuiviparId() {
         ObservableList<Suivi> suivis = FXCollections.observableArrayList();
+        ServiceClient sc = new ServiceClient();
+        ServiceObjectif so = new ServiceObjectif();
+
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `suivi` ORDER BY id";
@@ -148,8 +160,8 @@ public class ServiceSuivi implements IServiceSuivi {
                 Suivi s = new Suivi();
                 s.setIdSuiv(rs.getString(1));
                 s.setValeurSuiv(rs.getInt(2));
-                s.setIdClientSuiv(rs.getString(3));
-                s.setIdObjectifSuiv(rs.getString(4));
+                s.setClient(sc.load_data_modify(rs.getString(3)));
+                s.setObjectif(so.load_data_modify(rs.getString(4)));
                 s.setDateSuiv(rs.getString(5));
                 suivis.add(s);
             }
@@ -164,6 +176,9 @@ public class ServiceSuivi implements IServiceSuivi {
     @Override
     public ObservableList<Suivi> trierSuiviparIdObjectif() {
         ObservableList<Suivi> suivis = FXCollections.observableArrayList();
+        ServiceClient sc = new ServiceClient();
+        ServiceObjectif so = new ServiceObjectif();
+
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `suivi` ORDER BY idObjectif";
@@ -172,8 +187,8 @@ public class ServiceSuivi implements IServiceSuivi {
                 Suivi s = new Suivi();
                 s.setIdSuiv(rs.getString(1));
                 s.setValeurSuiv(rs.getInt(2));
-                s.setIdClientSuiv(rs.getString(3));
-                s.setIdObjectifSuiv(rs.getString(4));
+                s.setClient(sc.load_data_modify(rs.getString(3)));
+                s.setObjectif(so.load_data_modify(rs.getString(4)));
                 s.setDateSuiv(rs.getString(5));
                 suivis.add(s);
             }
@@ -205,7 +220,7 @@ public class ServiceSuivi implements IServiceSuivi {
 
     @Override
     public ObservableList<String> getDateBilan(String idObjectif) {
- ObservableList<String> suivis = FXCollections.observableArrayList();
+        ObservableList<String> suivis = FXCollections.observableArrayList();
         try {
             Statement st = cnx.createStatement();
             String query = "select date from `suivi` WHERE idObjectif ='" + idObjectif + "'";
@@ -218,23 +233,25 @@ public class ServiceSuivi implements IServiceSuivi {
             System.out.println("erreur get date suivi bilan");
             System.out.println(ex);
         }
-        return suivis;    }
+        return suivis;
+    }
 
     @Override
     public String getJour(String idSuiv) {
-        String jour="";
+        String jour = "";
         try {
             Statement st = cnx.createStatement();
-            String query = "select SUBSTR(date, 1, 2)  from `suivi` WHERE id = '" +idSuiv+"'";
+            String query = "select SUBSTR(date, 1, 2)  from `suivi` WHERE id = '" + idSuiv + "'";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                jour=rs.getString("SUBSTR(date, 1, 2)");
+                jour = rs.getString("SUBSTR(date, 1, 2)");
             }
 
         } catch (SQLException ex) {
             System.out.println("erreur get jour suivi");
             System.out.println(ex);
         }
-        return jour;    }
+        return jour;
+    }
 
 }

@@ -161,7 +161,7 @@
                                              </font>
                                           </Label>
                                           <TextField fx:id="tfid_suiv" layoutX="158.0" layoutY="117.0" />
-                                          <Label layoutX="94.0" layoutY="121.0" text="ID saisie:" />
+                                          <Label layoutX="94.0" layoutY="121.0" text="ID suivi:" />
                                           <ComboBox fx:id="cbobjsuivi" layoutX="157.0" layoutY="159.0" prefHeight="26.0" prefWidth="317.0" />
                                           <ComboBox fx:id="cbrep_suivi" layoutX="502.0" layoutY="160.0" prefWidth="150.0" />
                                           <TableView fx:id="tv_suivi" layoutX="259.0" layoutY="245.0" prefHeight="200.0" prefWidth="450.0">

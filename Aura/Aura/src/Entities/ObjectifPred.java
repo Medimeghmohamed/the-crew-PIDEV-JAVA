@@ -13,25 +13,28 @@ public class ObjectifPred {
     private String idP;
     private String descriptionP;
     private int dureeP;
-    private String idAdminP;
+    //private String idAdminP;
+    private Admin admin;
 
     public ObjectifPred() {
     }
 
-    public ObjectifPred(String idP, String descriptionP, int dureeP, String idAdminP) {
+    public ObjectifPred(String idP, String descriptionP, int dureeP, Admin admin) {
         this.idP = idP;
         this.descriptionP = descriptionP;
         this.dureeP = dureeP;
-        this.idAdminP= idAdminP;
+        this.admin=admin;
     }
 
-    public String getIdAdminP() {
-        return idAdminP;
+    public Admin getAdmin() {
+        return admin;
     }
 
-    public void setIdAdminP(String idAdminP) {
-        this.idAdminP = idAdminP;
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
+
+
 
     public String getIdP() {
         return idP;
@@ -60,7 +63,7 @@ public class ObjectifPred {
 
     @Override
     public String toString() {
-        return "ObjectifPred{" + "idP=" + idP + ", descriptionP=" + descriptionP + ", dureeP=" + dureeP + ", idAdminP=" + idAdminP + '}';
+        return "ObjectifPred{" + "idP=" + idP + ", descriptionP=" + descriptionP + ", dureeP=" + dureeP + ", Admin=" + admin + '}';
     }
 
    

@@ -41,7 +41,7 @@ public class ServiceObjectif implements IServiceObjectif {
                     + o.getReponse() + "','"
                     + date + "','"
                     + o.getDuree() + "','"
-                    + o.getIdCli() + "')";
+                    + o.getCli().getId() + "')";
             st.executeUpdate(query);
             System.out.println("ajout avec succes");
         } catch (SQLException ex) {
@@ -53,6 +53,7 @@ public class ServiceObjectif implements IServiceObjectif {
     @Override
     public ObservableList<Objectif> afficherObjectifs() {
         ObservableList<Objectif> objectifs = FXCollections.observableArrayList();
+        ServiceClient sc = new ServiceClient();
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `objectif`";
@@ -65,7 +66,8 @@ public class ServiceObjectif implements IServiceObjectif {
                 o.setDate(rs.getString(4));
                 //o.setDate(rs.getTimestamp(4).toString());
                 o.setDuree(rs.getInt(5));
-                o.setIdCli(rs.getString(6));
+                o.setCli(sc.load_data_modify(rs.getString(6)));
+                //o.setIdCli(rs.getString(6));
                 objectifs.add(o);
             }
 
@@ -161,6 +163,7 @@ public class ServiceObjectif implements IServiceObjectif {
     @Override
     public ObservableList<Objectif> trierObjectifparRep() {
         ObservableList<Objectif> objectifs = FXCollections.observableArrayList();
+        ServiceClient sc = new ServiceClient();
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `objectif` ORDER BY reponse";
@@ -173,7 +176,8 @@ public class ServiceObjectif implements IServiceObjectif {
                 o.setDate(rs.getString(4));
                 //o.setDate(rs.getTimestamp(4).toString());
                 o.setDuree(rs.getInt(5));
-                o.setIdCli(rs.getString(6));
+                o.setCli(sc.load_data_modify(rs.getString(6)));
+                //o.setIdCli(rs.getString(6));
                 objectifs.add(o);
             }
 
@@ -187,6 +191,7 @@ public class ServiceObjectif implements IServiceObjectif {
     @Override
     public ObservableList<Objectif> trierObjectifparId() {
         ObservableList<Objectif> objectifs = FXCollections.observableArrayList();
+        ServiceClient sc = new ServiceClient();
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `objectif` ORDER BY id";
@@ -199,7 +204,7 @@ public class ServiceObjectif implements IServiceObjectif {
                 o.setDate(rs.getString(4));
                 //o.setDate(rs.getTimestamp(4).toString());
                 o.setDuree(rs.getInt(5));
-                o.setIdCli(rs.getString(6));
+                o.setCli(sc.load_data_modify(rs.getString(6)));
                 objectifs.add(o);
             }
 
@@ -213,6 +218,7 @@ public class ServiceObjectif implements IServiceObjectif {
     @Override
     public ObservableList<Objectif> trierObjectifparDesc() {
         ObservableList<Objectif> objectifs = FXCollections.observableArrayList();
+        ServiceClient sc = new ServiceClient();
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `objectif` ORDER BY description";
@@ -225,7 +231,7 @@ public class ServiceObjectif implements IServiceObjectif {
                 o.setDate(rs.getString(4));
                 //o.setDate(rs.getTimestamp(4).toString());
                 o.setDuree(rs.getInt(5));
-                o.setIdCli(rs.getString(6));
+                o.setCli(sc.load_data_modify(rs.getString(6)));
                 objectifs.add(o);
             }
 
@@ -239,6 +245,7 @@ public class ServiceObjectif implements IServiceObjectif {
     @Override
     public ObservableList<Objectif> rechercherObjectif(String s) {
         ObservableList<Objectif> objectifs = FXCollections.observableArrayList();
+        ServiceClient sc = new ServiceClient();
         try {
             Statement st = cnx.createStatement();
             String query = "select * from `objectif` WHERE id LIKE '%" + s + "%' OR description LIKE '%" + s + "%' OR reponse LIKE '%" + s + "%' OR dateDebut LIKE '%" + s + "%' OR duree LIKE '%" + s + "%'";
@@ -249,9 +256,8 @@ public class ServiceObjectif implements IServiceObjectif {
                 o.setDescription(rs.getString(2));
                 o.setReponse(rs.getInt(3));
                 o.setDate(rs.getString(4));
-                //o.setDate(rs.getTimestamp(4).toString());
                 o.setDuree(rs.getInt(5));
-                o.setIdCli(rs.getString(6));
+                o.setCli(sc.load_data_modify(rs.getString(6)));
                 objectifs.add(o);
             }
 
@@ -282,7 +288,7 @@ public class ServiceObjectif implements IServiceObjectif {
 
     @Override
     public int getDureeObj(String idObj, String idCli) {
-        int duree=0;
+        int duree = 0;
         try {
             Statement st = cnx.createStatement();
             String query = "select duree  from `objectif` WHERE id = '" + idObj + "' AND idClient ='" + idCli + "'";
@@ -296,6 +302,30 @@ public class ServiceObjectif implements IServiceObjectif {
             System.out.println(ex);
         }
         return duree;
+    }
+
+    @Override
+    public Objectif load_data_modify(String id) {
+        Statement stm = null;
+        Objectif o = new Objectif();
+        try {
+            stm = cnx.createStatement();
+            String query = "SELECT * FROM `objectif` WHERE id='" + id + "'";
+            ResultSet rs = stm.executeQuery(query);
+
+            while (rs.next()) {
+                o.setId(rs.getString(1));
+                o.setDescription(rs.getString(2));
+                o.setReponse(rs.getInt(3));
+                o.setDate(rs.getString(4));
+                o.setDuree(rs.getInt(5));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        return o;
     }
 
 }

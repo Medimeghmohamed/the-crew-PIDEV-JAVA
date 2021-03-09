@@ -15,19 +15,20 @@ public class Objectif {
     private int reponse;
     private String date;
     private int duree;
-    private String idCli;
+    private Client cli;
+   // private String idCli; //A ENLEVERRRR!!!!!!!
 
     public Objectif() {
     }
     
 
-    public Objectif(String id, String description, int reponse, String date, int duree, String idCli) {
+    public Objectif(String id, String description, int reponse, String date, int duree,Client cli) {
         this.id = id;
         this.description = description;
         this.reponse = reponse;
         this.date = date;
         this.duree = duree;
-        this.idCli = idCli;
+        this.cli=cli;
     }
 
     public String getId() {
@@ -70,17 +71,25 @@ public class Objectif {
         this.duree = duree;
     }
 
-    public String getIdCli() {
-        return idCli;
+    public Client getCli() {
+        return cli;
     }
 
-    public void setIdCli(String idCli) {
-        this.idCli = idCli;
+    public void setCli(Client cli) {
+        this.cli = cli;
     }
+
+//    public String getIdCli() {
+//        return idCli;
+//    }
+//
+//    public void setIdCli(String idCli) {
+//        this.idCli = idCli;
+//    }
 
     @Override
     public String toString() {
-        return "Objectif{" + "id=" + id + ", description=" + description + ", reponse=" + reponse + ", date=" + date + ", duree=" + duree + ", idCli=" + idCli + '}';
+        return "Objectif{" + "id=" + id + ", description=" + description + ", reponse=" + reponse + ", date=" + date + ", duree=" + duree +", Cli=" + cli + '}';
     }
     
     

@@ -41,6 +41,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Entities.AlertBoxSuivi;
+import Entities.Client;
+import Services.ServiceAdmin;
+import Services.ServiceClient;
 
 /**
  *
@@ -158,10 +161,10 @@ public class FXMLDocumentController implements Initializable {
 
         ObservableList<String> listObj = sop.getValuesObjectifs();
         cbobj.setItems(listObj);
-        ObservableList<String> listObjSuiv = so.getMesObjectifs(1);
+        ObservableList<String> listObjSuiv = so.getMesObjectifs(12345676);
         cbobjsuivi.setItems(listObjSuiv);
         tfobj.setText(null);
-        ObservableList<String> listIdObjBilan = ssuiv.getObjectifBilan("1");
+        ObservableList<String> listIdObjBilan = ssuiv.getObjectifBilan("12345676");
         cbidObjectifBilan.setItems(listIdObjBilan);
         //les valeurs des réponses
         ObservableList<Integer> listRep = FXCollections.observableArrayList();
@@ -196,14 +199,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void ajouterObjectif(ActionEvent event) {
         ServiceObjectif sp = new ServiceObjectif();
+        ServiceClient sc = new ServiceClient();
         Objectif o = new Objectif();
-
         o.setId(tfid.getText());
         if (cbobj.getValue() == null && tfobj.getText() != null) {
             o.setDescription(tfobj.getText());
+
             o.setReponse(Integer.parseInt(cbrep.getValue().toString()));
             o.setDuree(Integer.parseInt(tfduree.getText()));
-            o.setIdCli(tfidCli.getText());
+            o.setCli(sc.load_data_modify(tfidCli.getText()));
             sp.ajouterObjectif(o);
             afficherObjectifs();
             tfid.setText(null);
@@ -218,7 +222,7 @@ public class FXMLDocumentController implements Initializable {
             o.setDescription(cbobj.getValue().toString());
             o.setReponse(Integer.parseInt(cbrep.getValue().toString()));
             o.setDuree(Integer.parseInt(tfduree.getText()));
-            o.setIdCli(tfidCli.getText());
+            o.setCli(sc.load_data_modify(tfidCli.getText()));
             sp.ajouterObjectif(o);
             afficherObjectifs();
             tfid.setText(null);
@@ -239,13 +243,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void modifierObjectif(ActionEvent event) {
         ServiceObjectif sp = new ServiceObjectif();
+        ServiceClient sc = new ServiceClient();
         Objectif o = new Objectif();
 
         o.setId(tfid.getText());
         o.setDescription(cbobj.getValue().toString());
         o.setReponse(Integer.parseInt(cbrep.getValue().toString()));
         o.setDuree(Integer.parseInt(tfduree.getText()));
-        o.setIdCli(tfidCli.getText());
+        o.setCli(sc.load_data_modify(tfidCli.getText()));
+        //o.setIdCli(tfidCli.getText());
         sp.modifierObjectif(o);
         afficherObjectifs();
 
@@ -291,7 +297,7 @@ public class FXMLDocumentController implements Initializable {
         cbrep.setValue(obj.getReponse());
         tfdate.setText(obj.getDate());
         tfduree.setText("" + obj.getDuree());
-        tfidCli.setText(obj.getIdCli());
+        tfidCli.setText(obj.getCli().getId());
     }
 
     @FXML
@@ -326,14 +332,18 @@ public class FXMLDocumentController implements Initializable {
     private void ajouterPred(ActionEvent event) {
         ServiceObjectifPred sp = new ServiceObjectifPred();
         ObjectifPred o = new ObjectifPred();
+        ServiceAdmin sa = new ServiceAdmin();
 
         o.setIdP(tfid_pred.getText());
         o.setDescriptionP(tfdesc_pred.getText());
         o.setDureeP(Integer.parseInt(tfduree_pred.getText()));
-        o.setIdAdminP(tfidadP.getText());
+        o.setAdmin(sa.load_data_modify(tfidadP.getText()));
         sp.ajouterObjectifPred(o);
         afficherObjectifsPred();
-        //tfid.setText(null);
+        tfid_pred.setText(null);
+        tfdesc_pred.setText(null);
+        tfduree_pred.setText(null);
+        tfidadP.setText(null);
     }
 
     private void afficherObjectifsPred() {
@@ -350,13 +360,17 @@ public class FXMLDocumentController implements Initializable {
     private void modifierPred(ActionEvent event) {
         ServiceObjectifPred sp = new ServiceObjectifPred();
         ObjectifPred o = new ObjectifPred();
-
+        ServiceAdmin sa = new ServiceAdmin();
         o.setIdP(tfid_pred.getText());
         o.setDescriptionP(tfdesc_pred.getText());
         o.setDureeP(Integer.parseInt(tfduree_pred.getText()));
-        o.setIdAdminP(tfidadP.getText());
+        o.setAdmin(sa.load_data_modify(tfidadP.getText()));
         sp.modifierObjectifPred(o);
         afficherObjectifsPred();
+        tfid_pred.setText(null);
+        tfdesc_pred.setText(null);
+        tfduree_pred.setText(null);
+        tfidadP.setText(null);
 
     }
 
@@ -398,7 +412,7 @@ public class FXMLDocumentController implements Initializable {
         tfid_pred.setText(obj.getIdP());
         tfdesc_pred.setText(obj.getDescriptionP());
         tfduree_pred.setText("" + obj.getDureeP());
-        tfidadP.setText(obj.getIdAdminP());
+        tfidadP.setText(obj.getAdmin().getId());
     }
 //**************************************************Client: Suivi*****************************************************************
 
@@ -406,23 +420,24 @@ public class FXMLDocumentController implements Initializable {
     private void ajouterSuivi(ActionEvent event) {
         ServiceObjectif sp = new ServiceObjectif();
         ServiceSuivi ss = new ServiceSuivi();
+        ServiceClient sc= new ServiceClient();
         Suivi s = new Suivi();
 
         s.setIdSuiv(tfid_suiv.getText());
         s.setValeurSuiv(cbrep_suivi.getValue());
-        s.setIdClientSuiv("1"); //!!! a changer !!!
-        s.setIdObjectifSuiv(sp.getIdObj(cbobjsuivi.getValue(), "1"));
+        s.setClient(sc.load_data_modify("12345676")); //!!! a changer !!!
+        s.setObjectif(sp.load_data_modify(sp.getIdObj(cbobjsuivi.getValue(), "12345676")));
         s.setDateSuiv(dateFicheSuivi.getText());
         ss.ajouterSuivi(s);
         afficherSuivi();
-        
-        int jourCourant =Integer.parseInt( new SimpleDateFormat("dd").format(Calendar.getInstance().getTime()));
+
+        int jourCourant = Integer.parseInt(new SimpleDateFormat("dd").format(Calendar.getInstance().getTime()));
         System.out.println("jour courant" + jourCourant);
-        System.out.println("Jour date debut  " + Integer.parseInt(sp.getJourDateDebutObj(sp.getIdObj(cbobjsuivi.getValue(), "1"), "1"))); 
-        System.out.println("durée "+ sp.getDureeObj(sp.getIdObj(cbobjsuivi.getValue(), "1"), "1"));
-        
-        int reste =sp.getDureeObj(sp.getIdObj(cbobjsuivi.getValue(), "1"), "1")-(jourCourant -Integer.parseInt(sp.getJourDateDebutObj(sp.getIdObj(cbobjsuivi.getValue(), "1"), "1")));
-        AlertBoxSuivi.display("Rappel","   Il vous reste   " + reste + "  jours pour terminer cet objectif");
+        System.out.println("Jour date debut  " + Integer.parseInt(sp.getJourDateDebutObj(sp.getIdObj(cbobjsuivi.getValue(), "12345676"), "12345676")));
+        System.out.println("durée " + sp.getDureeObj(sp.getIdObj(cbobjsuivi.getValue(), "12345676"), "12345676"));
+
+        int reste = sp.getDureeObj(sp.getIdObj(cbobjsuivi.getValue(), "12345676"), "12345676") - (jourCourant - Integer.parseInt(sp.getJourDateDebutObj(sp.getIdObj(cbobjsuivi.getValue(), "12345676"), "12345676")));
+        AlertBoxSuivi.display("Rappel", "   Il vous reste   " + reste + "  jours pour terminer cet objectif");
     }
 
     private void afficherSuivi() {

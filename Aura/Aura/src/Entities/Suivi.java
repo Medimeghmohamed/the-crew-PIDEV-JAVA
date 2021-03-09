@@ -10,20 +10,21 @@ package Entities;
  * @author Chirine
  */
 public class Suivi {
+
     private String idSuiv;
     private int valeurSuiv;
-    private String idClientSuiv;
-    private String idObjectifSuiv;
+    private Client client;
+    private Objectif objectif;
     private String dateSuiv;
 
     public Suivi() {
     }
 
-    public Suivi(String idSuiv, int valeurSuiv, String idClientSuiv, String idObjectifSuiv, String dateSuiv) {
+    public Suivi(String idSuiv, int valeurSuiv, Client client, Objectif objectif, String dateSuiv) {
         this.idSuiv = idSuiv;
         this.valeurSuiv = valeurSuiv;
-        this.idClientSuiv = idClientSuiv;
-        this.idObjectifSuiv = idObjectifSuiv;
+        this.client = client;
+        this.objectif = objectif;
         this.dateSuiv = dateSuiv;
     }
 
@@ -43,21 +44,23 @@ public class Suivi {
         this.valeurSuiv = valeurSuiv;
     }
 
-    public String getIdClientSuiv() {
-        return idClientSuiv;
+    public Client getClient() {
+        return client;
     }
 
-    public void setIdClientSuiv(String idClientSuiv) {
-        this.idClientSuiv = idClientSuiv;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public String getIdObjectifSuiv() {
-        return idObjectifSuiv;
+    public Objectif getObjectif() {
+        return objectif;
     }
 
-    public void setIdObjectifSuiv(String idObjectifSuiv) {
-        this.idObjectifSuiv = idObjectifSuiv;
+    public void setObjectif(Objectif objectif) {
+        this.objectif = objectif;
     }
+
+
 
     public String getDateSuiv() {
         return dateSuiv;
@@ -69,9 +72,7 @@ public class Suivi {
 
     @Override
     public String toString() {
-        return "Suivi{" + "idSuiv=" + idSuiv + ", valeurSuiv=" + valeurSuiv + ", idClientSuiv=" + idClientSuiv + ", idObjectifSuiv=" + idObjectifSuiv + ", dateSuiv=" + dateSuiv + '}';
+        return "Suivi{" + "idSuiv=" + idSuiv + ", valeurSuiv=" + valeurSuiv + ", client=" + client + ", Objectif=" + objectif + ", dateSuiv=" + dateSuiv + '}';
     }
-    
-    
-    
+
 }
