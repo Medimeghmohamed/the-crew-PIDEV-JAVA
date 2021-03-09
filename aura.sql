@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 09 mars 2021 à 16:24
--- Version du serveur :  10.4.10-MariaDB
--- Version de PHP :  7.3.12
+-- Généré le :  mar. 09 mars 2021 à 16:48
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `objectif` (
   `id` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,
   `reponse` int(11) NOT NULL,
-  `dateDebut` timestamp NOT NULL DEFAULT current_timestamp(),
+  `dateDebut` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `duree` int(11) NOT NULL,
   `idClient` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
@@ -232,6 +232,36 @@ CREATE TABLE IF NOT EXISTS `participationtherapie` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `participation_challenge`
+--
+
+DROP TABLE IF EXISTS `participation_challenge`;
+CREATE TABLE IF NOT EXISTS `participation_challenge` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `id_challenge` int(16) NOT NULL,
+  `id_client` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_challenge` (`id_challenge`),
+  KEY `id_client` (`id_client`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reminder`
+--
+
+DROP TABLE IF EXISTS `reminder`;
+CREATE TABLE IF NOT EXISTS `reminder` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `id_challenge` int(16) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_challenge` (`id_challenge`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `reponse`
 --
 
@@ -258,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `suivi` (
   `valeur` int(11) NOT NULL,
   `idClient` varchar(50) NOT NULL,
   `idObjectif` varchar(50) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `fk_SuivObj` (`idObjectif`),
   KEY `fk_SuivCli` (`idClient`)
@@ -379,6 +409,19 @@ ALTER TABLE `participationactivté`
 --
 ALTER TABLE `participationtherapie`
   ADD CONSTRAINT `part2` FOREIGN KEY (`id_client`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `participation_challenge`
+--
+ALTER TABLE `participation_challenge`
+  ADD CONSTRAINT `participation_challenge_ibfk_1` FOREIGN KEY (`id_challenge`) REFERENCES `challenge` (`id`),
+  ADD CONSTRAINT `participation_challenge_ibfk_2` FOREIGN KEY (`id_client`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `reminder`
+--
+ALTER TABLE `reminder`
+  ADD CONSTRAINT `reminder_ibfk_1` FOREIGN KEY (`id_challenge`) REFERENCES `challenge` (`id`);
 
 --
 -- Contraintes pour la table `reponse`
