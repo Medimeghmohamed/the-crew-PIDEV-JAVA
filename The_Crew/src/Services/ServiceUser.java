@@ -9,6 +9,7 @@ import Entities.Admin;
 import Entities.Client;
 import Entities.Coach;
 import Interfaces.IServiceUser;
+import java.security.MessageDigest;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.bind.DatatypeConverter;
 
 /**
  *
@@ -68,6 +70,7 @@ public class ServiceUser implements IServiceUser {
         return "No";
     }
 
+    @Override
     public boolean check_password(String id, String password) { //Check password for modifier password
 
         Statement stm = null;
@@ -111,6 +114,7 @@ public class ServiceUser implements IServiceUser {
 
     }
 
+    @Override
     public void modifier_password(String id, String password) {
 
         Statement stm;
@@ -126,6 +130,7 @@ public class ServiceUser implements IServiceUser {
 
     }
 
+    @Override
     public boolean verifier_id_bd(String id) { //Controle De Saisie si id existe
         Statement stm = null;
         ResultSet rst = null;
@@ -146,6 +151,7 @@ public class ServiceUser implements IServiceUser {
         return false;
     }
 
+    @Override
     public boolean verifier_email_bd(String email) { //Controle De Saisie si id existe
         Statement stm = null;
         ResultSet rst = null;
@@ -166,6 +172,7 @@ public class ServiceUser implements IServiceUser {
         return false;
     }
 
+    @Override
     public boolean verifier_tel_bd(String tel) { //Controle De Saisie si id existe
         Statement stm = null;
         ResultSet rst = null;
@@ -208,6 +215,7 @@ public class ServiceUser implements IServiceUser {
         return false;
     }
 
+    @Override
     public boolean verifier_tel_bd_modify(String tel, String id) { //Controle De Saisie si id existe lors de la modifciation
         Statement stm = null;
         ResultSet rst = null;
@@ -228,6 +236,7 @@ public class ServiceUser implements IServiceUser {
         return false;
     }
 
+    @Override
     public boolean test_Cin(String cin) {
 
         int i, length;
@@ -248,7 +257,7 @@ public class ServiceUser implements IServiceUser {
 
     }
 
-    boolean test_num_telephonique(String tel) {
+    public boolean test_num_telephonique(String tel) {
         int i;
         String[] tab = {"0", "1", "4", "6", "8"};
         for (i = 0; i < tab.length; i++) {
@@ -260,6 +269,7 @@ public class ServiceUser implements IServiceUser {
         return true;
     }
 
+    @Override
     public boolean test_Tel(String tel) {
 
         int i, length;
@@ -280,21 +290,42 @@ public class ServiceUser implements IServiceUser {
 
     }
 
+    @Override
     public boolean test_Email(String mail) {
         int test = 0;
         int position = 0;
+        int test2 = 0;
+        String[] tab = {"/", ";", ",", ":", "'", "&", "=", ">", "-", "_", "+", " ","!"};
+
         for (int i = 0; i < mail.length(); i++) {
             if (mail.charAt(i) == "@".charAt(0)) {
                 test++;
                 position = i;
             }
-            if (mail.charAt(i) == " ".charAt(0)) {
-                return false;
+
+        }
+        for (int k = 0; k < mail.length(); k++) {
+
+            for (String tab1 : tab) {
+                if (mail.charAt(k) == tab1.charAt(0)) {
+                    return false;
+                }
             }
         }
         for (int i = 0; i < mail.length(); i++) {
             if ((test == 1) && (mail.charAt(i) == ".".charAt(0))) {
-                if (((mail.length() > i + 2) && (i > position))) {
+
+                if (((mail.length() > i + 2) && (i > position + 4))) {
+                    for (int j = position; j < mail.length(); j++) {
+                        if (mail.charAt(j) == ".".charAt(0)) {
+                            test2++;
+
+                        }
+                    }
+                    if (test2 > 1) {
+                        return false;
+                    }
+
                     return true;
                 }
 
@@ -304,6 +335,7 @@ public class ServiceUser implements IServiceUser {
         return false;
     }
 
+    @Override
     public boolean test_Password(String password) {
 
         int nombre_Maj = 0;
@@ -333,6 +365,7 @@ public class ServiceUser implements IServiceUser {
 
     }
 
+    @Override
     public void modifierPassword(String id, String password) {
         Statement stm;
         try {
@@ -347,6 +380,7 @@ public class ServiceUser implements IServiceUser {
 
     }
 
+    @Override
     public int nb_admins() {
         Statement stm = null;
         List<Admin> Admins = new ArrayList<>();
@@ -371,6 +405,7 @@ public class ServiceUser implements IServiceUser {
 
     }
 
+    @Override
     public int nb_coachsV() {
         Statement stm = null;
         List<Coach> Coachs = new ArrayList<>();
@@ -393,7 +428,9 @@ public class ServiceUser implements IServiceUser {
         return Coachs.size();
 
     }
-     public int nb_coachsNV() {
+
+    @Override
+    public int nb_coachsNV() {
         Statement stm = null;
         List<Coach> Coachs = new ArrayList<>();
 
@@ -416,6 +453,7 @@ public class ServiceUser implements IServiceUser {
 
     }
 
+    @Override
     public int nb_clients() {
         Statement stm = null;
         List<Client> Clients = new ArrayList<>();
@@ -440,22 +478,19 @@ public class ServiceUser implements IServiceUser {
 
     }
 
+    @Override
     public String crypter_password(String password) {
-        String crypte = "";
-        for (int i = 0; i < password.length(); i++) {
-            int c = password.charAt(i) ^ 48;
-            crypte = crypte + (char) c;
-        }
-        return crypte;
-    }
+        String hashValue = "";
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
+            messageDigest.update(password.getBytes());
+            byte[] digestedBytes = messageDigest.digest();
+            hashValue = DatatypeConverter.printHexBinary(digestedBytes).toLowerCase();
 
-    public String decrypter_password(String password) {
-        String aCrypter = "";
-        for (int i = 0; i < password.length(); i++) {
-            int c = password.charAt(i) ^ 48;
-            aCrypter = aCrypter + (char) c;
+        } catch (Exception e) {
         }
-        return aCrypter;
+
+        return hashValue;
     }
 
 }

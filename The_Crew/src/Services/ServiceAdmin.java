@@ -29,6 +29,7 @@ public class ServiceAdmin implements IserviceAdmin {
         cnx = Connexion.getInstance().getConnection();
     }
 
+    @Override
     public void ajouterAdmin(Admin a) {
 
         Statement stm;
@@ -61,6 +62,7 @@ public class ServiceAdmin implements IserviceAdmin {
 
     }
 
+    @Override
     public List<Admin> afficherAdmin() {
         Statement stm = null;
         List<Admin> Admins = new ArrayList<>();
@@ -111,6 +113,7 @@ public class ServiceAdmin implements IserviceAdmin {
 
     }
 
+    @Override
     public void supprimerAdmin(String id) {
         Statement stm;
         try {
@@ -125,6 +128,7 @@ public class ServiceAdmin implements IserviceAdmin {
 
     }
 
+    @Override
     public Admin load_data_modify(String id) { //Charger Les Information d'un admin pour la modifictaion
 
         Statement stm = null;
@@ -154,6 +158,7 @@ public class ServiceAdmin implements IserviceAdmin {
 
     }
 
+    @Override
     public Admin load_user_name(String id) { //recuperer nom d'un identifiant et afficher dans le home 
 
         Statement stm = null;
@@ -183,6 +188,7 @@ public class ServiceAdmin implements IserviceAdmin {
 
     }
 
+    @Override
     public List<Admin> rechercherAdmin(String id, String critere) { //Recherche avancée aadmin
         Statement stm = null;
         List<Admin> Admins = new ArrayList<>();
@@ -214,6 +220,7 @@ public class ServiceAdmin implements IserviceAdmin {
 
     }
 
+    @Override
     public void accepter_coach(String id) { //Accepter coach non verifié
 
         Statement stm;
@@ -229,6 +236,7 @@ public class ServiceAdmin implements IserviceAdmin {
 
     }
 
+    @Override
     public void rejeter_coach(String id) { //Accepter coach non verifié
 
         Statement stm;
@@ -244,6 +252,7 @@ public class ServiceAdmin implements IserviceAdmin {
 
     }
 
+    @Override
     public boolean verif_super_admin(String id) {
 
         Statement stm;

@@ -131,4 +131,32 @@ public class ServiceClient implements IServiceClient {
 
     }
 
+    public List<Client> afficherClient() { //afficher tous coachs verifiés
+        Statement stm = null;
+        List<Client> Clients = new ArrayList<>();
+
+        try {
+            stm = cnx.createStatement();
+            String query = "SELECT * FROM `user` WHERE role='Client'  ";
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                Client cl = new Client();
+                cl.setId(rst.getString("id"));
+                cl.setNom(rst.getString("nom"));
+                cl.setPrenom(rst.getString("prenom"));
+                cl.setEmail(rst.getString("email"));
+                cl.setPassword(rst.getString("password"));
+                cl.setTel(rst.getString("tel"));
+                cl.setAdresse(rst.getString("adresse"));
+
+                Clients.add(cl);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        return Clients;
+
+    }
 }

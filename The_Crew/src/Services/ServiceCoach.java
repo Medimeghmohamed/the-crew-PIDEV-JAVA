@@ -29,6 +29,7 @@ public class ServiceCoach implements IserviceCoach {
         cnx = Connexion.getInstance().getConnection();
     }
 
+    @Override
     public void ajouterCoach(Coach c) {
 
         Statement stm;
@@ -61,6 +62,7 @@ public class ServiceCoach implements IserviceCoach {
 
     }
 
+    @Override
     public List<Coach> afficherCoach_Oui() { //afficher les coachs verifiés
         Statement stm = null;
         List<Coach> Coachs = new ArrayList<>();
@@ -90,6 +92,7 @@ public class ServiceCoach implements IserviceCoach {
 
     }
 
+    @Override
     public List<Coach> afficherCoach_All() { //afficher tous coachs verifiés
         Statement stm = null;
         List<Coach> Coachs = new ArrayList<>();
@@ -119,6 +122,7 @@ public class ServiceCoach implements IserviceCoach {
 
     }
 
+    @Override
     public List<Coach> afficherCoach_Non() {//afficher les coachs non verifiés
         Statement stm = null;
         List<Coach> Coachs = new ArrayList<>();
@@ -149,8 +153,6 @@ public class ServiceCoach implements IserviceCoach {
     }
 
     @Override
-    
-
     public void supprimerCoach(String id) {
         Statement stm;
         try {
@@ -165,6 +167,7 @@ public class ServiceCoach implements IserviceCoach {
 
     }
 
+    @Override
     public Coach load_data_modify(String id) { // charger données coach pour la modification
 
         Statement stm = null;
@@ -195,9 +198,6 @@ public class ServiceCoach implements IserviceCoach {
     }
 
     @Override
-
-    
-
     public Coach load_user_name(String id) { //get nom de l'identifiant apres login
 
         Statement stm = null;
@@ -253,7 +253,5 @@ public class ServiceCoach implements IserviceCoach {
         return Coachs;
 
     }
-
-   
 
 }
