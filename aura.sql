@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 09 mars 2021 à 16:48
--- Version du serveur :  5.7.26
--- Version de PHP :  7.3.5
+-- Généré le : mer. 10 mars 2021 à 17:01
+-- Version du serveur :  5.7.31
+-- Version de PHP : 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `aura`
+-- Base de données : `aura`
 --
 
 -- --------------------------------------------------------
@@ -33,14 +32,24 @@ CREATE TABLE IF NOT EXISTS `activite` (
   `id` int(16) NOT NULL,
   `idcoach` varchar(255) NOT NULL,
   `duree` varchar(255) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   `nombremax` int(16) NOT NULL,
   `type` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `lieu` varchar(255) NOT NULL,
+  `nombre_parti` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `act1` (`idcoach`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `activite`
+--
+
+INSERT INTO `activite` (`id`, `idcoach`, `duree`, `date`, `nombremax`, `type`, `description`, `lieu`, `nombre_parti`) VALUES
+(125, '12', '1', '02/04/2021', 21, '212', '21', '21', 0),
+(156, '12', '12', '17/03/2021', 100, '21', '21', '211', 4),
+(1256, '12', '1', '02/04/2021', 21, '212', '21', '21', 0);
 
 -- --------------------------------------------------------
 
@@ -207,12 +216,20 @@ CREATE TABLE IF NOT EXISTS `objectif_pred` (
 
 DROP TABLE IF EXISTS `participationactivté`;
 CREATE TABLE IF NOT EXISTS `participationactivté` (
-  `id` int(16) NOT NULL,
+  `id` int(16) NOT NULL AUTO_INCREMENT,
   `id_client` varchar(255) NOT NULL,
   `id_activite` int(11) NOT NULL,
+  `rating` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `part1` (`id_client`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `participationactivté`
+--
+
+INSERT INTO `participationactivté` (`id`, `id_client`, `id_activite`, `rating`) VALUES
+(1, '10', 156, NULL);
 
 -- --------------------------------------------------------
 
@@ -222,12 +239,20 @@ CREATE TABLE IF NOT EXISTS `participationactivté` (
 
 DROP TABLE IF EXISTS `participationtherapie`;
 CREATE TABLE IF NOT EXISTS `participationtherapie` (
-  `id` int(16) NOT NULL,
+  `id` int(16) NOT NULL AUTO_INCREMENT,
   `id_client` varchar(255) NOT NULL,
   `id_therapie` int(11) NOT NULL,
+  `rating` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `part2` (`id_client`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `participationtherapie`
+--
+
+INSERT INTO `participationtherapie` (`id`, `id_client`, `id_therapie`, `rating`) VALUES
+(1, '10', 2020, 2);
 
 -- --------------------------------------------------------
 
@@ -244,6 +269,52 @@ CREATE TABLE IF NOT EXISTS `participation_challenge` (
   KEY `id_challenge` (`id_challenge`),
   KEY `id_client` (`id_client`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `propoact`
+--
+
+DROP TABLE IF EXISTS `propoact`;
+CREATE TABLE IF NOT EXISTS `propoact` (
+  `id` int(11) NOT NULL,
+  `idcoach` varchar(255) NOT NULL,
+  `duree` varchar(255) NOT NULL,
+  `date` varchar(255) NOT NULL,
+  `nombremax` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `lieu` varchar(255) NOT NULL,
+  `nombre_parti` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `proptherapie`
+--
+
+DROP TABLE IF EXISTS `proptherapie`;
+CREATE TABLE IF NOT EXISTS `proptherapie` (
+  `id` int(11) NOT NULL,
+  `sujet` varchar(255) NOT NULL,
+  `date` varchar(255) NOT NULL,
+  `lieu` varchar(255) NOT NULL,
+  `nombremax` int(11) NOT NULL,
+  `idcoach` varchar(255) NOT NULL,
+  `nombre_parti` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `proptherapie`
+--
+
+INSERT INTO `proptherapie` (`id`, `sujet`, `date`, `lieu`, `nombremax`, `idcoach`, `nombre_parti`) VALUES
+(120, 'anixi', '24/03/2021', 'mourouj 6', 0, '1', 0),
+(232, '32', '03/03/2021', '3', 0, '12', 0);
 
 -- --------------------------------------------------------
 
@@ -304,13 +375,23 @@ DROP TABLE IF EXISTS `therapie`;
 CREATE TABLE IF NOT EXISTS `therapie` (
   `id` int(16) NOT NULL,
   `sujet` varchar(254) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   `lieu` varchar(254) NOT NULL,
   `nombremax` int(11) NOT NULL,
   `idcoach` varchar(254) NOT NULL,
+  `nombre_parti` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `th1` (`idcoach`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `therapie`
+--
+
+INSERT INTO `therapie` (`id`, `sujet`, `date`, `lieu`, `nombremax`, `idcoach`, `nombre_parti`) VALUES
+(2020, '20', '24/03/2021', '20', 20, '12', 2),
+(4546, '5', '24/03/2021', '15', 20, '12', 0),
+(1212566, '12', '24/03/2021', '1', 0, '12', 0);
 
 -- --------------------------------------------------------
 
@@ -337,6 +418,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `nom`, `prenom`, `email`, `password`, `tel`, `specialite`, `adresse`, `role`) VALUES
+('10', 'client', 'clienyt', 'client@client.clienb', 'client', '26262626', '', '', 'Client'),
+('12', 'helmi', 'ahlem', 'mohamed.medimegh@esprit.tn', '123', '25616874', 'jump', 'ariana', 'CoachV'),
 ('12345670', 'seif', 'Ben Salah', 'seifeddine.bensalah@hotmail.com', 'afc677037be3d92324fa6597d6c1506b534e306b', '23123123', 'test', ' ', 'SAdmin'),
 ('12345671', 'sefi', 'mdptest', 'seifeddine.bensalah@gmail.com', 'afc677037be3d92324fa6597d6c1506b534e306b', '23232321', '', 'test ', 'Client'),
 ('12345672', 'seif', 'mdptest', 'seifeddine.bensalah@esprit.fr', 'afc677037be3d92324fa6597d6c1506b534e306b', '95223112', 'test', ' ', 'CoachV'),
