@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import utils.Myconnexion;
 
 /**
@@ -45,6 +46,11 @@ public class ServiceNiveau {
                         + n.getTitre() + "')";
                 stm.executeUpdate(query);
                 System.out.println("ajout avec succes");
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("NIVEAU");
+                alert.setHeaderText(null);
+                alert.setContentText("niveau ajouté");
+                alert.showAndWait();
             } else {
                 System.out.println("cnx NULL");
             }
@@ -111,6 +117,11 @@ public class ServiceNiveau {
             String query = "UPDATE  niveau SET titre= '" + n.getTitre()+ "'  WHERE id = " + n.getId()+ "";
             st.executeUpdate(query);
             System.out.println("modification avec succes");
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("NIVEAU");
+                alert.setHeaderText(null);
+                alert.setContentText("modification avec succes");
+                alert.showAndWait();
         } catch (SQLException ex) {
             System.out.println("erreur modifier classement");
             System.out.println(ex);
@@ -124,6 +135,11 @@ public class ServiceNiveau {
             String query = "DELETE FROM `niveau` WHERE id = " + Id + "";
             st.executeUpdate(query);
             System.out.println("suppression avec succes");
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("NIVEAU");
+                alert.setHeaderText(null);
+                alert.setContentText("suppression avec succes");
+                alert.showAndWait();
         } catch (SQLException ex) {
             System.out.println("erreur supprimer niveau");
             System.out.println(ex);
