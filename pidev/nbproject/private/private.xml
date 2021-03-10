@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/wamp64/www/pidev/src/entities/ligne_challenge.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/service/ServiceNiveau.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/service/ServiceChallenge.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/entities/challenge.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/entities/classement.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/services/IServiceNiveau.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/services/IServiceChallege.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/entities/niveau.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/service/ServiceClassement.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/pidev/FXMLDocumentController.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/services/IServiceClassement.java</file>
+        </group>
+    </open-files>
 </project-private>
