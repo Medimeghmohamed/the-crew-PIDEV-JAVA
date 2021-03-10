@@ -1,0 +1,78 @@
+.button {
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #0054d3 0%, #c5e3f1 100%),
+        #24309d,
+        #86ffff,
+        radial-gradient(center 50% 50%, radius 100%, #3ad8c3, #2ca1c5);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+  }
+  .combo-box .list-cell 
+  {
+      -fx-background: white;
+      -fx-background-color: transparent;
+      -fx-text-fill: -fx-text-base-color;
+      -fx-padding: 3 0 2 7;
+      -fx-cell-size: 1.66667em; 
+  }
+  
+  .combo-box-popup .list-view 
+  {
+      -fx-background-color: rgb(122, 228, 241), rgb(130, 224, 236);
+      -fx-background-insets: 0, 1;
+      -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+  }    
+  
+  .combo-box-popup .list-view .list-cell 
+  {
+      -fx-padding: 4 0 4 5;
+  
+      /* No alternate highlighting */
+      -fx-background-color: rgb(83, 161, 192);
+  }
+  
+  .combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover 
+  {
+      -fx-background: -fx-accent;
+      -fx-background-color: -fx-selection-bar;
+      -fx-text-fill: -fx-selection-bar-text;
+  }
+  
+  .combo-box-popup .list-view .list-cell:filled:hover 
+  {
+      -fx-background-color: rgb(143, 221, 226);
+      -fx-text-fill: -fx-text-inner-color;
+  }
+  
+  .combo-box-base  
+  {
+      -fx-skin: "com.sun.javafx.scene.control.skin.ComboBoxBaseSkin";
+      -fx-background-color: rgb(51, 149, 206), rgb(62, 37, 173), rgb(126, 148, 221), rgb(112, 194, 176);
+      -fx-background-radius: 5, 5, 4, 3;
+      -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+      -fx-padding: 0;
+  }
+  
+  .combo-box-base:hover
+  {
+      -fx-color: -fx-hover-base;
+  }
+  
+  .combo-box-base:showing 
+  {
+      -fx-color: -fx-pressed-base;
+  }
+  
+  .combo-box-base:focused {
+      -fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+      -fx-background-radius: 6.4, 4, 5, 3;
+      -fx-background-insets: -1.4, 0, 1, 2;
+  }
+  
+  .combo-box-base:disabled {
+      -fx-opacity: .4;
+  }

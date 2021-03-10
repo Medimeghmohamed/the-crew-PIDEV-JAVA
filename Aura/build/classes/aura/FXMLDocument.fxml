@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="831.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.FXMLDocumentController">
   <tabs>
@@ -37,8 +38,8 @@
                                     <TextField fx:id="id" layoutX="92.0" layoutY="31.0" />
                                     <TextField fx:id="idcoach" layoutX="92.0" layoutY="82.0" />
                                     <TextField fx:id="duree" layoutX="123.0" layoutY="183.0" />
-                                    <TextField fx:id="nombremax" layoutX="138.0" layoutY="270.0" />
-                                    <TextField fx:id="type" layoutX="138.0" layoutY="231.0" />
+                                    <TextField fx:id="nombremax" layoutX="138.0" layoutY="230.0" />
+                                    <TextField fx:id="type" layoutX="138.0" layoutY="281.0" />
                                     <TextField fx:id="description" layoutX="138.0" layoutY="318.0" />
                                     <TextField fx:id="lieu" layoutX="138.0" layoutY="362.0" />
                                     <Button fx:id="show" layoutX="594.0" layoutY="303.0" mnemonicParsing="false" onAction="#modify" prefHeight="98.0" prefWidth="130.0" text="UPDATE" />
@@ -131,7 +132,9 @@
                         <TableColumn fx:id="cnbpar" prefWidth="124.0" text="nombre de parti" />
                      </columns>
                   </TableView>
-                  <Button layoutX="14.0" layoutY="477.0" mnemonicParsing="false" onAction="#joinact" text="Join" />
+                  <Button layoutX="14.0" layoutY="477.0" mnemonicParsing="false" onAction="#joinact" stylesheets="@ac452bc8280bc52be384e9af98f2ba0c-8c99d1bfebebeef52cafe78e9ae7d1fcba71104a/btn.css" text="Join" />
+                  <Rating fx:id="rateact" layoutX="149.0" layoutY="485.0" rating="0.0" />
+                  <Button layoutX="338.0" layoutY="486.0" mnemonicParsing="false" onAction="#rate" text="rate" />
                </children>
             </AnchorPane>
         </content>
