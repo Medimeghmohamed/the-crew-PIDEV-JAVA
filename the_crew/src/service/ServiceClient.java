@@ -16,10 +16,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement ;
 import java.util.ArrayList;
+import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+//import com.google.api.services.calendar.Calendar;
 
 ;
 
@@ -30,8 +33,12 @@ import javafx.collections.ObservableList;
 public class ServiceClient implements IServiceClient {
     
     Connection cnx;
+    Timer timer = new Timer();
+     RemindersTask tasks;
+    // timer.scheduleAtFixedRate(tasks, zeroDelay, periodOneMinute);
     
     public ServiceClient() {
+        this.tasks = new RemindersTask();
         
         cnx = Myconnexion.getInstance().getConnection();
         
@@ -89,39 +96,25 @@ public class ServiceClient implements IServiceClient {
         }
         return clients;
     }
-     public ObservableList<classement> trierClassement() {
-          Statement stm = null;
-        ObservableList<classement> classements = FXCollections.observableArrayList();
 
-        try {
+    private static class RemindersTask {
 
-            stm = Myconnexion.getInstance().getConnection().createStatement();
-
-            String query = "SELECT * FROM `ligne_classement` ORDER BY position  ";
-            ResultSet rst = stm.executeQuery(query);
-
-            while (rst.next()) {
-                classement c = new classement();
-                c.setId(rst.getInt(1));
-                c.setClient(rst.getString("id_client"));
-                c.setNiveau(rst.getInt("id_niveau"));
-                c.setPosition(rst.getInt("position"));
-                c.setNb_points(rst.getInt("nb_points"));
-
-                classements.add(c);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
+        public RemindersTask() {
         }
+   /*     public void run() {
+    List<Reminder> dueRems = getDueRems();
+    showNotifications(dueRems); // shows the multiple notifications in an alert dialog
+    predicate = ReminderPredicates.DUE_NOW;
+}
 
-        return classements;
-        
-        
-        
-        
-      
+private List<Reminder> getDueRems() {
+    ObservableList<Reminder> rems = dataClass.getAllReminders();
+    return rems.stream()
+        .filter(predicate)
+        .collect(Collectors.toList());
+}*/
     }
+    
                 
 
 }

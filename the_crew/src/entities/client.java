@@ -12,7 +12,16 @@ import java.util.*;
  */
 public class client {
     private int id;
-    private String nom,prenom;
+    private String nom,prenom,mail,mdp;
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+    
 
     public int getId() {
         return id;
@@ -34,15 +43,25 @@ public class client {
         this.nom = nom;
     }
 
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+    
+
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
     @Override
     public String toString() {
-        return "client{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + "}\n";
-        
+        return "client{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", mdp=" + mdp + '}';
     }
+
+    
 
     public void setnom(int aInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

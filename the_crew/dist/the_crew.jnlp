@@ -8,8 +8,10 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="lib\javax.mail-1.6.2.jar" size="659031" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
-    <jar href="the_crew.jar" size="7146" download="eager" />
+    <jar href="lib\org-netbeans-modules-javawebstart-anttasks.jar" size="67403" download="eager" />
+    <jar href="the_crew.jar" size="10866" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="the_crew" >
     <param name="requiredFXVersion" value="8.0+"/>

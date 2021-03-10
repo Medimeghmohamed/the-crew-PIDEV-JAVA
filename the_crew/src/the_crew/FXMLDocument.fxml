@@ -15,5 +15,6 @@
       <TextField fx:id="tfnom" layoutX="84.0" layoutY="42.0" prefHeight="31.0" prefWidth="178.0" />
       <TextField fx:id="tfprenom" layoutX="79.0" layoutY="91.0" />
       <Button fx:id="afficher" layoutX="288.0" layoutY="91.0" mnemonicParsing="false" onAction="#afficher_personne" prefHeight="26.0" prefWidth="70.0" text="afficher" />
+      <Button fx:id="mail" layoutX="342.0" layoutY="130.0" mnemonicParsing="false" onAction="#sendmail" text="mail" />
     </children>
 </AnchorPane>
