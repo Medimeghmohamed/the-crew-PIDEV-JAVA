@@ -11,8 +11,8 @@ package entities;
  */
 public class Therapie {
     int id,nombremax,nombre_parti;
-    String sujet,date,lieu,idcoach;
-
+    String sujet,date,lieu;
+Coach idcoach;
     public int getNombre_parti() {
         return nombre_parti;
     }
@@ -24,14 +24,17 @@ public class Therapie {
     public Therapie() {
     }
 
-    public Therapie(int id, int nombremax, String sujet, String date, String lieu, String idcoach) {
+    public Therapie(int id, int nombremax, int nombre_parti, String sujet, String date, String lieu, Coach idcoach) {
         this.id = id;
         this.nombremax = nombremax;
+        this.nombre_parti = nombre_parti;
         this.sujet = sujet;
         this.date = date;
         this.lieu = lieu;
         this.idcoach = idcoach;
     }
+
+  
 
     @Override
     public String toString() {
@@ -80,12 +83,14 @@ public class Therapie {
         this.lieu = lieu;
     }
 
-    public String getIdcoach() {
+    public Coach getIdcoach() {
         return idcoach;
     }
 
-    public void setIdcoach(String idcoach) {
+    public void setIdcoach(Coach idcoach) {
         this.idcoach = idcoach;
     }
+
+ 
     
 }

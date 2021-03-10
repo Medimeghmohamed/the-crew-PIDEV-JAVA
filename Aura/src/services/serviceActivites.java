@@ -5,6 +5,8 @@
  */
 package services;
 import entities.Activites;
+import entities.Coach;
+
 import interfaces.Iactivites;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,7 +31,7 @@ public class serviceActivites implements Iactivites{
     
     public void addActivities(Activites a) {
              try {
-            String requete  = "INSERT INTO `activite` (`id`, `idcoach`, `duree`,`date`, `nombremax`, `type`, `description`, `lieu`,`nombre_parti`) VALUES ('"+a.getId()+"', '"+a.getIdcoach()+"', '"+a.getDuree()+"','"+a.getDate()+"', '"+a.getNombremax()+"', '"+a.getType()+"', '"+a.getDescription()+"', '"+a.getLieu()+"', '"+a.getNombre_parti()+"') ";
+            String requete  = "INSERT INTO `activite` (`id`, `idcoach`, `duree`,`date`, `nombremax`, `type`, `description`, `lieu`,`nombre_parti`) VALUES ('"+a.getId()+"', '"+a.getIdcoach().getId()+"', '"+a.getDuree()+"','"+a.getDate()+"', '"+a.getNombremax()+"', '"+a.getType()+"', '"+a.getDescription()+"', '"+a.getLieu()+"', '"+a.getNombre_parti()+"') ";
             Statement st = MyConnection.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("Activité ajouté");
@@ -51,6 +53,7 @@ public class serviceActivites implements Iactivites{
     
     public ObservableList<Activites> showActivites() {
       ObservableList<Activites> myList = FXCollections.observableArrayList();
+      ServiceCoach sc = new ServiceCoach();
         try {
 
             String requete = "SELECT * FROM activite";
@@ -59,7 +62,7 @@ public class serviceActivites implements Iactivites{
             while (rs.next()) {
                 Activites A = new Activites();
                 A.setId(rs.getInt(1));
-                A.setIdcoach(rs.getString(2));
+                A.setIdcoach(sc.load_data_modify(rs.getString(2)));
                 A.setDuree(rs.getString(3));
                 A.setDate(rs.getString(4));
                 A.setNombremax(rs.getInt(5));
@@ -75,13 +78,7 @@ public class serviceActivites implements Iactivites{
         }
         return myList;
     }
-    
-    
-    
-    
-    
-    
-    
+  
      @Override
         public void supprimeractivite(int id) {
         try {
@@ -105,7 +102,7 @@ public class serviceActivites implements Iactivites{
         try {
             String requete = " UPDATE activite SET idcoach=?, duree=?,date=?,nombremax=?,type=?,description=?,lieu=?,nombre_parti=? WHERE id=?" ;
             PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
-            pst.setString(1,a.getIdcoach());
+            pst.setString(1,a.getIdcoach().getId());
             pst.setString(2,a.getDuree());
             pst.setString(3,a.getDate());
             pst.setInt(4,a.getNombremax());
@@ -130,7 +127,7 @@ public class serviceActivites implements Iactivites{
     @Override
     public List<Activites> findtype(String t) {
 ObservableList<Activites> myList = FXCollections.observableArrayList();
-    
+     ServiceCoach sc = new ServiceCoach();
         try {
 
             String requete = "SELECT * FROM activite WHERE type='"+t+"' ORDER BY date  ";
@@ -140,7 +137,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
             while (rs.next()) {
                 Activites A = new Activites();
                 A.setId(rs.getInt(1));
-                A.setIdcoach(rs.getString(2));
+                A.setIdcoach(sc.load_data_modify(rs.getString(2)));
                 A.setDuree(rs.getString(3));
                 A.setDate(rs.getString(4));
                 A.setNombremax(rs.getInt(5));
@@ -158,6 +155,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
 @Override
             public List<Activites> finddate(String t) {
         ObservableList<Activites> myList = FXCollections.observableArrayList();
+     ServiceCoach sc = new ServiceCoach();
 
  try {
 
@@ -168,7 +166,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
             while (rs.next()) {
                 Activites A = new Activites();
                 A.setId(rs.getInt(1));
-                A.setIdcoach(rs.getString(2));
+                A.setIdcoach(sc.load_data_modify(rs.getString(2)));
                 A.setDuree(rs.getString(3));
                 A.setDate(rs.getString(4));
                 A.setNombremax(rs.getInt(5));
@@ -206,6 +204,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
  @Override
             public ObservableList<Activites> showpropActivites() {
       ObservableList<Activites> myList = FXCollections.observableArrayList();
+           ServiceCoach sc = new ServiceCoach();
         try {
 
             String requete = "SELECT * FROM propoact";
@@ -214,7 +213,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
             while (rs.next()) {
                 Activites A = new Activites();
                 A.setId(rs.getInt(1));
-                A.setIdcoach(rs.getString(2));
+                A.setIdcoach(sc.load_data_modify(rs.getString(2)));
                 A.setDuree(rs.getString(3));
                 A.setDate(rs.getString(4));
                 A.setNombremax(rs.getInt(5));
@@ -233,7 +232,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
  @Override
             public void addpropActivities(Activites a) {
              try {
-            String requete  = "INSERT INTO `propoact` (`id`, `idcoach`, `duree`,`date`, `nombremax`, `type`, `description`, `lieu`,`nombre_parti`) VALUES ('"+a.getId()+"', '"+a.getIdcoach()+"', '"+a.getDuree()+"','"+a.getDate()+"', '"+a.getNombremax()+"', '"+a.getType()+"', '"+a.getDescription()+"', '"+a.getLieu()+"', '"+a.getNombre_parti()+"') ";
+            String requete  = "INSERT INTO `propoact` (`id`, `idcoach`, `duree`,`date`, `nombremax`, `type`, `description`, `lieu`,`nombre_parti`) VALUES ('"+a.getId()+"', '"+a.getIdcoach().getId()+"', '"+a.getDuree()+"','"+a.getDate()+"', '"+a.getNombremax()+"', '"+a.getType()+"', '"+a.getDescription()+"', '"+a.getLieu()+"', '"+a.getNombre_parti()+"') ";
             Statement st = MyConnection.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("proposition  ajouté");
@@ -275,9 +274,9 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
 catch (Exception e) {
     }}
     
-             public void addclientact(Activites a)
+             public void addclientact(Activites a,String c)
     {  try {
-            String requete  = "INSERT INTO `participationactivté` (`id_client`,`id_activite`) VALUES (10,'"+a.getId()+"') ";
+            String requete  = "INSERT INTO `participationactivté` (`id_client`,`id_activite`) VALUES ('"+c+"','"+a.getId()+"') ";
             Statement st = MyConnection.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("Client ajouté");
@@ -293,7 +292,9 @@ catch (Exception e) {
     }
         
 
-            public void joinact(Activites a){
+            public void joinact(Activites a,String c)
+            //c pour id client qui sera recuperer 
+            {
                 
                 if(a.getNombremax()==a.getNombre_parti())
                 { Alert alert = new Alert(AlertType.INFORMATION);
@@ -302,12 +303,19 @@ catch (Exception e) {
                 alert.setContentText("FULL");
                 alert.showAndWait(); }
                 else
-                {addclientact( a);
+                {addclientact(a,c);
                 updatenumpart(a);}
-                
-            
+              
             }
-    
+public void updaterating(Activites a,int rate){
+    try {
+         String requete = " UPDATE participationactivté SET rating='"+rate+"' WHERE id_activite='"+a.getId()+"'" ;
+            PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
+             pst.executeUpdate();
+
+    } 
+catch (Exception e) {
+    }}    
  }
     
 

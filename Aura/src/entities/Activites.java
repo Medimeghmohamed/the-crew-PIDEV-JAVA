@@ -13,7 +13,8 @@ package entities;
  */
 public class Activites {
    private int id;
-   private String idcoach;
+   private Coach idcoach;
+
    private String duree;
    private String date;
    private int nombremax;
@@ -41,13 +42,7 @@ public class Activites {
         this.id = id;
     }
 
-    public String getIdcoach() {
-        return idcoach;
-    }
 
-    public void setIdcoach(String idcoach) {
-        this.idcoach = idcoach;
-    }
 
     public String getDuree() {
         return duree;
@@ -100,7 +95,15 @@ public class Activites {
     public Activites() {
     }
 
-    public Activites(int id, String idcoach, String duree, String date, int nombremax, String type, String description, String lieu) {
+    public Coach getIdcoach() {
+        return idcoach;
+    }
+
+    public void setIdcoach(Coach idcoach) {
+        this.idcoach = idcoach;
+    }
+
+    public Activites(int id, Coach idcoach, String duree, String date, int nombremax, String type, String description, String lieu, int nombre_parti) {
         this.id = id;
         this.idcoach = idcoach;
         this.duree = duree;
@@ -109,7 +112,10 @@ public class Activites {
         this.type = type;
         this.description = description;
         this.lieu = lieu;
+        this.nombre_parti = nombre_parti;
     }
+
+   
 
     @Override
     public String toString() {

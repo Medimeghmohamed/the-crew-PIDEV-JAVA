@@ -16,6 +16,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import entities.Activites;
+import entities.Admin;
+import entities.Client;
+import entities.Coach;
 import entities.Therapie;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -40,6 +43,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javax.swing.text.TabableView;
+import org.controlsfx.control.Rating;
+import services.ServiceCoach;
 import services.serviceActivites;
 import services.service_mail;
 
@@ -153,6 +158,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextArea reasact;
     
+     @FXML
+    private Rating rateact;
+   
   
     
     @Override
@@ -172,7 +180,7 @@ public class FXMLDocumentController implements Initializable {
 
         // ... + noms de colonnesa
         cid.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("id"));
-        cidcoach.setCellValueFactory(new PropertyValueFactory<Activites, String>("idcoach"));
+        cidcoach.setCellValueFactory(new PropertyValueFactory<Activites,String>("idcoach"));
         cduree.setCellValueFactory(new PropertyValueFactory<Activites, String>("duree"));
         cdate.setCellValueFactory(new PropertyValueFactory<Activites, String>("date"));
         cnbm.setCellValueFactory(new PropertyValueFactory<Activites,Integer>("nombremax"));
@@ -198,9 +206,10 @@ public class FXMLDocumentController implements Initializable {
         else
         {System.out.println("yes");
          serviceActivites sa=new serviceActivites();
+               ServiceCoach sc = new ServiceCoach();
         Activites A =new Activites();
 A.setDescription(description.getText());
-A.setIdcoach(idcoach.getText());
+A.setIdcoach(sc.load_data_modify(idcoach.getText()));
 A.setDuree(duree.getText());
 A.setLieu(lieu.getText());
 A.setType(type.getText());
@@ -350,8 +359,9 @@ public void fillcomboboxdate(){
     private void addpropact(ActionEvent event) {
         serviceActivites sa=new serviceActivites();
         Activites A =new Activites();
+ServiceCoach sc = new ServiceCoach();
 A.setDescription(description1.getText());
-A.setIdcoach(idcoach1.getText());
+A.setIdcoach(sc.load_data_modify(idcoach1.getText()));
 A.setDuree(duree1.getText());
 A.setLieu(lieu1.getText());
 A.setType(type1.getText());
@@ -412,7 +422,7 @@ sa.addpropActivities(A);
         Activites a=   tabact11.getSelectionModel().getSelectedItem();
         System.out.println( a.getId());
          serviceActivites sa=new serviceActivites();
-         sa.joinact(a);
+         sa.joinact(a,"10");
          loadtablejoin();
          loadtablepropo();lodtabth();}
         
@@ -438,7 +448,7 @@ sa.addpropActivities(A);
     @FXML
     private void sendmailact(ActionEvent event) {
         Activites t=tabact1.getSelectionModel().getSelectedItem();
-         String n=t.getIdcoach();
+         String n=t.getIdcoach().getId();
         System.out.println("1");
         try {
              String requete = "SELECT email FROM coach  WHERE id='"+n+"'";
@@ -465,7 +475,7 @@ sa.addpropActivities(A);
     
     private void sendresp(String etat)
     {Activites t=tabact1.getSelectionModel().getSelectedItem();
-         String n=t.getIdcoach();
+         String n=t.getIdcoach().getId();
         try {
              String requete = "SELECT email FROM coach  WHERE id='"+n+"'";
             Statement st = MyConnection.getInstance().getCnx().createStatement();
@@ -499,6 +509,20 @@ sa.addpropActivities(A);
         tabact.setItems(activit);
         
         
+    }
+
+    @FXML
+    private void rate(ActionEvent event) {
+                int s =(int) rateact.getRating();
+
+        System.out.println("test"+s);
+        
+        Activites a= tabact11.getSelectionModel().getSelectedItem();
+        System.out.println( a.getId());
+         serviceActivites sa=new serviceActivites();
+         sa.updaterating(a,s);
+         loadtablejoin();
+         loadtablepropo();lodtabth();
     }
 
    

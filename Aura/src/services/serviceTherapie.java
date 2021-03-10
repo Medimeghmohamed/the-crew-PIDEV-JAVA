@@ -28,7 +28,7 @@ public class serviceTherapie implements Itherapie{
     public void addTherapie(Therapie t) {
         
            try {
-            String requete  = "INSERT INTO `therapie` (`id`, `sujet`, `date`, `lieu`, `nombremax`, `idcoach`,`nombre_parti`) VALUES ('"+t.getId()+"', '"+t.getSujet()+"', '"+t.getDate()+"', '"+t.getLieu()+"', '"+t.getNombremax()+"', '"+t.getIdcoach()+"','"+t.getNombre_parti()+"')";
+            String requete  = "INSERT INTO `therapie` (`id`, `sujet`, `date`, `lieu`, `nombremax`, `idcoach`,`nombre_parti`) VALUES ('"+t.getId()+"', '"+t.getSujet()+"', '"+t.getDate()+"', '"+t.getLieu()+"', '"+t.getNombremax()+"', '"+t.getIdcoach().getId()+"','"+t.getNombre_parti()+"')";
             Statement st = MyConnection.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("Therapie ajouté");
@@ -47,6 +47,7 @@ public class serviceTherapie implements Itherapie{
     @Override
     public ObservableList<Therapie> showTherapie() {
        ObservableList<Therapie> myList = FXCollections.observableArrayList();
+             ServiceCoach sc = new ServiceCoach();
         try {
 
             String requete = "SELECT * FROM therapie";
@@ -59,7 +60,7 @@ public class serviceTherapie implements Itherapie{
                 T.setDate(rs.getString(3));
                 T.setLieu(rs.getString(4));
                 T.setNombremax(rs.getInt(5));
-                T.setIdcoach(rs.getString(6));
+                T.setIdcoach(sc.load_data_modify(rs.getString(6)));
                 T.setNombre_parti(rs.getInt(7));
                 myList.add(T);
             }
@@ -96,7 +97,7 @@ public class serviceTherapie implements Itherapie{
             pst.setString(2,t.getDate());
             pst.setString(3,t.getLieu());
             pst.setInt(4,t.getNombremax());
-            pst.setString(5, t.getIdcoach());
+            pst.setString(5, t.getIdcoach().getId());
             pst.setInt(6, t.getId());
             pst.executeUpdate();
             System.out.println("Therapie modifié!");
@@ -113,6 +114,7 @@ public class serviceTherapie implements Itherapie{
     @Override
     public List<Therapie> findtype(String t) {
        ObservableList<Therapie> myList = FXCollections.observableArrayList();
+       ServiceCoach sc = new ServiceCoach();
         try {
 
             String requete = "SELECT * FROM therapie  WHERE sujet='"+t+"' ORDER BY date  ";
@@ -125,7 +127,7 @@ public class serviceTherapie implements Itherapie{
                 T.setDate(rs.getString(3));
                 T.setLieu(rs.getString(4));
                 T.setNombremax(rs.getInt(5));
-                T.setIdcoach(rs.getString(6));
+                T.setIdcoach(sc.load_data_modify(rs.getString(6)));
                         T.setNombre_parti(rs.getInt(7));
                 myList.add(T);
             }
@@ -139,6 +141,7 @@ public class serviceTherapie implements Itherapie{
     @Override
     public List<Therapie> finddate(String t) {
  ObservableList<Therapie> myList = FXCollections.observableArrayList();
+ ServiceCoach sc = new ServiceCoach();
         try {
 
             String requete = "SELECT * FROM therapie  WHERE date='"+t+"'  ";
@@ -151,7 +154,8 @@ public class serviceTherapie implements Itherapie{
                 T.setDate(rs.getString(3));
                 T.setLieu(rs.getString(4));
                 T.setNombremax(rs.getInt(5));
-                T.setIdcoach(rs.getString(6));
+                T.setIdcoach(sc.load_data_modify(rs.getString(6))
+);
                 T.setNombre_parti(rs.getInt(7));
 
                 myList.add(T);
@@ -177,6 +181,8 @@ public class serviceTherapie implements Itherapie{
     public ObservableList<Therapie> showpropTherapie()
     {
 ObservableList<Therapie> myList = FXCollections.observableArrayList();
+ ServiceCoach sc = new ServiceCoach();
+
  try {
 
             String requete = "SELECT * FROM proptherapie";
@@ -189,7 +195,8 @@ ObservableList<Therapie> myList = FXCollections.observableArrayList();
                 T.setDate(rs.getString(3));
                 T.setLieu(rs.getString(4));
                 T.setNombremax(rs.getInt(5));
-                T.setIdcoach(rs.getString(6));
+                T.setIdcoach(sc.load_data_modify(rs.getString(6))
+);
                 T.setNombre_parti(rs.getInt(7));
                 myList.add(T);
             }
@@ -221,7 +228,7 @@ try {
     public void addpropTherapie(Therapie t) {
 
            try {
-            String requete  = "INSERT INTO `proptherapie` (`id`, `sujet`, `date`, `lieu`, `nombremax`, `idcoach`,`nombre_parti`) VALUES ('"+t.getId()+"', '"+t.getSujet()+"', '"+t.getDate()+"', '"+t.getLieu()+"', '"+t.getNombremax()+"', '"+t.getIdcoach()+"','"+t.getNombre_parti()+"')";
+            String requete  = "INSERT INTO `proptherapie` (`id`, `sujet`, `date`, `lieu`, `nombremax`, `idcoach`,`nombre_parti`) VALUES ('"+t.getId()+"', '"+t.getSujet()+"', '"+t.getDate()+"', '"+t.getLieu()+"', '"+t.getNombremax()+"', '"+t.getIdcoach().getId()+"','"+t.getNombre_parti()+"')";
             Statement st = MyConnection.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("Proposition ajouté");
@@ -291,6 +298,15 @@ catch (Exception e) {
                 
             
             }
+            public void updaterating(Therapie a,int rate){
+    try {
+         String requete = " UPDATE participationtherapie SET rating='"+rate+"' WHERE id_therapie='"+a.getId()+"'" ;
+            PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
+             pst.executeUpdate();
+
+    } 
+catch (Exception e) {
+    }}
     
  }
     

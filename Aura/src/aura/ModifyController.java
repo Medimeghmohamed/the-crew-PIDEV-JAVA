@@ -27,6 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import services.ServiceCoach;
 import services.serviceActivites;
 
 /**
@@ -134,8 +135,10 @@ int c  = Integer.parseInt((String) b);
         
             serviceActivites sa=new serviceActivites();
         Activites A =new Activites();
+      ServiceCoach sc = new ServiceCoach();
+
 A.setDescription(description.getText());
-A.setIdcoach(idcoach.getText());
+A.setIdcoach(sc.load_data_modify(idcoach.getText()));
 A.setDuree(duree.getText());
 A.setType(type.getText());
 A.setLieu(lieu.getText());

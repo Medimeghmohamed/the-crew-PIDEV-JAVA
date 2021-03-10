@@ -31,6 +31,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import org.controlsfx.control.Rating;
+import services.ServiceCoach;
 import services.serviceActivites;
 import services.serviceTherapie;
 
@@ -142,6 +144,8 @@ public class TherapieController implements Initializable {
     private TableColumn<Therapie,Integer> nbpth;
     @FXML
     private TextArea reason;
+    @FXML
+    private Rating rateth;
 
     /**
      * Initializes the controller class.
@@ -164,8 +168,9 @@ public class TherapieController implements Initializable {
     @FXML
     private void addTh(ActionEvent event) {
     serviceTherapie st=new serviceTherapie();
+    ServiceCoach sc=new ServiceCoach();
        Therapie T =new  Therapie();
-T.setIdcoach(idcoach.getText());
+T.setIdcoach(    sc.load_data_modify(idcoach.getText()));
 T.setSujet(sujet.getText());
 T.setLieu(lieu.getText());
 T.setDate(datee.getEditor().getText());
@@ -250,9 +255,10 @@ int c  = Integer.parseInt((String) b);
     @FXML
     private void modifierth(ActionEvent event) {
           serviceTherapie Th=new serviceTherapie();
+           ServiceCoach sc=new ServiceCoach();
         Therapie T =new  Therapie();
 T.setSujet(sujet.getText());
-T.setIdcoach(idcoach.getText());
+T.setIdcoach(sc.load_data_modify(idcoach.getText()));
 T.setLieu(lieu.getText());
 T.setDate(datee.getEditor().getText());
 T.setNombremax(Integer.parseInt(nombremax.getText()));
@@ -404,14 +410,16 @@ int c  = Integer.parseInt((String) b);
     @FXML
     private void addpropTh(ActionEvent event) {
         serviceTherapie st=new serviceTherapie();
+              ServiceCoach sc = new ServiceCoach();
+
        Therapie T =new  Therapie();
-T.setIdcoach(idcoach1.getText());
+T.setIdcoach(sc.load_data_modify(idcoach1.getText()));
 T.setSujet(sujet1.getText());
 T.setLieu(lieu1.getText());
 T.setDate(datee1.getEditor().getText());
 T.setNombremax(Integer.parseInt(nombremax1.getText()));
 T.setId(Integer.parseInt(id1.getText()));
-T.setNombremax(0);
+T.setNombre_parti(0);
 
 st.addpropTherapie(T);
  loadtablepropo();
@@ -486,53 +494,47 @@ st.addpropTherapie(T);
     private void mailcoach(ActionEvent event) {
         
          Therapie t=tabth1.getSelectionModel().getSelectedItem();
-         String n=t.getIdcoach();
+         String n=t.getIdcoach().getEmail();
         System.out.println("1");
-        try {
-             String requete = "SELECT email FROM coach  WHERE id='"+n+"'";
-             System.out.println("2");
-            Statement st = MyConnection.getInstance().getCnx().createStatement();
-            ResultSet rs = st.executeQuery(requete);
-            System.out.println("3");
-            while (rs.next()) {
-              rs.getString("email"); 
-              
-              System.out.println("4");
+        
                  service_mail mai =new service_mail();
-        System.out.println( rs.getString("email"));
-      String reaso= reason.getText();
+        System.out.println( n);
+        String reaso= reason.getText();
         System.out.println(reaso);
-            mai.send_mail( rs.getString("email"),reaso);
+            mai.send_mail( n,reaso);
             }
                  
-         }catch (Exception e) {
-        }
         
-        
-    }
+    
     private void mailcoach(String etat)
     {  Therapie t=tabth1.getSelectionModel().getSelectedItem();
-         String n=t.getIdcoach();
-        try {
-             String requete = "SELECT email FROM coach  WHERE id='"+n+"'";
-             System.out.println("2");
-            Statement st = MyConnection.getInstance().getCnx().createStatement();
-            ResultSet rs = st.executeQuery(requete);
-            while (rs.next()) {
-              rs.getString("email"); 
+         String n=t.getIdcoach().getEmail();
+       
               
                  service_mail mai =new service_mail();
-        System.out.println( rs.getString("email"));
+        System.out.println( n);
      // String reaso= reason.getText();
        // System.out.println(reaso);
-            mai.send_mail( rs.getString("email"),etat);
+            mai.send_mail(n,etat);
             }
                  
-         }catch (Exception e) {
-        }
+         
    
  
     
     
+    
+
+    @FXML
+    private void rate(ActionEvent event) {
+        int s =(int) rateth.getRating();
+        Therapie t=   tabth2.getSelectionModel().getSelectedItem();
+        System.out.println( t.getId());
+         serviceTherapie sa=new serviceTherapie();
+      
+         sa.updaterating(t, s);loadtableth();
+         loadtablepropo();
+         loadetableclth();
+        
     }
 }
