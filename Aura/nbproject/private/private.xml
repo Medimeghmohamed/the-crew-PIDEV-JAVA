@@ -5,11 +5,15 @@
         <group>
             <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/aura/ModifyController.java</file>
             <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/aura/Aura.java</file>
+            <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/entities/Client.java</file>
+            <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/entities/User.java</file>
+            <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/entities/Admin.java</file>
             <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/aura/AcceuilController.java</file>
             <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/services/serviceTherapie.java</file>
             <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/aura/TherapieController.java</file>
             <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/aura/therapie.fxml</file>
             <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/aura/modify.fxml</file>
+            <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/entities/Coach.java</file>
             <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/entities/Therapie.java</file>
             <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/MaConnexion/MyConnection.java</file>
             <file>file:/C:/Users/admin/Documents/NetBeansProjects/Aura/src/aura/FXMLDocumentController.java</file>
