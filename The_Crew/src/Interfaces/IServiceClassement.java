@@ -17,7 +17,7 @@ public interface IServiceClassement {
 
     public void ajouterClassement(classement o);
 
-    public List<classement> afficherClassement();
+    public ObservableList<classement> afficherClassement();
 
     public void modifierClassement(classement o);
 
@@ -26,4 +26,6 @@ public interface IServiceClassement {
     public ObservableList<classement> trierClassement();
 
     public ObservableList<classement> RechercherClassement(String pos);
+      public ObservableList<classement> RechercherClassement_client(String nom);
+        public ObservableList<classement> afficherClassement_client();
 }
