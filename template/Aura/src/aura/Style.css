@@ -1,0 +1,37 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10 mars 2021, 16:04:20
+    Author     : Chirine
+*/
+.root {
+    -fx-background-image: url("/Sample/Images/background.png");
+
+}
+.button {
+    -fx-background-image: url("/Sample/Images/button_background.png");
+    -fx-text-fill:  #08213F;
+    -fx-font: 16px "Myriad Pro";
+    -fx-font-weight: bold;
+    -fx-padding: 10;
+}
+.label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFFFFF;
+    -fx-font: 32px "Myriad Pro";
+    -fx-font-weight: bold;
+}
+.TableView {
+    -fx-background-image: url("/Sample/Images/tableView_background.png");
+    -fx-text-fill: #08213F;
+    -fx-font: 14px "Myriad Pro";
+}
+#BorderPane{
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
