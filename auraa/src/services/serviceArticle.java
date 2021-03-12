@@ -16,16 +16,39 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import interfaces.Iarticle;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.rendering.ImageType;
+import org.apache.pdfbox.rendering.PDFRenderer;
+import org.apache.pdfbox.tools.imageio.ImageIOUtil;
+import java.io.File;
+import java.io.IOException;
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.io.RandomAccessFile;
+import org.apache.pdfbox.pdfparser.PDFParser;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 
 /**
  *
  * @author akram
  */
 public class serviceArticle implements Iarticle {
+    private PDFParser parser;
+    private PDFTextStripper pdfStripper;
+    private PDDocument pdDoc;
+    private COSDocument cosDoc;
+
+    private String Text;
+    private String filePath;
+    private File file;
+    
 
     Connection cnx;
 
@@ -46,12 +69,12 @@ public class serviceArticle implements Iarticle {
                 Statement st = MyConnection.getInstance().getCnx().createStatement();
                 assert st != null;
                 st.executeUpdate(requete);
-                System.out.println("Activité ajouté");
+                System.out.println(" ajouté");
             } else {
                 System.out.println("non");
             }
         } catch (SQLException ex) {
-            System.out.println("erreur ajouter objectifs");
+            System.out.println("erreur ");
             System.out.println(ex);
         }
     }
@@ -108,7 +131,7 @@ public class serviceArticle implements Iarticle {
             st.executeUpdate(query);
             System.out.println("modification avec succes");
         } catch (SQLException ex) {
-            System.out.println("erreur modifier challenge");
+            System.out.println("erreur ");
             System.out.println(ex);
         }
     }
@@ -123,7 +146,7 @@ public class serviceArticle implements Iarticle {
             st.executeUpdate(query);
             System.out.println("suppression avec succes");
         } catch (SQLException ex) {
-            System.out.println("erreur supprimer challenge");
+            System.out.println("erreur supprimer ");
             System.out.println(ex);
         }
     }
@@ -146,7 +169,7 @@ public class serviceArticle implements Iarticle {
                 
                 A.setId_coach(rs.getString(7));
                 A.setId_client(rs.getString(8));
-                System.out.println("hhhhhh");
+                System.out.println("!!!");
                
               
                 /*ch.setId(("id"));
@@ -210,9 +233,31 @@ public class serviceArticle implements Iarticle {
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return articles;
     }
-    
+      @Override
+    public String recup_article(String art){
+        article ch = new article();
+        
+          try {
+            Statement st = cnx.createStatement();
+            
+            String query = "select * FROM `article` WHERE article='" + art + "'";
+            ResultSet rst = st.executeQuery(query);
+            if(rst.next()){
+   ch.setArticle(rst.getString("article"));
+}
+            
+                 
+            
+        } catch (SQLException ex) {
+            System.out.println("erreur get IdOBJ pour suivi");
+            System.out.println(ex);
+        }
+        
+            return ch.getArticle();
+            
+    }
     @Override
-    public ObservableList<article> recherche(String theme) {
+    public ObservableList<article> recherche(String theme ) {
         Statement stm = null;
         ObservableList<article> articles = FXCollections.observableArrayList();
         
@@ -222,24 +267,23 @@ public class serviceArticle implements Iarticle {
             //try {
             stm = MyConnection.getInstance().getCnx().createStatement();
 
-            String query = " select * from article  WHERE theme = themes ";
+            String query = " select * from article  WHERE theme = '"+theme+"' "  ;
             ResultSet rs = stm.executeQuery(query);
-            
+            System.out.println(rs);
             while (rs.next()) {
                 article A= new article();
             
               
-                A.setTitre(rs.getString(2));
+               A.setTitre(rs.getString(2));
                 A.setTheme(rs.getString(3));
                 A.setNom_auteur(rs.getString(4));
                 A.setArticle(rs.getString(6));
                 A.setDate(rs.getString(5));
-                
                 A.setId_coach(rs.getString(7));
                 A.setId_client(rs.getString(8));
                 articles.add(A);
             }
-            /* } catch (SQLException ex) {
+            /*} catch (SQLException ex) {
             System.out.println(ex.getMessage());*/
 
             //}
@@ -247,9 +291,55 @@ public class serviceArticle implements Iarticle {
             Logger.getLogger(serviceArticle.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return articles;
     }
     
-    
+      /*public void pdfto() throws IOException{
+      
+
+        File f = new File("C:\\Users\\akram\\Desktop\\unix\\Cron&At.pdf");
+PDDocument document = PDDocument.load(f);
+   PDFRenderer pdfRenderer = new PDFRenderer(document);
+            for (int page = 0; page < document.getNumberOfPages(); ++page)
+            {
+                        
+            
+                BufferedImage bim = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
+                String fileName = "C:\\Users\\akram\\Desktop\\unix\\"+ "image-" + page + ".png";
+                ImageIOUtil.writeImage(bim, fileName, 300);
+            
+            document.close();
+
 }
+  
+    }*/
+
+    public String toText() throws IOException {
+        this.pdfStripper = null;
+        this.pdDoc = null;
+        this.cosDoc = null;
+
+        file = new File(filePath);
+        parser = new PDFParser(new RandomAccessFile(file, "r")); // update for PDFBox V 2.0
+
+        parser.parse();
+        cosDoc = parser.getDocument();
+        pdfStripper = new PDFTextStripper();
+        pdDoc = new PDDocument(cosDoc);
+        pdDoc.getNumberOfPages();
+        pdfStripper.setStartPage(0);
+        pdfStripper.setEndPage(pdDoc.getNumberOfPages());
+        Text = pdfStripper.getText(pdDoc);
+        return Text;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public PDDocument getPdDoc() {
+        return pdDoc;
+    }
+
+}
+

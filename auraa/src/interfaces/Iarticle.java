@@ -7,6 +7,7 @@ package interfaces;
 
 import entities.article;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -17,4 +18,7 @@ import java.util.List;
     public List<article> showArticle();
     public void modifier (article a);
     public List<article> trier();
+    public ObservableList<article> recherche(String theme ) ;
+     public String recup_article (String art);
+     
  }

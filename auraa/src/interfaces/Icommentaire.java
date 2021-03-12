@@ -16,7 +16,8 @@ import java.util.List;
 public interface Icommentaire {
       public void ajouterc (commentaire c);
       public String recup_commentaire(String com);
-     /* public void supprimerc(String com);*/
+      public void supprimerc(String com);
+     
     /*public List<commentaire> showCommentaire();*/
-   /* public void modifierc (commentaire c);*/
+    /*public void modifierc (commentaire c);*/
 }
