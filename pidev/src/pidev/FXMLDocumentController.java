@@ -9,6 +9,7 @@ import entities.challenge;
 import entities.classement;
 import entities.ligne_challenge;
 import entities.niveau;
+import entities.participation_challenge;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,12 +32,34 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.*;
+import javafx.event.Event;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.input.MouseEvent;
+import javax.swing.JOptionPane;
 import service.ServiceClassement;
 import service.ServiceLigneChallenge;
 import service.ServiceMail;
 import service.ServiceNiveau;
 import utils.Myconnexion;
+
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.jdbc.JDBCCategoryDataset;
+
+
+
+
+
 
 /**
  *
@@ -242,6 +265,12 @@ public class FXMLDocumentController implements Initializable {
     private TextField mail_admin;
     @FXML
     private Button joined_challenge;
+    @FXML
+    private TableColumn<participation_challenge, String> coletat_challenge_client;
+    @FXML
+    private TableView<participation_challenge> tab_etat_client;
+    @FXML
+    private Button btn_stat_challenge;
 
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -380,6 +409,7 @@ public class FXMLDocumentController implements Initializable {
 
         coldate_debut_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
         coldate_fin_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+        colnb_participants_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("nb_participants"));
       
         colniveau_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("niveau"));
         liste_challenge_admin.setItems(Ochallenges);
@@ -478,6 +508,7 @@ public class FXMLDocumentController implements Initializable {
        
         sc.rejoindre_challenge(c,idclient_challenge_client.getText());
         lc=scl.recup_LigneChallenge(c);
+        
         afficher_challege_client();
         
         
@@ -708,7 +739,7 @@ public class FXMLDocumentController implements Initializable {
         coldete_fin_challenge_client.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
 //        coletat_challenge.setCellValueFactory(new PropertyValueFactory<>("etat"));
 
-        liste_challenge_client.setItems(Ochallenge);
+         liste_challenge_client.setItems(Ochallenge);
         
     }
     
@@ -800,7 +831,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void afficher_challege_client(ActionEvent event) {
          ServiceChallenge sc = new ServiceChallenge();
-         ServiceLigneChallenge slc=new ServiceLigneChallenge();
+    
+           ObservableList<participation_challenge> Ochallenges2 = sc.recup_participation(idclient_challenge_client.getText());
         // liste_challenge.SetCollumn(sc.afficherChallenge().toString());
          String etat=null;
         challenge c = new challenge();
@@ -810,28 +842,32 @@ public class FXMLDocumentController implements Initializable {
 
         coldete_debut_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, Date>("date_debut"));
         coldete_fin_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, Date>("date_fin"));
-//        coletat_challenge.setText(slc.get_etat(c));
+        coletat_challenge_client.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colniv_challenge_client.setCellValueFactory(new PropertyValueFactory< >("niveau"));
         liste_challenge_client.setItems(Ochallenges);
+        tab_etat_client.setItems(Ochallenges2);
         
     }
      public void afficher_challege_client() {
          ServiceChallenge sc = new ServiceChallenge();
          ServiceLigneChallenge scl =new ServiceLigneChallenge();
          
-        // liste_challenge.SetCollumn(sc.afficherChallenge().toString());
+        
 
         ObservableList<challenge> Ochallenges = sc.afficherChallenge_client();
-       // scl.afficher_etat(c);
+         ObservableList<participation_challenge> Ochallenges2 = sc.recup_participation(idclient_challenge_client.getText());
+     
         
         coltitre_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, String>("titre"));
         coldescription_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, String>("description"));
 
         coldete_debut_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, Date>("date_debut"));
         coldete_fin_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, Date>("date_fin"));
-       // coletat_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("etat"));
+        coletat_challenge_client.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colniv_challenge_client.setCellValueFactory(new PropertyValueFactory< >("niveau"));
         liste_challenge_client.setItems(Ochallenges);
+        tab_etat_client.setItems(Ochallenges2);
+
         
     }
      
@@ -879,7 +915,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void SendMail(MouseEvent event) {
         
-          classement c=liste_clessement_admin.getSelectionModel().getSelectedItem();
+          classement c =liste_clessement_admin.getSelectionModel().getSelectedItem();
          String n=c.getClient();
         System.out.println("1");
         try {
@@ -895,7 +931,9 @@ public class FXMLDocumentController implements Initializable {
               System.out.println("4");
                  ServiceMail mai =new ServiceMail();
         System.out.println( rs.getString("email"));
-      String reaso= mail_admin.getText();
+      //String reaso= mail_admin.getText();
+      String reaso="you are the first";
+      
         System.out.println(reaso);
             mai.send_mail( rs.getString("email"),reaso);
             }
@@ -906,30 +944,54 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void aff_joined_challenges(ActionEvent event) {
-        ServiceChallenge sc = new ServiceChallenge();
-         ServiceLigneChallenge scl =new ServiceLigneChallenge();
-         
-        // liste_challenge.SetCollumn(sc.afficherChallenge().toString());
 
-        ObservableList<challenge> Ochallenges = sc.verif_challenge(idclient_challenge_client.getText());
-       // idclient_challenge_client
-       // scl.afficher_etat(c);
-        
-        coltitre_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, String>("titre"));
+       ServiceChallenge sc = new ServiceChallenge();
+         ObservableList<challenge> Ochallenges = sc.verif_challenge2(idclient_challenge_client.getText());
+         ObservableList<participation_challenge> Ochallenges2 = sc.recup_participation(idclient_challenge_client.getText());
+           coltitre_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, String>("titre"));
         coldescription_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, String>("description"));
 
         coldete_debut_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, Date>("date_debut"));
         coldete_fin_challenge_client.setCellValueFactory(new PropertyValueFactory<challenge, Date>("date_fin"));
-       // coletat_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("etat"));
+        coletat_challenge_client.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colniv_challenge_client.setCellValueFactory(new PropertyValueFactory< >("niveau"));
         liste_challenge_client.setItems(Ochallenges);
+        tab_etat_client.setItems(Ochallenges2);
       
+
+    }
+   
+
+
+    @FXML
+    private void Addchart(Event event) {
+        
+        
+      try {
+            String query ="SELECT titre,nb_participants FROM challenge WHERE type = 'valide'";
+            Statement stm=null;
+            stm = Myconnexion.getInstance().getConnection().createStatement();
+            ResultSet rst = stm.executeQuery(query);
+            
+           // JDBCCategoryDataset​(Myconnexion.getInstance().getConnection() , query);
+            JDBCCategoryDataset dataset=new JDBCCategoryDataset(Myconnexion.getInstance().getConnection(),query);
+           
+            JFreeChart chart=ChartFactory.createLineChart("STATS des challenges", "challenge", "nb participants", dataset ,PlotOrientation.VERTICAL,false,true,true);
+            BarRenderer renderer = null;
+            CategoryPlot plot= null;
+            renderer=new BarRenderer();
+            ChartFrame frame = new ChartFrame("STATS des challenges", chart);
+            frame.setVisible(true);
+            frame.setSize(800,800);
+            
+        
+        
+        }catch(Exception e){JOptionPane.showMessageDialog(null,e);}
         
         
     }
     
-    
-    
+   
 
 }
       

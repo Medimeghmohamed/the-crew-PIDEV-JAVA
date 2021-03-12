@@ -44,7 +44,7 @@ public class ServiceMail {
      MimeMessage message = new MimeMessage(session);  
      message.setFrom(new InternetAddress(user));  
      message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));  
-     message.setSubject("aura user");  
+     message.setSubject("Felicitation 🎊🎊🎉");  
      message.setText(contenu);  
        MimeMultipart multipart = new MimeMultipart("related");
 

@@ -5,6 +5,13 @@
         <group>
             <file>file:/C:/wamp64/www/pidev/src/entities/ligne_challenge.java</file>
             <file>file:/C:/wamp64/www/pidev/src/service/ServiceNiveau.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/services/IServiceLigneChallenge.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/entities/participation_challenge.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/service/ServiceMail.java</file>
+            <file>file:/C:/wamp64/www/pidev/nbproject/jfx-impl.xml</file>
+            <file>file:/C:/wamp64/www/pidev/src/service/ServiceLigneChallenge.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/service/ServiceParticipationChallenge.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/pidev/FXMLDocumentController.java</file>
             <file>file:/C:/wamp64/www/pidev/src/service/ServiceChallenge.java</file>
             <file>file:/C:/wamp64/www/pidev/src/entities/challenge.java</file>
             <file>file:/C:/wamp64/www/pidev/src/entities/classement.java</file>
@@ -12,7 +19,7 @@
             <file>file:/C:/wamp64/www/pidev/src/services/IServiceChallege.java</file>
             <file>file:/C:/wamp64/www/pidev/src/entities/niveau.java</file>
             <file>file:/C:/wamp64/www/pidev/src/service/ServiceClassement.java</file>
-            <file>file:/C:/wamp64/www/pidev/src/pidev/FXMLDocumentController.java</file>
+            <file>file:/C:/wamp64/www/pidev/src/entities/reminder.java</file>
             <file>file:/C:/wamp64/www/pidev/src/services/IServiceClassement.java</file>
         </group>
     </open-files>

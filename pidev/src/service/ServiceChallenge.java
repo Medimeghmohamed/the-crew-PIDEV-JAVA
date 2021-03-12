@@ -7,7 +7,9 @@ package service;
 
 import entities.challenge;
 import entities.classement;
+import entities.ligne_challenge;
 import entities.niveau;
+import entities.participation_challenge;
 import services.IServiceChallege;
 import utils.Myconnexion;
 import java.sql.Connection;
@@ -21,10 +23,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
 import static java.util.Collections.list;
+import java.util.Date;
 import java.util.ListIterator;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Tab;
@@ -432,10 +442,49 @@ public class ServiceChallenge implements IServiceChallege {
 
     }
 
-    public ObservableList<challenge> verif_challenge(String id) {
+   
+    
+    
+    public ObservableList<participation_challenge> recup_participation(String id_client) {
+
         Statement stm = null;
-        challenge c = new challenge();
+        String etat = null;
+        ObservableList<Integer> ids = FXCollections.observableArrayList();
+        ObservableList<participation_challenge> P_challenge = FXCollections.observableArrayList();
+
+        try {
+
+            stm = Myconnexion.getInstance().getConnection().createStatement();
+
+            String query = "SELECT * FROM `participation_challenge`  WHERE id_client='" + id_client + "'  ";
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                participation_challenge p_c = new participation_challenge();
+
+                p_c.setId(rst.getInt("id"));
+                p_c.setId_challenge(rst.getInt("id_challenge"));
+                p_c.setId_client(rst.getString("id_client"));
+                p_c.setEtat(rst.getString("etat"));
+
+                P_challenge.add(p_c);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return P_challenge;
+
+    }
+
+    
+    
+       public ObservableList<challenge> verif_challenge2(String id) {
+        Statement stm = null;
+          Statement stm2 = null;
+
+        participation_challenge p_c = new participation_challenge();
         ObservableList<challenge> challenges = FXCollections.observableArrayList();
+        ObservableList<ligne_challenge> l_challenges = FXCollections.observableArrayList();
         ObservableList<Integer> ids = FXCollections.observableArrayList();
 
         try {
@@ -446,39 +495,98 @@ public class ServiceChallenge implements IServiceChallege {
             ResultSet rst = stm.executeQuery(query);
 
             while (rst.next()) {
-                int id_challenge = Integer.parseInt(rst.getString("id_challenge"));
-                ids.add(id_challenge);
-            }
 
-            int currentTab;
-            for (ListIterator<Integer> iterator = ids.listIterator(); iterator.hasNext(); currentTab = iterator.next()) {
-               
-                try{ String query2 = "SELECT * FROM `challenge`  WHERE id='" + iterator + "'  ";
-                ResultSet rst2 = stm.executeQuery(query2);
-                 while (rst2.next()) {
-                    c.setId(rst.getInt("id"));
-                    c.setTitre(rst.getString("titre"));
-                    c.setType(rst.getString("type"));
-                    c.setDescription(rst.getString("description"));
-                    // c.setImg(rst.getString(5));
-                    c.setDate_debut(rst.getDate("date_debut"));
-                    c.setDate_fin(rst.getDate("date_fin"));
-                    c.setNb_participants(rst.getInt("nb_participants"));
-                    //c.setEtat(rst.getString("etat"));
-                    c.setNiveau(rst.getInt("id_niveau"));
+                int id_challenge;
+                String etat = rst.getString("etat");
+                id_challenge = Integer.parseInt(rst.getString("id_challenge"));
 
-                    challenges.add(c);
-                 }
+                //ids.add(id_challenge);
+                System.out.print(id_challenge);
+                  try {
+                        stm2 = Myconnexion.getInstance().getConnection().createStatement();
+                    String query2 = "SELECT * FROM `challenge`  WHERE id = '" + id_challenge + "'";
+                    ResultSet rst2 = stm2.executeQuery(query2);
+                    while (rst2.next()) {
+                        challenge c = new challenge();
+                        c.setId(rst2.getInt("id"));
+                        c.setTitre(rst2.getString("titre"));
+                        c.setType(rst2.getString("type"));
+                        c.setDescription(rst2.getString("description"));
+                        // c.setImg(rst.getString(5));
+                        c.setDate_debut(rst2.getDate("date_debut"));
+                        c.setDate_fin(rst2.getDate("date_fin"));
+                        c.setNb_participants(rst2.getInt("nb_participants"));
+                        //c.setEtat(rst.getString("etat"));
+                        c.setNiveau(rst2.getInt("id_niveau"));
+
+                        challenges.add(c);
+                    }
                 } catch (SQLException ex) {
-                   Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);}
-
+                    Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
 
-         
+            
         } catch (SQLException ex) {
             Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
         }
         return challenges;
-    }
 
+    }
+    
+    
+    
+    
+
+    /* private void displayAppointmentNotification() {
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
+
+    Timer timer = new Timer();
+
+    TimerTask task;
+        task = new TimerTask() {
+            
+            @Override
+            public void run() {
+                Statement stm = null;
+                try {
+                    stm = Myconnexion.getInstance().getConnection().createStatement();
+                    String query = "SELECT * FROM `reminder`";
+                    ResultSet rst = stm.executeQuery(query);
+                    
+                    
+                    
+                    while (rst.next()) {
+                        
+                        if (rst.getString("Reminder").contentEquals(dateFormat.format(new Date()))) {
+                            reminder noti = reminder.create();
+                            noti.text("you  have a challenge named  " + rst.getString("id_challenge")+ "  ");
+                            noti.title("Reminder");
+                            noti.hideAfter(Duration.seconds(30));
+                            noti.position(Pos.BOTTOM_RIGHT);
+                            
+                            Platform.runLater(() -> {
+                                noti.show();
+                            });
+                            
+                            //Change The Appointment Status to Done
+                            ps = HospitalDB.getCon().prepareStatement("Update Appointment Set Status=? Where Patient=? and Doctor=?");
+                            ps.setString(1, "Done");
+                            ps.setString(2, rs.getString("Patient"));
+                            ps.setString(3, rs.getString("Doctor"));
+                            ps.executeUpdate();
+                            
+                            populateTable();
+                        }
+                        
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            
+        };
+    timer.schedule(task, 0, 1 * 1000);
+}*/
 }
