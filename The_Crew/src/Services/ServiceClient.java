@@ -159,4 +159,37 @@ public class ServiceClient implements IServiceClient {
         return Clients;
 
     }
+
+    @Override
+    public List<Client> rechercherClient(String id, String critere) { //Recherche avancée aadmin
+        Statement stm = null;
+        List<Client> Clients = new ArrayList<>();
+        if (critere == null) {
+            critere = "id";
+        }
+
+        try {
+            stm = cnx.createStatement();
+            String query = "SELECT * FROM `user` WHERE " + critere + " LIKE '%" + id + "%' AND role='Client'  ";
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                Client a = new Client();
+                a.setId(rst.getString("id"));
+                a.setNom(rst.getString("nom"));
+                a.setPrenom(rst.getString("prenom"));
+                a.setEmail(rst.getString("email"));
+                a.setPassword(rst.getString("password"));
+                a.setTel(rst.getString("tel"));
+                a.setAdresse(rst.getString("adresse"));
+
+                Clients.add(a);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        return Clients;
+
+    }
 }
