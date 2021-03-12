@@ -26,4 +26,6 @@ public interface IServiceClient {
 
     public List<Client> afficherClient();
 
+    public List<Client> rechercherClient(String id, String critere);
+
 }
