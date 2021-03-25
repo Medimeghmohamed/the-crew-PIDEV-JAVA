@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package services;
 
-import Entities.Client;
-import Interfaces.IServiceClient;
+import entities.Client;
+import interfaces.IServiceClient;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +21,8 @@ import Utils.MaConnexion;
  *
  * @author SeifBS
  */
-public class ServiceClient implements IServiceClient{
+public class ServiceClient implements IServiceClient {
+
     Connection cnx;
 
     public ServiceClient() {
@@ -29,17 +30,13 @@ public class ServiceClient implements IServiceClient{
 
     }
 
-    
-    
-    @Override
     public void ajouterClient(Client cl) {
 
         Statement stm;
         try {
             stm = cnx.createStatement();
-            
 
-            String query = "	INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`) VALUES ('" + cl.getId() + "','" + cl.getNom() + "','" + cl.getPrenom() + "','" + cl.getEmail() + "','" + cl.getPassword() + "','" + cl.getTel() + "','" +""+ "','" + cl.getAdresse() + " ','Client')";
+            String query = "	INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`) VALUES ('" + cl.getId() + "','" + cl.getNom() + "','" + cl.getPrenom() + "','" + cl.getEmail() + "','" + cl.getPassword() + "','" + cl.getTel() + "','" + "" + "','" + cl.getAdresse() + " ','Client')";
 
             stm.executeUpdate(query);
 
@@ -49,7 +46,6 @@ public class ServiceClient implements IServiceClient{
 
     }
 
-    @Override
     public void modifierClient(Client cl) {
 
         Statement stm;
@@ -65,37 +61,7 @@ public class ServiceClient implements IServiceClient{
 
     }
 
-    public List<Client> afficherClient() {
-        Statement stm = null;
-        List<Client> Clients = new ArrayList<>();
-       
-
-        try {
-            stm = cnx.createStatement();
-            String query = "SELECT * FROM `Client` ";
-            ResultSet rst = stm.executeQuery(query);
-
-            while (rst.next()) {
-                Client a = new Client();
-                a.setId(rst.getString("id"));
-                a.setNom(rst.getString("nom"));
-                a.setPrenom(rst.getString("prenom"));
-                a.setEmail(rst.getString("email"));
-                a.setPassword(rst.getString("password"));
-                a.setTel(rst.getString("tel"));
-
-                Clients.add(a);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-
-        }
-        return Clients;
-
-    }
-    
-    @Override
-     public void supprimerClient(String id) {
+    public void supprimerClient(String id) {
         Statement stm;
         try {
             stm = cnx.createStatement();
@@ -109,7 +75,6 @@ public class ServiceClient implements IServiceClient{
 
     }
 
-    @Override
     public Client load_data_modify(String id) { // charger données Client pour la modification
 
         Statement stm = null;
@@ -138,8 +103,7 @@ public class ServiceClient implements IServiceClient{
         return c;
 
     }
-    
-    @Override
+
     public Client load_user_name(String id) { //get nom de l'identifiant apres login
 
         Statement stm = null;
@@ -166,5 +130,33 @@ public class ServiceClient implements IServiceClient{
         return c;
 
     }
-    
+
+    public List<Client> afficherClient() { //afficher tous coachs verifiés
+        Statement stm = null;
+        List<Client> Clients = new ArrayList<>();
+
+        try {
+            stm = cnx.createStatement();
+            String query = "SELECT * FROM `user` WHERE role='Client'  ";
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                Client cl = new Client();
+                cl.setId(rst.getString("id"));
+                cl.setNom(rst.getString("nom"));
+                cl.setPrenom(rst.getString("prenom"));
+                cl.setEmail(rst.getString("email"));
+                cl.setPassword(rst.getString("password"));
+                cl.setTel(rst.getString("tel"));
+                cl.setAdresse(rst.getString("adresse"));
+
+                Clients.add(cl);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        return Clients;
+
+    }
 }

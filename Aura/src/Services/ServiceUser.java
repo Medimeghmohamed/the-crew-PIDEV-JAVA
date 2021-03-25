@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Service;
+package services;
 
-import Entities.Admin;
-import Entities.Client;
-import Entities.Coach;
+import entities.Admin;
+import entities.Client;
+import entities.Coach;
 import Interfaces.IServiceUser;
 import java.security.MessageDigest;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import utils.Connexion;
+import Utils.MaConnexion;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ import javax.xml.bind.DatatypeConverter;
 public class ServiceUser implements IServiceUser {
 
     public ServiceUser() {
-        cnx = Connexion.getInstance().getConnection();
+        cnx = MaConnexion.getInstance().getCnx();
 
     }
 

@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Service;
+package services;
 
-import Entities.Coach;
-import Interfaces.IserviceCoach;
+import entities.Coach;
+import interfaces.IserviceCoach;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import utils.Connexion;
+import Utils.MaConnexion;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,7 +26,7 @@ public class ServiceCoach implements IserviceCoach {
     Connection cnx;
 
     public ServiceCoach() {
-        cnx = Connexion.getInstance().getConnection();
+        cnx = MaConnexion.getInstance().getCnx();
     }
 
     @Override
@@ -254,4 +254,5 @@ public class ServiceCoach implements IserviceCoach {
 
     }
 
+    
 }
