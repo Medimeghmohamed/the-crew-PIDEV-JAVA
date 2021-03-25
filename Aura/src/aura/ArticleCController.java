@@ -52,7 +52,7 @@ import services.serviceCommentaire;
  *
  * @author akram
  */
-public class FXMLDocumentController implements Initializable {
+public class ArticleCController implements Initializable {
     
     @FXML
     private Label label;
@@ -91,7 +91,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Pagination pagination;
     
-    File[] filesdoc = Paths.get("C:\\Users\\akram\\Desktop\\pi1\\").toFile().listFiles();
+    File[] filesdoc = Paths.get("C:\\Users\\akram\\Desktop\\pi\\").toFile().listFiles();
     @FXML
     private ComboBox<?> combo_comm;
     
@@ -104,8 +104,9 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         serviceArticle sop = new serviceArticle();
                 serviceCommentaire sc = new serviceCommentaire();
+                
 
-       ObservableList<article> articles= sop.showArticle("10");
+      ObservableList<article> articles= sop.showArticle("12");
         
       //  List<String> list_commentaire=Arrays.asList(sc.showCommentaire_combobox());
     }    
@@ -113,7 +114,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void showart() {
         serviceArticle sop = new serviceArticle();
-        ObservableList <article> articles= sop.showArticle("10");
+        ObservableList <article> articles= sop.showArticle("12");
         coltitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         coltheme.setCellValueFactory(new PropertyValueFactory<>("theme"));
         colauteur.setCellValueFactory(new PropertyValueFactory<>("nom_auteur"));
@@ -131,7 +132,7 @@ public class FXMLDocumentController implements Initializable {
         a.setTitre(estitre.getText());
         a.setTheme(estheme.getText());
         a.setNom_auteur(esauteur.getText());
-              a.setId_user("10");
+        a.setId_user("12");
       //  a.setArticle(esarticle.getText());
        k= file();
        a.setArticle(k);
@@ -181,7 +182,16 @@ public class FXMLDocumentController implements Initializable {
         return pageBox;
     }  
     
-
+    
+    
+         
+    
+       
+             
+    
+      
+    
+        
         
         
     
@@ -197,7 +207,7 @@ public class FXMLDocumentController implements Initializable {
         if ( selectedFile !=null){
             //System.out.println("file ok");
             
-                   s =selectedFile.getName();
+                   s =selectedFile.getAbsolutePath();
                    
             String k = selectedFile.getName();
            
@@ -345,10 +355,11 @@ public class FXMLDocumentController implements Initializable {
         lab.setItems(articles);
     }
 
-    @FXML
+  /*  @FXML
     private void modcom(ActionEvent event) {
     }
 
+   @FXML
     public String  file(ActionEvent event) {
         String s = null ;
         FileChooser fc =new FileChooser();
@@ -365,13 +376,17 @@ public class FXMLDocumentController implements Initializable {
         }
         return s;
     }
+*/
 
-
-  
+    @FXML
+    private void modcom(ActionEvent event) {
+    }
 
     @FXML
     private void combo_comm(ActionEvent event) {
     }
+
+  
 
 
   
