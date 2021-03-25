@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 10 mars 2021 à 17:01
+-- Généré le : jeu. 25 mars 2021 à 09:56
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -59,16 +59,39 @@ INSERT INTO `activite` (`id`, `idcoach`, `duree`, `date`, `nombremax`, `type`, `
 
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
-  `id` int(16) NOT NULL,
+  `id` int(16) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) NOT NULL,
   `theme` varchar(255) NOT NULL,
   `nom_auteur` varchar(255) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   `article` varchar(255) NOT NULL,
   `id_user` varchar(255) NOT NULL,
+  `approuver` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `art2` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `article`
+--
+
+INSERT INTO `article` (`id`, `titre`, `theme`, `nom_auteur`, `date`, `article`, `id_user`, `approuver`) VALUES
+(5, '', '', '', 'null', 'C:UsersakramDesktoppiExamen2017_Corrigé.pdf', '10', 1),
+(7, 'b', 'b', 'b', 'null', 'C:UsersakramDesktoppiExamen2017_Corrigé.pdf', '10', 1),
+(8, 'b', 'b', 'b', 'null', 'C:UsersakramDesktoppiExamen2017_Corrigé.pdf', '10', 1),
+(9, 'b', 'bb', 'bbbb', 'null', 'C:UsersakramDesktoppiCorrection TP Révision.pdf', '10', 1),
+(10, '', '', '', 'null', 'C:UsersakramDesktoppiExamen_Ad.pdf', '10', 1),
+(11, '', '', '', 'null', 'C:UsersakramDesktoppiExamen2017_Corrigé.pdf', '10', 1),
+(12, 'bb', 'bbb', 'bbbb', 'null', 'C:UsersakramDesktoppiCorrection TP Révision.pdf', '10', 0),
+(13, 'bb', 'bbb', 'b', 'null', 'C:UsersakramDesktoppiExamen2017_Corrigé.pdf', '10', 0),
+(14, '', '', '', 'null', 'Cron&At.pdf', '10', 1),
+(15, '', '', '', 'null', 'Revision_Finale_ASSEU.pdf', '10', 1),
+(16, '', '', '', 'null', 'Correction TP Shell - Copie.pdf', '10', 0),
+(17, '', '', '', 'null', 'DS_Adm_Sec_EU 2013_2014.pdf', '10', 1),
+(18, '', '', '', 'null', 'Exam_ASSEU_15052015.pdf', '10', 1),
+(19, '', '', '', 'null', 'DS_Adm_2014-2015 V2 copy 2.pdf', '10', 0),
+(20, '', '', '', 'null', 'DS-ASSEU2015-f.pdf', '10', 1),
+(21, '', '', '', 'null', 'DS-ASSEU2015-f.pdf', '10', 0);
 
 -- --------------------------------------------------------
 
@@ -104,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
   `id_user` varchar(255) NOT NULL,
   `id_article` int(16) NOT NULL,
   `commentaire` longtext NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `com1` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -245,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `participationtherapie` (
   `rating` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `part2` (`id_client`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `participationtherapie`
