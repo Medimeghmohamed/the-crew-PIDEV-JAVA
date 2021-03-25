@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package services;
+package Service;
 
-import entities.Coach;
-import interfaces.IserviceCoach;
+import Entities.Coach;
+import Interfaces.IserviceCoach;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import Utils.MaConnexion;
+import utils.Connexion;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,7 +26,7 @@ public class ServiceCoach implements IserviceCoach {
     Connection cnx;
 
     public ServiceCoach() {
-        cnx = MaConnexion.getInstance().getCnx();
+        cnx = Connexion.getInstance().getConnection();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ServiceCoach implements IserviceCoach {
         try {
             stm = cnx.createStatement();
 
-            String query = "	INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`) VALUES ('" + c.getId() + "','" + c.getNom() + "','" + c.getPrenom() + "','" + c.getEmail() + "','" + c.getPassword() + "','" + c.getTel() + "','" + c.getSpecialite() + "','" + "" + " ','CoachNV')";
+            String query = "	INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`,`picture`) VALUES ('" + c.getId() + "','" + c.getNom() + "','" + c.getPrenom() + "','" + c.getEmail() + "','" + c.getPassword() + "','" + c.getTel() + "','" + c.getSpecialite() + "','" + "" + " ','CoachNV','"+c.getPicture()+"')";
 
             stm.executeUpdate(query);
 
@@ -187,6 +187,8 @@ public class ServiceCoach implements IserviceCoach {
                 c.setTel(rst.getString("tel"));
                 c.setSpecialite(rst.getString("specialite"));
                 c.setRole(rst.getString("role"));
+                c.setRme(rst.getString("rme"));
+                c.setPicture(rst.getString("picture"));
 
             }
         } catch (SQLException ex) {
@@ -215,6 +217,9 @@ public class ServiceCoach implements IserviceCoach {
                 c.setPassword(rst.getString("password"));
                 c.setTel(rst.getString("tel"));
                 c.setSpecialite(rst.getString("specialite"));
+                c.setRole(rst.getString("role"));
+                c.setRme(rst.getString("rme"));
+                c.setPicture(rst.getString("picture"));
 
             }
         } catch (SQLException ex) {
@@ -254,5 +259,4 @@ public class ServiceCoach implements IserviceCoach {
 
     }
 
-    
 }

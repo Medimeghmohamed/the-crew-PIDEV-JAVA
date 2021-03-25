@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package services;
+package Service;
 
-import entities.Client;
-import interfaces.IServiceClient;
+import Entities.Client;
+import Interfaces.IServiceClient;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Utils.MaConnexion;
+import utils.Connexion;
 
 /**
  *
@@ -26,7 +26,7 @@ public class ServiceClient implements IServiceClient {
     Connection cnx;
 
     public ServiceClient() {
-        cnx = MaConnexion.getInstance().getCnx();
+        cnx = Connexion.getInstance().getConnection();
 
     }
 
@@ -36,7 +36,7 @@ public class ServiceClient implements IServiceClient {
         try {
             stm = cnx.createStatement();
 
-            String query = "	INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`) VALUES ('" + cl.getId() + "','" + cl.getNom() + "','" + cl.getPrenom() + "','" + cl.getEmail() + "','" + cl.getPassword() + "','" + cl.getTel() + "','" + "" + "','" + cl.getAdresse() + " ','Client')";
+            String query = "	INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`,`picture`) VALUES ('" + cl.getId() + "','" + cl.getNom() + "','" + cl.getPrenom() + "','" + cl.getEmail() + "','" + cl.getPassword() + "','" + cl.getTel() + "','" + "" + "','" + cl.getAdresse() + " ','Client','"+cl.getPicture()+"')";
 
             stm.executeUpdate(query);
 
@@ -94,6 +94,8 @@ public class ServiceClient implements IServiceClient {
                 c.setTel(rst.getString("tel"));
                 c.setAdresse(rst.getString("adresse"));
                 c.setRole(rst.getString("role"));
+                c.setRme(rst.getString("rme"));
+                c.setPicture(rst.getString("picture"));
 
             }
         } catch (SQLException ex) {
@@ -121,6 +123,9 @@ public class ServiceClient implements IServiceClient {
                 c.setPassword(rst.getString("password"));
                 c.setTel(rst.getString("tel"));
                 c.setAdresse(rst.getString("adresse"));
+                c.setRole(rst.getString("role"));
+                c.setRme(rst.getString("rme"));
+                c.setPicture(rst.getString("picture"));
 
             }
         } catch (SQLException ex) {
@@ -149,8 +154,42 @@ public class ServiceClient implements IServiceClient {
                 cl.setPassword(rst.getString("password"));
                 cl.setTel(rst.getString("tel"));
                 cl.setAdresse(rst.getString("adresse"));
+                
 
                 Clients.add(cl);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        return Clients;
+
+    }
+
+    @Override
+    public List<Client> rechercherClient(String id, String critere) { //Recherche avancée aadmin
+        Statement stm = null;
+        List<Client> Clients = new ArrayList<>();
+        if (critere == null) {
+            critere = "id";
+        }
+
+        try {
+            stm = cnx.createStatement();
+            String query = "SELECT * FROM `user` WHERE " + critere + " LIKE '%" + id + "%' AND role='Client'  ";
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                Client a = new Client();
+                a.setId(rst.getString("id"));
+                a.setNom(rst.getString("nom"));
+                a.setPrenom(rst.getString("prenom"));
+                a.setEmail(rst.getString("email"));
+                a.setPassword(rst.getString("password"));
+                a.setTel(rst.getString("tel"));
+                a.setAdresse(rst.getString("adresse"));
+
+                Clients.add(a);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

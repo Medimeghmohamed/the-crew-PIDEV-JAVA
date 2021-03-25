@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package services;
+package Service;
 
-import entities.Admin;
-import interfaces.IServiceAdmin;
+import Entities.Admin;
+import Interfaces.IserviceAdmin;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import Utils.MaConnexion;
+import utils.Connexion;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -21,12 +21,12 @@ import java.util.logging.Logger;
  *
  * @author SeifBS
  */
-public class ServiceAdmin implements IServiceAdmin {
+public class ServiceAdmin implements IserviceAdmin {
 
     Connection cnx;
 
     public ServiceAdmin() {
-        cnx = MaConnexion.getInstance().getCnx();
+        cnx = Connexion.getInstance().getConnection();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ServiceAdmin implements IServiceAdmin {
         try {
             stm = cnx.createStatement();
 
-            String query = "INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`) VALUES ('" + a.getId() + "','" + a.getNom() + "','" + a.getPrenom() + "','" + a.getEmail() + "','" + a.getPassword() + "','" + a.getTel() + "','" + "" + "','" + "" + " ','Admin')";
+            String query = "INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`,`picture`) VALUES ('" + a.getId() + "','" + a.getNom() + "','" + a.getPrenom() + "','" + a.getEmail() + "','" + a.getPassword() + "','" + a.getTel() + "','" + "" + "','" + "" + " ','Admin','"+a.getPicture()+"')";
 
             stm.executeUpdate(query);
 
@@ -148,6 +148,8 @@ public class ServiceAdmin implements IServiceAdmin {
 
                 a.setTel(rst.getString("tel"));
                 a.setRole(rst.getString("role"));
+                a.setRme(rst.getString("rme"));
+                a.setPicture(rst.getString("picture"));
 
             }
         } catch (SQLException ex) {
@@ -178,6 +180,8 @@ public class ServiceAdmin implements IServiceAdmin {
                 a.setPassword(rst.getString("password"));
                 a.setTel(rst.getString("tel"));
                 a.setRole(rst.getString("role"));
+                a.setRme(rst.getString("rme"));
+                a.setPicture(rst.getString("picture"));
 
             }
         } catch (SQLException ex) {

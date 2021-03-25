@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package services;
+package Service;
 
-import entities.Admin;
-import entities.Client;
-import entities.Coach;
+import Entities.Admin;
+import Entities.Client;
+import Entities.Coach;
 import Interfaces.IServiceUser;
 import java.security.MessageDigest;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import Utils.MaConnexion;
+import utils.Connexion;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ import javax.xml.bind.DatatypeConverter;
 public class ServiceUser implements IServiceUser {
 
     public ServiceUser() {
-        cnx = MaConnexion.getInstance().getCnx();
+        cnx = Connexion.getInstance().getConnection();
 
     }
 
@@ -491,6 +491,71 @@ public class ServiceUser implements IServiceUser {
         }
 
         return hashValue;
+    }
+    
+     @Override
+    public void updateRme(String id, String rme) {
+        Statement stm;
+        try {
+            stm = cnx.createStatement();
+
+            String query = "UPDATE user SET rme='" + rme + "' WHERE id='" + id + "' OR tel='" + id + "'OR email='" + id + "' ";
+            stm.executeUpdate(query);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+     @Override
+    public String getRole(String id) { //Login user
+
+        Statement stm = null;
+        ResultSet rst = null;
+
+        try {
+            stm = cnx.createStatement();
+            String query = "SELECT * FROM `user` WHERE id='" + id + "' OR tel='" + id + "'OR email='" + id + "'";
+            rst = stm.executeQuery(query);
+            if (rst.next()) {
+                if ("CoachV".equals(rst.getString("role"))) {
+                    return "CoachV";
+                }
+                if ("CoachNV".equals(rst.getString("role"))) {
+                    return "CoachNV";
+                }
+                if ("Admin".equals(rst.getString("role"))) {
+                    return "Admin";
+                }
+                if ("SAdmin".equals(rst.getString("role"))) {
+                    return "SAdmin";
+                }
+                if ("Client".equals(rst.getString("role"))) {
+                    return "Client";
+                }
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        return "No";
+    }
+    
+     @Override
+    public void modifierPicture(String id, String picture) {
+        Statement stm;
+        try {
+            stm = cnx.createStatement();
+
+            String query = "UPDATE user SET picture='" + picture + "' WHERE id='" + id + "' OR tel='" + id + "'OR email='" + id + "'";
+            stm.executeUpdate(query);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }
