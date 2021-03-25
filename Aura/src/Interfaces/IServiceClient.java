@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package interfaces;
 
-import Entities.Client;
+import entities.Client;
 
 /**
  *

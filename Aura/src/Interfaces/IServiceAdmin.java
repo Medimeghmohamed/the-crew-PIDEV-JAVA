@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package interfaces;
 
-import Entities.Admin;
+import entities.Admin;
 import java.sql.ResultSet;
 import java.util.List;
 
@@ -34,6 +34,6 @@ public interface IServiceAdmin {
     public void accepter_coach(String id);
 
     public boolean verif_super_admin(String id);
-
+  public void rejeter_coach(String id);
 
 }
