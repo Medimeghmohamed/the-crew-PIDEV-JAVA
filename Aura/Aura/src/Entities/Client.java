@@ -32,7 +32,8 @@ public class Client extends User {
 
     @Override
     public String toString() {
-        return  super.toString()+"Adresse: "+adresse; 
+        return  super.toString();
+        //return  super.toString()+"Adresse: "+adresse; 
     }
     
       public boolean equals(Client a) {

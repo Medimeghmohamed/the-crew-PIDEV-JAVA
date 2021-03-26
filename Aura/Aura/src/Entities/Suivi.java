@@ -11,7 +11,7 @@ package Entities;
  */
 public class Suivi {
 
-    private String idSuiv;
+    private int idSuiv;
     private int valeurSuiv;
     private Client client;
     private Objectif objectif;
@@ -20,7 +20,7 @@ public class Suivi {
     public Suivi() {
     }
 
-    public Suivi(String idSuiv, int valeurSuiv, Client client, Objectif objectif, String dateSuiv) {
+    public Suivi(int idSuiv, int valeurSuiv, Client client, Objectif objectif, String dateSuiv) {
         this.idSuiv = idSuiv;
         this.valeurSuiv = valeurSuiv;
         this.client = client;
@@ -28,11 +28,11 @@ public class Suivi {
         this.dateSuiv = dateSuiv;
     }
 
-    public String getIdSuiv() {
+    public int getIdSuiv() {
         return idSuiv;
     }
 
-    public void setIdSuiv(String idSuiv) {
+    public void setIdSuiv(int idSuiv) {
         this.idSuiv = idSuiv;
     }
 

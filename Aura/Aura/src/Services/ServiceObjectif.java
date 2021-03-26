@@ -60,7 +60,7 @@ public class ServiceObjectif implements IServiceObjectif {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Objectif o = new Objectif();
-                o.setId(rs.getString(1));
+                o.setId(rs.getInt(1));
                 o.setDescription(rs.getString(2));
                 o.setReponse(rs.getInt(3));
                 o.setDate(rs.getString(4));
@@ -83,7 +83,7 @@ public class ServiceObjectif implements IServiceObjectif {
         try {
             Statement st = cnx.createStatement();
             //nb: on ne peut pas modifier la date
-            String query = "UPDATE  objectif SET description  = '" + o.getDescription() + "', reponse = '" + o.getReponse() + "', duree = '" + o.getDuree() + "' WHERE id = '" + o.getId() + "'";
+            String query = "UPDATE  objectif SET description  = '" + o.getDescription() + "', reponse = '" + o.getReponse() + "', duree = '" + o.getDuree() + "', dateDebut = '" + o.getDate()+ "' WHERE id = '" + o.getId() + "'";
             st.executeUpdate(query);
             System.out.println("modification avec succes");
         } catch (SQLException ex) {
@@ -93,7 +93,7 @@ public class ServiceObjectif implements IServiceObjectif {
     }
 
     @Override
-    public void supprimerObjectif(String id) {
+    public void supprimerObjectif(int id) {
         try {
             Statement st = cnx.createStatement();
             String query = "DELETE FROM `objectif` WHERE id = '" + id + "'";
@@ -140,10 +140,29 @@ public class ServiceObjectif implements IServiceObjectif {
         }
         return id;
     }
+    
+    @Override
+    public int getIdObjparDesc(String desc) {
+        int id = 0;
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select `id` FROM `objectif` WHERE description='" + desc + "'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                id = rs.getInt("id");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur get IdOBJ pour suivi");
+            System.out.println(ex);
+        }
+        return id;
+    }
+    
 
     //stats
     @Override
-    public int getRepObj(String idObj) {
+    public int getRepObj(int idObj) {
         int rep = 0;
         try {
             Statement st = cnx.createStatement();
@@ -170,7 +189,7 @@ public class ServiceObjectif implements IServiceObjectif {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Objectif o = new Objectif();
-                o.setId(rs.getString(1));
+                o.setId(rs.getInt(1));
                 o.setDescription(rs.getString(2));
                 o.setReponse(rs.getInt(3));
                 o.setDate(rs.getString(4));
@@ -198,7 +217,7 @@ public class ServiceObjectif implements IServiceObjectif {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Objectif o = new Objectif();
-                o.setId(rs.getString(1));
+                o.setId(rs.getInt(1));
                 o.setDescription(rs.getString(2));
                 o.setReponse(rs.getInt(3));
                 o.setDate(rs.getString(4));
@@ -225,7 +244,7 @@ public class ServiceObjectif implements IServiceObjectif {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Objectif o = new Objectif();
-                o.setId(rs.getString(1));
+                o.setId(rs.getInt(1));
                 o.setDescription(rs.getString(2));
                 o.setReponse(rs.getInt(3));
                 o.setDate(rs.getString(4));
@@ -252,7 +271,7 @@ public class ServiceObjectif implements IServiceObjectif {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Objectif o = new Objectif();
-                o.setId(rs.getString(1));
+                o.setId(rs.getInt(1));
                 o.setDescription(rs.getString(2));
                 o.setReponse(rs.getInt(3));
                 o.setDate(rs.getString(4));
@@ -269,7 +288,7 @@ public class ServiceObjectif implements IServiceObjectif {
     }
 
     @Override
-    public String getJourDateDebutObj(String idObj, String idCli) {
+    public String getJourDateDebutObj(int idObj, String idCli) {
         String jour = "";
         try {
             Statement st = cnx.createStatement();
@@ -287,7 +306,7 @@ public class ServiceObjectif implements IServiceObjectif {
     }
 
     @Override
-    public int getDureeObj(String idObj, String idCli) {
+    public int getDureeObj(int idObj, String idCli) {
         int duree = 0;
         try {
             Statement st = cnx.createStatement();
@@ -305,7 +324,7 @@ public class ServiceObjectif implements IServiceObjectif {
     }
 
     @Override
-    public Objectif load_data_modify(String id) {
+    public Objectif load_data_modify(int id) {
         Statement stm = null;
         Objectif o = new Objectif();
         try {
@@ -314,7 +333,7 @@ public class ServiceObjectif implements IServiceObjectif {
             ResultSet rs = stm.executeQuery(query);
 
             while (rs.next()) {
-                o.setId(rs.getString(1));
+                o.setId(rs.getInt(1));
                 o.setDescription(rs.getString(2));
                 o.setReponse(rs.getInt(3));
                 o.setDate(rs.getString(4));

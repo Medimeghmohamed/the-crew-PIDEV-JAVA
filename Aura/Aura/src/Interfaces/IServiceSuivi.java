@@ -19,9 +19,11 @@ public interface IServiceSuivi {
     public ObservableList<Suivi> trierSuiviparIdClient();
     public ObservableList<Suivi> trierSuiviparId();
     public ObservableList<Suivi> trierSuiviparIdObjectif();
-    public int getValeur(String idObj, String date);
+    public int getValeur(int idObj, String date);
     public ObservableList<String> getObjectifBilan(String idClient);
-    public ObservableList<String> getDateBilan(String idObjectif);
-    public String getJour(String idSuiv);
+    public ObservableList<String> getDateBilan(int idObjectif);
+    public String getJour(int idSuiv);
+    public ObservableList<Suivi> getListSuivi(int idObj);
+    public boolean rechercherDate(int id, String date);
     
 }

@@ -16,15 +16,15 @@ public interface IServiceObjectif {
     public String getIdObj(String obj, String id);
     public ObservableList<Objectif> afficherObjectifs();
     public void modifierObjectif(Objectif o);
-    public void supprimerObjectif(String id);
+    public void supprimerObjectif(int id);
     public ObservableList<Objectif> rechercherObjectif(String s);
     public ObservableList<Objectif> trierObjectifparRep();
     public ObservableList<Objectif> trierObjectifparId();
     public ObservableList<Objectif> trierObjectifparDesc();
-    public int getRepObj(String idObj);
-    public String getJourDateDebutObj(String idObj, String idCli);
-    public int getDureeObj(String idObj, String idCli);
-    public Objectif load_data_modify(String id);
-
+    public int getRepObj(int idObj);
+    public String getJourDateDebutObj(int idObj, String idCli);
+    public int getDureeObj(int idObj, String idCli);
+    public Objectif load_data_modify(int id);
+    public int getIdObjparDesc(String desc);
     
 }

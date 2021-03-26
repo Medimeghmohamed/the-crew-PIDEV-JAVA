@@ -25,12 +25,14 @@ public interface IServiceObjectifPred {
 
     public void modifierObjectifPred(ObjectifPred op);
 
-    public void supprimerObjectifPred(String id);
+    public void supprimerObjectifPred(int id);
 
     public ObservableList<ObjectifPred> trierObjectifPredparDuree();
 
     public ObservableList<ObjectifPred> trierObjectifPredparId();
 
     public ObservableList<ObjectifPred> trierObjectifPredparDesc();
+    
+    public int getIdParDesc(String desc);
 
 }

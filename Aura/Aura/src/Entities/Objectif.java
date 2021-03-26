@@ -10,19 +10,18 @@ package Entities;
  * @author Chirine
  */
 public class Objectif {
-    private String id;
+    private int id;
     private String description;
     private int reponse;
     private String date;
     private int duree;
     private Client cli;
-   // private String idCli; //A ENLEVERRRR!!!!!!!
 
     public Objectif() {
     }
     
 
-    public Objectif(String id, String description, int reponse, String date, int duree,Client cli) {
+    public Objectif(int id, String description, int reponse, String date, int duree,Client cli) {
         this.id = id;
         this.description = description;
         this.reponse = reponse;
@@ -31,11 +30,11 @@ public class Objectif {
         this.cli=cli;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -89,7 +88,8 @@ public class Objectif {
 
     @Override
     public String toString() {
-        return "Objectif{" + "id=" + id + ", description=" + description + ", reponse=" + reponse + ", date=" + date + ", duree=" + duree +", Cli=" + cli + '}';
+        return description;
+       // return "Objectif{" + "id=" + id + ", description=" + description + ", reponse=" + reponse + ", date=" + date + ", duree=" + duree +", Cli=" + cli + '}';
     }
     
     

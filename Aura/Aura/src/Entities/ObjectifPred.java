@@ -10,7 +10,8 @@ package Entities;
  * @author Chirine
  */
 public class ObjectifPred {
-    private String idP;
+    //private String idP;
+    private int idP;
     private String descriptionP;
     private int dureeP;
     //private String idAdminP;
@@ -19,7 +20,7 @@ public class ObjectifPred {
     public ObjectifPred() {
     }
 
-    public ObjectifPred(String idP, String descriptionP, int dureeP, Admin admin) {
+    public ObjectifPred(int idP, String descriptionP, int dureeP, Admin admin) {
         this.idP = idP;
         this.descriptionP = descriptionP;
         this.dureeP = dureeP;
@@ -36,11 +37,11 @@ public class ObjectifPred {
 
 
 
-    public String getIdP() {
+    public int getIdP() {
         return idP;
     }
 
-    public void setIdP(String idP) {
+    public void setIdP(int idP) {
         this.idP = idP;
     }
 

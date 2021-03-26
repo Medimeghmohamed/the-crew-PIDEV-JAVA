@@ -53,10 +53,10 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 ObjectifPred o = new ObjectifPred();
-                o.setIdP(rs.getString(1));
+                o.setIdP(rs.getInt(1));
                 o.setDescriptionP(rs.getString(2));
                 o.setDureeP(rs.getInt(3));
-                o.setAdmin(sa.load_data_modify(rs.getString(4)));
+                o.setAdmin(sa.load_user_name(rs.getString(4)));
                 objectifsP.add(o);
             }
 
@@ -82,7 +82,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
     }
 
     @Override
-    public void supprimerObjectifPred(String id) {
+    public void supprimerObjectifPred(int id) {
         try {
             Statement st = cnx.createStatement();
             String query = "DELETE FROM `objectif_pred` WHERE id='" + id + "'";
@@ -123,7 +123,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 ObjectifPred o = new ObjectifPred();
-                o.setIdP(rs.getString(1));
+                o.setIdP(rs.getInt(1));
                 o.setDescriptionP(rs.getString(2));
                 o.setDureeP(rs.getInt(3));
                 o.setAdmin(sa.load_data_modify(rs.getString(4)));
@@ -148,7 +148,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 ObjectifPred o = new ObjectifPred();
-                o.setIdP(rs.getString(1));
+                o.setIdP(rs.getInt(1));
                 o.setDescriptionP(rs.getString(2));
                 o.setDureeP(rs.getInt(3));
                 o.setAdmin(sa.load_data_modify(rs.getString(4)));
@@ -173,7 +173,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 ObjectifPred o = new ObjectifPred();
-                o.setIdP(rs.getString(1));
+                o.setIdP(rs.getInt(1));
                 o.setDescriptionP(rs.getString(2));
                 o.setDureeP(rs.getInt(3));
                 o.setAdmin(sa.load_data_modify(rs.getString(4)));
@@ -198,7 +198,7 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 ObjectifPred o = new ObjectifPred();
-                o.setIdP(rs.getString(1));
+                o.setIdP(rs.getInt(1));
                 o.setDescriptionP(rs.getString(2));
                 o.setDureeP(rs.getInt(3));
                 o.setAdmin(sa.load_data_modify(rs.getString(4)));
@@ -210,6 +210,26 @@ public class ServiceObjectifPred implements IServiceObjectifPred {
             System.out.println(ex);
         }
         return objectifs;
+    }
+    
+    @Override
+    public int getIdParDesc(String desc) {
+        int i=0;
+        ServiceAdmin sa = new ServiceAdmin();
+
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select id from `objectif_pred` WHERE description LIKE '"+ desc+"'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur trier objectifs prédéfinis par description objectifs");
+            System.out.println(ex);
+        }
+        return 0;
     }
 
 }

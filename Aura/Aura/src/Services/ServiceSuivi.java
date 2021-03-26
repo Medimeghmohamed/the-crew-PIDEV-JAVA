@@ -57,10 +57,10 @@ public class ServiceSuivi implements IServiceSuivi {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Suivi s = new Suivi();
-                s.setIdSuiv(rs.getString(1));
+                s.setIdSuiv(rs.getInt(1));
                 s.setValeurSuiv(rs.getInt(2));
                 s.setClient(sc.load_data_modify(rs.getString(3)));
-                s.setObjectif(so.load_data_modify(rs.getString(4)));
+                s.setObjectif(so.load_data_modify(rs.getInt(4)));
                 s.setDateSuiv(rs.getString(5));
 
                 suivis.add(s);
@@ -74,7 +74,7 @@ public class ServiceSuivi implements IServiceSuivi {
     }
 
     @Override
-    public int getValeur(String idObj, String date) {
+    public int getValeur(int idObj, String date) {
         int valeur = 0;
         try {
             Statement st = cnx.createStatement();
@@ -103,10 +103,10 @@ public class ServiceSuivi implements IServiceSuivi {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Suivi ss = new Suivi();
-                ss.setIdSuiv(rs.getString(1));
+                ss.setIdSuiv(rs.getInt(1));
                 ss.setValeurSuiv(rs.getInt(2));
                 ss.setClient(sc.load_data_modify(rs.getString(3)));
-                ss.setObjectif(so.load_data_modify(rs.getString(4)));
+                ss.setObjectif(so.load_data_modify(rs.getInt(4)));
                 ss.setDateSuiv(rs.getString(5));
 
                 suivis.add(ss);
@@ -131,10 +131,10 @@ public class ServiceSuivi implements IServiceSuivi {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Suivi s = new Suivi();
-                s.setIdSuiv(rs.getString(1));
+                s.setIdSuiv(rs.getInt(1));
                 s.setValeurSuiv(rs.getInt(2));
                 s.setClient(sc.load_data_modify(rs.getString(3)));
-                s.setObjectif(so.load_data_modify(rs.getString(4)));
+                s.setObjectif(so.load_data_modify(rs.getInt(4)));
                 s.setDateSuiv(rs.getString(5));
                 suivis.add(s);
             }
@@ -158,10 +158,10 @@ public class ServiceSuivi implements IServiceSuivi {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Suivi s = new Suivi();
-                s.setIdSuiv(rs.getString(1));
+                s.setIdSuiv(rs.getInt(1));
                 s.setValeurSuiv(rs.getInt(2));
                 s.setClient(sc.load_data_modify(rs.getString(3)));
-                s.setObjectif(so.load_data_modify(rs.getString(4)));
+                s.setObjectif(so.load_data_modify(rs.getInt(4)));
                 s.setDateSuiv(rs.getString(5));
                 suivis.add(s);
             }
@@ -185,10 +185,10 @@ public class ServiceSuivi implements IServiceSuivi {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Suivi s = new Suivi();
-                s.setIdSuiv(rs.getString(1));
+                s.setIdSuiv(rs.getInt(1));
                 s.setValeurSuiv(rs.getInt(2));
                 s.setClient(sc.load_data_modify(rs.getString(3)));
-                s.setObjectif(so.load_data_modify(rs.getString(4)));
+                s.setObjectif(so.load_data_modify(rs.getInt(4)));
                 s.setDateSuiv(rs.getString(5));
                 suivis.add(s);
             }
@@ -219,7 +219,7 @@ public class ServiceSuivi implements IServiceSuivi {
     }
 
     @Override
-    public ObservableList<String> getDateBilan(String idObjectif) {
+    public ObservableList<String> getDateBilan(int idObjectif) {
         ObservableList<String> suivis = FXCollections.observableArrayList();
         try {
             Statement st = cnx.createStatement();
@@ -237,7 +237,7 @@ public class ServiceSuivi implements IServiceSuivi {
     }
 
     @Override
-    public String getJour(String idSuiv) {
+    public String getJour(int idSuiv) {
         String jour = "";
         try {
             Statement st = cnx.createStatement();
@@ -252,6 +252,61 @@ public class ServiceSuivi implements IServiceSuivi {
             System.out.println(ex);
         }
         return jour;
+    }
+
+    @Override
+    public ObservableList<Suivi> getListSuivi(int idObj) {
+        ObservableList<Suivi> suivis = FXCollections.observableArrayList();
+        ServiceClient sc = new ServiceClient();
+        ServiceObjectif so = new ServiceObjectif();
+
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from `suivi` WHERE idObjectif LIKE '" + idObj + "'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Suivi ss = new Suivi();
+                ss.setIdSuiv(rs.getInt(1));
+                ss.setValeurSuiv(rs.getInt(2));
+                ss.setClient(sc.load_data_modify(rs.getString(3)));
+                ss.setObjectif(so.load_data_modify(rs.getInt(4)));
+                ss.setDateSuiv(rs.getString(5));
+
+                suivis.add(ss);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur rechercher suivi");
+            System.out.println(ex);
+        }
+        return suivis;
+    }
+    
+    @Override
+    public boolean rechercherDate(int id, String date) {
+        ObservableList<Suivi> suivis = FXCollections.observableArrayList();
+        ServiceClient sc = new ServiceClient();
+        ServiceObjectif so = new ServiceObjectif();
+
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select date from `suivi` WHERE idObjectif LIKE '" + id + "' AND date LIKE'" + date + "'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Suivi ss = new Suivi();
+                ss.setDateSuiv(rs.getString(5));
+
+                suivis.add(ss);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur rechercher date suivi");
+            System.out.println(ex);
+        }
+        if(suivis.isEmpty()){
+            return true;
+        }
+        return false;
     }
 
 }

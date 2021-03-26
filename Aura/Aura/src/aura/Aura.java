@@ -19,13 +19,19 @@ public class Aura extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("DialogObjectif.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+          System.out.println("aura.java");
+        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+
         Scene scene = new Scene(root);
-        
+        String css= Aura.class.getResource("style.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setScene(scene);
+        stage.setTitle("Aura Application");
         stage.show();
+        new animatefx.animation.RollIn(root).play();
+
+        //a changer l'adresse mail (récupérer celle du client connecté)
+        //JavaMailObjectif.sendMailObj("chirine.nasri@esprit.tn");
     }
 
     /**

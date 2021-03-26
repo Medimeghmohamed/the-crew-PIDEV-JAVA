@@ -8,27 +8,22 @@ package aura;
 import Entities.Objectif;
 import Entities.ObjectifPred;
 import Entities.Suivi;
+import Services.ServiceAdmin;
+import Services.ServiceClient;
 import Services.ServiceObjectif;
 import Services.ServiceObjectifPred;
 import Services.ServiceSuivi;
-import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.chart.PieChart.Data;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -37,21 +32,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-//import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import Entities.AlertBoxSuivi;
-import Entities.Client;
-import Services.ServiceAdmin;
-import Services.ServiceClient;
 
 /**
  *
  * @author Chirine
  */
 public class FXMLDocumentController implements Initializable {
-
-    private Label label;
+      private Label label;
     @FXML
     private AnchorPane tab1;
     @FXML
@@ -144,6 +132,18 @@ public class FXMLDocumentController implements Initializable {
     private PieChart pcBilan;
     @FXML
     private Label lbResultat;
+    @FXML
+    private Button btnAjouterPred;
+    @FXML
+    private Button btnModifierPred;
+    @FXML
+    private Button btnSupprimerPred;
+    @FXML
+    private Button btnAjouterObj;
+    @FXML
+    private Button btnModifierObj;
+    @FXML
+    private Button btnSupprimerObj;
 
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -201,7 +201,7 @@ public class FXMLDocumentController implements Initializable {
         ServiceObjectif sp = new ServiceObjectif();
         ServiceClient sc = new ServiceClient();
         Objectif o = new Objectif();
-        o.setId(tfid.getText());
+//        o.setId(tfid.getText());
         if (cbobj.getValue() == null && tfobj.getText() != null) {
             o.setDescription(tfobj.getText());
 
@@ -217,6 +217,7 @@ public class FXMLDocumentController implements Initializable {
             tfduree.setText(null);
             tfidCli.setText(null);
             erreurObj.setText(null);
+            new animatefx.animation.Flash(btnAjouterObj).play();
 
         } else if (cbobj.getValue() != null && tfobj.getText() == null) {
             o.setDescription(cbobj.getValue().toString());
@@ -232,10 +233,13 @@ public class FXMLDocumentController implements Initializable {
             tfduree.setText(null);
             tfidCli.setText(null);
             erreurObj.setText(null);
+            new animatefx.animation.Flash(btnAjouterObj).play();
+
         } else {
             erreurObj.setText("!! Il faut soit saisir soit choisir");
             cbobj.setValue(null); //throws exception mais l'ajout se fait normalement
             tfobj.setText(null);
+            new animatefx.animation.Shake(btnAjouterObj).play();
         }
 
     }
@@ -246,7 +250,7 @@ public class FXMLDocumentController implements Initializable {
         ServiceClient sc = new ServiceClient();
         Objectif o = new Objectif();
 
-        o.setId(tfid.getText());
+//        o.setId(tfid.getText());
         o.setDescription(cbobj.getValue().toString());
         o.setReponse(Integer.parseInt(cbrep.getValue().toString()));
         o.setDuree(Integer.parseInt(tfduree.getText()));
@@ -254,6 +258,7 @@ public class FXMLDocumentController implements Initializable {
         //o.setIdCli(tfidCli.getText());
         sp.modifierObjectif(o);
         afficherObjectifs();
+        new animatefx.animation.Flash(btnModifierObj).play();
 
     }
 
@@ -261,7 +266,7 @@ public class FXMLDocumentController implements Initializable {
     private void supprimerObjectif(ActionEvent event) {
         ServiceObjectif sp = new ServiceObjectif();
         // tvobjectifs.getItems().removeAll(tvobjectifs.getSelectionModel().getSelectedItem());
-        sp.supprimerObjectif(tfid.getText());
+//        sp.supprimerObjectif(tfid.getText());
         afficherObjectifs();
         tfid.setText(null);
         cbobj.setValue(null);
@@ -270,6 +275,7 @@ public class FXMLDocumentController implements Initializable {
         tfduree.setText(null);
         tfidCli.setText(null);
         erreurObj.setText(null);
+        new animatefx.animation.Flash(btnSupprimerObj).play();
 
     }
 
@@ -292,7 +298,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void OnMouse(MouseEvent event) {
         Objectif obj = tvobjectifs.getSelectionModel().getSelectedItem();
-        tfid.setText(obj.getId());
+//        tfid.setText(obj.getId());
         cbobj.setValue(obj.getDescription());
         cbrep.setValue(obj.getReponse());
         tfdate.setText(obj.getDate());
@@ -334,7 +340,7 @@ public class FXMLDocumentController implements Initializable {
         ObjectifPred o = new ObjectifPred();
         ServiceAdmin sa = new ServiceAdmin();
 
-        o.setIdP(tfid_pred.getText());
+//        o.setIdP(tfid_pred.getText());
         o.setDescriptionP(tfdesc_pred.getText());
         o.setDureeP(Integer.parseInt(tfduree_pred.getText()));
         o.setAdmin(sa.load_data_modify(tfidadP.getText()));
@@ -354,6 +360,8 @@ public class FXMLDocumentController implements Initializable {
         colduree_pred.setCellValueFactory(new PropertyValueFactory<>("dureeP"));
         colidad_pred.setCellValueFactory(new PropertyValueFactory<>("idAdminP"));
         tvObjectifPred.setItems(objectifsP);
+
+        new animatefx.animation.Flash(btnAjouterPred).play();
     }
 
     @FXML
@@ -361,7 +369,7 @@ public class FXMLDocumentController implements Initializable {
         ServiceObjectifPred sp = new ServiceObjectifPred();
         ObjectifPred o = new ObjectifPred();
         ServiceAdmin sa = new ServiceAdmin();
-        o.setIdP(tfid_pred.getText());
+//        o.setIdP(tfid_pred.getText());
         o.setDescriptionP(tfdesc_pred.getText());
         o.setDureeP(Integer.parseInt(tfduree_pred.getText()));
         o.setAdmin(sa.load_data_modify(tfidadP.getText()));
@@ -371,18 +379,20 @@ public class FXMLDocumentController implements Initializable {
         tfdesc_pred.setText(null);
         tfduree_pred.setText(null);
         tfidadP.setText(null);
+        new animatefx.animation.Flash(btnModifierPred).play();
 
     }
 
     @FXML
     private void supprimerPred(ActionEvent event) {
         ServiceObjectifPred sp = new ServiceObjectifPred();
-        sp.supprimerObjectifPred(tfid_pred.getText());
+       // sp.supprimerObjectifPred(tfid_pred.getText());
         afficherObjectifsPred();
         tfid_pred.setText(null);
         tfdesc_pred.setText(null);
         tfduree_pred.setText(null);
         tfidadP.setText(null);
+        new animatefx.animation.Flash(btnSupprimerPred).play();
     }
 
     @FXML
@@ -409,7 +419,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void OnMouseObjectifPred(MouseEvent event) {
         ObjectifPred obj = tvObjectifPred.getSelectionModel().getSelectedItem();
-        tfid_pred.setText(obj.getIdP());
+//        tfid_pred.setText(obj.getIdP());
         tfdesc_pred.setText(obj.getDescriptionP());
         tfduree_pred.setText("" + obj.getDureeP());
         tfidadP.setText(obj.getAdmin().getId());
@@ -420,24 +430,24 @@ public class FXMLDocumentController implements Initializable {
     private void ajouterSuivi(ActionEvent event) {
         ServiceObjectif sp = new ServiceObjectif();
         ServiceSuivi ss = new ServiceSuivi();
-        ServiceClient sc= new ServiceClient();
+        ServiceClient sc = new ServiceClient();
         Suivi s = new Suivi();
 
-        s.setIdSuiv(tfid_suiv.getText());
-        s.setValeurSuiv(cbrep_suivi.getValue());
-        s.setClient(sc.load_data_modify("12345676")); //!!! a changer !!!
-        s.setObjectif(sp.load_data_modify(sp.getIdObj(cbobjsuivi.getValue(), "12345676")));
-        s.setDateSuiv(dateFicheSuivi.getText());
-        ss.ajouterSuivi(s);
-        afficherSuivi();
-
-        int jourCourant = Integer.parseInt(new SimpleDateFormat("dd").format(Calendar.getInstance().getTime()));
-        System.out.println("jour courant" + jourCourant);
-        System.out.println("Jour date debut  " + Integer.parseInt(sp.getJourDateDebutObj(sp.getIdObj(cbobjsuivi.getValue(), "12345676"), "12345676")));
-        System.out.println("durée " + sp.getDureeObj(sp.getIdObj(cbobjsuivi.getValue(), "12345676"), "12345676"));
-
-        int reste = sp.getDureeObj(sp.getIdObj(cbobjsuivi.getValue(), "12345676"), "12345676") - (jourCourant - Integer.parseInt(sp.getJourDateDebutObj(sp.getIdObj(cbobjsuivi.getValue(), "12345676"), "12345676")));
-        AlertBoxSuivi.display("Rappel", "   Il vous reste   " + reste + "  jours pour terminer cet objectif");
+//        s.setIdSuiv(tfid_suiv.getText());
+//        s.setValeurSuiv(cbrep_suivi.getValue());
+//        s.setClient(sc.load_data_modify("12345676")); //!!! a changer !!!
+//        s.setObjectif(sp.load_data_modify(sp.getIdObj(cbobjsuivi.getValue(), "12345676")));
+//        s.setDateSuiv(dateFicheSuivi.getText());
+//        ss.ajouterSuivi(s);
+//        afficherSuivi();
+//
+//        int jourCourant = Integer.parseInt(new SimpleDateFormat("dd").format(Calendar.getInstance().getTime()));
+//        System.out.println("jour courant" + jourCourant);
+//        System.out.println("Jour date debut  " + Integer.parseInt(sp.getJourDateDebutObj(sp.getIdObj(cbobjsuivi.getValue(), "12345676"), "12345676")));
+//        System.out.println("durée " + sp.getDureeObj(sp.getIdObj(cbobjsuivi.getValue(), "12345676"), "12345676"));
+//
+//        int reste = sp.getDureeObj(sp.getIdObj(cbobjsuivi.getValue(), "12345676"), "12345676") - (jourCourant - Integer.parseInt(sp.getJourDateDebutObj(sp.getIdObj(cbobjsuivi.getValue(), "12345676"), "12345676")));
+////        AlertBoxSuivi.display("Rappel", "   Il vous reste   " + reste + "  jours pour terminer cet objectif");
     }
 
     private void afficherSuivi() {
@@ -475,27 +485,42 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void selectIdObjBilan(ActionEvent event) {
         ServiceSuivi ss = new ServiceSuivi();
-        ObservableList<String> listDateSuiv = ss.getDateBilan(cbidObjectifBilan.getValue());
-        cbDateBilan.setItems(listDateSuiv);
+//        ObservableList<String> listDateSuiv = ss.getDateBilan(cbidObjectifBilan.getValue());
+  //      cbDateBilan.setItems(listDateSuiv);
     }
 
     @FXML
     private void selectDateBilan(ActionEvent event) {
-        ServiceObjectif so = new ServiceObjectif();
-        ServiceSuivi ss = new ServiceSuivi();
-        ObservableList<Data> list = FXCollections.observableArrayList(
-                new PieChart.Data("Pas fait", (100 - (ss.getValeur(cbidObjectifBilan.getValue(), cbDateBilan.getValue()) * 100) / so.getRepObj("O4"))),
-                new PieChart.Data("Fait", (ss.getValeur(cbidObjectifBilan.getValue(), cbDateBilan.getValue()) * 100) / so.getRepObj(cbidObjectifBilan.getValue())));
-        pcBilan.setData(list);
-
-        for (final PieChart.Data data : pcBilan.getData()) {
-            data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    lbResultat.setText(String.valueOf(data.getPieValue() + " %"));
-                }
-            });
-        }
+//        ServiceObjectif so = new ServiceObjectif();
+//        ServiceSuivi ss = new ServiceSuivi();
+//        ObservableList<Data> list = FXCollections.observableArrayList(
+//       //         new PieChart.Data("Pas fait", (100 - (ss.getValeur(cbidObjectifBilan.getValue(), cbDateBilan.getValue()) * 100) / so.getRepObj("O4"))),
+//         //       new PieChart.Data("Fait", (ss.getValeur(cbidObjectifBilan.getValue(), cbDateBilan.getValue()) * 100) / so.getRepObj(cbidObjectifBilan.getValue())));
+//        pcBilan.setData(list);
+//
+//        for (final PieChart.Data data : pcBilan.getData()) {
+//            data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent event) {
+//                    lbResultat.setText(String.valueOf(data.getPieValue() + " %"));
+//                }
+//            });
+    //    }
     }
 
+    @FXML
+    private void showPieChart(ActionEvent event) {
+//        ServiceObjectif so = new ServiceObjectif();
+//        ServiceSuivi ss = new ServiceSuivi();
+//        DefaultPieDataset pieDataset = new DefaultKeyedValuesDataset();
+//        pieDataset.setValue("Pas fait", (100 - (ss.getValeur(cbidObjectifBilan.getValue(), cbDateBilan.getValue()) * 100) / so.getRepObj("O4")));
+//        pieDataset.setValue("Fait", (ss.getValeur(cbidObjectifBilan.getValue(), cbDateBilan.getValue()) * 100) / so.getRepObj(cbidObjectifBilan.getValue()));
+//
+//        JFreeChart chart = ChartFactory.createPieChart("Pie chart", pieDataset);
+//        PiePlot P = (PiePlot) chart.getPlot();
+//        ChartFrame frame = new ChartFrame("Pie chart", chart);
+//        frame.setVisible(true);
+//        frame.setSize(450, 500);
+    }   
+    
 }
