@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.MesObjectifsController">
+   <children>
+      <TableView fx:id="tvobjectifs" layoutX="381.0" layoutY="113.0" onMouseClicked="#OnMouse" prefHeight="528.0" prefWidth="562.0">
+         <columns>
+            <TableColumn fx:id="colid" prefWidth="46.4000244140625" text="ID" />
+            <TableColumn fx:id="coldesc" prefWidth="283.9999694824219" text="Description" />
+            <TableColumn fx:id="colrep" prefWidth="89.5999755859375" text="Réponse" />
+            <TableColumn fx:id="coldate" prefWidth="86.39996337890625" text="Date début" />
+            <TableColumn fx:id="colduree" prefWidth="56.0" text="Durée" />
+         </columns>
+      </TableView>
+      <ComboBox fx:id="cbobj" layoutX="127.0" layoutY="192.0" onAction="#selectObj" prefWidth="150.0" />
+      <Label layoutX="17.0" layoutY="196.0" text="Choisir " />
+      <TextField fx:id="tfobj" layoutX="127.0" layoutY="227.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label layoutX="20.0" layoutY="289.0" text="Réponse (X):" />
+      <ComboBox fx:id="cbrep" layoutX="127.0" layoutY="287.0" onAction="#selectRep" prefHeight="26.0" prefWidth="149.0" />
+      <Label layoutX="21.0" layoutY="381.0" text="Durée:" />
+      <Label layoutX="19.0" layoutY="143.0" text="ID:" />
+      <Label layoutX="19.0" layoutY="334.0" text="Date début :" />
+      <TextField fx:id="tfid" layoutX="126.0" layoutY="139.0" />
+      <TextField fx:id="tfduree" layoutX="128.0" layoutY="377.0" prefHeight="26.0" prefWidth="102.0" />
+      <TextField fx:id="tfdate" layoutX="127.0" layoutY="330.0" />
+      <Button fx:id="btnAjouterObj" layoutX="59.0" layoutY="508.0" mnemonicParsing="false" onAction="#ajouterObjectif" text="Ajouter" />
+      <Button fx:id="btnModifierObj" layoutX="147.0" layoutY="508.0" mnemonicParsing="false" onAction="#modifierObjectif" text="Modifier" />
+      <Button fx:id="btnSupprimerObj" layoutX="244.0" layoutY="508.0" mnemonicParsing="false" onAction="#supprimerObjectif" text="Supprimer" />
+      <Label layoutX="33.0" layoutY="24.0" text="Mes objectifs">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfidCli" layoutX="127.0" layoutY="420.0" />
+      <Label layoutX="21.0" layoutY="424.0" text="ID Client:" />
+      <Label layoutX="396.0" layoutY="70.0" text="Rechercher">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfrechObj" layoutX="479.0" layoutY="66.0" onKeyReleased="#rechercherObjectif" />
+      <Label layoutX="682.0" layoutY="70.0" text="Trier">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cbtriObj" layoutX="729.0" layoutY="66.0" onAction="#selectTriObj" prefHeight="26.0" prefWidth="101.0" />
+      <Label layoutX="244.0" layoutY="381.0" text="/jours" />
+      <Label fx:id="erreurObj" layoutX="33.0" layoutY="259.0" prefHeight="18.0" prefWidth="281.0" textFill="RED">
+         <font>
+            <Font name="Berlin Sans FB" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="231.0" text="saisir un objectif:" />
+      <Label layoutX="18.0" layoutY="215.0" text="OU">
+         <font>
+            <Font size="10.0" />
+         </font></Label>
+   </children>
+</AnchorPane>
