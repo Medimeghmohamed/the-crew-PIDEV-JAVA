@@ -35,6 +35,7 @@
             <Label layoutX="11.0" layoutY="385.0" minHeight="16" minWidth="69" prefHeight="40.0" prefWidth="119.0" text="Lieu" />
             <ComboBox fx:id="listcoach" layoutX="194.0" layoutY="89.0" prefHeight="31.0" prefWidth="187.0" />
             <Label layoutX="583.0" layoutY="146.0" minHeight="16" minWidth="69" prefHeight="40.0" prefWidth="119.0" text="Description" />
+            <Button fx:id="BACK" layoutX="636.0" layoutY="42.0" mnemonicParsing="false" onAction="#BACK" prefHeight="49.0" prefWidth="82.0" text="BACK" />
          </children>
       </AnchorPane>
    </children>

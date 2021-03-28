@@ -34,6 +34,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import services.ServiceCoach;
 import services.serviceActivites;
@@ -60,8 +61,6 @@ public class ActiviteAdminController implements Initializable {
     private TextField description;
     @FXML
     private TextField lieu;
-    @FXML
-    private Button show;
   // private TableColumn<Activites, Integer> cid;
     @FXML
     private TableColumn<Activites, String> cidcoach;
@@ -107,6 +106,8 @@ public class ActiviteAdminController implements Initializable {
     private TextArea reasact;
     @FXML
     private ComboBox<Coach> listcoach;
+    @FXML
+    private Button update;
 
     /**
      * Initializes the controller class.
@@ -175,11 +176,21 @@ clearfields();
 
     @FXML
     private void modify(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modify.fxml"));
-Parent modif = (Parent) fxmlLoader.load();
-Stage stage = new Stage();
-stage.setScene(new Scene(modif));  
-stage.show();lodtabth();
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modify.fxml"));
+//Parent modif = (Parent) fxmlLoader.load();
+//Stage stage = new Stage();
+//stage.setScene(new Scene(modif));  
+//stage.show();lodtabth();
+
+FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Parent root = loader.load();
+        MainController HomeScene = loader.getController();
+        Pane view;
+        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("modify.fxml"));
+        view = loader2.load();
+        HomeScene.returnPane(view);
+        Stage window = (Stage)update.getScene().getWindow();
+        window.setScene(new Scene(root, 1182, 718));
     }
 
     private void clearfields() {

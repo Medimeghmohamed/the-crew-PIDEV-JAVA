@@ -76,7 +76,7 @@ public class MainController implements Initializable {
     private void showact(ActionEvent event) throws FileNotFoundException {
         System.out.println("clicked");
         FxmlLoader object =new FxmlLoader();
-        Pane view=object.getPage("ActiviteAdmin");
+        Pane view=object.getPage("showadact");
         mainpane.setCenter(view);
     }
 
@@ -127,6 +127,9 @@ public class MainController implements Initializable {
 
     @FXML
     private void BtnObjectifsPred(ActionEvent event) {
+    }
+    public void returnPane(Pane view){
+        mainpane.setCenter(view);
     }
 
 

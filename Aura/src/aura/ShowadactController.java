@@ -7,6 +7,7 @@ package aura;
 
 import Utils.MaConnexion;
 import entities.Activites;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,13 +17,19 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import services.serviceActivites;
 
 /**
@@ -52,6 +59,10 @@ public class ShowadactController implements Initializable {
     private ComboBox combotype;
     @FXML
     private ComboBox comboate;
+    @FXML
+    private Button ADD;
+    @FXML
+    private Button Proposition;
 
     /**
      * Initializes the controller class.
@@ -197,4 +208,31 @@ public void fillcomboboxdate(){
             rs.close();
         } catch (SQLException ex) { 
         }     }
+
+    @FXML
+    private void ADD(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Parent root = loader.load();
+        MainController HomeScene = loader.getController();
+        Pane view;
+        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("addAdAct.fxml"));
+        view = loader2.load();
+        HomeScene.returnPane(view);
+        Stage window = (Stage)ADD.getScene().getWindow();
+        window.setScene(new Scene(root, 1182, 718));
+    }
+
+    @FXML
+    private void Proposition(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+
+        Parent root = loader.load();
+        MainController HomeScene = loader.getController();
+        Pane view;
+        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("propoadact.fxml"));
+        view = loader2.load();
+        HomeScene.returnPane(view);
+        Stage window = (Stage)Proposition.getScene().getWindow();
+        window.setScene(new Scene(root, 1182, 718));
+    }
 }

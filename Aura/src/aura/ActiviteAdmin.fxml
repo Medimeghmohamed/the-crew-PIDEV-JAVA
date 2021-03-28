@@ -31,7 +31,7 @@
                               <TextField fx:id="type" layoutX="138.0" layoutY="281.0" />
                               <TextField fx:id="description" layoutX="138.0" layoutY="318.0" />
                               <TextField fx:id="lieu" layoutX="138.0" layoutY="362.0" />
-                              <Button fx:id="show" layoutX="594.0" layoutY="303.0" mnemonicParsing="false" onAction="#modify" prefHeight="98.0" prefWidth="130.0" text="UPDATE" />
+                              <Button fx:id="update" layoutX="594.0" layoutY="303.0" mnemonicParsing="false" onAction="#modify" prefHeight="98.0" prefWidth="130.0" text="UPDATE" />
                               <Label layoutX="20.0" layoutY="78.0" minHeight="16" minWidth="46.0" prefHeight="40.0" prefWidth="64.0" text="Coach" />
                               <Label layoutX="20.0" layoutY="127.0" minHeight="16" minWidth="46.0" prefHeight="40.0" prefWidth="64.0" text="Date" />
                               <Label layoutX="1.0" layoutY="226.0" minHeight="16" minWidth="69" prefHeight="40.0" prefWidth="103.0" text="Nombre Max" />

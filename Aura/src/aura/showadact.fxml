@@ -6,12 +6,11 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="632.0" prefWidth="992.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="aura.ShowadactController">
+<AnchorPane id="AnchorPane" prefHeight="793.0" prefWidth="1129.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.ShowadactController">
    <children>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="563.0" prefWidth="869.0">
+      <AnchorPane layoutX="47.0" layoutY="49.0" minHeight="0.0" minWidth="0.0" prefHeight="563.0" prefWidth="869.0">
          <children>
-            <TableView fx:id="tabact" layoutX="14.0" layoutY="14.0" prefHeight="481.0" prefWidth="869.0">
+            <TableView fx:id="tabact" layoutY="82.0" prefHeight="394.0" prefWidth="869.0">
                <columns>
                   <TableColumn fx:id="cidcoach" prefWidth="161.0" text="Coach" />
                   <TableColumn fx:id="cduree" prefWidth="81.0" text="Duree" />
@@ -26,6 +25,8 @@
             <ComboBox fx:id="combotype" layoutX="163.0" layoutY="505.0" onAction="#findtype" prefWidth="150.0" />
             <ComboBox fx:id="comboate" layoutX="349.0" layoutY="505.0" onAction="#finddate" prefWidth="150.0" />
             <Button layoutX="577.0" layoutY="505.0" mnemonicParsing="false" onAction="#deletefromtable" text="DELETE" />
+            <Button fx:id="ADD" layoutX="481.0" layoutY="32.0" mnemonicParsing="false" onAction="#ADD" text="ADD/Update" />
+            <Button fx:id="Proposition" layoutX="599.0" layoutY="32.0" mnemonicParsing="false" onAction="#Proposition" text="Proposition" />
          </children>
       </AnchorPane>
    </children>

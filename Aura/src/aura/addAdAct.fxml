@@ -7,8 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="873.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="aura.AddAdActController">
+<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.AddAdActController">
    <children>
       <AnchorPane id="AnchorPane" layoutX="14.0" layoutY="7.0" prefHeight="555.0" prefWidth="852.0">
          <children>
@@ -28,6 +27,7 @@
             <Label layoutX="11.0" layoutY="314.0" minHeight="16" minWidth="69" prefHeight="40.0" prefWidth="119.0" text="Description" />
             <Label layoutX="25.0" layoutY="358.0" minHeight="16" minWidth="69" prefHeight="40.0" prefWidth="119.0" text="Lieu" />
             <ComboBox fx:id="listcoach" layoutX="126.0" layoutY="83.0" prefHeight="31.0" prefWidth="188.0" />
+            <Button fx:id="BACK" layoutX="692.0" layoutY="30.0" mnemonicParsing="false" onAction="#BACK" prefHeight="40.0" prefWidth="103.0" text="BACK" />
          </children>
       </AnchorPane>
    </children>

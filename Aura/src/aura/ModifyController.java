@@ -8,6 +8,7 @@ package aura;
 import Utils.MaConnexion;
 import entities.Activites;
 import entities.Coach;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,14 +20,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import services.ServiceCoach;
@@ -41,8 +46,6 @@ public class ModifyController implements Initializable {
 
     @FXML
     private DatePicker datee;
-    @FXML
-    private TextField idcoach;
     @FXML
     private TextField duree;
     @FXML
@@ -59,6 +62,8 @@ public class ModifyController implements Initializable {
     private Text lid;
     @FXML
     private ComboBox<Coach> listcoach;
+    @FXML
+    private Button BACK;
 
     /**
      * Initializes the controller class.
@@ -165,6 +170,20 @@ sa.modifierActivite(A);
                listcoach.setItems(coach);
 
 }
+
+    @FXML
+    private void BACK(ActionEvent event) throws IOException {
+        
+FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Parent root = loader.load();
+        MainController HomeScene = loader.getController();
+        Pane view;
+        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("showadact.fxml"));
+        view = loader2.load();
+        HomeScene.returnPane(view);
+        Stage window = (Stage)BACK.getScene().getWindow();
+        window.setScene(new Scene(root, 1182, 718));
+    }
         
     
 }

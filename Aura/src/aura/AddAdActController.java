@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import services.ServiceCoach;
 import services.serviceActivites;
@@ -50,6 +51,8 @@ public class AddAdActController implements Initializable {
     private Button show;
     @FXML
     private ComboBox<Coach> listcoach;
+    @FXML
+    private Button BACK;
 
     /**
      * Initializes the controller class.
@@ -93,11 +96,20 @@ clearfields();
 
     @FXML
     private void modify(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modify.fxml"));
-Parent modif = (Parent) fxmlLoader.load();
-Stage stage = new Stage();
-stage.setScene(new Scene(modif));  
-stage.show();
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modify.fxml"));
+//Parent modif = (Parent) fxmlLoader.load();
+//Stage stage = new Stage();
+//stage.setScene(new Scene(modif));  
+//stage.show();
+FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Parent root = loader.load();
+        MainController HomeScene = loader.getController();
+        Pane view;
+        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("modify.fxml"));
+        view = loader2.load();
+        HomeScene.returnPane(view);
+        Stage window = (Stage)show.getScene().getWindow();
+        window.setScene(new Scene(root, 1182, 718));
     }
 
     private void clearfields() {
@@ -116,4 +128,18 @@ duree.clear();
                listcoach.setItems(activit);
 
 }
+
+    @FXML
+    private void BACK(ActionEvent event) throws IOException {
+        
+FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Parent root = loader.load();
+        MainController HomeScene = loader.getController();
+        Pane view;
+        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("showadact.fxml"));
+        view = loader2.load();
+        HomeScene.returnPane(view);
+        Stage window = (Stage)BACK.getScene().getWindow();
+        window.setScene(new Scene(root, 1182, 718));
+    }
 }

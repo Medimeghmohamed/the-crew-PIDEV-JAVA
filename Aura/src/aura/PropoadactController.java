@@ -7,6 +7,7 @@ package aura;
 
 import Utils.MaConnexion;
 import entities.Activites;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -14,11 +15,17 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import services.serviceActivites;
 import services.service_mail;
 
@@ -48,6 +55,8 @@ public class PropoadactController implements Initializable {
     private TableColumn<Activites, String> clieu1;
     @FXML
     private TextArea reasact;
+    @FXML
+    private Button BACK;
 
     /**
      * Initializes the controller class.
@@ -110,5 +119,18 @@ public class PropoadactController implements Initializable {
      // String reaso= reason.getText();
        // System.out.println(reaso);
             mai.send_mail(n,etat);
+    }
+
+    @FXML
+    private void BACK(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Parent root = loader.load();
+        MainController HomeScene = loader.getController();
+        Pane view;
+        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("showadact.fxml"));
+        view = loader2.load();
+        HomeScene.returnPane(view);
+        Stage window = (Stage)BACK.getScene().getWindow();
+        window.setScene(new Scene(root, 1182, 718));
     }
 }
