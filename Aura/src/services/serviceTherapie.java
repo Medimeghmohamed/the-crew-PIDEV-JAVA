@@ -5,7 +5,7 @@
  */
 package services;
 
-import MaConnexion.MyConnection;
+import Utils.MaConnexion;
 import entities.Therapie;
 import interfaces.Itherapie;
 import java.sql.PreparedStatement;
@@ -29,7 +29,7 @@ public class serviceTherapie implements Itherapie{
         
            try {
             String requete  = "INSERT INTO `therapie` (`id`, `sujet`, `date`, `lieu`, `nombremax`, `idcoach`,`nombre_parti`) VALUES ('"+t.getId()+"', '"+t.getSujet()+"', '"+t.getDate()+"', '"+t.getLieu()+"', '"+t.getNombremax()+"', '"+t.getIdcoach().getId()+"','"+t.getNombre_parti()+"')";
-            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("Therapie ajouté");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -51,7 +51,7 @@ public class serviceTherapie implements Itherapie{
         try {
 
             String requete = "SELECT * FROM therapie";
-            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            Statement st = MaConnexion.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(requete);
             while (rs.next()) {
                 Therapie T = new Therapie();
@@ -75,7 +75,7 @@ public class serviceTherapie implements Itherapie{
     public void supprimerTherapie(int id) {
          try {
             String requete = "DELETE FROM therapie WHERE id = " + id +"";
-            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("Therapie supprimer");
              Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -91,14 +91,13 @@ public class serviceTherapie implements Itherapie{
     @Override
     public void modifierTherapie(Therapie t) {
     try {
-            String requete = " UPDATE therapie SET sujet=?,date=?,lieu=?,nombremax=?,idcoach=? WHERE id=?" ;
-            PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
-            pst.setString(1,t.getSujet());
-            pst.setString(2,t.getDate());
-            pst.setString(3,t.getLieu());
-            pst.setInt(4,t.getNombremax());
-            pst.setString(5, t.getIdcoach().getId());
-            pst.setInt(6, t.getId());
+            String requete = " UPDATE therapie SET date=?,lieu=?,nombremax=?,idcoach=? WHERE sujet=?" ;
+            PreparedStatement pst= MaConnexion.getInstance().getCnx().prepareStatement(requete);
+            pst.setString(1,t.getDate());
+            pst.setString(2,t.getLieu());
+            pst.setInt(3,t.getNombremax());
+            pst.setString(4, t.getIdcoach().getId());
+            pst.setString(5,t.getSujet());
             pst.executeUpdate();
             System.out.println("Therapie modifié!");
              Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -118,7 +117,7 @@ public class serviceTherapie implements Itherapie{
         try {
 
             String requete = "SELECT * FROM therapie  WHERE sujet='"+t+"' ORDER BY date  ";
-            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            Statement st = MaConnexion.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(requete);
             while (rs.next()) {
                 Therapie T = new Therapie();
@@ -145,7 +144,7 @@ public class serviceTherapie implements Itherapie{
         try {
 
             String requete = "SELECT * FROM therapie  WHERE date='"+t+"'  ";
-            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            Statement st = MaConnexion.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(requete);
             while (rs.next()) {
                 Therapie T = new Therapie();
@@ -186,7 +185,7 @@ ObservableList<Therapie> myList = FXCollections.observableArrayList();
  try {
 
             String requete = "SELECT * FROM proptherapie";
-            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            Statement st = MaConnexion.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(requete);
             while (rs.next()) {
                 Therapie T = new Therapie();
@@ -212,7 +211,7 @@ ObservableList<Therapie> myList = FXCollections.observableArrayList();
     public void supprimerpropoTherapie(int id) {
 try {
             String requete = "DELETE FROM proptherapie WHERE id = " + id +"";
-            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("proposition supprimer");
              Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -229,7 +228,7 @@ try {
 
            try {
             String requete  = "INSERT INTO `proptherapie` (`id`, `sujet`, `date`, `lieu`, `nombremax`, `idcoach`,`nombre_parti`) VALUES ('"+t.getId()+"', '"+t.getSujet()+"', '"+t.getDate()+"', '"+t.getLieu()+"', '"+t.getNombremax()+"', '"+t.getIdcoach().getId()+"','"+t.getNombre_parti()+"')";
-            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("Proposition ajouté");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -245,7 +244,7 @@ try {
                            public void supprimerpropoactivite(int id) {
         try {
             String requete = "DELETE FROM propoact WHERE id = " + id +"";
-            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("proposition supprimer");
              Alert alert = new Alert(AlertType.INFORMATION);
@@ -260,7 +259,7 @@ try {
 public void updatenumpartth(Therapie a){
     try {
          String requete = " UPDATE therapie SET nombre_parti=nombre_parti+1 WHERE id='"+a.getId()+"'" ;
-            PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
+            PreparedStatement pst= MaConnexion.getInstance().getCnx().prepareStatement(requete);
              pst.executeUpdate();
 
     } 
@@ -270,7 +269,7 @@ catch (Exception e) {
     public void addclientth(Therapie a)
     {  try {
             String requete  = "INSERT INTO `participationtherapie` (`id_client`,`id_therapie`) VALUES (10,'"+a.getId()+"') ";
-            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("Client ajouté");
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -301,9 +300,9 @@ catch (Exception e) {
             public void updaterating(Therapie a,int rate){
     try {
          String requete = " UPDATE participationtherapie SET rating='"+rate+"' WHERE id_therapie='"+a.getId()+"'" ;
-            PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
+            PreparedStatement pst= MaConnexion.getInstance().getCnx().prepareStatement(requete);
              pst.executeUpdate();
-
+        System.out.println("done rate");
     } 
 catch (Exception e) {
     }}

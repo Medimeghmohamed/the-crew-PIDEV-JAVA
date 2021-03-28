@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import MaConnexion.MyConnection;
+import Utils.MaConnexion;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,7 +26,7 @@ public class ServiceAdmin implements IserviceAdmin {
     Connection cnx;
 
     public ServiceAdmin() {
-        cnx = MyConnection.getInstance().getCnx();
+        cnx = MaConnexion.getInstance().getCnx();
     }
 
     @Override

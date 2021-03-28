@@ -11,11 +11,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import MaConnexion.MyConnection;
+import Utils.MaConnexion;
+import entities.Activites;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -26,7 +29,7 @@ public class ServiceCoach implements IserviceCoach {
     Connection cnx;
 
     public ServiceCoach() {
-        cnx = MyConnection.getInstance().getCnx();
+        cnx = MaConnexion.getInstance().getCnx();
     }
 
     @Override
@@ -65,8 +68,7 @@ public class ServiceCoach implements IserviceCoach {
     @Override
     public List<Coach> afficherCoach_Oui() { //afficher les coachs verifiés
         Statement stm = null;
-        List<Coach> Coachs = new ArrayList<>();
-
+ ObservableList<Coach> Coachs = FXCollections.observableArrayList();
         try {
             stm = cnx.createStatement();
             String query = "SELECT * FROM `user` WHERE role='CoachV' ";
@@ -254,4 +256,5 @@ public class ServiceCoach implements IserviceCoach {
 
     }
 
+    
 }

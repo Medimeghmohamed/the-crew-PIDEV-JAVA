@@ -1,0 +1,75 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10 mars 2021, 16:04:20
+    Author     : Chirine
+*/
+.root {
+    -fx-background-image: url("background.png");
+}
+
+.button {
+    -fx-background-image: url("button_background.png");
+    -fx-text-fill:  #08213F;
+    -fx-font: 16px "Myriad Pro";
+    -fx-font-weight: bold;
+    -fx-padding: 10;
+}
+.label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFFFFF;
+    -fx-font: 16px "Myriad Pro";
+    -fx-font-weight: bold;
+}
+.TableView {
+    -fx-background-image: url("tableView_background.png");
+    -fx-text-fill: #08213F;
+    -fx-font: 2px "Myriad Pro";
+}
+#BorderPane{
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
+.rating > .container > .button {
+    -fx-padding: 16 16; 
+    -fx-background-image-repeat: no-repeat;
+}
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:90px;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+.tab-pane .tab
+{
+    -fx-background-color: #0b3d06;
+
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #50df7f;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #828282;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #96b946;
+}

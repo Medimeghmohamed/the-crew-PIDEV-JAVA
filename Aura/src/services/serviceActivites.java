@@ -11,7 +11,7 @@ import interfaces.Iactivites;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-import MaConnexion.MyConnection;
+import Utils.MaConnexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class serviceActivites implements Iactivites{
     public void addActivities(Activites a) {
              try {
             String requete  = "INSERT INTO `activite` (`id`, `idcoach`, `duree`,`date`, `nombremax`, `type`, `description`, `lieu`,`nombre_parti`) VALUES ('"+a.getId()+"', '"+a.getIdcoach().getId()+"', '"+a.getDuree()+"','"+a.getDate()+"', '"+a.getNombremax()+"', '"+a.getType()+"', '"+a.getDescription()+"', '"+a.getLieu()+"', '"+a.getNombre_parti()+"') ";
-            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("Activité ajouté");
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -57,7 +57,7 @@ public class serviceActivites implements Iactivites{
         try {
 
             String requete = "SELECT * FROM activite";
-            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            Statement st = MaConnexion.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(requete);
             while (rs.next()) {
                 Activites A = new Activites();
@@ -83,7 +83,7 @@ public class serviceActivites implements Iactivites{
         public void supprimeractivite(int id) {
         try {
             String requete = "DELETE FROM activite WHERE id = " + id +"";
-            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("activite supprimer");
              Alert alert = new Alert(AlertType.INFORMATION);
@@ -101,7 +101,7 @@ public class serviceActivites implements Iactivites{
     public void modifierActivite(Activites a) {
         try {
             String requete = " UPDATE activite SET idcoach=?, duree=?,date=?,nombremax=?,type=?,description=?,lieu=?,nombre_parti=? WHERE id=?" ;
-            PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
+            PreparedStatement pst= MaConnexion.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1,a.getIdcoach().getId());
             pst.setString(2,a.getDuree());
             pst.setString(3,a.getDate());
@@ -132,7 +132,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
 
             String requete = "SELECT * FROM activite WHERE type='"+t+"' ORDER BY date  ";
 
-            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            Statement st = MaConnexion.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(requete);
             while (rs.next()) {
                 Activites A = new Activites();
@@ -161,7 +161,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
 
             String requete = "SELECT * FROM activite WHERE date='"+t+"'   ";
 
-            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            Statement st =MaConnexion.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(requete);
             while (rs.next()) {
                 Activites A = new Activites();
@@ -186,7 +186,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
     
      try {
             String requete  = "DELETE from propoact WHERE id ='"+a.getId()+"'";
-            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("Activité supprimer from table proposition act");
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -208,7 +208,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
         try {
 
             String requete = "SELECT * FROM propoact";
-            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            Statement st = MaConnexion.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(requete);
             while (rs.next()) {
                 Activites A = new Activites();
@@ -233,7 +233,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
             public void addpropActivities(Activites a) {
              try {
             String requete  = "INSERT INTO `propoact` (`id`, `idcoach`, `duree`,`date`, `nombremax`, `type`, `description`, `lieu`,`nombre_parti`) VALUES ('"+a.getId()+"', '"+a.getIdcoach().getId()+"', '"+a.getDuree()+"','"+a.getDate()+"', '"+a.getNombremax()+"', '"+a.getType()+"', '"+a.getDescription()+"', '"+a.getLieu()+"', '"+a.getNombre_parti()+"') ";
-            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("proposition  ajouté");
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -252,7 +252,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
             public void supprimerpropoactivite(int id) {
         try {
             String requete = "DELETE FROM propoact WHERE id = " + id +"";
-            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("proposition supprimer");
              Alert alert = new Alert(AlertType.INFORMATION);
@@ -267,7 +267,7 @@ ObservableList<Activites> myList = FXCollections.observableArrayList();
             public void updatenumpart(Activites a){
     try {
          String requete = " UPDATE activite SET nombre_parti=nombre_parti+1 WHERE id='"+a.getId()+"'" ;
-            PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
+            PreparedStatement pst= MaConnexion.getInstance().getCnx().prepareStatement(requete);
              pst.executeUpdate();
 
     } 
@@ -277,7 +277,7 @@ catch (Exception e) {
              public void addclientact(Activites a,String c)
     {  try {
             String requete  = "INSERT INTO `participationactivté` (`id_client`,`id_activite`) VALUES ('"+c+"','"+a.getId()+"') ";
-            Statement st = MyConnection.getInstance().getCnx().createStatement() ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement() ;
             st.executeUpdate(requete);
             System.out.println("Client ajouté");
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -310,12 +310,35 @@ catch (Exception e) {
 public void updaterating(Activites a,int rate){
     try {
          String requete = " UPDATE participationactivté SET rating='"+rate+"' WHERE id_activite='"+a.getId()+"'" ;
-            PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
+            PreparedStatement pst= MaConnexion.getInstance().getCnx().prepareStatement(requete);
              pst.executeUpdate();
 
     } 
 catch (Exception e) {
-    }}    
- }
+    }}
+
+public int sommerating(int id){
+    int i=0;
+    try {
+         String requete = " SELECT count(id_activite) avg(rating) FROM participationactivté  WHERE id_activite='"+id+"'" ;
+            Statement st = MaConnexion.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(requete);
+          
+             while (rs.next())
+             {
+            i=rs.getInt(2);}
+
+    }
+catch (Exception e) {
     
+    }
+    System.out.println(i);   
+            return i;}
+
+
+
+ }
+
+  
+
 

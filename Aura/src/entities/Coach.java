@@ -23,7 +23,7 @@ public class Coach extends User {
     }
 
     public String toString() {
-        return "Coach:" + super.toString() + "Specialite:" + specialite;
+        return  super.toString();
     }
 
     public void setSpecialite(String specialite) {

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import MaConnexion.MyConnection;
+import Utils.MaConnexion;
 
 /**
  *
@@ -26,7 +26,7 @@ public class ServiceClient implements IServiceClient {
     Connection cnx;
 
     public ServiceClient() {
-        cnx = MyConnection.getInstance().getCnx();
+        cnx = MaConnexion.getInstance().getCnx();
 
     }
 
