@@ -83,7 +83,7 @@ public class ObjectifsController implements Initializable {
         ObservableList<String> listTriObj = FXCollections.observableArrayList("par ID", "par réponse", "par description");
         cbtriObj.setItems(listTriObj);
         afficherObjectifs();
-       
+
     }
 
     private void afficherObjectifs() {
@@ -137,9 +137,11 @@ public class ObjectifsController implements Initializable {
         MainController HomeScene = loader.getController();
         Pane view;
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("AjouterObj.fxml"));
+        String css = ObjectifsController.class.getResource("style.css").toExternalForm();
+        root.getStylesheets().add(css);
         view = loader2.load();
         HomeScene.returnPane(view);
-        Stage window = (Stage) btnModifierObj.getScene().getWindow();
+        Stage window = (Stage) btnAjouterObj.getScene().getWindow();
 
         window.setScene(new Scene(root, 1182, 718));
     }
@@ -158,6 +160,8 @@ public class ObjectifsController implements Initializable {
             MainController HomeScene = loader.getController();
             Pane view;
             FXMLLoader loader2 = new FXMLLoader(getClass().getResource("ModifierObj.fxml"));
+            String css = ObjectifsController.class.getResource("style.css").toExternalForm();
+            root.getStylesheets().add(css);
             view = loader2.load();
             HomeScene.returnPane(view);
             Stage window = (Stage) btnModifierObj.getScene().getWindow();
@@ -202,18 +206,19 @@ public class ObjectifsController implements Initializable {
     @FXML
     private void suiviObjectif(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
-            Parent root = loader.load();
-            MainController HomeScene = loader.getController();
-            Pane view;
-            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SuiviObj.fxml"));
-            view = loader2.load();
-            HomeScene.returnPane(view);
-            Stage window = (Stage) btnSuiviObj1.getScene().getWindow();
-            window.setScene(new Scene(root, 1182, 718));
-            
-            //SuiviObjController sc = loader2.getController();
-            //sc.selected_item(tv_obj.getSelectionModel().getSelectedItem().getId());
-        
+        Parent root = loader.load();
+        MainController HomeScene = loader.getController();
+        Pane view;
+        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SuiviObj.fxml"));
+        String css= ObjectifsController.class.getResource("style.css").toExternalForm();
+        root.getStylesheets().add(css);
+        view = loader2.load();
+        HomeScene.returnPane(view);
+        Stage window = (Stage) btnSuiviObj1.getScene().getWindow();
+        window.setScene(new Scene(root, 1182, 718));
+
+        //SuiviObjController sc = loader2.getController();
+        //sc.selected_item(tv_obj.getSelectionModel().getSelectedItem().getId());
 //        if (tv_obj.getSelectionModel().getSelectedItem() == null) {
 //            Alert a = new Alert(Alert.AlertType.ERROR);
 //            a.setTitle("Attention");
@@ -242,7 +247,7 @@ public class ObjectifsController implements Initializable {
         ServiceSuivi ss = new ServiceSuivi();
         DefaultPieDataset pieDataset = new DefaultKeyedValuesDataset();
         int id = tv_obj.getSelectionModel().getSelectedItem().getId();
-        String date= tv_obj.getSelectionModel().getSelectedItem().getDate();
+        String date = tv_obj.getSelectionModel().getSelectedItem().getDate();
         pieDataset.setValue("Pas fait", (100 - (ss.getValeur(id, date) * 100) / so.getRepObj(id)));
         pieDataset.setValue("Fait", (ss.getValeur(id, date) * 100) / so.getRepObj(id));
 

@@ -7,41 +7,59 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.ObjectifPredefiniController">
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.ObjectifPredefiniController">
    <children>
-      <TextField fx:id="tfdesc_pred" layoutX="191.0" layoutY="288.0" prefHeight="64.0" prefWidth="149.0" />
-      <TextField fx:id="tfduree_pred" layoutX="191.0" layoutY="376.0" prefHeight="26.0" prefWidth="79.0" />
-      <Button fx:id="btnAjouterPred" layoutX="119.0" layoutY="517.0" mnemonicParsing="false" onAction="#ajouterPred" text="Ajouter" />
-      <Button fx:id="btnModifierPred" layoutX="207.0" layoutY="517.0" mnemonicParsing="false" onAction="#modifierPred" text="Modifier" />
-      <Button fx:id="btnSupprimerPred" layoutX="304.0" layoutY="517.0" mnemonicParsing="false" onAction="#supprimerPred" text="Supprimer" />
-      <Label layoutX="120.0" layoutY="292.0" text="Description:" />
-      <Label layoutX="125.0" layoutY="380.0" text="Durée" />
-      <Label layoutX="280.0" layoutY="381.0" text="/jours" />
-      <TableView fx:id="tvObjectifPred" layoutX="420.0" layoutY="104.0" onMouseClicked="#OnMouseObjectifPred" prefHeight="543.0" prefWidth="500.0">
+      <TextField fx:id="tfdesc_pred" layoutX="88.0" layoutY="222.0" prefHeight="64.0" prefWidth="202.0" />
+      <TextField fx:id="tfduree_pred" layoutX="130.0" layoutY="303.0" prefHeight="26.0" prefWidth="79.0" />
+      <Label layoutX="70.0" layoutY="193.0" text="Description:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="70.0" layoutY="306.0" text="Durée">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="232.0" layoutY="306.0" text="/jours">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TableView fx:id="tvObjectifPred" layoutX="362.0" layoutY="149.0" onMouseClicked="#OnMouseObjectifPred" prefHeight="498.0" prefWidth="558.0">
          <columns>
-            <TableColumn fx:id="coldes_pred" prefWidth="251.199951171875" text="Description" />
-            <TableColumn fx:id="colduree_pred" prefWidth="93.5999755859375" text="Durée" />
-            <TableColumn fx:id="colidad_pred" prefWidth="155.199951171875" text="Admin" />
+            <TableColumn fx:id="coldes_pred" prefWidth="370.4000244140625" text="Description" />
+            <TableColumn fx:id="colduree_pred" prefWidth="86.4000244140625" text="Durée" />
+            <TableColumn fx:id="colidad_pred" prefWidth="101.599853515625" text="Admin" />
          </columns>
       </TableView>
-      <TextField fx:id="tfrechObjPred" layoutX="524.0" layoutY="58.0" onKeyReleased="#rechercherObjectifPred" />
-      <ComboBox fx:id="cbtriObjPred" layoutX="794.0" layoutY="58.0" onAction="#selectTriObjPred" prefHeight="26.0" prefWidth="107.0" />
-      <Label layoutX="32.0" layoutY="34.0" text="Gestion des objectifs prédéfinis">
+      <Label layoutX="32.0" layoutY="34.0" text="Gestion des objectifs prédéfinis :">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="Ebrima Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="435.0" layoutY="62.0" text="Rechercher">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="740.0" layoutY="62.0" text="Trier">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
+      <HBox layoutX="372.0" layoutY="87.0" prefHeight="31.0" prefWidth="558.0">
+         <children>
+            <Label text="Rechercher :  ">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfrechObjPred" onKeyReleased="#rechercherObjectifPred" prefHeight="34.0" prefWidth="183.0" />
+            <Label text="Trier :  ">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cbtriObjPred" onAction="#selectTriObjPred" prefHeight="0.0" prefWidth="155.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="74.0" layoutY="443.0" prefHeight="47.0" prefWidth="270.0">
+         <children>
+            <Button fx:id="btnAjouterPred" mnemonicParsing="false" onAction="#ajouterPred" text="Ajouter" />
+            <Button fx:id="btnModifierPred" mnemonicParsing="false" onAction="#modifierPred" text="Modifier" />
+            <Button fx:id="btnSupprimerPred" mnemonicParsing="false" onAction="#supprimerPred" text="Supprimer" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

@@ -92,6 +92,8 @@ public class AjouterObjController implements Initializable {
         MainController HomeScene = loader.getController();
         Pane view;
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("Objectifs.fxml"));
+         String css= AjouterObjController.class.getResource("style.css").toExternalForm();
+        root.getStylesheets().add(css);
         view = loader2.load();
         HomeScene.returnPane(view);
         Stage window = (Stage) btn_retour_ajout_obj.getScene().getWindow();
@@ -99,7 +101,7 @@ public class AjouterObjController implements Initializable {
     }
 
     @FXML
-    private void confirmer_ajout_obj(ActionEvent event) {
+    private void confirmer_ajout_obj(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation ajout");
         alert.setHeaderText("Etes vous sur d'ajouter cet objectif?");
@@ -146,6 +148,25 @@ public class AjouterObjController implements Initializable {
                 a.showAndWait();
                 cbobj.setValue(null); //throws exception mais l'ajout se fait normalement
                 tfobj.setText(null);
+            }
+            Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert2.setTitle("Google Agenda");
+            alert2.setHeaderText("Voulez-vous ajouter cet objectif à votre Google Aganda?");
+            Optional<ButtonType> result2 = alert2.showAndWait();
+            if (result2.get() == ButtonType.OK) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+                Parent root = loader.load();
+                MainController HomeScene = loader.getController();
+                Pane view;
+                FXMLLoader loader2 = new FXMLLoader(getClass().getResource("ObjactifGoogleAgenda.fxml"));
+                String css = ObjectifsController.class.getResource("style.css").toExternalForm();
+                root.getStylesheets().add(css);
+                view = loader2.load();
+                HomeScene.returnPane(view);
+                Stage window = (Stage) btn_confirmer_ajout_obj.getScene().getWindow();
+                window.setScene(new Scene(root, 1182, 718));
+            } else {
+                System.out.println("Cancel");
             }
         } else {
             System.out.println("Cancel");

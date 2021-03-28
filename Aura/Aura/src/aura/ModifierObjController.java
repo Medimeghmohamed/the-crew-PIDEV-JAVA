@@ -72,6 +72,8 @@ public class ModifierObjController implements Initializable {
         MainController HomeScene = loader.getController();
         Pane view;
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("Objectifs.fxml"));
+         String css= ObjectifsController.class.getResource("style.css").toExternalForm();
+        root.getStylesheets().add(css);
         view = loader2.load();
         HomeScene.returnPane(view);
         Stage window = (Stage) btn_retour_modifier_obj.getScene().getWindow();

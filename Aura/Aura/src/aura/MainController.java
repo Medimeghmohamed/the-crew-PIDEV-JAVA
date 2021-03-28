@@ -69,8 +69,6 @@ public class MainController implements Initializable {
     private Button objectifs;
     @FXML
     private Button Bilan;
-    @FXML
-    private AnchorPane AnchorPane;
 
     /**
      * Initializes the controller class.

@@ -8,36 +8,96 @@ and open the template in the editor.
     Author     : Chirine
 */
 .root {
-    -fx-background-image: url("/Sample/Images/background.png");
+    -fx-background-image: url("/Sample/Images/back.png");
+
 
 }
 .button {
-    -fx-background-image: url("/Sample/Images/button_background.png");
-    -fx-text-fill:  #08213F;
+    -fx-background-color: rgba(220,245,198,0.5);
+    -fx-background-radius: 15;
+    -fx-text-fill:  #FFFFFF;
     -fx-font: 16px "Myriad Pro";
     -fx-font-weight: bold;
     -fx-padding: 10;
+    -fx-effect: dropshadow(three-pass-box, #174E26, 5, 0.0,0,1);
+}
+.button .button-background{
+       -fx-opacity: 0.5; 
+}
+
+VBox {
+    -fx-background-color: transparent;
 }
 .label {
     -fx-background-color: transparent;
     -fx-text-fill: #FFFFFF;
-    -fx-font: 14px "Myriad Pro";
-    -fx-font-weight: bold;
 }
 .table-view {
-    -fx-background-image: url("/Sample/Images/tableView_background.png");
-    -fx-text-fill: #08213F;
-    -fx-font: 14px "Myriad Pro";
+    -fx-background-color: #DCF5C6;
+    -fx-background-radius: 30;
+    -fx-fill: #DCF5C6;
+}
+.table-view .table-cell{
+    -fx-background-color:#DCF5C6;
+    -fx-text-fill: #174E26;
+    -fx-alignment: center;
 }
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b944);
-    -fx-background-radius: 7px 7px 0px 0px;
-    -fx-background-insets: 0 11px 0 0;
-    -fx-padding: 0 0 5px 0;
+    -fx-background-color:  #174E26;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0 0 10 0;
+    -fx-padding: 0 0 10 0;
+    -fx-effect: dropshadow(two-pass-box, #174E26,15,0.0,0.1,3);
 }
-#BorderPane{
+.table-view .column-header, .table-view .filer{
+    -fx-size: 40;
+    -fx-border-width:  0 0 10 0;
+    -fx-background-color: transparent;
+}
+.AnchorPane{
+    -fx-background-image: url("/Sample/Images/background.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 900 506;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
 }
+.combo-box{
+    -fx-border-width: 0.5px;
+    -fx-background-color: #DCF5C6;
+    -fx-border-radius: 50px;
+    -fx-background-radius:  50px;
+    -fx-font-size: 15px;
+    -fx-padding: 1px;
+    -fx-font-weight: 700;
+}
+.combo-box:hover{
+    -fx-text-fill:#DCF5C6; 
+}
+.combo-box-base:hover{
+    -fx-border-color: green;
+}
+.combo-box .list-view{
+    -fx-border-width: 0.5px;
+    -fx-background-color: #DCF5C6;
+    -fx-border-radius: 50px;
+    -fx-background-radius:  50px;
+    -fx-font-size: 15px;
+    -fx-padding: 1px;
+    -fx-font-weight: 700;
+}
+.combo-box .list-view .list-ce:filled{
+    -fx-text-fill: #DCF5C6;
+    -fx-font-size: 12px;
+        -fx-font-weight: 700;
+
+}
+.text-field {
+    -fx-background-color: #DCF5C6;
+    -fx-border-radius: 50px;
+    -fx-background-radius:  50px;
+    -fx-font-size: 15px;
+    -fx-padding: 1px;
+    -fx-font-weight: 700;
+}
+
+

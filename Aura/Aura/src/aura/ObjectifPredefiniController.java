@@ -84,49 +84,44 @@ public class ObjectifPredefiniController implements Initializable {
         ServiceObjectifPred sp = new ServiceObjectifPred();
         ObjectifPred o = new ObjectifPred();
         ServiceAdmin sa = new ServiceAdmin();
-//        Alert aa = new Alert(Alert.AlertType.ERROR);
-//            aa.setTitle("Attention");
-//            aa.setContentText("Vous devez saisir la description de l'objectif");
-//            aa.setHeaderText(null);
-//            aa.showAndWait();
-//        if (tfdesc_pred.getText() == null) {
-//            Alert a = new Alert(Alert.AlertType.ERROR);
-//            a.setTitle("Attention");
-//            a.setContentText("Vous devez saisir la description de l'objectif");
-//            a.setHeaderText(null);
-//            a.showAndWait();
-//        } else if (tfduree_pred.getText() == null) {
-//            Alert a = new Alert(Alert.AlertType.ERROR);
-//            a.setTitle("Attention");
-//            a.setContentText("Vous devez proposez une durée propre à l'objectif");
-//            a.setHeaderText(null);
-//            a.showAndWait();
-//        } else if (tfduree_pred.getText().equals(null) && tfdesc_pred.getText().equals(null)) {
-//            Alert a = new Alert(Alert.AlertType.ERROR);
-//            a.setTitle("Attention");
-//            a.setContentText("Vous devez effectuer la saisie avant d'ajouter");
-//            a.setHeaderText(null);
-//            a.showAndWait();
-//        } else {
-//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//            alert.setTitle("Confirmation ajout objectif prédéfini");
-//            alert.setHeaderText("Etes vous sur de vouloir ajouter cet objectif?");
-//
-//            Optional<ButtonType> result = alert.showAndWait();
-//            if (result.get() == ButtonType.OK) {
-//                o.setDescriptionP(tfdesc_pred.getText());
-//                o.setDureeP(Integer.parseInt(tfduree_pred.getText()));
-//                o.setAdmin(sa.load_data_modify("12345670"));
-//                sp.ajouterObjectifPred(o);
-//                afficherObjectifsPred();
-//                tfdesc_pred.setText(null);
-//                tfduree_pred.setText(null);
-//                new animatefx.animation.Swing(btnAjouterPred).play();
-//            } else {
-//                System.out.println("Cancel");
-//            }
+        if (tfdesc_pred.getText() == null) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Attention");
+            a.setContentText("Vous devez saisir la description de l'objectif");
+            a.setHeaderText(null);
+            a.showAndWait();
+        } else if (tfduree_pred.getText() == null) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Attention");
+            a.setContentText("Vous devez proposez une durée propre à l'objectif");
+            a.setHeaderText(null);
+            a.showAndWait();
+        } else if (tfduree_pred.getText().equals(null) && tfdesc_pred.getText().equals(null)) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Attention");
+            a.setContentText("Vous devez effectuer la saisie avant d'ajouter");
+            a.setHeaderText(null);
+            a.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation ajout objectif prédéfini");
+            alert.setHeaderText("Etes vous sur de vouloir ajouter cet objectif?");
 
- //       }
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                o.setDescriptionP(tfdesc_pred.getText());
+                o.setDureeP(Integer.parseInt(tfduree_pred.getText()));
+                o.setAdmin(sa.load_data_modify("12345670"));
+                sp.ajouterObjectifPred(o);
+                afficherObjectifsPred();
+                tfdesc_pred.setText(null);
+                tfduree_pred.setText(null);
+                new animatefx.animation.Swing(btnAjouterPred).play();
+            } else {
+                System.out.println("Cancel");
+            }
+
+        }
     }
 
     private void afficherObjectifsPred() {
@@ -141,28 +136,47 @@ public class ObjectifPredefiniController implements Initializable {
 
     @FXML
     private void modifierPred(ActionEvent event) {
-        ServiceObjectifPred sp = new ServiceObjectifPred();
-        ObjectifPred o = new ObjectifPred();
-        ServiceAdmin sa = new ServiceAdmin();
-        o.setIdP(sp.getIdParDesc(tfdesc_pred.getText()));
-        o.setDescriptionP(tfdesc_pred.getText());
-        o.setDureeP(Integer.parseInt(tfduree_pred.getText()));
-        sp.modifierObjectifPred(o);
-        afficherObjectifsPred();
-        tfdesc_pred.setText(null);
-        tfduree_pred.setText(null);
-        new animatefx.animation.Swing(btnModifierPred).play();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation modification");
+        alert.setHeaderText("Etes vous sur de modifier cet objectif prédéfini?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+
+            ServiceObjectifPred sp = new ServiceObjectifPred();
+            ObjectifPred o = new ObjectifPred();
+            ServiceAdmin sa = new ServiceAdmin();
+            o.setIdP(sp.getIdParDesc(tfdesc_pred.getText()));
+            o.setDescriptionP(tfdesc_pred.getText());
+            o.setDureeP(Integer.parseInt(tfduree_pred.getText()));
+            sp.modifierObjectifPred(o);
+            afficherObjectifsPred();
+            tfdesc_pred.setText(null);
+            tfduree_pred.setText(null);
+            new animatefx.animation.Swing(btnModifierPred).play();
+        } else {
+            System.out.println("Cancel");
+        }
 
     }
 
     @FXML
     private void supprimerPred(ActionEvent event) {
-        ServiceObjectifPred sp = new ServiceObjectifPred();
-        sp.supprimerObjectifPred(sp.getIdParDesc(tfdesc_pred.getText()));
-        afficherObjectifsPred();
-        tfdesc_pred.setText(null);
-        tfduree_pred.setText(null);
-        new animatefx.animation.Swing(btnSupprimerPred).play();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation suppression");
+        alert.setHeaderText("Etes vous sur de supprimer cet objectif prédéfini?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            ServiceObjectifPred sp = new ServiceObjectifPred();
+            sp.supprimerObjectifPred(sp.getIdParDesc(tfdesc_pred.getText()));
+            afficherObjectifsPred();
+            tfdesc_pred.setText(null);
+            tfduree_pred.setText(null);
+            new animatefx.animation.Swing(btnSupprimerPred).play();
+        } else {
+            System.out.println("Cancel");
+        }
     }
 
     @FXML
