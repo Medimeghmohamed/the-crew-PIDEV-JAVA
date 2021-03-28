@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 25 mars 2021 à 09:56
+-- Généré le : Dim 28 mars 2021 à 17:29
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `approuver` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `art2` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `article`
@@ -91,7 +91,27 @@ INSERT INTO `article` (`id`, `titre`, `theme`, `nom_auteur`, `date`, `article`, 
 (18, '', '', '', 'null', 'Exam_ASSEU_15052015.pdf', '10', 1),
 (19, '', '', '', 'null', 'DS_Adm_2014-2015 V2 copy 2.pdf', '10', 0),
 (20, '', '', '', 'null', 'DS-ASSEU2015-f.pdf', '10', 1),
-(21, '', '', '', 'null', 'DS-ASSEU2015-f.pdf', '10', 0);
+(21, '', '', '', 'null', 'DS-ASSEU2015-f.pdf', '10', 0),
+(22, '', '', '', 'null', 'DS_Adm_Sec_EU 2013_2014.pdf', '10', 0),
+(23, 'a', 'a', 'a', '25/03/2021', 'DS_Adm_Sec_EU 2013_2014.pdf', '10', 1),
+(24, 'aa', 'bb', 'n', '25/03/2021', 'null', '10', 0),
+(25, 'b', 'b', 'b', '25/03/2021', 'null', '10', 0),
+(26, 'a', 'a', 'a', '25/03/2021', 'null', '10', 0),
+(27, 'a', 'a', 'a', '25/03/2021', 'null', '10', 0),
+(28, 'r', 'r', 'r', '25/03/2021', 'null', '10', 0),
+(29, 'a', 'a', 'a', '25/03/2021', 'null', '10', 0),
+(30, 'a', 'a', 'a', '25/03/2021', 'null', '10', 0),
+(31, 'a', 'a', 'a', '25/03/2021', 'null', '10', 0),
+(32, 'b', 'b', 'b', '25/03/2021', 'null', '10', 0),
+(33, 'a', 'a', 'a', '25/03/2021', 'null', '10', 0),
+(34, 'a', 'a', 'aa', '25/03/2021', 'null', '10', 0),
+(35, 'a', 'a', 'a', '25/03/2021', 'null', '10', 0),
+(36, 'a', 'a', 'a', '25/03/2021', 'null', '10', 0),
+(37, 'a', 'a', 'a', '25/03/2021', 'null', '10', 0),
+(38, 'a', 'a', 'a', '25/03/2021', 'null', '10', 0),
+(39, 'b', 'b', 'b', '25/03/2021', 'null', '10', 0),
+(40, 'b', 'b', 'b', '25/03/2021', 'null', '10', 0),
+(41, 'a', 'a', 'a', '27/03/2021', 'Unt.pdf', '10', 0);
 
 -- --------------------------------------------------------
 
@@ -123,14 +143,21 @@ CREATE TABLE IF NOT EXISTS `challenge` (
 
 DROP TABLE IF EXISTS `commentaire`;
 CREATE TABLE IF NOT EXISTS `commentaire` (
-  `id` int(16) NOT NULL,
+  `id` int(16) NOT NULL AUTO_INCREMENT,
   `id_user` varchar(255) NOT NULL,
   `id_article` int(16) NOT NULL,
   `commentaire` longtext NOT NULL,
   `date` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `com1` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `commentaire`
+--
+
+INSERT INTO `commentaire` (`id`, `id_user`, `id_article`, `commentaire`, `date`) VALUES
+(2, '10', 3, 'BBBB', '28/03/2021');
 
 -- --------------------------------------------------------
 
