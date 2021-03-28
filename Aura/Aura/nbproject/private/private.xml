@@ -3,23 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Entities/Suivi.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Interfaces/IServiceObjectif.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Services/ServiceObjectif.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Services/ServiceClient.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Entities/ObjectifPred.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Services/ServiceAdmin.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Entities/Client.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Interfaces/IServiceAdmin.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/aura/FXMLDocumentController.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Utils/MaConnexion.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Interfaces/IServiceSuivi.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Entities/User.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Services/ServiceObjectifPred.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Entities/Objectif.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Services/ServiceSuivi.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Entities/Admin.java</file>
-            <file>file:/C:/Users/Chirine/Desktop/v33/TheCrew/src/Interfaces/IServiceClient.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/Aura.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/FXMLDocument.fxml</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/style.css</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/ModifierObjController.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/MesObjectifsController1.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/ObjectifPredefiniController.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/SMSObjectif.fxml</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/SuiviObjController.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/SuiviController.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/AjouterObjController.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/MesObjectifsController.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/MainController.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/ObjactifGoogleAgenda.fxml</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/FxmlLoader.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/ObjactifGoogleAgendaController.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/ObjectifsController.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/SMSObjectifController.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/Entities/JavaMailObjectif.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/BilanController.java</file>
+            <file>file:/C:/Users/Chirine/Desktop/v4/Aura/src/aura/FXMLDocumentController.java</file>
         </group>
     </open-files>
 </project-private>

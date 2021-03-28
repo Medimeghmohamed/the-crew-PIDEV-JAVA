@@ -6,9 +6,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.ModifierObjController">
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aura.ModifierObjController">
    <children>
-      <Button fx:id="btn_retour_modifier_obj" layoutX="50.0" layoutY="31.0" mnemonicParsing="false" onAction="#Retour_modifier_obj" text="Retour" />
+      <Button fx:id="btn_retour_modifier_obj" layoutX="50.0" layoutY="45.0" mnemonicParsing="false" onAction="#Retour_modifier_obj" text="Retour" />
       <Label layoutX="220.0" layoutY="249.0" text="Réponse (X):" />
       <ComboBox fx:id="cb_rep_modifier_obj" layoutX="327.0" layoutY="247.0" onAction="#selectRep" prefHeight="26.0" prefWidth="149.0" />
       <Label layoutX="221.0" layoutY="341.0" text="Durée:" />
