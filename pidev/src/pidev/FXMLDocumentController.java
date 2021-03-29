@@ -113,8 +113,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<challenge, Integer> colniveau_challenge;
     @FXML
-    private TableColumn<challenge, Integer> colid_challenge;
-    @FXML
     private TableColumn<classement, Integer> colniveau_classement;
     @FXML
     private TableColumn<classement, Integer> colposition_classement;
@@ -211,11 +209,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<classement, Integer> colpts_classement_admin;
     @FXML
-    private TableColumn<niveau, Integer> colid_niveau_admin;
-    @FXML
     private TableColumn<niveau, String> coltitre_niveau_admin;
-    @FXML
-    private TableColumn<challenge, Integer> colid_challenge_admin;
     @FXML
     private TableColumn<challenge, String> colititre_challenge_admin;
     @FXML
@@ -237,8 +231,6 @@ public class FXMLDocumentController implements Initializable {
     private TextField nom_client_classement_admin;
     @FXML
     private TextField position_classement_admin2;
-    @FXML
-    private TextField id_niveau_admin;
     @FXML
     private Button btn_atri_challenge_admin;
     @FXML
@@ -271,6 +263,8 @@ public class FXMLDocumentController implements Initializable {
     private TableView<participation_challenge> tab_etat_client;
     @FXML
     private Button btn_stat_challenge;
+    @FXML
+    private TextField modif_niveau;
 
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -350,7 +344,7 @@ public class FXMLDocumentController implements Initializable {
         // liste_challenge.SetCollumn(sc.afficherChallenge().toString());
 
         ObservableList<challenge> Ochallenges = sc.afficherChallenge();
-        colid_challenge.setCellValueFactory(new PropertyValueFactory<challenge, Integer>("id"));
+        //colid_challenge.setCellValueFactory(new PropertyValueFactory<challenge, Integer>("id"));
         coltitre_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("titre"));
         coltype_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("type"));
         coltdescription_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("description"));
@@ -370,7 +364,7 @@ public class FXMLDocumentController implements Initializable {
         // liste_challenge.SetCollumn(sc.afficherChallenge().toString());
 
         ObservableList<challenge> Ochallenges = sc.afficherChallenge();
-        colid_challenge.setCellValueFactory(new PropertyValueFactory<challenge, Integer>("id"));
+       // colid_challenge.setCellValueFactory(new PropertyValueFactory<challenge, Integer>("id"));
         coltitre_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("titre"));
         coltype_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("type"));
         coltdescription_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("description"));
@@ -402,7 +396,7 @@ public class FXMLDocumentController implements Initializable {
         // liste_challenge.SetCollumn(sc.afficherChallenge().toString());
 
         ObservableList<challenge> Ochallenges = sc.afficherChallenge();
-        colid_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colid_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
         colititre_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("titre"));
         coltype_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("type"));
         colString_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -523,14 +517,14 @@ public class FXMLDocumentController implements Initializable {
            ServiceChallenge sn = new ServiceChallenge();
          challenge n=new challenge ();
         ObservableList<challenge> Ochallenges = sn.RechercherChallenge(chercher_titre_challenge_coach.getText());
-       colid_challenge.setCellValueFactory(new PropertyValueFactory<>("id"));
+       //colid_challenge.setCellValueFactory(new PropertyValueFactory<>("id"));
         coltitre_challenge.setCellValueFactory(new PropertyValueFactory<>("titre"));
         coltype_challenge.setCellValueFactory(new PropertyValueFactory<>("type"));
         coltdescription_challenge.setCellValueFactory(new PropertyValueFactory<>("description"));
 
         coldatedebut_challenge.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
         coldatefin_challenge.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
-        coletat_challenge.setCellValueFactory(new PropertyValueFactory<>("etat"));
+       // coletat_challenge.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colniveau_challenge.setCellValueFactory(new PropertyValueFactory<>("niveau"));
         liste_challenge.setItems(Ochallenges);
     }
@@ -585,14 +579,14 @@ public class FXMLDocumentController implements Initializable {
           ServiceChallenge sn = new ServiceChallenge();
          challenge n=new challenge ();
         ObservableList<challenge> Ochallenges = sn.RechercherChallenge(titre_challenge_admin.getText());
-       colid_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
+       //colid_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
         colititre_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("titre"));
         coltype_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("type"));
         colString_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("description"));
 
         coldate_debut_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
         coldate_fin_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
-        coldetet_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("etat"));
+//        coldetet_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colniveau_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("niveau"));
         liste_challenge_admin.setItems(Ochallenges);
 
@@ -667,11 +661,12 @@ public class FXMLDocumentController implements Initializable {
         niveau n = new niveau();
         ServiceNiveau nv = new ServiceNiveau();
 
-        n = nv.recup_niveau(Integer.parseInt(id_niveau_admin.getText()));
+        n = nv.recup_niveau(modif_niveau.getText());
 
-        n.setTitre(titre_niveau_admin.getText());
+       // n.setTitre(titre_niveau_admin.getText());
 
-        nv.modifierNiveau(n);
+        nv.modifierNiveau(n,titre_niveau_admin.getText());
+         
         afficher_niveau_admin();
 
     }
@@ -682,7 +677,7 @@ public class FXMLDocumentController implements Initializable {
         ServiceNiveau nv = new ServiceNiveau();
 
         ObservableList<niveau> Oniveaux = nv.afficherNiveau();
-        colid_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colid_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
         coltitre_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("titre"));
 
         liste_niveau_admin.setItems(Oniveaux);
@@ -694,7 +689,7 @@ public class FXMLDocumentController implements Initializable {
         ServiceNiveau nv = new ServiceNiveau();
 
         ObservableList<niveau> Oniveaux = nv.afficherNiveau();
-        colid_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
+        //colid_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
         coltitre_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("titre"));
 
         liste_niveau_admin.setItems(Oniveaux);
@@ -705,7 +700,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void supprimer_niveau_admin(ActionEvent event) {
         ServiceNiveau nv = new ServiceNiveau();
-        nv.supprimerNiveau(id_niveau_admin.getText());
+        nv.supprimerNiveau(modif_niveau.getText());
         afficher_niveau_admin();
     }
     
@@ -716,7 +711,7 @@ public class FXMLDocumentController implements Initializable {
         ServiceNiveau sn = new ServiceNiveau();
          niveau n=new niveau ();
         ObservableList<niveau> Oniveau = sn.RechercherNiveau(titre_niveau_admin.getText());
-        colid_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colid_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
         coltitre_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("titre"));
         
 
@@ -751,7 +746,7 @@ public class FXMLDocumentController implements Initializable {
         // liste_challenge.SetCollumn(sc.afficherChallenge().toString());
 
         ObservableList<challenge> Ochallenges = sc.trierChallenge();
-        colid_challenge.setCellValueFactory(new PropertyValueFactory<challenge, Integer>("id"));
+      //  colid_challenge.setCellValueFactory(new PropertyValueFactory<challenge, Integer>("id"));
         coltitre_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("titre"));
         coltype_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("type"));
         coltdescription_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("description"));
@@ -821,7 +816,7 @@ public class FXMLDocumentController implements Initializable {
           ServiceNiveau nv = new ServiceNiveau();
 
         ObservableList<niveau> Oniveaux = nv.trierNiveau();
-        colid_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colid_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
         coltitre_niveau_admin.setCellValueFactory(new PropertyValueFactory<>("titre"));
 
         liste_niveau_admin.setItems(Oniveaux);
@@ -897,7 +892,7 @@ public class FXMLDocumentController implements Initializable {
         // liste_challenge.SetCollumn(sc.afficherChallenge().toString());
 
         ObservableList<challenge> Ochallenges = sc.afficherChallenge_valide();
-        colid_challenge.setCellValueFactory(new PropertyValueFactory<challenge, Integer>("id"));
+       // colid_challenge.setCellValueFactory(new PropertyValueFactory<challenge, Integer>("id"));
         coltitre_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("titre"));
         coltype_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("type"));
         coltdescription_challenge.setCellValueFactory(new PropertyValueFactory<challenge, String>("description"));

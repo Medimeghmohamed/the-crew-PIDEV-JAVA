@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="pidev.Challenge_adminController">
+   <children>
+      <TextField fx:id="titre_challenge_admin" layoutX="126.0" layoutY="179.0" />
+      <Label layoutX="80.0" layoutY="184.0" text="titre" />
+      <Button fx:id="btn_confirmer_challenge" layoutX="58.0" layoutY="244.0" mnemonicParsing="false" onAction="#confirmerChallenge_admin" prefHeight="39.0" prefWidth="123.0" text="comfirmer" />
+      <Button fx:id="btn_supp_challenge_admin" layoutX="125.0" layoutY="312.0" onAction="#supprimerChallenge_admin" prefHeight="41.0" prefWidth="112.0" text="supprimer" />
+      <Label fx:id="imd_challenge1" layoutX="133.0" layoutY="34.0" prefHeight="124.0" prefWidth="154.0" />
+      <TableView fx:id="liste_challenge_admin" layoutX="322.0" layoutY="105.0" prefHeight="633.0" prefWidth="851.0">
+         <columns>
+            <TableColumn fx:id="colniveau_challenge_admin" prefWidth="73.0" text="niveau" />
+            <TableColumn fx:id="colititre_challenge_admin" prefWidth="72.0" text="titre" />
+            <TableColumn fx:id="coltype_challenge_admin" prefWidth="93.0" text="type" />
+            <TableColumn fx:id="colString_challenge_admin" minWidth="0.0" prefWidth="183.0" text="description" />
+            <TableColumn fx:id="coldate_debut_challenge_admin" minWidth="0.0" prefWidth="121.0" text="date_debut" />
+            <TableColumn fx:id="coldate_fin_challenge_admin" prefWidth="117.0" text="date_fin" />
+            <TableColumn fx:id="colnb_participants_challenge_admin" prefWidth="125.0" text="nb_participants" />
+         </columns>
+      </TableView>
+      <Label layoutX="47.0" layoutY="46.0" text="GESTION DE CHALLENGE " />
+      <Button fx:id="btn_chercher_titre_challenge_admin" layoutX="197.0" layoutY="245.0" mnemonicParsing="false" onAction="#chercherChallenge_admin" prefHeight="38.0" prefWidth="115.0" text="rechercher" />
+      <Button fx:id="btn_stat_challenge" layoutX="133.0" layoutY="406.0" mnemonicParsing="false" onAction="#Addchart" text="show stats" />
+   </children>
+</AnchorPane>

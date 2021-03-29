@@ -38,7 +38,6 @@
                                           <Label fx:id="imd_challenge" layoutX="123.0" layoutY="24.0" prefHeight="124.0" prefWidth="154.0" />
                                           <TableView fx:id="liste_challenge" layoutX="326.0" layoutY="143.0" prefHeight="633.0" prefWidth="834.0">
                                             <columns>
-                                              <TableColumn fx:id="colid_challenge" prefWidth="38.0" text="id" />
                                               <TableColumn fx:id="coltitre_challenge" prefWidth="95.0" text="titre" />
                                                 <TableColumn fx:id="coltype_challenge" prefWidth="89.0" text="type" />
                                                 <TableColumn fx:id="coltdescription_challenge" prefWidth="222.0" text="description" />
@@ -106,7 +105,6 @@
                                           <Label fx:id="imd_challenge1" layoutX="123.0" layoutY="24.0" prefHeight="124.0" prefWidth="154.0" />
                                           <TableView fx:id="liste_challenge_admin" layoutX="326.0" layoutY="143.0" prefHeight="633.0" prefWidth="851.0">
                                              <columns>
-                                                <TableColumn fx:id="colid_challenge_admin" prefWidth="65.0" text="id" />
                                                 <TableColumn fx:id="colniveau_challenge_admin" prefWidth="73.0" text="niveau" />
                                                 <TableColumn fx:id="colititre_challenge_admin" prefWidth="72.0" text="titre" />
                                                 <TableColumn fx:id="coltype_challenge_admin" prefWidth="93.0" text="type" />
@@ -165,19 +163,18 @@
                                        <children>
                                           <TableView fx:id="liste_niveau_admin" layoutX="513.0" layoutY="72.0" prefHeight="217.0" prefWidth="145.0">
                                              <columns>
-                                                <TableColumn fx:id="colid_niveau_admin" prefWidth="75.0" text="id" />
-                                                <TableColumn fx:id="coltitre_niveau_admin" prefWidth="75.0" text="titre" />
+                                                <TableColumn fx:id="coltitre_niveau_admin" prefWidth="144.0" text="titre" />
                                              </columns>
                                           </TableView>
                                           <Label layoutX="101.0" layoutY="108.0" text="titre" />
                                           <TextField fx:id="titre_niveau_admin" layoutX="154.0" layoutY="103.0" />
                                           <Button fx:id="btn_ajout_niveau_admin" layoutX="274.0" layoutY="157.0" mnemonicParsing="false" onAction="#ajouter_niveau_admin" text="ajouter" />
-                                          <Button fx:id="btn_modif_niveau_admin" layoutX="813.0" layoutY="135.0" mnemonicParsing="false" onAction="#modifier_niveau_admin" text="modifier" />
-                                          <Button fx:id="btn_supp_niveau_admin" layoutX="922.0" layoutY="135.0" mnemonicParsing="false" onAction="#supprimer_niveau_admin" text="supprimer" />
+                                          <Button fx:id="btn_modif_niveau_admin" layoutX="274.0" layoutY="305.0" mnemonicParsing="false" onAction="#modifier_niveau_admin" text="modifier" />
+                                          <Button fx:id="btn_supp_niveau_admin" layoutX="372.0" layoutY="305.0" mnemonicParsing="false" onAction="#supprimer_niveau_admin" text="supprimer" />
                                           <Button fx:id="btn_chercher_niveau_admin" layoutX="163.0" layoutY="157.0" mnemonicParsing="false" onAction="#chercher_niveau" text="chercher" />
-                                          <Label layoutX="770.0" layoutY="82.0" text="ID" />
-                                          <TextField fx:id="id_niveau_admin" layoutX="813.0" layoutY="77.0" />
                                           <Button fx:id="btn_trier_niveau" layoutX="553.0" layoutY="305.0" mnemonicParsing="false" onAction="#trier_niveau" text="trier" />
+                                          <TextField fx:id="modif_niveau" layoutX="263.0" layoutY="258.0" />
+                                          <Label layoutX="40.0" layoutY="263.0" text="niveau a modifier ou supprimer" />
                                        </children>
                                     </AnchorPane>
                                  </content>
