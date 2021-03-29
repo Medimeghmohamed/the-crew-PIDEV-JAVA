@@ -19,7 +19,7 @@ public interface IServiceNiveau {
 
     public List<niveau> afficherNiveau();
 
-    public void modifierNiveau(niveau o);
+    public void modifierNiveau(niveau n, String tr);
 
     public void supprimerNiveau(String id);
      public ObservableList<niveau> RechercherNiveau(String tr);
