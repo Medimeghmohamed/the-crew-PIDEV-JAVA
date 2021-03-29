@@ -68,7 +68,7 @@ public class ServiceChallenge implements IServiceChallege {
                         .createStatement();
                 assert stm != null;
 
-                String query = "INSERT INTO `challenge`(`id`, `titre`, `type`, `description`, `img`, `date_debut`,`date_fin`, `nb_participants`, `etat`, `id_niveau`) "
+                String query = "INSERT INTO `challenge`(`id`, `titre`, `type`, `description`, `img`, `date_debut`,`date_fin`, `nb_participants`, `id_niveau`) "
                         + "VALUES ( NULL,'"
                         + c.getTitre() + "','"
                         + c.getType() + "','"
@@ -77,7 +77,7 @@ public class ServiceChallenge implements IServiceChallege {
                         + c.getDate_debut() + "','"
                         + c.getDate_fin() + "','"
                         + c.getNb_participants() + "','"
-                        + c.getEtat() + "','"
+                    
                         + c.getNiveau() + "')";
                 stm.executeUpdate(query);
                 System.out.println("ajout avec succes");
@@ -113,9 +113,9 @@ public class ServiceChallenge implements IServiceChallege {
                 ch.setDate_debut(rst.getDate(6));
                 ch.setDate_fin(rst.getDate(7));
                 ch.setNb_participants(rst.getInt(8));
-                ch.setEtat(rst.getString(9));
+              
                 System.out.println("hhhhhh");
-                ch.setNiveau(rst.getInt(10));
+                ch.setNiveau(rst.getInt(9));
 
             }
 
@@ -150,7 +150,7 @@ public class ServiceChallenge implements IServiceChallege {
                 c.setDate_debut(rst.getDate("date_debut"));
                 c.setDate_fin(rst.getDate("date_fin"));
                 c.setNb_participants(rst.getInt("nb_participants"));
-                c.setEtat(rst.getString("etat"));
+               
                 c.setNiveau(rst.getInt("id_niveau"));
 
                 challenges.add(c);
@@ -168,7 +168,7 @@ public class ServiceChallenge implements IServiceChallege {
         try {
             Statement st = cnx.createStatement();
 
-            String query = "UPDATE  challenge SET titre= '" + c.getTitre() + "', type = '" + c.getType() + "', description = '" + c.getDescription() + "', date_debut = '" + c.getDate_debut() + "', date_fin = '" + c.getDate_fin() + "', etat = '" + c.getEtat() + "', id_niveau = '" + c.getNiveau() + "'  WHERE id = " + c.getId() + "";
+            String query = "UPDATE  challenge SET titre= '" + c.getTitre() + "', type = '" + c.getType() + "', description = '" + c.getDescription() + "', date_debut = '" + c.getDate_debut() + "', date_fin = '" + c.getDate_fin() + "', id_niveau = '" + c.getNiveau() + "'  WHERE id = " + c.getId() + "";
             st.executeUpdate(query);
             System.out.println("modification avec succes");
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -229,8 +229,8 @@ public class ServiceChallenge implements IServiceChallege {
                 c.setDate_debut(rst.getDate("date_debut"));
                 c.setDate_fin(rst.getDate("date_fin"));
                 c.setNb_participants(rst.getInt("nb_participants"));
-                c.setEtat(rst.getString("etat"));
-                c.setNiveau(rst.getInt(10));
+               
+                c.setNiveau(rst.getInt("id_niveau"));
 
                 challenges.add(c);
             }
@@ -263,9 +263,9 @@ public class ServiceChallenge implements IServiceChallege {
                 ch.setDate_debut(rst.getDate(6));
                 ch.setDate_fin(rst.getDate(7));
                 ch.setNb_participants(rst.getInt(8));
-                ch.setEtat(rst.getString(9));
+               
 
-                ch.setNiveau(rst.getInt(10));
+                ch.setNiveau(rst.getInt(9));
                 Ochallenge.add(ch);
 
             }
@@ -316,7 +316,7 @@ public class ServiceChallenge implements IServiceChallege {
                 c.setDate_debut(rst.getDate("date_debut"));
                 c.setDate_fin(rst.getDate("date_fin"));
                 c.setNb_participants(rst.getInt("nb_participants"));
-                c.setEtat(rst.getString("etat"));
+              
                 c.setNiveau(rst.getInt("id_niveau"));
 
             }
@@ -353,7 +353,7 @@ public class ServiceChallenge implements IServiceChallege {
                 c.setDate_debut(rst.getDate("date_debut"));
                 c.setDate_fin(rst.getDate("date_fin"));
                 c.setNb_participants(rst.getInt("nb_participants"));
-                //c.setEtat(rst.getString("etat"));
+               
                 c.setNiveau(rst.getInt("id_niveau"));
 
                 challenges.add(c);
@@ -374,17 +374,18 @@ public class ServiceChallenge implements IServiceChallege {
         int nb = c.getNb_participants() + 1;
 
         try {
+            String etat ="joined";
 
             Statement st = cnx.createStatement();
-            String query = "INSERT INTO `participation_challenge`(`id`, `id_challenge`, `id_client`) " + "VALUES ( NULL ,'" + id_ch + "','" + id + "')";
+            String query = "INSERT INTO `participation_challenge`(`id`, `id_challenge`, `id_client`,`etat`) " + "VALUES ( NULL ,'" + id_ch + "','" + id + "','"+etat+"')";
             st.executeUpdate(query);
             Statement st2 = cnx.createStatement();
             String query2 = "UPDATE  challenge SET   nb_participants = '" + nb + "' WHERE id = " + id_ch + "";
             st2.executeUpdate(query2);
-            Statement st3 = cnx.createStatement();
+           /* Statement st3 = cnx.createStatement();
             String query3 = "INSERT INTO `ligne_challenge`(`id`, `id_challenge`, `etat`) " + "VALUES ( NULL ,'" + id_ch + "','" + c.getEtat() + "')";
 
-            st3.executeUpdate(query3);
+            st3.executeUpdate(query3);*/
 
             System.out.println("you joined the challenge");
 
@@ -394,7 +395,7 @@ public class ServiceChallenge implements IServiceChallege {
             alert.setContentText("you joined the challenge");
             alert.showAndWait();
         } catch (SQLException ex) {
-            System.out.println("erreur rejoidre le challenge");
+            System.out.println("erreur rejoindre le challenge");
             System.out.println(ex);
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("challenge");
@@ -428,7 +429,7 @@ public class ServiceChallenge implements IServiceChallege {
                 c.setDate_debut(rst.getDate("date_debut"));
                 c.setDate_fin(rst.getDate("date_fin"));
                 c.setNb_participants(rst.getInt("nb_participants"));
-                //c.setEtat(rst.getString("etat"));
+               
                 c.setNiveau(rst.getInt("id_niveau"));
 
                 challenges.add(c);
@@ -516,7 +517,7 @@ public class ServiceChallenge implements IServiceChallege {
                         c.setDate_debut(rst2.getDate("date_debut"));
                         c.setDate_fin(rst2.getDate("date_fin"));
                         c.setNb_participants(rst2.getInt("nb_participants"));
-                        //c.setEtat(rst.getString("etat"));
+                      
                         c.setNiveau(rst2.getInt("id_niveau"));
 
                         challenges.add(c);

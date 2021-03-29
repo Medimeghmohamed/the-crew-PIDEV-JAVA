@@ -53,6 +53,11 @@ public class ServiceNiveau {
                 alert.showAndWait();
             } else {
                 System.out.println("cnx NULL");
+                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert2.setTitle("NIVEAU");
+                alert2.setHeaderText(null);
+                alert2.setContentText("niveau non ajouté");
+                alert2.showAndWait();
             }
         } catch (SQLException ex) {
 
@@ -87,12 +92,12 @@ public class ServiceNiveau {
         return Oniveaux;
     }
 
-    public niveau recup_niveau(int id) {
+    public niveau recup_niveau(String id) {
         niveau n = new niveau();
 
         try {
             Statement st = cnx.createStatement();
-            String query = "select * FROM `niveau` WHERE id='" + id + "'";
+            String query = "select * FROM niveau WHERE titre ='" + id + "'";
             ResultSet rst = st.executeQuery(query);
             while (rst.next()) {
 
@@ -110,11 +115,11 @@ public class ServiceNiveau {
 
     }
     
-     public void modifierNiveau(niveau n) {
+     public void modifierNiveau(niveau n , String titre ) {
         try {
             Statement st = cnx.createStatement();
            
-            String query = "UPDATE  niveau SET titre= '" + n.getTitre()+ "'  WHERE id = " + n.getId()+ "";
+            String query = "UPDATE  niveau SET titre= '" + titre+"'  WHERE titre = '" + n.getTitre()+ "'";
             st.executeUpdate(query);
             System.out.println("modification avec succes");
              Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -129,10 +134,10 @@ public class ServiceNiveau {
     }
        public void supprimerNiveau(String id) {
        
-       int Id=Integer.parseInt(id);
+//       int Id=Integer.parseInt(id);
         try {
             Statement st = cnx.createStatement();
-            String query = "DELETE FROM `niveau` WHERE id = " + Id + "";
+            String query = "DELETE FROM `niveau` WHERE titre = '" + id + "'";
             st.executeUpdate(query);
             System.out.println("suppression avec succes");
              Alert alert = new Alert(Alert.AlertType.INFORMATION);
