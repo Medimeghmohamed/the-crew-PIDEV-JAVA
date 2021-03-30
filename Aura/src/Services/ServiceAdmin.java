@@ -36,7 +36,7 @@ public class ServiceAdmin implements IserviceAdmin {
         try {
             stm = cnx.createStatement();
 
-            String query = "INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`,`picture`) VALUES ('" + a.getId() + "','" + a.getNom() + "','" + a.getPrenom() + "','" + a.getEmail() + "','" + a.getPassword() + "','" + a.getTel() + "','" + "" + "','" + "" + " ','Admin','"+a.getPicture()+"')";
+            String query = "INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`) VALUES ('" + a.getId() + "','" + a.getNom() + "','" + a.getPrenom() + "','" + a.getEmail() + "','" + a.getPassword() + "','" + a.getTel() + "','" + "" + "','" + "" + " ','Admin')";
 
             stm.executeUpdate(query);
 
@@ -148,8 +148,6 @@ public class ServiceAdmin implements IserviceAdmin {
 
                 a.setTel(rst.getString("tel"));
                 a.setRole(rst.getString("role"));
-                a.setRme(rst.getString("rme"));
-                a.setPicture(rst.getString("picture"));
 
             }
         } catch (SQLException ex) {
@@ -180,8 +178,6 @@ public class ServiceAdmin implements IserviceAdmin {
                 a.setPassword(rst.getString("password"));
                 a.setTel(rst.getString("tel"));
                 a.setRole(rst.getString("role"));
-                a.setRme(rst.getString("rme"));
-                a.setPicture(rst.getString("picture"));
 
             }
         } catch (SQLException ex) {

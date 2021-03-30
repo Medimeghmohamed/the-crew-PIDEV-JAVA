@@ -36,7 +36,7 @@ public class ServiceClient implements IServiceClient {
         try {
             stm = cnx.createStatement();
 
-            String query = "	INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`,`picture`) VALUES ('" + cl.getId() + "','" + cl.getNom() + "','" + cl.getPrenom() + "','" + cl.getEmail() + "','" + cl.getPassword() + "','" + cl.getTel() + "','" + "" + "','" + cl.getAdresse() + " ','Client','"+cl.getPicture()+"')";
+            String query = "	INSERT INTO `user`(`id`, `nom`, `prenom`, `email`, `password`, `tel`,`specialite`,`adresse`,`role`) VALUES ('" + cl.getId() + "','" + cl.getNom() + "','" + cl.getPrenom() + "','" + cl.getEmail() + "','" + cl.getPassword() + "','" + cl.getTel() + "','" + "" + "','" + cl.getAdresse() + " ','Client')";
 
             stm.executeUpdate(query);
 
@@ -94,8 +94,6 @@ public class ServiceClient implements IServiceClient {
                 c.setTel(rst.getString("tel"));
                 c.setAdresse(rst.getString("adresse"));
                 c.setRole(rst.getString("role"));
-                c.setRme(rst.getString("rme"));
-                c.setPicture(rst.getString("picture"));
 
             }
         } catch (SQLException ex) {
@@ -123,9 +121,6 @@ public class ServiceClient implements IServiceClient {
                 c.setPassword(rst.getString("password"));
                 c.setTel(rst.getString("tel"));
                 c.setAdresse(rst.getString("adresse"));
-                c.setRole(rst.getString("role"));
-                c.setRme(rst.getString("rme"));
-                c.setPicture(rst.getString("picture"));
 
             }
         } catch (SQLException ex) {
@@ -154,7 +149,6 @@ public class ServiceClient implements IServiceClient {
                 cl.setPassword(rst.getString("password"));
                 cl.setTel(rst.getString("tel"));
                 cl.setAdresse(rst.getString("adresse"));
-                
 
                 Clients.add(cl);
             }
