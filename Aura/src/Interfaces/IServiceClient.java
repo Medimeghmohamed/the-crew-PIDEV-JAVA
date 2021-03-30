@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaces;
+package Interfaces;
 
-import entities.Client;
+import Entities.Client;
+import java.util.List;
 
 /**
  *
@@ -22,5 +23,9 @@ public interface IServiceClient {
     public Client load_user_name(String id);
 
     public void supprimerClient(String id);
+
+    public List<Client> afficherClient();
+
+    public List<Client> rechercherClient(String id, String critere);
 
 }
