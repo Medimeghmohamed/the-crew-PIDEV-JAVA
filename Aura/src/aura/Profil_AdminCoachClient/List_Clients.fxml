@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.Profil_AdminCoachClient.List_ClientsController">
+   <children>
+      <Button fx:id="envoyer_mail_client" layoutX="324.0" layoutY="643.0" mnemonicParsing="false" onAction="#envoyer_mail_client" prefHeight="24.0" prefWidth="106.0" text="Envoyer " textFill="#b20f0f">
+         <font>
+            <Font name="Maiandra GD" size="14.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tab_clients" layoutX="124.0" layoutY="185.0" onMousePressed="#click_tab_clients" prefHeight="350.0" prefWidth="688.0" styleClass="TextField">
+         <columns>
+            <TableColumn fx:id="tab_id_cl" prefWidth="96.79998588562012" text="CIN" />
+            <TableColumn fx:id="nom_id_cl" prefWidth="92.00000762939453" text="NOM" />
+            <TableColumn fx:id="prenom_id_cl" minWidth="8.0" prefWidth="95.99993896484375" text="PRENOM" />
+            <TableColumn fx:id="email_id_cl" prefWidth="161.60003662109375" text="EMAIL" />
+            <TableColumn fx:id="tel_id_cl" prefWidth="117.59994506835938" text="TEL" />
+            <TableColumn fx:id="adresse_id_cl" prefWidth="120.0" text="ADRESSE" />
+         </columns>
+      </TableView>
+      <TextField fx:id="object_mail_client" layoutX="121.0" layoutY="546.0" prefHeight="26.0" prefWidth="205.0" styleClass="TextField" />
+      <TextArea fx:id="subject_mail_client" layoutX="124.0" layoutY="573.0" prefHeight="98.0" prefWidth="200.0" styleClass="TextField" />
+      <Button fx:id="envoyer_mail_client0" layoutX="672.0" layoutY="535.0" mnemonicParsing="false" onAction="#envoyer_mail_client0" prefHeight="46.0" prefWidth="140.0" text="Envoyer Mail" textFill="#b20f0f">
+         <font>
+            <Font name="Maiandra GD" size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="recherche_client_a" layoutX="543.0" layoutY="161.0" onKeyReleased="#recherche_client_a" styleClass="TextField" />
+      <ComboBox fx:id="combo_critere_rech_client" layoutX="692.0" layoutY="161.0" prefHeight="26.0" prefWidth="119.0" promptText="Critere" styleClass="TextField" />
+      <Hyperlink fx:id="reduire_mail_client" layoutX="335.0" layoutY="547.0" onAction="#reduire_mail_client" styleClass="label" stylesheets="@Style.css" text="Reduire" textFill="WHITE" />
+      <Label layoutX="67.0" layoutY="46.0" opacity="0.42" prefHeight="68.0" prefWidth="820.0" style="-fx-background-color: #D3D3D3;" />
+      <Button fx:id="mes_informations_nav" layoutX="67.0" layoutY="53.0" mnemonicParsing="false" onAction="#mes_informations_nav" prefHeight="54.0" prefWidth="181.0" style="-fx-background-color: #D3D3D3;" text="Mes Informations">
+         <font>
+            <Font name="MS Reference Sans Serif" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="liste_des_admins_nav" layoutX="249.0" layoutY="53.0" mnemonicParsing="false" onAction="#liste_des_admins_nav" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: #D3D3D3;" text="Liste des admins">
+         <font>
+            <Font name="MS Reference Sans Serif" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="liste_des_coachs_nav" layoutX="401.0" layoutY="53.0" mnemonicParsing="false" onAction="#liste_des_coachs_nav" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: #D3D3D3;" text="Liste des coachs">
+         <font>
+            <Font name="MS Reference Sans Serif" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="liste_des_clients_nav" layoutX="553.0" layoutY="53.0" mnemonicParsing="false" onAction="#liste_des_clients_nav" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: #D3D3D3;" text="Liste des clients">
+         <font>
+            <Font name="MS Reference Sans Serif" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="ajouter_admin_nav" layoutX="705.0" layoutY="53.0" mnemonicParsing="false" onAction="#ajouter_admin_nav" prefHeight="54.0" prefWidth="181.0" style="-fx-background-color: #D3D3D3;" text="Ajouter un admin">
+         <font>
+            <Font name="MS Reference Sans Serif" size="12.0" />
+         </font>
+      </Button>
+      <MenuButton fx:id="menu_user" contentDisplay="RIGHT" layoutX="895.0" layoutY="132.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="38.0" prefWidth="42.0" textAlignment="RIGHT">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#supprimer_moncompte" style="-fx-text-fill: #000000;" text="Supprimer mon compte" />
+            <MenuItem mnemonicParsing="false" onAction="#modifier_picture" style="-fx-text-fill: #000000;" text="Modifier ma photo de profil" />
+            <MenuItem fx:id="rme_disable" mnemonicParsing="false" onAction="#rme_disable" style="-fx-text-fill: #000000;" text="Desactiver l'option Se souvenir de moi" />
+            <MenuItem fx:id="activate_sms" mnemonicParsing="false" onAction="#activate_sms" style="-fx-text-fill: #000000;" text="Activer la validation en deux étapes" />
+            <MenuItem fx:id="desctivate_sms" mnemonicParsing="false" onAction="#desctivate_sms" style="-fx-text-fill: #000000;" text="Desactiver la validation en deux étapes" />
+         </items>
+      </MenuButton>
+      <Circle fx:id="picture_user" fill="DODGERBLUE" layoutX="887.0" layoutY="151.0" radius="34.0" stroke="BLACK" strokeType="INSIDE" />
+   </children>
+</AnchorPane>

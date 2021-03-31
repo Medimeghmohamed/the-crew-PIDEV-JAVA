@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.Profil_AdminCoachClient.HomeAdminController">
+    <children>
+      <TextField fx:id="nom_am" layoutX="48.0" layoutY="132.0" prefHeight="38.0" prefWidth="222.0" promptText="NOM" styleClass="TextField" />
+      <TextField fx:id="prenom_am" layoutX="48.0" layoutY="188.0" prefHeight="38.0" prefWidth="222.0" promptText="PRENOM" styleClass="TextField" />
+      <TextField fx:id="email_am" layoutX="48.0" layoutY="244.0" onKeyReleased="#verif_email" prefHeight="38.0" prefWidth="222.0" promptText="EMAIL" styleClass="TextField" />
+      <TextField fx:id="tel_am" layoutX="48.0" layoutY="300.0" onKeyReleased="#verif_tel" prefHeight="38.0" prefWidth="222.0" promptText="Numéro de téléphone" styleClass="TextField" />
+      <PasswordField fx:id="c_password_am" layoutX="48.0" layoutY="578.0" onKeyReleased="#verif_c_password" prefHeight="39.0" prefWidth="222.0" promptText="Confimer Mot De Passe" styleClass="PasswordField" />
+      <PasswordField fx:id="password_am" layoutX="48.0" layoutY="523.0" onKeyReleased="#verif_password" prefHeight="38.0" prefWidth="222.0" promptText="Mot De Passe" styleClass="PasswordField" />
+      <Button fx:id="modifier_admin" layoutX="255.0" layoutY="354.0" mnemonicParsing="false" onAction="#modifier_admin" prefHeight="38.0" prefWidth="106.0" text="Modifier" textFill="#b20f0f">
+         <font>
+            <Font name="Maiandra GD" size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="verif_email_label_am" layoutX="48.0" layoutY="282.0" prefHeight="18.0" prefWidth="360.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font></Label>
+      <Label fx:id="verif_c_password_am" layoutX="49.0" layoutY="616.0" prefHeight="18.0" prefWidth="412.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font></Label>
+      <Label fx:id="verif_tel_am" layoutX="48.0" layoutY="334.0" prefHeight="18.0" prefWidth="222.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font></Label>
+      <Hyperlink fx:id="modifier_password_visibilite" layoutX="38.0" layoutY="409.0" onAction="#modifier_password_visibilite" prefHeight="23.0" prefWidth="194.0" styleClass="label" text="Modifier Mot De Passe" textFill="WHITE" underline="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Hyperlink>
+      <Button fx:id="modifier_password_button" layoutX="250.0" layoutY="625.0" mnemonicParsing="false" onAction="#modifier_password" prefHeight="19.0" prefWidth="114.0" text="Modifier" textFill="#b20f0f">
+         <font>
+            <Font name="Maiandra GD" size="14.0" />
+         </font>
+      </Button>
+      <PasswordField fx:id="old_password_am" layoutX="48.0" layoutY="464.0" onKeyReleased="#check_old_password" prefHeight="38.0" prefWidth="222.0" promptText="Ancien Mot De Passe" styleClass="PasswordField" />
+      <Label fx:id="old_password_label" layoutX="48.0" layoutY="501.0" prefHeight="18.0" prefWidth="308.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font></Label>
+      <Label fx:id="verif_tel_bd_label1" layoutX="288.0" layoutY="309.0" prefHeight="18.0" prefWidth="176.0" textFill="WHITE" />
+      <Label fx:id="verif_email_bd_label1" layoutX="270.0" layoutY="254.0" prefHeight="18.0" prefWidth="176.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font></Label>
+      <Label fx:id="password_same_label" layoutX="48.0" layoutY="561.0" prefHeight="18.0" prefWidth="342.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font></Label>
+      <PieChart fx:id="stats_users" layoutX="421.0" layoutY="172.0" prefHeight="273.0" prefWidth="373.0" stylesheets="@Style.css/" />
+      <MenuButton fx:id="menu_user" contentDisplay="RIGHT" layoutX="895.0" layoutY="132.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="38.0" prefWidth="42.0" textAlignment="RIGHT">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#supprimer_moncompte" style="-fx-text-fill: #000000;" text="Supprimer mon compte" />
+            <MenuItem mnemonicParsing="false" onAction="#modifier_picture" style="-fx-text-fill: #000000;" text="Modifier ma photo de profil" />
+            <MenuItem fx:id="rme_disable" mnemonicParsing="false" onAction="#rme_disable" style="-fx-text-fill: #000000;" text="Desactiver l'option Se souvenir de moi" />
+            <MenuItem fx:id="activate_sms" mnemonicParsing="false" onAction="#activate_sms" style="-fx-text-fill: #000000;" text="Activer la validation en deux étapes" />
+            <MenuItem fx:id="desctivate_sms" mnemonicParsing="false" onAction="#desctivate_sms" style="-fx-text-fill: #000000;" text="Desactiver la validation en deux étapes" />
+         </items>
+      </MenuButton>
+      <Circle fx:id="picture_user" fill="DODGERBLUE" layoutX="887.0" layoutY="151.0" radius="34.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label layoutX="66.0" layoutY="46.0" opacity="0.42" prefHeight="68.0" prefWidth="820.0" style="-fx-background-color: #D3D3D3;" />
+      <Button fx:id="mes_informations_nav" layoutX="66.0" layoutY="53.0" mnemonicParsing="false" onAction="#mes_informations_nav" prefHeight="54.0" prefWidth="181.0" style="-fx-background-color: #D3D3D3;" text="Mes Informations">
+         <font>
+            <Font name="MS Reference Sans Serif" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="liste_des_coachs_nav" layoutX="400.0" layoutY="53.0" mnemonicParsing="false" onAction="#liste_des_coachs_nav" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: #D3D3D3;" text="Liste des coachs">
+         <font>
+            <Font name="MS Reference Sans Serif" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="liste_des_admins_nav" layoutX="248.0" layoutY="53.0" mnemonicParsing="false" onAction="#liste_des_admins_nav" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: #D3D3D3;" text="Liste des admins">
+         <font>
+            <Font name="MS Reference Sans Serif" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="liste_des_clients_nav" layoutX="552.0" layoutY="53.0" mnemonicParsing="false" onAction="#liste_des_clients_nav" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: #D3D3D3;" text="Liste des clients">
+         <font>
+            <Font name="MS Reference Sans Serif" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="ajouter_admin_nav" layoutX="704.0" layoutY="53.0" mnemonicParsing="false" onAction="#ajouter_admin_nav" prefHeight="54.0" prefWidth="181.0" style="-fx-background-color: #D3D3D3;" text="Ajouter un admin">
+         <font>
+            <Font name="MS Reference Sans Serif" size="12.0" />
+         </font>
+      </Button>
+      <Text fx:id="verif_password_label_am" fill="WHITE" layoutX="277.0" layoutY="517.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="346.9367218017578">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="16.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>
