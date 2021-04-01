@@ -26,32 +26,13 @@ public interface IserviceCoach {
 
     public List<Coach> afficherCoach_Non();
 
-    public List<String> afficherCoach_combobx();
 
     public Coach load_data_modify(String id);
-
-    public boolean test_Cin(String cin);
-
-    public boolean test_Tel(String tel);
-
-    public boolean test_Email(String cin);
-
-    public boolean test_Password(String password);
-
-    public boolean verifier_id_email_bd(String id, String email);
-
-    public void modifier_password(String id, String password);
-
-    public boolean verifier_data(String id, String password);
-
-    public boolean verifier_id_bd(String id);
 
     public Coach load_user_name(String id);
 
     public List<Coach> rechercherCoach(String id);
 
-    public boolean verifier_etat_coach(String id);
 
-    public List<String> afficherCoach_combobx_etat();
 
 }

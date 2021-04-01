@@ -27,25 +27,14 @@ public interface IserviceAdmin {
 
     public Admin load_data_modify(String id);
 
-    public boolean test_Cin(String cin);
-
-    public boolean test_Tel(String tel);
-
-    public boolean test_Email(String cin);
-
-    public boolean test_Password(String password);
-
-    public boolean verifier_id_email_bd(String id, String email);
-
-    public void modifier_password(String id, String password);
-
-    public boolean verifier_data(String id, String password);
-
-    public boolean verifier_id_bd(String id);
-
     public Admin load_user_name(String id);
 
-    public List<Admin> rechercherAdmin(String id);
-            public void accepter_coach(String id) ;
+    public List<Admin> rechercherAdmin(String id, String critere);
+
+    public void accepter_coach(String id);
+
+    public void rejeter_coach(String id);
+
+    public boolean verif_super_admin(String id);
 
 }
