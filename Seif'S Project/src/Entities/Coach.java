@@ -9,92 +9,44 @@ package Entities;
  *
  * @author SeifBS
  */
-public class Coach {
+public class Coach extends User {
 
-    private String id;
-    private String nom;
-    private String prenom;
-    private String email;
-    private String password;
-    private String tel;
     private String specialite;
 
     public Coach() {
     }
 
-    @Override
+    public Coach(String id, String nom, String prenom, String email, String password, String tel, String role, String specialite,String rme,String picture,String sms) {
+        super(id, nom, prenom, email, password, tel, role,rme,picture,sms);
+
+        this.specialite = specialite;
+    }
+
     public String toString() {
-        return "Coach{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", password=" + password + ", tel=" + tel + ", specialite=" + specialite + '}';
+        return  nom+" "+prenom ;
     }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    
 
     public void setSpecialite(String specialite) {
         this.specialite = specialite;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-   
-
     public String getSpecialite() {
         return specialite;
     }
 
-    public Coach(String id, String nom, String prenom, String email, String password, String tel, String specialite) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.password = password;
-        this.tel = tel;
-        this.specialite = specialite;
+    public boolean equals(Coach a) {
+        boolean id = this.getId().equals(a.getId());
+        boolean nom = this.getNom().equals(a.getNom());
+        boolean prenom = this.getPrenom().equals(a.getPrenom());
+        boolean email = this.getEmail().equals(a.getEmail());
+        boolean tel = this.getTel().equals(a.getTel());
+        boolean spec = this.getSpecialite().equals(a.getSpecialite());
+
+        if (id == true && nom == true && prenom == true && email == true && tel == true&&spec==true) {
+            return true;
+        }
+
+        return false;
     }
 
 }
