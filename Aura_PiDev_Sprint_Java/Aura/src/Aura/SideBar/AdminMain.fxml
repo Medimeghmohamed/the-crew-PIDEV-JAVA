@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="718.0" prefWidth="1182.0" styleClass="root" stylesheets="@Style.css/" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.SideBar.AdminMainController">
+   <children>
+      <BorderPane fx:id="mainpane" layoutX="227.0" layoutY="37.0" prefHeight="686.0" prefWidth="954.0" stylesheets="@Style.css/" />
+      <VBox prefHeight="727.0" prefWidth="227.0">
+         <children>
+            <Circle fx:id="image_admin" fill="DODGERBLUE" radius="105.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="name_admin" alignment="TOP_CENTER" prefHeight="18.0" prefWidth="225.0" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="log_out" alignment="TOP_CENTER" onAction="#log_out_button" prefHeight="38.0" prefWidth="222.0" text="Se deconnecter" textAlignment="CENTER" textFill="#6c6fe8">
+               <font>
+                  <Font name="Bodoni MT Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <SVGPath content="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" mouseTransparent="true" styleClass="icon" />
+               </graphic>
+            </Hyperlink>
+            <Button fx:id="activite_button_main" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="20.0" onAction="#activite_button_main" prefHeight="40.0" prefWidth="227.0" styleClass="drawer-item" text="Activités" />
+            <Button fx:id="mes_objectifs" alignment="CENTER" graphicTextGap="20.0" onAction="#therapie_button_main" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Thérapies" />
+            <Button alignment="CENTER" graphicTextGap="20.0" onAction="#challenge_button" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Challenges" />
+            <Button alignment="CENTER" graphicTextGap="20.0" onAction="#classement_button" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Classement" />
+            <Button alignment="CENTER" graphicTextGap="20.0" layoutX="10.0" layoutY="399.0" onAction="#niveau_button" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Niveau" />
+            <Button fx:id="objectif_button" alignment="TOP_CENTER" graphicTextGap="20.0" mnemonicParsing="false" onAction="#objectif_button" onMouseClicked="#dashboard" prefHeight="40.0" prefWidth="282.0" styleClass="drawer-item" text="Objectifs" />
+            <Button fx:id="article_Button" alignment="TOP_CENTER" graphicTextGap="20.0" onAction="#article_Button" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Articles" />
+            <Button alignment="TOP_CENTER" graphicTextGap="20.0" onAction="#contact_button" prefHeight="40.0" prefWidth="229.0" styleClass="drawer-item" text="Contact" />
+            <Button fx:id="Profil_Admin" alignment="TOP_CENTER" graphicTextGap="20.0" onAction="#Profil_Admin" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Modifier Profil" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

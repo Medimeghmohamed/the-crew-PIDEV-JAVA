@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="644.0" prefWidth="913.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.therapyActivity.PropoAdTherapieController">
+   <children>
+      <AnchorPane fx:id="tabpropoact" layoutX="31.0" layoutY="72.0" minHeight="0.0" minWidth="0.0" prefHeight="540.0" prefWidth="856.0">
+         <children>
+            <TableView fx:id="tabth1" layoutX="14.0" layoutY="31.0" prefHeight="333.0" prefWidth="763.0" styleClass="table-row">
+               <columns>
+                  <TableColumn fx:id="cid1" prefWidth="75.0" text="Id" visible="false" />
+                  <TableColumn fx:id="cidcoach1" prefWidth="153.0" text="Coach" />
+                  <TableColumn fx:id="csujet1" prefWidth="134.0" text="Sujet" />
+                  <TableColumn fx:id="cdate1" prefWidth="168.0" text="Date" />
+                  <TableColumn fx:id="cnbm1" prefWidth="151.0" text="Nombre max" />
+                  <TableColumn fx:id="clieu1" prefWidth="156.0" text="Lieu" />
+               </columns>
+            </TableView>
+            <Button layoutX="33.0" layoutY="380.0" mnemonicParsing="false" onAction="#approuverth" prefHeight="47.0" prefWidth="122.0" text="valider" />
+            <Button layoutX="33.0" layoutY="433.0" mnemonicParsing="false" onAction="#delpropoth" prefHeight="47.0" prefWidth="122.0" style="-fx-background-color: red;" text="Supprimer" textFill="#f8f8f8">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Button>
+            <Button layoutX="212.0" layoutY="380.0" mnemonicParsing="false" onAction="#mailcoach" prefHeight="62.0" prefWidth="150.0" text="Contacter coach" />
+            <TextArea fx:id="reason" layoutX="396.0" layoutY="369.0" prefHeight="129.0" prefWidth="364.0" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="44.0" layoutY="28.0" prefHeight="62.0" prefWidth="385.0" text="Liste des propositions ">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <Button fx:id="BACK" layoutX="715.0" layoutY="36.0" mnemonicParsing="false" onAction="#BACK" prefHeight="47.0" prefWidth="79.0" text="Retour" />
+      <ComboBox fx:id="triBox" editable="true" layoutX="529.0" layoutY="49.0" onAction="#trier" prefWidth="150.0" promptText="Trier" />
+   </children>
+</AnchorPane>

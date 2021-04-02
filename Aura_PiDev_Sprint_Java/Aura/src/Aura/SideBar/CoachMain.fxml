@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="718.0" prefWidth="1182.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.SideBar.CoachMainController">
+   <children>
+      <BorderPane fx:id="mainpane" layoutX="233.0" prefHeight="722.0" prefWidth="846.0" />
+      <VBox prefHeight="722.0" prefWidth="227.0">
+         <children>
+            <Circle fx:id="image_coach" fill="DODGERBLUE" radius="113.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="name_coach" alignment="TOP_CENTER" prefHeight="18.0" prefWidth="226.0" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="log_out" alignment="TOP_CENTER" onAction="#log_out_button" prefHeight="35.0" prefWidth="226.0" text="Se deconnecter" textFill="#6c6fe8">
+               <font>
+                  <Font name="Bodoni MT Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <SVGPath content="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" mouseTransparent="true" styleClass="icon" />
+               </graphic>
+            </Hyperlink>
+            <Button fx:id="home" alignment="TOP_CENTER" graphicTextGap="20.0" mnemonicParsing="false" onAction="#Activite_Coach" onMouseClicked="#dashboard" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Activités" />
+            <Button fx:id="about" alignment="TOP_CENTER" graphicTextGap="20.0" onAction="#Therapie_Coach" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Therapie" />
+            <Button alignment="TOP_CENTER" graphicTextGap="20.0" onAction="#challenge_button" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Challenges " />
+            <Button alignment="TOP_CENTER" graphicTextGap="20.0" onAction="#classement_button" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Classement" />
+            <Button fx:id="article_Button" alignment="TOP_CENTER" graphicTextGap="20.0" onAction="#article_Button" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Articles" />
+            <Button alignment="TOP_CENTER" graphicTextGap="20.0" layoutX="10.0" layoutY="401.0" onAction="#entraide_button" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Entraide" />
+            <Button alignment="TOP_CENTER" graphicTextGap="20.0" layoutX="10.0" layoutY="441.0" onAction="#contact_button" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Contactez-nous" />
+            <Button fx:id="Profil_Coach" alignment="TOP_CENTER" graphicTextGap="20.0" onAction="#Profil_Coach" prefHeight="40.0" prefWidth="596.0" styleClass="drawer-item" text="Modifier Profil" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="793.0" prefWidth="1129.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.therapyActivity.ShowadactController">
+   <children>
+      <AnchorPane layoutX="47.0" layoutY="49.0" minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="869.0">
+         <children>
+            <TableView fx:id="tabact" layoutY="82.0" prefHeight="394.0" prefWidth="869.0">
+               <columns>
+                  <TableColumn fx:id="cidcoach" prefWidth="161.0" text="Coach" />
+                  <TableColumn fx:id="cduree" prefWidth="81.0" text="Duree" />
+                  <TableColumn fx:id="cdate" prefWidth="148.0" text="Date" />
+                  <TableColumn fx:id="cnbm" prefWidth="114.0" text="Nombre max" />
+                  <TableColumn fx:id="ctype" prefWidth="96.0" text="Type" />
+                  <TableColumn fx:id="cdes" prefWidth="133.0" text="Description" />
+                  <TableColumn fx:id="clieu" minWidth="7.0" prefWidth="135.0" text="Lieu" />
+               </columns>
+            </TableView>
+            <Button layoutX="11.0" layoutY="517.0" mnemonicParsing="false" onAction="#loadtable" prefHeight="48.0" prefWidth="140.0" text="Charger" />
+            <ComboBox fx:id="combotype" layoutX="163.0" layoutY="505.0" onAction="#findtype" prefWidth="150.0" />
+            <ComboBox fx:id="comboate" layoutX="163.0" layoutY="548.0" onAction="#finddate" prefWidth="150.0" />
+            <Button layoutX="577.0" layoutY="509.0" mnemonicParsing="false" onAction="#deletefromtable" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: red;" text="Supprimer" />
+            <Button fx:id="ADD" layoutX="449.0" layoutY="32.0" mnemonicParsing="false" onAction="#ADD" prefHeight="31.0" prefWidth="163.0" text="Ajouter/Modifier" />
+            <Button fx:id="Proposition" layoutX="677.0" layoutY="32.0" mnemonicParsing="false" onAction="#Proposition" prefHeight="31.0" prefWidth="140.0" text="Proposition" />
+            <TextField fx:id="rechact" layoutX="338.0" layoutY="513.0" prefHeight="48.0" prefWidth="223.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

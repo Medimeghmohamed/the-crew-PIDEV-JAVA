@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.therapyActivity.DetailstherapyController">
+   <children>
+      <Pane layoutX="3.0" prefHeight="468.0" prefWidth="698.0" style="-fx-background-color:#DCF5C6; -fx-background-radius: 1em;" styleClass="item">
+         <children>
+            <VBox layoutX="328.0" layoutY="120.0" prefHeight="73.0" prefWidth="402.0" />
+            <Separator layoutX="415.0" layoutY="113.0" prefWidth="200.0" />
+            <Label fx:id="actDate" layoutX="466.0" layoutY="113.0" prefHeight="51.0" prefWidth="114.0" text="09/03/2021" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="446.0" layoutY="154.0" prefHeight="36.0" prefWidth="135.0" text="Date " textAlignment="CENTER" textFill="#949292" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Separator layoutX="413.0" layoutY="192.0" prefWidth="200.0" />
+            <ImageView fx:id="eventImg" fitHeight="162.0" fitWidth="277.0" layoutX="30.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/yoga-1.png" />
+               </image>
+               <effect>
+                  <DropShadow color="#0000004d" />
+               </effect>
+            </ImageView>
+            <Label fx:id="actnbp" alignment="CENTER" layoutX="433.0" layoutY="48.0" prefHeight="36.0" prefWidth="68.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="nbp" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="24.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fx:id="updateIcon" fill="#053c80" glyphName="EDIT" layoutX="889.0" layoutY="40.0" onMouseClicked="#updateEvent" size="30" visible="false" wrappingWidth="31.0" />
+            <FontAwesomeIconView fx:id="deleteIcon" fill="#797777" glyphName="TRASH" layoutX="946.0" layoutY="38.0" onMouseClicked="#deleteEvent" size="30" visible="false" wrappingWidth="31.0" />
+            <Separator layoutX="413.0" layoutY="271.0" prefWidth="200.0" />
+            <Label fx:id="location" alignment="CENTER" contentDisplay="CENTER" layoutX="460.0" layoutY="202.0" prefHeight="51.0" prefWidth="114.0" text="place" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="451.0" layoutY="235.0" prefHeight="36.0" prefWidth="135.0" text="Lieu" textAlignment="CENTER" textFill="#949292" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="Description" layoutX="88.0" layoutY="30.0" prefHeight="81.0" prefWidth="250.0" text="sujet" textFill="#4693bf" wrapText="true">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+            </Label>
+            <Rating fx:id="rateact" layoutX="24.0" layoutY="416.0" onMouseClicked="#rateact" updateOnHover="true" />
+            <JFXButton fx:id="joinact" layoutX="30.0" layoutY="339.0" onAction="#joinact" prefHeight="44.0" prefWidth="163.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" text="Participer" textFill="#fffefb">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <Separator layoutX="288.0" layoutY="28.0" orientation="VERTICAL" prefHeight="412.0" prefWidth="114.0" />
+            <Separator layoutX="346.0" layoutY="437.0" prefHeight="3.0" prefWidth="342.0" />
+            <Label fx:id="actnbmax" alignment="CENTER" layoutX="495.0" layoutY="48.0" prefHeight="36.0" prefWidth="89.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="nbmax" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="483.0" layoutY="48.0" prefHeight="36.0" prefWidth="31.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="/" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="coachname" alignment="CENTER" contentDisplay="CENTER" layoutX="461.0" layoutY="349.0" prefHeight="51.0" prefWidth="114.0" text="coach" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="455.0" layoutY="389.0" prefHeight="36.0" prefWidth="135.0" text="Coach" textAlignment="CENTER" textFill="#949292" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="26.0" layoutY="6.0" prefHeight="46.0" prefWidth="301.0" style="-fx-font-size: 30px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Therapie" textFill="#303c5d">
+         <font>
+            <Font name="Century Gothic Bold" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
