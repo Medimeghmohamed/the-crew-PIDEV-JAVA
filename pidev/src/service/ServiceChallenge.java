@@ -3,41 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package Service;
 
-import entities.challenge;
-import entities.classement;
-import entities.ligne_challenge;
-import entities.niveau;
-import entities.participation_challenge;
-import services.IServiceChallege;
-import utils.Myconnexion;
+import Entities.challenge;
+import Entities.classement;
+import Entities.participation_challenge;
+import Inerfaces.IServiceChallege;
+import utils.Connexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import static java.util.Collections.list;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import static java.util.Collections.list;
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.ListIterator;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Tab;
 
 /**
  *
@@ -48,7 +32,7 @@ public class ServiceChallenge implements IServiceChallege {
     Connection cnx;
 
     public ServiceChallenge() {
-        cnx = Myconnexion.getInstance().getConnection();
+        cnx = Connexion.getInstance().getConnection();
 
     }
 
@@ -62,7 +46,7 @@ public class ServiceChallenge implements IServiceChallege {
             if (cnx != null) {
 
                 Statement stm;
-                stm = Myconnexion
+                stm = Connexion
                         .getInstance()
                         .getConnection()
                         .createStatement();
@@ -77,7 +61,6 @@ public class ServiceChallenge implements IServiceChallege {
                         + c.getDate_debut() + "','"
                         + c.getDate_fin() + "','"
                         + c.getNb_participants() + "','"
-                    
                         + c.getNiveau() + "')";
                 stm.executeUpdate(query);
                 System.out.println("ajout avec succes");
@@ -113,7 +96,7 @@ public class ServiceChallenge implements IServiceChallege {
                 ch.setDate_debut(rst.getDate(6));
                 ch.setDate_fin(rst.getDate(7));
                 ch.setNb_participants(rst.getInt(8));
-              
+
                 System.out.println("hhhhhh");
                 ch.setNiveau(rst.getInt(9));
 
@@ -135,7 +118,7 @@ public class ServiceChallenge implements IServiceChallege {
 
         try {
 
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
 
             String query = "SELECT * FROM `challenge` ORDER BY id_niveau ";
             ResultSet rst = stm.executeQuery(query);
@@ -150,7 +133,7 @@ public class ServiceChallenge implements IServiceChallege {
                 c.setDate_debut(rst.getDate("date_debut"));
                 c.setDate_fin(rst.getDate("date_fin"));
                 c.setNb_participants(rst.getInt("nb_participants"));
-               
+
                 c.setNiveau(rst.getInt("id_niveau"));
 
                 challenges.add(c);
@@ -214,7 +197,7 @@ public class ServiceChallenge implements IServiceChallege {
 
         try {
 
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
 
             String query = "SELECT * FROM `challenge` ORDER BY date_debut";
             ResultSet rst = stm.executeQuery(query);
@@ -229,7 +212,7 @@ public class ServiceChallenge implements IServiceChallege {
                 c.setDate_debut(rst.getDate("date_debut"));
                 c.setDate_fin(rst.getDate("date_fin"));
                 c.setNb_participants(rst.getInt("nb_participants"));
-               
+
                 c.setNiveau(rst.getInt("id_niveau"));
 
                 challenges.add(c);
@@ -263,7 +246,6 @@ public class ServiceChallenge implements IServiceChallege {
                 ch.setDate_debut(rst.getDate(6));
                 ch.setDate_fin(rst.getDate(7));
                 ch.setNb_participants(rst.getInt(8));
-               
 
                 ch.setNiveau(rst.getInt(9));
                 Ochallenge.add(ch);
@@ -280,8 +262,8 @@ public class ServiceChallenge implements IServiceChallege {
 
         c.setType("valide");
         try {
-            Statement st = cnx.createStatement();
-            String query = "UPDATE  challenge SET  type = '" + c.getType() + "' WHERE id = " + c.getId() + "";
+            Statement st = Connexion.getInstance().getConnection().createStatement();
+            String query = "UPDATE  challenge SET  type = '" + c.getType() + "' WHERE id = " + c.getId() + "  ";
 
             st.executeUpdate(query);
 
@@ -301,13 +283,14 @@ public class ServiceChallenge implements IServiceChallege {
 
     public challenge recup_challenge_titre(String tr) {
         challenge c = new challenge();
+        Statement st = null;
 
         try {
-            Statement st = cnx.createStatement();
-            String query = "select * FROM `challenge` WHERE titre='" + tr + "'";
+            st = cnx.createStatement();
+            String query = "select * FROM `challenge`  WHERE titre='" + tr + "'";
             ResultSet rst = st.executeQuery(query);
             while (rst.next()) {
-
+                //challenge c = new challenge();
                 c.setId(rst.getInt("id"));
                 c.setTitre(rst.getString("titre"));
                 c.setType(rst.getString("type"));
@@ -316,7 +299,6 @@ public class ServiceChallenge implements IServiceChallege {
                 c.setDate_debut(rst.getDate("date_debut"));
                 c.setDate_fin(rst.getDate("date_fin"));
                 c.setNb_participants(rst.getInt("nb_participants"));
-              
                 c.setNiveau(rst.getInt("id_niveau"));
 
             }
@@ -338,7 +320,7 @@ public class ServiceChallenge implements IServiceChallege {
 
         try {
 
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
 
             String query = "SELECT * FROM `challenge`  WHERE type='" + s + "' ORDER BY id_niveau ";
             ResultSet rst = stm.executeQuery(query);
@@ -353,7 +335,7 @@ public class ServiceChallenge implements IServiceChallege {
                 c.setDate_debut(rst.getDate("date_debut"));
                 c.setDate_fin(rst.getDate("date_fin"));
                 c.setNb_participants(rst.getInt("nb_participants"));
-               
+
                 c.setNiveau(rst.getInt("id_niveau"));
 
                 challenges.add(c);
@@ -369,20 +351,20 @@ public class ServiceChallenge implements IServiceChallege {
 
     @Override
     public void rejoindre_challenge(challenge c, String id) {
-        c.setEtat("joined");
+        // c.setEtat("joined");
         int id_ch = c.getId();
         int nb = c.getNb_participants() + 1;
 
         try {
-            String etat ="joined";
+            String etat = "joined";
 
             Statement st = cnx.createStatement();
-            String query = "INSERT INTO `participation_challenge`(`id`, `id_challenge`, `id_client`,`etat`) " + "VALUES ( NULL ,'" + id_ch + "','" + id + "','"+etat+"')";
+            String query = "INSERT INTO `participation_challenge`(`id`, `id_challenge`, `id_client`,`etat`) " + "VALUES ( NULL ,'" + id_ch + "','" + id + "','" + etat + "')";
             st.executeUpdate(query);
             Statement st2 = cnx.createStatement();
-            String query2 = "UPDATE  challenge SET   nb_participants = '" + nb + "' WHERE id = " + id_ch + "";
+            String query2 = "UPDATE  challenge SET   nb_participants = '" + nb + "' WHERE id = '" + id_ch + "' ";
             st2.executeUpdate(query2);
-           /* Statement st3 = cnx.createStatement();
+            /* Statement st3 = cnx.createStatement();
             String query3 = "INSERT INTO `ligne_challenge`(`id`, `id_challenge`, `etat`) " + "VALUES ( NULL ,'" + id_ch + "','" + c.getEtat() + "')";
 
             st3.executeUpdate(query3);*/
@@ -392,7 +374,7 @@ public class ServiceChallenge implements IServiceChallege {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("challenge");
             alert.setHeaderText(null);
-            alert.setContentText("you joined the challenge");
+            alert.setContentText("challenge rejoint");
             alert.showAndWait();
         } catch (SQLException ex) {
             System.out.println("erreur rejoindre le challenge");
@@ -400,7 +382,7 @@ public class ServiceChallenge implements IServiceChallege {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("challenge");
             alert.setHeaderText(null);
-            alert.setContentText("you already joined the challenge");
+            alert.setContentText("challenge déjà rejoint ");
             alert.showAndWait();
         }
 
@@ -414,9 +396,9 @@ public class ServiceChallenge implements IServiceChallege {
 
         try {
 
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
 
-            String query = "SELECT * FROM `challenge`  WHERE type='" + s + "' ORDER BY id_niveau ";
+            String query = "SELECT * FROM `challenge`  WHERE type='" + s + "'  ";
             ResultSet rst = stm.executeQuery(query);
 
             while (rst.next()) {
@@ -429,7 +411,7 @@ public class ServiceChallenge implements IServiceChallege {
                 c.setDate_debut(rst.getDate("date_debut"));
                 c.setDate_fin(rst.getDate("date_fin"));
                 c.setNb_participants(rst.getInt("nb_participants"));
-               
+
                 c.setNiveau(rst.getInt("id_niveau"));
 
                 challenges.add(c);
@@ -443,9 +425,6 @@ public class ServiceChallenge implements IServiceChallege {
 
     }
 
-   
-    
-    
     public ObservableList<participation_challenge> recup_participation(String id_client) {
 
         Statement stm = null;
@@ -455,7 +434,7 @@ public class ServiceChallenge implements IServiceChallege {
 
         try {
 
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
 
             String query = "SELECT * FROM `participation_challenge`  WHERE id_client='" + id_client + "'  ";
             ResultSet rst = stm.executeQuery(query);
@@ -477,20 +456,17 @@ public class ServiceChallenge implements IServiceChallege {
 
     }
 
-    
-    
-       public ObservableList<challenge> verif_challenge2(String id) {
+    public ObservableList<challenge> verif_challenge2(String id) {
         Statement stm = null;
-          Statement stm2 = null;
+        Statement stm2 = null;
 
         participation_challenge p_c = new participation_challenge();
         ObservableList<challenge> challenges = FXCollections.observableArrayList();
-        ObservableList<ligne_challenge> l_challenges = FXCollections.observableArrayList();
         ObservableList<Integer> ids = FXCollections.observableArrayList();
 
         try {
 
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
 
             String query = "SELECT * FROM `participation_challenge`  WHERE id_client='" + id + "'  ";
             ResultSet rst = stm.executeQuery(query);
@@ -503,8 +479,8 @@ public class ServiceChallenge implements IServiceChallege {
 
                 //ids.add(id_challenge);
                 System.out.print(id_challenge);
-                  try {
-                        stm2 = Myconnexion.getInstance().getConnection().createStatement();
+                try {
+                    stm2 = Connexion.getInstance().getConnection().createStatement();
                     String query2 = "SELECT * FROM `challenge`  WHERE id = '" + id_challenge + "'";
                     ResultSet rst2 = stm2.executeQuery(query2);
                     while (rst2.next()) {
@@ -517,7 +493,7 @@ public class ServiceChallenge implements IServiceChallege {
                         c.setDate_debut(rst2.getDate("date_debut"));
                         c.setDate_fin(rst2.getDate("date_fin"));
                         c.setNb_participants(rst2.getInt("nb_participants"));
-                      
+
                         c.setNiveau(rst2.getInt("id_niveau"));
 
                         challenges.add(c);
@@ -525,69 +501,151 @@ public class ServiceChallenge implements IServiceChallege {
                 } catch (SQLException ex) {
                     Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
 
-            
         } catch (SQLException ex) {
             Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
         }
         return challenges;
 
     }
-    
-    
-    
-    
 
-    /* private void displayAppointmentNotification() {
-    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
+    public participation_challenge recup_participation(int id_challenge, String id_client) {
+        participation_challenge pc = new participation_challenge();
 
-    Timer timer = new Timer();
+        return pc;
+    }
 
-    TimerTask task;
-        task = new TimerTask() {
-            
-            @Override
-            public void run() {
-                Statement stm = null;
-                try {
-                    stm = Myconnexion.getInstance().getConnection().createStatement();
-                    String query = "SELECT * FROM `reminder`";
-                    ResultSet rst = stm.executeQuery(query);
-                    
-                    
-                    
-                    while (rst.next()) {
-                        
-                        if (rst.getString("Reminder").contentEquals(dateFormat.format(new Date()))) {
-                            reminder noti = reminder.create();
-                            noti.text("you  have a challenge named  " + rst.getString("id_challenge")+ "  ");
-                            noti.title("Reminder");
-                            noti.hideAfter(Duration.seconds(30));
-                            noti.position(Pos.BOTTOM_RIGHT);
-                            
-                            Platform.runLater(() -> {
-                                noti.show();
-                            });
-                            
-                            //Change The Appointment Status to Done
-                            ps = HospitalDB.getCon().prepareStatement("Update Appointment Set Status=? Where Patient=? and Doctor=?");
-                            ps.setString(1, "Done");
-                            ps.setString(2, rs.getString("Patient"));
-                            ps.setString(3, rs.getString("Doctor"));
-                            ps.executeUpdate();
-                            
-                            populateTable();
-                        }
-                        
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+    @Override
+    public void challenge_done(challenge c, String id_client) {
+
+        //  c.setEtat("joined");
+        int id_ch = c.getId();
+        int nb = c.getNb_participants() - 1;
+        //int nb = c.getNb_points()+25;
+        challenge ch = recup_challenge(id_ch);
+        participation_challenge pc = new participation_challenge();
+        //int nb_participants=ch.getNb_participants()-1;
+        ServiceParticipationChallenge spc = new ServiceParticipationChallenge();
+        pc = spc.verif_participation(id_client, id_ch);
+        ServiceClassement sc = new ServiceClassement();
+        classement cl = new classement();
+        cl = sc.recup_classement(id_client, c.getNiveau());
+        System.out.println(cl);
+        int pnt = cl.getNb_points() + 25;
+
+        try {
+
+            if (pc.getId() != 0) {
+                Statement st = Connexion.getInstance().getConnection().createStatement();
+                String query = "DELETE FROM `participation_challenge` WHERE id_challenge ='" + pc.getId_challenge() + "' AND id_client = '" + pc.getId_client() + "' ";
+                st.executeUpdate(query);
+
+                Statement st2 = Connexion.getInstance().getConnection().createStatement();
+                String query2 = "UPDATE  ligne_classement SET   nb_points = '" + pnt + "' WHERE id = '" + cl.getId() + "' ";
+                st2.executeUpdate(query2);
+
+                System.out.println("Félicitations le challenge est fini  ");
+
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("challenge");
+                alert.setHeaderText(null);
+                alert.setContentText("Félicitations le challenge est fini");
+                alert.showAndWait();
+
+            } else {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("challenge");
+                alert.setHeaderText(null);
+                alert.setContentText("Verfifier que le challenge est rejoint");
+                alert.showAndWait();
+            };
+
+        } catch (SQLException ex) {
+            System.out.println("ooops");
+            System.out.println(ex);
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("challenge");
+            alert.setHeaderText(null);
+            alert.setContentText("erreur finir challenge ");
+            alert.showAndWait();
+        }
+    }
+
+    public void verif_date_challenge() {
+        try {
+
+            LocalDate date = LocalDate.now();
+            Statement st = cnx.createStatement();
+            String query = "DELETE FROM `challenge` WHERE date_fin < '" + date + "'";
+            st.executeUpdate(query);
+            System.out.println("suppression avec succes");
+
+        } catch (SQLException ex) {
+            System.out.println("erreur supprimer challenge");
+            System.out.println(ex);
+        }
+
+    }
+
+    public void verif_date_participation() {
+        try {
+
+            LocalDate date = LocalDate.now();
+            Statement st = cnx.createStatement();
+
+            String query = "DELETE  FROM participation_challenge   WHERE id_challenge IN(SELECT id FROM challenge  WHERE  date_fin <'" + date + "') ";
+            st.executeUpdate(query);
+            System.out.println("1111 non ");
+
+            String query2 = " DELETE  FROM challenge WHERE date_fin < '" + date + "'";
+            st.executeUpdate(query2);
+            System.out.println("2222222222");
+            System.out.println("suppression avec succes");
+
+        } catch (SQLException ex) {
+            System.out.println("erreur supprimer challenge");
+            System.out.println(ex);
+        }
+
+    }
+
+    //+++++++++++++++++++++++++++++
+    public ObservableList<challenge> verif_date_participation_reminder(String id) {
+
+        ObservableList<challenge> challenges = FXCollections.observableArrayList();
+        try {
+
+            LocalDate date = LocalDate.now();
+            System.out.println(date);
+            Statement st = cnx.createStatement();
+
+            String query = "SELECT *  FROM challenge   WHERE id IN(SELECT id_challenge FROM participation_challenge WHERE id_client='" + id + "') AND ('"+date+"' BETWEEN date_debut AND date_fin) ";
+            ResultSet rst = st.executeQuery(query);
+            while (rst.next()) {
+                challenge c = new challenge();
+                c.setId(rst.getInt("id"));
+                c.setTitre(rst.getString("titre"));
+                c.setType(rst.getString("type"));
+                c.setDescription(rst.getString("description"));
+                // c.setImg(rst.getString(5));
+                c.setDate_debut(rst.getDate("date_debut"));
+                c.setDate_fin(rst.getDate("date_fin"));
+                c.setNb_participants(rst.getInt("nb_participants"));
+
+                c.setNiveau(rst.getInt("id_niveau"));
+                challenges.add(c);
             }
-            
-        };
-    timer.schedule(task, 0, 1 * 1000);
-}*/
+
+        } catch (SQLException ex) {
+
+            System.out.println(ex);
+        }
+
+        return challenges;
+
+    }
+
+    //++++++++++++++++++++++++++++++++
 }

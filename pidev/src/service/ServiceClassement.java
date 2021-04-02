@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package Service;
 
-import entities.classement;
-import services.IServiceClassement;
-import utils.Myconnexion;
+import Entities.classement;
+import Inerfaces.IServiceClassement;
+import utils.Connexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -19,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ListIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
@@ -32,19 +33,18 @@ public class ServiceClassement {
     Connection cnx;
 
     public ServiceClassement() {
-        cnx = Myconnexion.getInstance().getConnection();
+        cnx = Connexion.getInstance().getConnection();
 
     }
-    
 
     public void ajouterClassement(classement c) {
-      //  c.setNb_points(0);
+        //  c.setNb_points(0);
 
         try {
             if (cnx != null) {
 
                 Statement stm;
-                stm = Myconnexion
+                stm = Connexion
                         .getInstance()
                         .getConnection()
                         .createStatement();
@@ -58,7 +58,7 @@ public class ServiceClassement {
                         + c.getNb_points() + "')";
                 stm.executeUpdate(query);
                 System.out.println("ajout avec succes");
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("CLASSEMENT");
                 alert.setHeaderText(null);
                 alert.setContentText("classement ajouté");
@@ -72,10 +72,11 @@ public class ServiceClassement {
         }
 
     }
-  /*  public classement getNomClient(classement cl){
+
+    /*  public classement getNomClient(classement cl){
         try {
             Statement stm=null;
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
             String query2 = "SELECT * FROM `user` WHERE id='" +cl.getClient()+"' ";
             ResultSet rst2 = stm.executeQuery(query2);
             cl.setClient(rst2.getString("nom"));
@@ -88,16 +89,13 @@ public class ServiceClassement {
         }
         return cl;
     }*/
-    
-    
-
     public ObservableList<classement> afficherClassement() {
         Statement stm = null;
         ObservableList<classement> classements = FXCollections.observableArrayList();
 
         try {
 
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
 
             String query = "SELECT * FROM `ligne_classement` ORDER BY position ";
             ResultSet rst = stm.executeQuery(query);
@@ -120,15 +118,13 @@ public class ServiceClassement {
 
         return classements;
     }
-    
-    
 
-    public classement recup_classement(int id) {
+    public classement recup_classement(String id_client, int id_niveau) {
         classement ch = new classement();
 
         try {
             Statement st = cnx.createStatement();
-            String query = "select * FROM `ligne_classement` WHERE id='" + id + "' ";
+            String query = "select * FROM `ligne_classement` WHERE id_client='" + id_client + "' ";
             ResultSet rst = st.executeQuery(query);
             while (rst.next()) {
 
@@ -148,8 +144,6 @@ public class ServiceClassement {
         return ch;
 
     }
-    
-    
 
     public void modifierClassement(classement c) {
         try {
@@ -158,39 +152,35 @@ public class ServiceClassement {
             String query = "UPDATE  ligne_classement SET id_niveau= '" + c.getNiveau() + "', id_client = '" + c.getClient() + "', position = '" + c.getPosition() + "', nb_points = '" + c.getNb_points() + "'  WHERE id = " + c.getId() + "";
             st.executeUpdate(query);
             System.out.println("modification avec succes");
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("CLASSEMENT");
-                alert.setHeaderText(null);
-                alert.setContentText("modification avec suucces");
-                alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("CLASSEMENT");
+            alert.setHeaderText(null);
+            alert.setContentText("modification avec suucces");
+            alert.showAndWait();
         } catch (SQLException ex) {
             System.out.println("erreur modifier classement");
             System.out.println(ex);
         }
     }
-    
-    
 
-    public void supprimerClassement(String id) {
+    public void supprimerClassement(int id) {
 
-        int Id = Integer.parseInt(id);
+        //  int Id = Integer.parseInt(id);
         try {
             Statement st = cnx.createStatement();
-            String query = "DELETE FROM `ligne_classement` WHERE id = " + Id + "";
+            String query = "DELETE FROM `ligne_classement` WHERE id = " + id + "";
             st.executeUpdate(query);
             System.out.println("suppression avec succes");
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("CLASSEMENT");
-                alert.setHeaderText(null);
-                alert.setContentText("suppression avec succes");
-                alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("CLASSEMENT");
+            alert.setHeaderText(null);
+            alert.setContentText("suppression avec succes");
+            alert.showAndWait();
         } catch (SQLException ex) {
             System.out.println("erreur supprimer classement");
             System.out.println(ex);
         }
     }
-    
-    
 
     public ObservableList<classement> trierClassement() {
         Statement stm = null;
@@ -198,7 +188,7 @@ public class ServiceClassement {
 
         try {
 
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
 
             String query = "SELECT * FROM `ligne_classement` ORDER BY position  ";
             ResultSet rst = stm.executeQuery(query);
@@ -221,8 +211,6 @@ public class ServiceClassement {
         return classements;
 
     }
-    
-    
 
     public ObservableList<classement> RechercherClassement(String pos) {
 
@@ -251,8 +239,6 @@ public class ServiceClassement {
         }
         return Oclassement;
     }
-    
-    
 
     public ObservableList<classement> RechercherClassement_client(String nom) {
 
@@ -280,20 +266,17 @@ public class ServiceClassement {
         }
         return Oclassement;
     }
-    
-    
-     public ObservableList<classement> afficherClassement_client(){
-          Statement stm = null;
+
+    public ObservableList<classement> afficherClassement_client() {
+        Statement stm = null;
         ObservableList<classement> classements = FXCollections.observableArrayList();
 
         try {
-            
 
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
 
             String query = "SELECT * FROM `ligne_classement` ORDER  BY position ";
             ResultSet rst = stm.executeQuery(query);
-           
 
             while (rst.next()) {
                 classement c = new classement();
@@ -311,10 +294,146 @@ public class ServiceClassement {
         }
 
         return classements;
-     }
-     
+    }
+
     // recup client dans l'integration 
-     
-     
+    /// ajout dynamique du classement 
+    public boolean verif_classement(String id) {
+        Statement stm = null;
+
+        ResultSet rst = null;
+
+        try {
+
+            stm = Connexion.getInstance().getConnection().createStatement();
+
+            String query = "SELECT * FROM `ligne_classement` WHERE id_client='" + id + "'  ";
+
+            rst = stm.executeQuery(query);
+
+            if (rst.next()) {
+
+                return true;
+
+            }
+
+        } catch (SQLException ex) {
+
+            System.out.println(ex.getMessage());
+
+        }
+
+        return false;
+    }
+
+    public void ajouter_classement_dynamique(String id_client, int id_niveau) {
+
+        // lazem ll classement yekhou ll id_client el id_niveu men aand ll participation 
+        // wla nzid aala baadhou baaed nahi les doublons fel requete sql 
+        // wakt eli tetzed paticipation yetzed classement ama lazem kol couple (id_client,id_niveau) ykoun unique eli heya deja mawjouda fe participation 
+        Statement stm = null;
+
+        try {
+
+            stm = Connexion.getInstance().getConnection().createStatement();
+            if (!verif_classement(id_client)) {
+
+               
+
+                classement c = new classement();
+                String query = "INSERT INTO `ligne_classement`(`id`, `id_client`, `id_niveau`, `position`, `nb_points`) "
+                        + "VALUES ( NULL,'"
+                        + id_client + "','"
+                        + id_niveau + "','"
+                        + c.getPosition() + "','"
+                        + c.getNb_points() + "')";
+                stm.executeUpdate(query);
+                System.out.println("ajout avec succes");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("CLASSEMENT");
+                alert.setHeaderText(null);
+                alert.setContentText("classement ajouté");
+                alert.showAndWait();
+
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("CLASSEMENT");
+                alert.setHeaderText(null);
+                alert.setContentText("Votre nom existe dans le classement ");
+                alert.showAndWait();
+            }
+
+            System.out.println("cnx NULL");
+        } catch (SQLException ex) {
+
+            Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+      
+
+    }
+
+    public void position() {// wala nrodha void so tbadel fel bd kahaw 
+
+        int pos = 0;
+        Statement stm = null;
+
+        ObservableList<classement> CL = FXCollections.observableArrayList();
+        CL = recup_classement();
+        classement currentTab = new classement();
+            try {
+                        for (int i =0;i<CL.size();i++) {
+
+                 pos++;
+                
+                stm = Connexion.getInstance().getConnection().createStatement();
+                      //      System.out.println(pos);
+                                                       System.out.println(CL.get(i).getId());
+
+                String query = "UPDATE ligne_classement SET  position ='" + pos + "' WHERE id='" +CL.get(i).getId()+ "' ";
+                stm.executeUpdate(query);
+               
+            } }catch (SQLException ex) {
+                Logger.getLogger(ServiceClassement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        
+
+    }
+
+    public ObservableList<classement> recup_classement() {
+
+        Statement stm = null;
+        String etat = null;
+        ObservableList<Integer> ids = FXCollections.observableArrayList();
+        ObservableList<classement> CL = FXCollections.observableArrayList();
+
+        try {
+
+            stm = Connexion.getInstance().getConnection().createStatement();
+
+            String query = "SELECT * FROM `ligne_classement`  ORDER BY nb_points desc  ";
+            ResultSet rst = stm.executeQuery(query);
+
+            while (rst.next()) {
+                classement cl = new classement();
+               // System.out.println(rst.getInt("id"));
+
+                cl.setId(rst.getInt("id"));
+                cl.setClient(rst.getString("id_client"));
+                cl.setNiveau(rst.getInt("id_niveau"));
+                cl.setPosition(rst.getInt("position"));
+                cl.setNb_points(rst.getInt("nb_points"));
+
+                CL.add(cl);
+            }
+            System.out.println(CL);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceChallenge.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return CL;
+
+    }
 
 }

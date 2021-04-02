@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package Service;
 
-import entities.niveau;
+import Entities.niveau;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-import utils.Myconnexion;
+import utils.Connexion;
 
 /**
  *
@@ -26,7 +26,7 @@ public class ServiceNiveau {
     Connection cnx;
 
     public ServiceNiveau() {
-        cnx = Myconnexion.getInstance().getConnection();
+        cnx = Connexion.getInstance().getConnection();
     }
 
     public void ajouterNiveau(niveau n) {
@@ -35,15 +35,13 @@ public class ServiceNiveau {
             if (cnx != null) {
 
                 Statement stm;
-                stm = Myconnexion
+                stm = Connexion
                         .getInstance()
                         .getConnection()
                         .createStatement();
                 assert stm != null;
 
-                String query = "INSERT INTO `niveau`(`id`,`titre`) "
-                        + "VALUES ( NULL,'"
-                        + n.getTitre() + "')";
+                String query = "INSERT INTO `niveau`(`id`,`titre`) " + "VALUES ( NULL,'" + n.getTitre() + "')";
                 stm.executeUpdate(query);
                 System.out.println("ajout avec succes");
                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -72,7 +70,7 @@ public class ServiceNiveau {
 
         try {
 
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
 
             String query = "SELECT * FROM `niveau` ";
             ResultSet rst = stm.executeQuery(query);
@@ -181,7 +179,7 @@ public class ServiceNiveau {
 
         try {
 
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
 
             String query = "SELECT * FROM `niveau` ORDER BY titre  ";
             ResultSet rst = stm.executeQuery(query);

@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package Service;
 
-import entities.participation_challenge;
+import Entities.participation_challenge;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import utils.Myconnexion;
+import utils.Connexion;
 
 /**
  *
@@ -23,7 +25,7 @@ public class ServiceParticipationChallenge {
     Connection cnx;
 
     public ServiceParticipationChallenge() {
-        cnx = Myconnexion.getInstance().getConnection();
+        cnx = Connexion.getInstance().getConnection();
     }
     
     
@@ -34,7 +36,7 @@ public class ServiceParticipationChallenge {
 
         try {
             Statement st = cnx.createStatement();
-            String query = "select * FROM `participation_challenge` WHERE id='" + id_client + "'";
+            String query = "select * FROM `participation_challenge` WHERE id_client='" + id_client + "'";
             ResultSet rst = st.executeQuery(query);
             while (rst.next()) {
 
@@ -53,5 +55,45 @@ public class ServiceParticipationChallenge {
 
         return Oparticipation;
 
+    }
+    
+    public participation_challenge verif_participation(String id_client,int id_challenge){
+        
+        participation_challenge pc = new participation_challenge();
+        
+        try {
+            Statement st=null;
+            st = Connexion.getInstance().getConnection().createStatement();
+            String query = "select * FROM participation_challenge WHERE id_client='" + id_client + "'AND id_challenge='"+id_challenge+"'";
+            ResultSet rst = st.executeQuery(query);
+           
+            while (rst.next()){
+                System.out.println("555555");
+                pc.setId(rst.getInt("id"));
+                pc.setId_challenge(rst.getInt("id_challenge"));
+                pc.setId_client(rst.getString("id_client"));
+                pc.setEtat(rst.getString("etat"));
+                
+            
+            
+            }
+            
+             
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceParticipationChallenge.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        
+        System.out.println(pc);
+       
+            
+        
+        
+        
+        
+        return pc ;
+    
     }
 }
