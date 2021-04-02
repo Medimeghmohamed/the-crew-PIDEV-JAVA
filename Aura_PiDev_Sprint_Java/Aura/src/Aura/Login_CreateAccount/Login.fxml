@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="718.0" prefWidth="1182.0" stylesheets="@Style.css/" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.Login_CreateAccount.LoginController">
+   <children>
+      <TextField id="TextField" fx:id="id_a_login" layoutX="417.0" layoutY="261.0" onKeyReleased="#cin_verif_rme" prefHeight="52.0" prefWidth="300.0" promptText="Adresse Mail" styleClass="TextField" AnchorPane.bottomAnchor="405.0" />
+      <Button fx:id="Create_Account_Admin" layoutX="542.0" layoutY="412.0" mnemonicParsing="false" onAction="#Create_Account_Admin" prefHeight="40.0" prefWidth="170.0" text="Creer un Compte" textFill="#d2d2d2" />
+      <PasswordField fx:id="password_a_login" layoutX="417.0" layoutY="327.0" prefHeight="52.0" prefWidth="300.0" promptText="Mot De Passe" styleClass="PasswordField" />
+      <TextField fx:id="show_password_a_login" layoutX="417.0" layoutY="327.0" prefHeight="52.0" prefWidth="300.0" promptText="Mot De Passe" styleClass="PasswordField" />
+      <Button fx:id="Se_connecter" layoutX="408.0" layoutY="412.0" mnemonicParsing="false" onAction="#Se_connecter" prefHeight="40.0" prefWidth="125.0" text="Se Connecter" textFill="WHITE">
+         <font>
+            <Font name="Britannic Bold" size="12.0" />
+         </font></Button>
+      <Hyperlink fx:id="forget_password" layoutX="597.0" layoutY="379.0" onAction="#forget_password" text="Mot de passe oublié ?" textFill="WHITE" />
+      <TextField id="TextField" fx:id="id_a_fp" layoutX="334.0" layoutY="531.0" prefHeight="26.0" prefWidth="170.0" promptText="Votre Cin" styleClass="TextField" />
+      <TextField id="TextField" fx:id="email_a_fp" layoutX="522.0" layoutY="531.0" prefHeight="26.0" prefWidth="258.0" promptText="Votre Adresse Email" styleClass="TextField" />
+      <Button fx:id="code_email" layoutX="794.0" layoutY="528.0" mnemonicParsing="false" onAction="#code_email" prefHeight="4.0" prefWidth="170.0" text="Recevoir Code " />
+      <Button fx:id="change_password" layoutX="547.0" layoutY="652.0" mnemonicParsing="false" onAction="#change_password" text="Changer Mot De Passe" />
+      <Label fx:id="confirmer_pass_label" layoutX="899.0" layoutY="586.0" prefHeight="18.0" prefWidth="222.0" textFill="WHITE" />
+      <PasswordField id="TextField" fx:id="password_a_fp" layoutX="335.0" layoutY="575.0" onKeyReleased="#verif_password_a" prefHeight="40.0" prefWidth="262.0" promptText="Mot De Passe" styleClass="TextField" />
+      <PasswordField fx:id="c_password_a_fp" layoutX="629.0" layoutY="575.0" onKeyReleased="#Confirmer_MotDePasse_fp" prefHeight="40.0" prefWidth="262.0" promptText="Confirmer" styleClass="TextField" />
+      <Label fx:id="verif_password_label_a1" layoutX="344.0" layoutY="615.0" prefHeight="18.0" prefWidth="545.0" textFill="WHITE" />
+      <Label fx:id="verif_password_label_a2" layoutX="343.0" layoutY="625.0" prefHeight="18.0" prefWidth="229.0" textFill="WHITE" />
+      <Label fx:id="verif_password_label_a3" layoutX="343.0" layoutY="634.0" prefHeight="18.0" prefWidth="373.0" textFill="WHITE" />
+      <Hyperlink fx:id="cancel_fp" layoutX="310.0" layoutY="507.0" onAction="#cancel_fp" text="Retour" textFill="WHITE" />
+      <CheckBox fx:id="show_password_login" layoutX="717.0" layoutY="344.0" mnemonicParsing="false" onAction="#show_password_login" prefHeight="18.0" prefWidth="230.0" text="Afficher Mot De Passe" textFill="WHITE" />
+      <CheckBox fx:id="checkbox_rme" layoutX="418.0" layoutY="381.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="230.0" text="Se Souvenir de moi" textFill="WHITE" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.Objectif_Suivi.ObjactifGoogleAgendaController">
+   <children>
+      <BorderPane prefHeight="686.0" prefWidth="954.0">
+         <center>
+            <WebView fx:id="webview_Obj" prefHeight="487.0" prefWidth="698.0" BorderPane.alignment="CENTER" />
+         </center>
+         <top>
+            <Button fx:id="retour" mnemonicParsing="false" onAction="#retour" prefHeight="50.0" prefWidth="46.0" BorderPane.alignment="TOP_LEFT">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/retour.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

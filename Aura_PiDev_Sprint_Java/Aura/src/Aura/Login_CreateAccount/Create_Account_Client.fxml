@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="718.0" prefWidth="1182.0" styleClass="root" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.Login_CreateAccount.Create_Account_ClientController">
+   <children>
+      <TextField fx:id="id_cl" layoutX="480.5" layoutY="172.0" onKeyReleased="#verif_id_bd_cl" prefHeight="38.0" prefWidth="221.0" promptText="CIN" styleClass="TextField" />
+      <TextField fx:id="nom_cl" layoutX="480.5" layoutY="228.0" prefHeight="38.0" prefWidth="222.0" promptText="NOM" styleClass="TextField" />
+      <TextField fx:id="prenom_cl" layoutX="480.5" layoutY="284.0" prefHeight="38.0" prefWidth="222.0" promptText="PRENOM" styleClass="TextField" />
+      <TextField fx:id="email_cl" layoutX="480.5" layoutY="340.0" onKeyReleased="#test_Mail_cl" prefHeight="38.0" prefWidth="222.0" promptText="EMAIL" styleClass="TextField" />
+      <Button alignment="TOP_LEFT" layoutX="747.0" layoutY="646.0" mnemonicParsing="false" onAction="#ajouter_client" prefHeight="38.0" prefWidth="148.0" text="Ajouter" textFill="#b20f0f">
+         <font>
+            <Font name="Maiandra GD" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="41.0" fitWidth="46.0">
+               <image>
+                  <Image url="@../../Images/ajouter.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="461.0" layoutY="100.0" prefHeight="30.0" prefWidth="310.0" text="Créer Un Compte Client" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Franklin Gothic Demi Italic" size="26.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="password_cl" layoutX="480.5" layoutY="396.0" onKeyReleased="#verif_password_cl" prefHeight="38.0" prefWidth="222.0" promptText="Mot De Passe" styleClass="PasswordField" />
+      <PasswordField fx:id="c_password_cl" layoutX="480.5" layoutY="452.0" onKeyReleased="#Confirmer_MotDePasse_cl" prefHeight="39.0" prefWidth="222.0" promptText="Confimer Mot De Passe" styleClass="PasswordField" />
+      <TextField fx:id="tel_cl" layoutX="480.5" layoutY="508.0" onKeyReleased="#verif_tel_cl" prefHeight="38.0" prefWidth="222.0" promptText="Numéro de téléphone" styleClass="TextField" />
+      <Label fx:id="Confirmer_MotDePasse_label_cl" layoutX="480.0" layoutY="491.0" prefHeight="18.0" prefWidth="222.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font></Label>
+      <Label fx:id="test_mail_label_cl" layoutX="479.0" layoutY="378.0" prefHeight="18.0" prefWidth="222.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font></Label>
+      <Label fx:id="verif_tel_label_cl" alignment="TOP_LEFT" layoutX="481.0" layoutY="546.0" prefHeight="18.0" prefWidth="222.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font></Label>
+      <Label fx:id="verif_tel_bd_label_cl" layoutX="277.0" layoutY="518.0" prefHeight="18.0" prefWidth="203.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font></Label>
+      <Label fx:id="verif_email_bd_label_cl" layoutX="277.0" layoutY="350.0" prefHeight="18.0" prefWidth="203.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font></Label>
+      <Hyperlink fx:id="go_to_login" layoutX="39.0" layoutY="37.0" onAction="#go_to_login" styleClass="label" text="Retour" textFill="#2e0101">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+         </font>
+      </Hyperlink>
+      <Button layoutX="480.5" layoutY="606.0" mnemonicParsing="false" onAction="#upload_pic_client" prefHeight="14.0" prefWidth="226.0" text="Ajouter Votre Photo" />
+      <Hyperlink fx:id="Create_Account_Coach" layoutX="906.0" layoutY="40.0" onAction="#Create_Account_Coach" text="Créer un compte Coach" textFill="WHITE" underline="true">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+         </font>
+      </Hyperlink>
+      <Label fx:id="verif_id_bd_label_cl" layoutX="486.0" layoutY="210.0" prefHeight="18.0" prefWidth="209.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font></Label>
+      <Text fx:id="verif_mdp_label_cl" fill="WHITE" layoutX="834.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="346.9367218017578">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="16.0" />
+         </font>
+      </Text>
+      <Hyperlink layoutX="418.0" layoutY="638.0" onAction="#take_picture" prefHeight="27.0" prefWidth="322.0" text="Ou bien vous pouvez prendre une photo" textFill="#fdfdfd">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="16.0" />
+         </font>
+      </Hyperlink>
+      <CheckBox fx:id="adresse_cl" layoutX="481.0" layoutY="573.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="322.0" text="Autoriser l'accés a votre emplacaement" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="14.0" />
+         </font>
+      </CheckBox>
+      <Label fx:id="picture_label" layoutX="283.0" layoutY="610.0" prefHeight="18.0" prefWidth="192.0" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Demibold Roman" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

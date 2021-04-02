@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.Objectif_Suivi.SuiviObjController">
+   <children>
+      <Label layoutX="18.0" layoutY="93.0" text="Aujourd'hui c'est le:" />
+      <BarChart fx:id="Barchart_suivi" layoutX="97.0" layoutY="248.0" legendVisible="false" prefHeight="364.0" prefWidth="779.0" style="-fx-background-color: #174E26;">
+        <xAxis>
+          <CategoryAxis label="Date" side="BOTTOM" tickLabelFill="WHITE" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="Réalisation" side="LEFT" tickLabelFill="WHITE" />
+        </yAxis>
+      </BarChart>
+      <HBox layoutX="16.0" layoutY="293.0" prefHeight="26.0" prefWidth="336.0" />
+      <HBox layoutX="50.0" layoutY="119.0" prefHeight="40.0" prefWidth="142.0">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/calendrier.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="dateFicheSuivi" prefHeight="18.0" prefWidth="113.0">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Button fx:id="retour" layoutX="42.0" layoutY="28.0" mnemonicParsing="false" onAction="#retour">
+         <graphic>
+            <ImageView fitHeight="67.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/retour.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <VBox layoutX="325.0" layoutY="119.0" prefHeight="126.0" prefWidth="482.0" spacing="10.0">
+         <children>
+            <Label text="Choisir Objectif:" />
+            <ComboBox fx:id="cb_objectifs" onAction="#cb_selected_obj" prefHeight="26.0" prefWidth="447.0" />
+            <HBox prefHeight="54.0" prefWidth="426.0" spacing="20.0">
+               <children>
+                  <Label text="Ajouter votre réponse du jour : " />
+                  <ComboBox fx:id="cbrep_suivi" prefWidth="150.0" />
+                  <Button mnemonicParsing="false" onAction="#ajouterSuivi" prefHeight="26.0" prefWidth="3.0">
+                     <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/ajouter.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Label layoutX="122.0" layoutY="33.0" text="Suivi:" textFill="WHITE">
+         <font>
+            <Font name="Comic Sans MS Bold" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

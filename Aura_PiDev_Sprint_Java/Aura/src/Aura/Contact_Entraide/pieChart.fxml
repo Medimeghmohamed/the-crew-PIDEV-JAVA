@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="462.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Aura.Contact_Entraide.PieChartController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="238.0" layoutY="75.0" prefHeight="466.0" prefWidth="462.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistiques">
+               <font>
+                  <Font name="Bodoni MT Bold" size="47.0" />
+               </font>
+            </Text>
+            <Pane fx:id="paneview" prefHeight="94.0" prefWidth="462.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <PieChart fx:id="piechart" layoutX="42.0" layoutY="73.0" prefHeight="274.0" prefWidth="390.0" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

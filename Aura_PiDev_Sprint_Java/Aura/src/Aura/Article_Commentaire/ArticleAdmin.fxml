@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="478.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.Article_Commentaire.ArticleAdminController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="-3.0" prefHeight="600.0" prefWidth="802.0">
+         <children>
+            <TableView fx:id="lab" layoutX="57.0" layoutY="81.0" prefHeight="420.0" prefWidth="632.0">
+               <columns>
+                  <TableColumn fx:id="coltitre" prefWidth="94.0" text="titre" />
+                  <TableColumn fx:id="coltheme" prefWidth="94.0" text="theme" />
+                  <TableColumn fx:id="colauteur" prefWidth="98.0" text="auteur" />
+                  <TableColumn fx:id="coldate" prefWidth="111.0" text="date" />
+                  <TableColumn fx:id="colarticle" prefWidth="122.0" text="article" />
+                  <TableColumn fx:id="colapp" prefWidth="122.0" text="approuver" />
+               </columns>
+            </TableView>
+            <Button layoutX="224.0" layoutY="521.0" mnemonicParsing="false" onAction="#approuverarticle" text="approuver" />
+            <Button layoutX="425.0" layoutY="521.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
+            <Button layoutX="321.0" layoutY="521.0" mnemonicParsing="false" onAction="#review" prefHeight="25.0" prefWidth="70.0" text="review" />
+            <Button fx:id="trier" layoutX="524.0" layoutY="521.0" mnemonicParsing="false" onAction="#trier" prefHeight="25.0" prefWidth="70.0" text="trier" />
+            <Button fx:id="articles_button" layoutX="57.0" layoutY="39.0" mnemonicParsing="false" onAction="#articles_button" prefHeight="26.0" prefWidth="182.0" text="Voir Articles" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

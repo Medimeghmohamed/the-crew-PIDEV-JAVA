@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="742.0" prefWidth="931.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="auraa.CommentaireController">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="769.0" prefWidth="961.0">
+         <children>
+            <Pagination fx:id="pagination" layoutX="6.0" layoutY="7.0" prefHeight="639.0" prefWidth="798.0" />
+            <TextField fx:id="espcom" layoutX="14.0" layoutY="415.0" prefHeight="53.0" prefWidth="566.0" />
+            <Button layoutX="580.0" layoutY="415.0" mnemonicParsing="false" onAction="#ajoutcom" prefHeight="12.0" prefWidth="54.0" text="ajouter" />
+            <Button layoutX="634.0" layoutY="415.0" mnemonicParsing="false" onAction="#suppcom" prefHeight="25.0" prefWidth="58.0" text="supprimer" />
+            <Button layoutX="692.0" layoutY="415.0" mnemonicParsing="false" onAction="#modcom" prefHeight="25.0" prefWidth="53.0" text="modifier" />
+            <TableView fx:id="lab1" layoutX="33.0" layoutY="474.0" prefHeight="127.0" prefWidth="574.0">
+               <columns>
+                  <TableColumn fx:id="labe" onEditStart="#labe" prefWidth="573.0" text="commentaire" />
+               </columns>
+            </TableView>
+            <Label fx:id="espart" layoutX="20.0" layoutY="14.0" prefHeight="401.0" prefWidth="729.0" text="Label" />
+            <Button fx:id="trier" layoutX="648.0" layoutY="525.0" mnemonicParsing="false" onAction="#trier" text="trier" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

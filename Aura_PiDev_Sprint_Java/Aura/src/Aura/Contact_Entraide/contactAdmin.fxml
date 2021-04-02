@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.Contact_Entraide.ContactAdminController">
+   <children>
+      <TableView fx:id="tableAfficher" layoutX="38.0" layoutY="74.0" onMousePressed="#getSelectedAdmin" prefHeight="304.0" prefWidth="587.0">
+         <columns>
+            <TableColumn fx:id="Id" prefWidth="137.0" text="Courrier" />
+            <TableColumn fx:id="Type" prefWidth="95.0" text="TYPE" />
+            <TableColumn fx:id="Champ" minWidth="0.0" prefWidth="186.0" text="Message" />
+            <TableColumn fx:id="Date" maxWidth="429.0" text="DATE" />
+            <TableColumn fx:id="etat" maxWidth="429.0" prefWidth="87.0" text="Etat" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnSupprimer" layoutX="647.0" layoutY="162.0" mnemonicParsing="false" onMouseClicked="#SupprimerContact" prefHeight="35.0" prefWidth="94.0" text="Supprimer" textFill="#830404" />
+      <Button fx:id="btnModifier" layoutX="646.0" layoutY="101.0" mnemonicParsing="false" onAction="#ModifierContact" prefHeight="32.0" prefWidth="92.0" text="Vérifier" />
+      <Label layoutX="45.0" layoutY="27.0" prefHeight="17.0" prefWidth="139.0" text="Gestion Contact" textFill="#458c8d">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="646.0" layoutY="235.0" mnemonicParsing="false" onMouseClicked="#getAddView4" prefHeight="32.0" prefWidth="93.0" text="Statistiques" />
+   </children>
+</AnchorPane>

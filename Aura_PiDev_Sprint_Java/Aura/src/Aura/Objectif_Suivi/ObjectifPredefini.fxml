@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.Objectif_Suivi.ObjectifPredefiniController">
+   <children>
+      <TextField fx:id="tfdesc_pred" layoutX="55.0" layoutY="222.0" prefHeight="64.0" prefWidth="235.0" />
+      <TextField fx:id="tfduree_pred" layoutX="130.0" layoutY="303.0" prefHeight="26.0" prefWidth="79.0" />
+      <Label layoutX="71.0" layoutY="184.0" text="Description:">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="70.0" layoutY="303.0" text="Durée">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="217.0" layoutY="302.0" text="/jours">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TableView fx:id="tvObjectifPred" layoutX="362.0" layoutY="149.0" onMouseClicked="#OnMouseObjectifPred" prefHeight="498.0" prefWidth="586.0">
+         <columns>
+            <TableColumn fx:id="coldes_pred" prefWidth="328.00006103515625" text="Description" />
+            <TableColumn fx:id="colduree_pred" prefWidth="80.7999267578125" text="Durée" />
+            <TableColumn fx:id="colidad_pred" prefWidth="176.0" text="Admin" />
+         </columns>
+      </TableView>
+      <Label layoutX="32.0" layoutY="34.0" text="Gestion des objectifs prédéfinis :">
+         <font>
+            <Font name="Ebrima Bold" size="24.0" />
+         </font>
+      </Label>
+      <HBox layoutX="359.0" layoutY="90.0" prefHeight="48.0" prefWidth="578.0" spacing="10.0">
+         <children>
+            <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/recherche.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="tfrechObjPred" onKeyReleased="#rechercherObjectifPred" prefHeight="46.0" prefWidth="157.0" />
+            <ImageView fitHeight="44.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/tri.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="cbtriObjPred" onAction="#selectTriObjPred" prefHeight="48.0" prefWidth="175.0" />
+            <Button mnemonicParsing="false" onAction="#PDF" prefHeight="48.0" prefWidth="116.0" text="PDF">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/pdf.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="44.0" layoutY="443.0" prefHeight="60.0" prefWidth="300.0">
+         <children>
+            <Button fx:id="btnAjouterPred" mnemonicParsing="false" onAction="#ajouterPred" prefHeight="60.0" prefWidth="143.0" text="Ajouter">
+               <graphic>
+                  <ImageView fitHeight="79.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/ajouter.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="btnModifierPred" mnemonicParsing="false" onAction="#modifierPred" prefHeight="59.0" prefWidth="139.0" text="Modifier">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/modifier.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+         </children>
+      </HBox>
+      <Button fx:id="btnSupprimerPred" layoutX="117.0" layoutY="503.0" mnemonicParsing="false" onAction="#supprimerPred" text="Supprimer">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/supprimer.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <HBox layoutX="45.0" layoutY="348.0" prefHeight="26.0" prefWidth="288.0" spacing="10.0">
+         <children>
+            <Button fx:id="btn_AjouterIcone" mnemonicParsing="false" onAction="#AjouterIcone" prefHeight="38.0" prefWidth="111.0" text="Icone">
+               <graphic>
+                  <ImageView fitHeight="79.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/ajouter.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <TextField fx:id="tf_icon_name" editable="false" prefHeight="42.0" prefWidth="138.0" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

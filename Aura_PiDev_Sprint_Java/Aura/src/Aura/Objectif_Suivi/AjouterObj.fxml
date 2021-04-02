@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.Objectif_Suivi.AjouterObjController">
+   <children>
+      <Label layoutX="321.0" layoutY="315.0" text="Réponse (X):">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cbrep" layoutX="463.0" layoutY="315.0" onAction="#selectRep" prefHeight="26.0" prefWidth="149.0" />
+      <Label layoutX="323.0" layoutY="418.0" text="Durée:">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="320.0" layoutY="367.0" text="Date début :">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="tfduree" layoutX="465.0" layoutY="414.0" onAction="#tf_duree" prefHeight="34.0" prefWidth="98.0" />
+      <TextField fx:id="tfdate" editable="false" layoutX="463.0" layoutY="367.0" onAction="#tfdate_clicked" prefHeight="34.0" />
+      <Label layoutX="574.0" layoutY="418.0" text="/jours">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button fx:id="btn_retour_ajout_obj" layoutX="49.0" layoutY="39.0" mnemonicParsing="false" onAction="#retour_ajout_obj">
+         <graphic>
+            <ImageView fitHeight="56.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/retour.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="btn_confirmer_ajout_obj" layoutX="703.0" layoutY="562.0" mnemonicParsing="false" onAction="#confirmer_ajout_obj">
+         <graphic>
+            <ImageView fitHeight="48.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/ajouter.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <CheckBox fx:id="ck_mail" layoutX="282.0" layoutY="518.0" mnemonicParsing="false" onAction="#ck_mail" text="Reçevoir un email à la fin de chaque objectif" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="152.0" layoutY="54.0" text="Ajouter un objectif:" textFill="WHITE">
+         <font>
+            <Font name="Comic Sans MS Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="275.0" layoutY="240.0" text="  OU  ">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="42.0" fitWidth="55.0" layoutX="252.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Images/choix.png" />
+         </image>
+      </ImageView>
+      <HBox layoutX="295.0" layoutY="214.0" prefHeight="27.0" prefWidth="369.0">
+         <children>
+            <Label text="Choisir un objectif :   ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cbobj" onAction="#selectObj" prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="297.0" layoutY="255.0" prefHeight="34.0" prefWidth="359.0">
+         <children>
+            <Label text="Saisir un objectif :     ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfobj" prefHeight="34.0" prefWidth="153.0" />
+         </children>
+      </HBox>
+      <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="282.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Images/reponse.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="282.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Images/calendrier.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="283.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Images/duree.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tf_icon_name" layoutX="463.0" layoutY="468.0" prefHeight="34.0" />
+      <Button fx:id="btn_AjouterIcone" layoutX="275.0" layoutY="464.0" mnemonicParsing="false" onAction="#AjouterIcone" prefHeight="26.0" prefWidth="149.0" text="Ajouter une icone">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>
