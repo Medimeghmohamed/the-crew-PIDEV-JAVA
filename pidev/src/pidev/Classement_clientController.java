@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pidev;
+package Aura.ChallengeClassementgg;
 
 
-import entities.challenge;
-import entities.classement;
+import Entities.challenge;
+import Entities.classement;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,12 +16,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import service.ServiceChallenge;
+import Service.ServiceChallenge;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import service.ServiceClassement;
-import service.ServiceNiveau;
+import Service.ServiceClassement;
+import Service.ServiceNiveau;
 
 
 /**
@@ -51,6 +51,10 @@ public class Classement_clientController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    public String id_user="";
+    public void initializeFxml(String id){
+        System.out.println(id);
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -72,7 +76,7 @@ public class Classement_clientController implements Initializable {
         
         ServiceClassement cl = new ServiceClassement();
 
-        ObservableList<classement> Oclassements = cl.afficherClassement_client();
+        ObservableList<classement> Oclassements = cl.RechercherClassement_client(chercher_position_client.getText());
         colniveau_classement1.setCellValueFactory(new PropertyValueFactory<>("niveau"));
         colposition_classement1.setCellValueFactory(new PropertyValueFactory<>("position"));
         colclient_classement1.setCellValueFactory(new PropertyValueFactory<>("client"));
@@ -87,6 +91,7 @@ public class Classement_clientController implements Initializable {
     private void afficher_classement_client(ActionEvent event) {
         
          ServiceClassement cl = new ServiceClassement();
+         cl.position();
 
         ObservableList<classement> Oclassements = cl.afficherClassement_client();
         colniveau_classement1.setCellValueFactory(new PropertyValueFactory<>("niveau"));

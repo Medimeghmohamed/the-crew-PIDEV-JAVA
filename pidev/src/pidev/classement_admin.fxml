@@ -7,36 +7,26 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="836.0" prefWidth="1139.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="pidev.Classement_adminController">
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.ChallengeClassementgg.Classement_adminController">
    <children>
-      <TableView fx:id="liste_clessement_admin" layoutX="594.0" layoutY="63.0" onMouseClicked="#SendMail" prefHeight="679.0" prefWidth="475.0">
+      <TableView fx:id="liste_clessement_admin" layoutX="249.0" layoutY="116.0" prefHeight="387.0" prefWidth="474.0">
          <columns>
-            <TableColumn fx:id="colid_calassement_admin" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="colniveau_calassement_admin" prefWidth="75.0" text="niveau" />
             <TableColumn fx:id="colnposition_calassement_admin" prefWidth="75.0" text="position" />
-            <TableColumn fx:id="colclient_classement_admin" prefWidth="75.0" text="client" />
-            <TableColumn fx:id="colpts_classement_admin" prefWidth="170.0" text="nombre de point " />
+            <TableColumn fx:id="colclient_classement_admin" prefWidth="183.0" text="client" />
+            <TableColumn fx:id="colpts_classement_admin" prefWidth="141.0" text="nombre de point " />
          </columns>
       </TableView>
-      <Label layoutX="31.0" layoutY="330.0" text="nom client" />
-      <Label layoutX="44.0" layoutY="226.0" text="niveau" />
-      <Label layoutX="40.0" layoutY="286.0" text="position" />
-      <Label layoutX="34.0" layoutY="381.0" text="nb_points" />
-      <TextField fx:id="niveau_classement_admin" layoutX="126.0" layoutY="221.0" />
-      <TextField fx:id="position_classement_admin" layoutX="126.0" layoutY="275.0" />
-      <TextField fx:id="nb_pts_classement_admin" layoutX="126.0" layoutY="374.0" />
-      <Button fx:id="btn_modif_classement_admin" layoutX="403.0" layoutY="325.0" mnemonicParsing="false" onAction="#modifierClassement_admin" text="modifier" />
-      <Button fx:id="btn_supp_classement" layoutX="501.0" layoutY="325.0" mnemonicParsing="false" onAction="#supprimerClassement_admin" text="supprimer" />
-      <Button fx:id="btn_ajouter_classement_admin" layoutX="247.0" layoutY="424.0" mnemonicParsing="false" onAction="#ajouterClassement" text="ajouter" />
-      <Label layoutX="336.0" layoutY="261.0" text="id" />
-      <TextField fx:id="id_classement_admin" layoutX="391.0" layoutY="275.0" />
+      <TextField fx:id="niveau_classement_admin" layoutX="25.0" layoutY="197.0" promptText="niveau" />
+      <TextField fx:id="position_classement_admin" layoutX="25.0" layoutY="238.0" promptText="position" />
+      <TextField fx:id="nb_pts_classement_admin" layoutX="25.0" layoutY="325.0" promptText="nombre de points" />
+      <Button fx:id="btn_modif_classement_admin" layoutX="750.0" layoutY="298.0" mnemonicParsing="false" onAction="#modifierClassement_admin" prefHeight="36.0" prefWidth="150.0" text="modifier" />
+      <Button fx:id="btn_supp_classement" layoutX="750.0" layoutY="210.0" mnemonicParsing="false" onAction="#supprimerClassement_admin" prefHeight="36.0" prefWidth="150.0" text="supprimer" />
+      <Button fx:id="btn_ajouter_classement_admin" layoutX="24.0" layoutY="376.0" mnemonicParsing="false" onAction="#ajouterClassement" prefHeight="36.0" prefWidth="150.0" text="ajouter" />
       <Label layoutX="40.0" layoutY="34.0" text="GESTION DE CLASSEMENT " />
-      <TextField fx:id="position_classement_admin2" layoutX="408.0" layoutY="387.0" />
-      <Label layoutX="341.0" layoutY="392.0" text="position" />
-      <Button fx:id="btn_chercher_classement_admin" layoutX="461.0" layoutY="433.0" mnemonicParsing="false" onAction="#chercherPosition_admin" text="rechercher" />
-      <TextField fx:id="nom_client_classement_admin" layoutX="126.0" layoutY="325.0" />
-      <TextField fx:id="mail_admin" layoutX="391.0" layoutY="76.0" />
-      <Label layoutX="322.0" layoutY="81.0" text="Ton mail" />
+      <TextField fx:id="position_classement_admin2" layoutX="25.0" layoutY="451.0" promptText="position" />
+      <Button fx:id="btn_chercher_classement_admin" layoutX="24.0" layoutY="494.0" mnemonicParsing="false" onAction="#chercherPosition_admin" prefHeight="36.0" prefWidth="150.0" text="rechercher" />
+      <TextField fx:id="nom_client_classement_admin" layoutX="25.0" layoutY="283.0" promptText="nom client" />
+      <Button layoutX="748.0" layoutY="138.0" mnemonicParsing="false" onAction="#SendMail" prefHeight="36.0" prefWidth="150.0" text="envoyer un mail" />
    </children>
 </AnchorPane>

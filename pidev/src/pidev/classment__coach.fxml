@@ -7,10 +7,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="874.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="pidev.Classment__coachController">
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.ChallengeClassementgg.Classment__coachController">
    <children>
-      <TableView fx:id="liste_classement_coach" layoutX="428.0" layoutY="105.0" prefHeight="481.0" prefWidth="388.0">
+      <TableView fx:id="liste_classement_coach" layoutX="419.0" layoutY="85.0" prefHeight="586.0" prefWidth="388.0">
          <columns>
             <TableColumn fx:id="colniveau_classement" prefWidth="75.0" text="niveau" />
             <TableColumn fx:id="colposition_classement" prefWidth="75.0" text="position" />
@@ -19,9 +18,8 @@
          </columns>
       </TableView>
       <Label layoutX="73.0" layoutY="115.0" text="CONSULTER UN CLASSEMENT" />
-      <Label layoutX="89.0" layoutY="276.0" text="position" />
-      <TextField fx:id="chercher_position_coach" layoutX="162.0" layoutY="271.0" />
-      <Button fx:id="btn_chercher_classement_coach" layoutX="256.0" layoutY="315.0" mnemonicParsing="false" onAction="#chercherClassement_coach" text="rechercher" />
-      <Button fx:id="btn_affich_classement_coach" layoutX="256.0" layoutY="364.0" mnemonicParsing="false" onAction="#afficher_classement_coach" prefHeight="31.0" prefWidth="91.0" text="afficher" />
+      <TextField fx:id="chercher_position_coach" layoutX="198.0" layoutY="202.0" promptText="position" />
+      <Button fx:id="btn_chercher_classement_coach" layoutX="252.0" layoutY="245.0" mnemonicParsing="false" onAction="#chercherClassement_coach" prefHeight="34.0" prefWidth="88.0" text="rechercher" />
+      <Button fx:id="btn_affich_classement_coach" layoutX="253.0" layoutY="299.0" mnemonicParsing="false" onAction="#afficher_classement_coach" prefHeight="33.0" prefWidth="88.0" text="raffraichir" />
    </children>
 </AnchorPane>

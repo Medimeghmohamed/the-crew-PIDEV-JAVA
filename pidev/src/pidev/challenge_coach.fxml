@@ -8,40 +8,33 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="pidev.Challenge_coachController">
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.ChallengeClassementgg.Challenge_coachController">
    <children>
-      <TextField fx:id="titre_challenge" layoutX="115.0" layoutY="281.0" />
-      <Label layoutX="75.0" layoutY="287.0" text="titre" />
-      <Label layoutX="32.0" layoutY="320.0" text="description " />
-      <Label layoutX="50.0" layoutY="401.0" text="date fin" />
-      <Label layoutX="35.0" layoutY="364.0" text="date debut" />
-      <Label layoutX="54.0" layoutY="447.0" text="niveau" />
-      <TextField fx:id="desc_challenge" layoutX="115.0" layoutY="318.0" />
-      <TextField fx:id="niveau_challenge" layoutX="117.0" layoutY="442.0" />
-      <Button fx:id="btn_ajout_challenge" layoutX="115.0" layoutY="500.0" mnemonicParsing="false" onAction="#ajouter_challenge" prefHeight="39.0" prefWidth="160.0" text="ajouter proposition" />
-      <Button fx:id="btn_modif_challenge" layoutX="212.0" layoutY="637.0" onAction="#modifier_challege" prefHeight="34.0" prefWidth="90.0" text="modifier" />
-      <Button fx:id="btn_aff_challenge" layoutX="729.0" layoutY="90.0" mnemonicParsing="false" onAction="#afficher_challege" prefHeight="37.0" prefWidth="239.0" text="afficher toutes les propositions" />
+      <TextField fx:id="titre_challenge" layoutX="7.0" layoutY="153.0" promptText="titre" />
+      <TextField fx:id="desc_challenge" layoutX="7.0" layoutY="190.0" promptText="description" />
+      <TextField fx:id="niveau_challenge" layoutX="9.0" layoutY="314.0" promptText="niveau" />
+      <Button fx:id="btn_ajout_challenge" layoutX="8.0" layoutY="359.0" mnemonicParsing="false" onAction="#ajouter_challenge" prefHeight="18.0" prefWidth="149.0" text="ajouter proposition" />
+      <Button fx:id="btn_modif_challenge" layoutX="25.0" layoutY="502.0" onAction="#modifier_challege" prefHeight="31.0" prefWidth="90.0" text="modifier" />
+      <Button fx:id="btn_aff_challenge" layoutX="482.0" layoutY="140.0" mnemonicParsing="false" onAction="#afficher_challege" prefHeight="26.0" prefWidth="210.0" text="afficher toutes les propositions" />
       <Label fx:id="imd_challenge" layoutX="133.0" layoutY="34.0" prefHeight="124.0" prefWidth="154.0" />
-      <TableView fx:id="liste_challenge" layoutX="336.0" layoutY="153.0" prefHeight="633.0" prefWidth="834.0">
+      <TableView fx:id="liste_challenge" layoutX="198.0" layoutY="190.0" prefHeight="458.0" prefWidth="738.0">
          <columns>
-            <TableColumn fx:id="coltitre_challenge" prefWidth="95.0" text="titre" />
-            <TableColumn fx:id="coltype_challenge" prefWidth="89.0" text="type" />
-            <TableColumn fx:id="coltdescription_challenge" prefWidth="222.0" text="description" />
-            <TableColumn fx:id="coldatedebut_challenge" prefWidth="97.0" text="date_debut" />
-            <TableColumn fx:id="coldatefin_challenge" prefWidth="98.0" text="date_fin" />
-            <TableColumn fx:id="colniveau_challenge" prefWidth="65.0" text="niveau" />
-            <TableColumn fx:id="colnb_participants_challenge" prefWidth="129.0" text="nb_participants" />
+            <TableColumn fx:id="coltitre_challenge" prefWidth="79.99998474121094" text="titre" />
+            <TableColumn fx:id="coltype_challenge" prefWidth="84.0" text="type" />
+            <TableColumn fx:id="coltdescription_challenge" prefWidth="225.60003662109375" text="description" />
+            <TableColumn fx:id="coldatedebut_challenge" prefWidth="103.20001220703125" text="date_debut" />
+            <TableColumn fx:id="coldatefin_challenge" prefWidth="95.2000732421875" text="date_fin" />
+            <TableColumn fx:id="colniveau_challenge" prefWidth="48.800048828125" text="niveau" />
+            <TableColumn fx:id="colnb_participants_challenge" prefWidth="95.2000732421875" text="nb_participants" />
          </columns>
       </TableView>
-      <Button fx:id="btn_supp_challenge" layoutX="115.0" layoutY="639.0" mnemonicParsing="false" onAction="#supprimer_challenge" text="supprimer" />
-      <DatePicker fx:id="date_debut_challenge" layoutX="118.0" layoutY="359.0" prefHeight="31.0" prefWidth="183.0" />
-      <DatePicker fx:id="date_fin_challenge" layoutX="118.0" layoutY="396.0" prefHeight="31.0" prefWidth="184.0" />
-      <Label layoutX="64.0" layoutY="599.0" text="Titre" />
+      <Button fx:id="btn_supp_challenge" layoutX="25.0" layoutY="450.0" mnemonicParsing="false" onAction="#supprimer_challenge" prefHeight="31.0" prefWidth="83.0" text="supprimer" />
+      <DatePicker fx:id="date_debut_challenge" layoutX="7.0" layoutY="231.0" prefHeight="31.0" prefWidth="183.0" promptText="date debut" />
+      <DatePicker fx:id="date_fin_challenge" layoutX="6.0" layoutY="269.0" prefHeight="31.0" prefWidth="184.0" promptText="date fin" />
       <Label layoutX="61.0" layoutY="69.0" text="GESTION DE CHALLENGE" />
-      <Button fx:id="btn_chercher_challenge_coach" layoutX="165.0" layoutY="687.0" mnemonicParsing="false" onAction="#chercher_challenge" text="chercher" />
-      <TextField fx:id="chercher_titre_challenge_coach" layoutX="115.0" layoutY="594.0" />
-      <Button fx:id="btn_atri_challenge_admin" layoutX="990.0" layoutY="89.0" mnemonicParsing="false" onAction="#trierChallenge" prefHeight="39.0" prefWidth="172.0" text="trier par date debut" />
-      <Button fx:id="btn_aff_challenge_valide" layoutX="464.0" layoutY="92.0" mnemonicParsing="false" onAction="#afficher_challenge_valide" prefHeight="36.0" prefWidth="235.0" text="afficher les propositions valides" />
+      <Button fx:id="btn_chercher_challenge_coach" layoutX="25.0" layoutY="553.0" mnemonicParsing="false" onAction="#chercher_challenge" prefHeight="26.0" prefWidth="90.0" text="chercher" />
+      <TextField fx:id="chercher_titre_challenge_coach" layoutX="9.0" layoutY="407.0" promptText="titre" />
+      <Button fx:id="btn_atri_challenge_admin" layoutX="711.0" layoutY="140.0" mnemonicParsing="false" onAction="#trierChallenge" prefHeight="26.0" prefWidth="183.0" text="trier par date debut" />
+      <Button fx:id="btn_aff_challenge_valide" layoutX="246.0" layoutY="140.0" mnemonicParsing="false" onAction="#afficher_challenge_valide" prefHeight="26.0" prefWidth="210.0" text="afficher les propositions valides" />
    </children>
 </AnchorPane>

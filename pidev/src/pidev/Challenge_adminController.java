@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pidev;
+package Aura.ChallengeClassementgg;
 
 
 
-import entities.challenge;
-import entities.classement;
+import Entities.challenge;
+import Entities.classement;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -20,15 +20,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import service.ServiceChallenge;
+import Service.ServiceChallenge;
 import java.util.Date;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.JOptionPane;
-import service.ServiceClassement;
-import service.ServiceNiveau;
-import utils.Myconnexion;
+import Service.ServiceClassement;
+import Service.ServiceNiveau;
+import utils.Connexion;
 
 
 import org.jfree.chart.ChartFactory;
@@ -78,6 +78,10 @@ public class Challenge_adminController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    public String id_user="";
+    public void initializeFxml(String id){
+        System.out.println(id);
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -89,6 +93,8 @@ public class Challenge_adminController implements Initializable {
         ObservableList<challenge> Ochallenges = sc.afficherChallenge();
         ObservableList<classement> Oclassements = cl.afficherClassement();
         afficher_challenge_admin();
+         sc.verif_date_challenge();
+        sc.verif_date_participation();
        
         // TODO
     }    
@@ -117,8 +123,9 @@ public class Challenge_adminController implements Initializable {
           ServiceChallenge sc = new ServiceChallenge();
          challenge c=new challenge ();
          String tr;
-         c=sc.recup_challenge_titre(titre_challenge_admin.getText());
          
+           c= liste_challenge_admin.getSelectionModel().getSelectedItem();
+        
          sc.confirmer_challenge(c);
          afficher_challenge_admin();
         
@@ -130,7 +137,9 @@ public class Challenge_adminController implements Initializable {
     private void supprimerChallenge_admin(ActionEvent event) {
         
           ServiceChallenge sp = new ServiceChallenge();
-        sp.supprimerChallenge(titre_challenge_admin.getText());
+           challenge n=new challenge ();
+           n= liste_challenge_admin.getSelectionModel().getSelectedItem();
+        sp.supprimerChallenge(n.getTitre());
         afficher_challenge_admin();
     }
 
@@ -156,11 +165,11 @@ public class Challenge_adminController implements Initializable {
          try {
             String query ="SELECT titre,nb_participants FROM challenge WHERE type = 'valide'";
             Statement stm=null;
-            stm = Myconnexion.getInstance().getConnection().createStatement();
+            stm = Connexion.getInstance().getConnection().createStatement();
             ResultSet rst = stm.executeQuery(query);
             
            // JDBCCategoryDataset​(Myconnexion.getInstance().getConnection() , query);
-            JDBCCategoryDataset dataset=new JDBCCategoryDataset(Myconnexion.getInstance().getConnection(),query);
+            JDBCCategoryDataset dataset=new JDBCCategoryDataset(Connexion.getInstance().getConnection(),query);
            
             JFreeChart chart=ChartFactory.createLineChart("STATS des challenges", "challenge", "nb participants", dataset ,PlotOrientation.VERTICAL,false,true,true);
             BarRenderer renderer = null;
@@ -173,6 +182,25 @@ public class Challenge_adminController implements Initializable {
         
         
         }catch(Exception e){JOptionPane.showMessageDialog(null,e);}
+    }
+
+    @FXML
+    private void refresh(ActionEvent event) {
+         ServiceChallenge sc = new ServiceChallenge();
+        // liste_challenge.SetCollumn(sc.afficherChallenge().toString());
+
+        ObservableList<challenge> Ochallenges = sc.afficherChallenge();
+       // colid_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colititre_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        coltype_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colString_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+        coldate_debut_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+        coldate_fin_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+        colnb_participants_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("nb_participants"));
+      
+        colniveau_challenge_admin.setCellValueFactory(new PropertyValueFactory<>("niveau"));
+        liste_challenge_admin.setItems(Ochallenges);
     }
     
 }

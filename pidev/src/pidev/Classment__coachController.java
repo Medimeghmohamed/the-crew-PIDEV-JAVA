@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pidev;
+package Aura.ChallengeClassementgg;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,11 +15,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-import entities.challenge;
-import entities.classement;
-import entities.ligne_challenge;
-import entities.niveau;
-import entities.participation_challenge;
+import Entities.challenge;
+import Entities.classement;
+
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +31,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import service.ServiceChallenge;
+import Service.ServiceChallenge;
 import java.util.Date;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -41,30 +39,13 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.util.*;
-import javafx.event.Event;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.input.MouseEvent;
-import javax.swing.JOptionPane;
-import service.ServiceClassement;
-import service.ServiceLigneChallenge;
-import service.ServiceMail;
-import service.ServiceNiveau;
-import utils.Myconnexion;
+
+import Service.ServiceClassement;
+import Service.ServiceNiveau;
+import utils.Connexion;
 
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.jdbc.JDBCCategoryDataset;
+
 
 /**
  * FXML Controller class
@@ -93,6 +74,10 @@ public class Classment__coachController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    public String id_user="";
+    public void initializeFxml(String id){
+        System.out.println(id);
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          ServiceChallenge sc = new ServiceChallenge();

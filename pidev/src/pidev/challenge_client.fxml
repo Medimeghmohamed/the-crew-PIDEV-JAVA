@@ -7,10 +7,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="733.0" prefWidth="1011.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="pidev.Challenge_clientController">
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.ChallengeClassementgg.Challenge_clientController">
    <children>
-      <TableView fx:id="liste_challenge_client" layoutX="49.0" layoutY="177.0" prefHeight="514.0" prefWidth="685.0">
+      <TableView fx:id="liste_challenge_client" layoutX="49.0" layoutY="189.0" onMouseClicked="#verif_etat" prefHeight="369.0" prefWidth="686.0">
          <columns>
             <TableColumn fx:id="colniv_challenge_client" prefWidth="146.00003051757812" text="Niveau" />
             <TableColumn minWidth="0.0" prefWidth="0.0" text="C2" />
@@ -21,18 +20,12 @@
          </columns>
       </TableView>
       <Label layoutX="49.0" layoutY="114.0" text="REJOIDRE LES CHALLENGES" />
-      <TextField fx:id="titre_challenge_client" layoutX="935.0" layoutY="244.0" />
-      <Label layoutX="886.0" layoutY="242.0" prefHeight="34.0" prefWidth="39.0" text="Titre" />
-      <Button fx:id="rejoindre_challenge" layoutX="1055.0" layoutY="303.0" mnemonicParsing="false" onAction="#rejoidreChallenge" text="rejoindre" />
-      <Button fx:id="btn_chercher_challenge_client" layoutX="932.0" layoutY="303.0" mnemonicParsing="false" onAction="#chercherChallenge_client" text="rechercher" />
-      <Button fx:id="btn_aff_challenge_client" layoutX="916.0" layoutY="358.0" mnemonicParsing="false" onAction="#afficher_challege_client" text="afficher tous les challenges" />
-      <Label layoutX="870.0" layoutY="206.0" text="votre ID" />
-      <TextField fx:id="idclient_challenge_client" layoutX="935.0" layoutY="201.0" />
-      <Button fx:id="joined_challenge" layoutX="926.0" layoutY="403.0" mnemonicParsing="false" onAction="#aff_joined_challenges" text="afficher vos  challenges " />
-      <TableView fx:id="tab_etat_client" layoutX="732.0" layoutY="177.0" prefHeight="513.0" prefWidth="103.0">
-         <columns>
-            <TableColumn fx:id="coletat_challenge_client" prefWidth="102.0" text="Etat" />
-         </columns>
-      </TableView>
+      <TextField fx:id="titre_challenge_client" layoutX="48.0" layoutY="140.0" promptText="titre" />
+      <Button fx:id="rejoindre_challenge" layoutX="754.0" layoutY="201.0" mnemonicParsing="false" onAction="#rejoidreChallenge" prefHeight="26.0" prefWidth="90.0" text="rejoindre" />
+      <Button fx:id="btn_chercher_challenge_client" layoutX="248.0" layoutY="135.0" mnemonicParsing="false" onAction="#chercherChallenge_client" prefHeight="36.0" prefWidth="123.0" text="rechercher" />
+      <Button fx:id="btn_aff_challenge_client" layoutX="61.0" layoutY="568.0" mnemonicParsing="false" onAction="#afficher_challege_client" prefHeight="46.0" prefWidth="354.0" text="afficher tous les challenges" />
+      <Button fx:id="joined_challenge" layoutX="494.0" layoutY="568.0" mnemonicParsing="false" onAction="#aff_joined_challenges" prefHeight="46.0" prefWidth="330.0" text="afficher vos  challenges " />
+      <TextField fx:id="tf_etat_challenge_client" layoutX="562.0" layoutY="140.0" promptText="Etat" />
+      <Button fx:id="btnDone_challenge_client" layoutX="754.0" layoutY="271.0" mnemonicParsing="false" onAction="#challenge_done_client" text="challenge fini " />
    </children>
 </AnchorPane>

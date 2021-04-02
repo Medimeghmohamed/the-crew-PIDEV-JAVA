@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pidev;
+package Aura.ChallengeClassementgg;
 
-import entities.challenge;
-import entities.classement;
+import Entities.challenge;
+import Entities.classement;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,14 +16,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import service.ServiceChallenge;
+import Service.ServiceChallenge;
 import java.util.Date;
 import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import service.ServiceClassement;
-import service.ServiceNiveau;
+import Service.ServiceClassement;
+import Service.ServiceNiveau;
 
 /**
  * FXML Controller class
@@ -80,6 +80,10 @@ public class Challenge_coachController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    public String id_user="";
+    public void initializeFxml(String id){
+        System.out.println(id);
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -91,6 +95,8 @@ public class Challenge_coachController implements Initializable {
         ObservableList<challenge> Ochallenges = sc.afficherChallenge();
         ObservableList<classement> Oclassements = cl.afficherClassement();
         afficher_challege();
+         sc.verif_date_challenge();
+        sc.verif_date_participation();
        
     }    
 
@@ -120,8 +126,10 @@ public class Challenge_coachController implements Initializable {
     private void modifier_challege(ActionEvent event) {
          ServiceChallenge sp = new ServiceChallenge();
         challenge c = new challenge();
+        
+         c= liste_challenge.getSelectionModel().getSelectedItem();
 
-        c = sp.recup_challenge_titre(chercher_titre_challenge_coach.getText());
+       
         c.setTitre(titre_challenge.getText());
         c.setDescription(desc_challenge.getText());
         c.setImg(imd_challenge.getText());
@@ -173,7 +181,9 @@ public class Challenge_coachController implements Initializable {
     @FXML
     private void supprimer_challenge(ActionEvent event) {
           ServiceChallenge sp = new ServiceChallenge();
-        sp.supprimerChallenge(chercher_titre_challenge_coach.getText());
+          challenge n=new challenge ();
+           n= liste_challenge.getSelectionModel().getSelectedItem();
+        sp.supprimerChallenge(n.getTitre());
         afficher_challege();
     }
 
@@ -181,6 +191,7 @@ public class Challenge_coachController implements Initializable {
     private void chercher_challenge(ActionEvent event) {
           ServiceChallenge sn = new ServiceChallenge();
          challenge n=new challenge ();
+          n= liste_challenge.getSelectionModel().getSelectedItem();
         ObservableList<challenge> Ochallenges = sn.RechercherChallenge(chercher_titre_challenge_coach.getText());
        //colid_challenge.setCellValueFactory(new PropertyValueFactory<>("id"));
         coltitre_challenge.setCellValueFactory(new PropertyValueFactory<>("titre"));

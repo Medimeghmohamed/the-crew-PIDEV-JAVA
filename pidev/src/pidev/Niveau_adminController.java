@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pidev;
+package Aura.ChallengeClassementgg;
 
 
-import entities.challenge;
-import entities.classement;
-import entities.niveau;
+import Entities.challenge;
+import Entities.classement;
+import Entities.niveau;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,12 +17,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import service.ServiceChallenge;
+import Service.ServiceChallenge;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import service.ServiceClassement;
-import service.ServiceNiveau;
+import Service.ServiceClassement;
+import Service.ServiceNiveau;
 
 
 /**
@@ -48,12 +48,14 @@ public class Niveau_adminController implements Initializable {
     private Button btn_chercher_niveau_admin;
     @FXML
     private Button btn_trier_niveau;
-    @FXML
-    private TextField modif_niveau;
 
     /**
      * Initializes the controller class.
      */
+    public String id_user="";
+    public void initializeFxml(String id){
+        System.out.println(id);
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -84,7 +86,8 @@ public class Niveau_adminController implements Initializable {
          niveau n = new niveau();
         ServiceNiveau nv = new ServiceNiveau();
 
-        n = nv.recup_niveau(modif_niveau.getText());
+//        n = nv.recup_niveau(modif_niveau.getText());
+         n= liste_niveau_admin.getSelectionModel().getSelectedItem();
 
        // n.setTitre(titre_niveau_admin.getText());
 
@@ -104,7 +107,9 @@ public class Niveau_adminController implements Initializable {
     @FXML
     private void supprimer_niveau_admin(ActionEvent event) {
           ServiceNiveau nv = new ServiceNiveau();
-        nv.supprimerNiveau(modif_niveau.getText());
+          niveau n = new niveau();
+        n= liste_niveau_admin.getSelectionModel().getSelectedItem();
+        nv.supprimerNiveau(n.getTitre());
         afficher_niveau_admin();
     }
 

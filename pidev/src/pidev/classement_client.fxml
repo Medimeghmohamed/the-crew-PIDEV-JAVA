@@ -7,10 +7,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="732.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="pidev.Classement_clientController">
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Aura.ChallengeClassementgg.Classement_clientController">
    <children>
-      <TableView fx:id="liste_classement_client" layoutX="338.0" layoutY="183.0" prefHeight="481.0" prefWidth="388.0">
+      <TableView fx:id="liste_classement_client" layoutX="347.0" layoutY="96.0" prefHeight="560.0" prefWidth="388.0">
          <columns>
             <TableColumn fx:id="colniveau_classement1" prefWidth="75.0" text="niveau" />
             <TableColumn fx:id="colposition_classement1" prefWidth="75.0" text="position" />
@@ -19,9 +18,8 @@
          </columns>
       </TableView>
       <Label layoutX="58.0" layoutY="128.0" text="CONSULTER LE CLASSEMENT" />
-      <Button fx:id="btn_chercher_classement_client" layoutX="186.0" layoutY="337.0" mnemonicParsing="false" onAction="#chercherClassement_client" text="rechercher" />
-      <TextField fx:id="chercher_position_client" layoutX="133.0" layoutY="285.0" />
-      <Label layoutX="47.0" layoutY="290.0" text="Nom Client" />
-      <Button fx:id="afficher_classement_client" layoutX="199.0" layoutY="400.0" mnemonicParsing="false" onAction="#afficher_classement_client" text="afficher" />
+      <Button fx:id="btn_chercher_classement_client" layoutX="182.0" layoutY="326.0" mnemonicParsing="false" onAction="#chercherClassement_client" prefHeight="33.0" prefWidth="92.0" text="rechercher" />
+      <TextField fx:id="chercher_position_client" layoutX="133.0" layoutY="285.0" promptText="client" />
+      <Button fx:id="afficher_classement_client" layoutX="182.0" layoutY="394.0" mnemonicParsing="false" onAction="#afficher_classement_client" prefHeight="34.0" prefWidth="92.0" text="raffraichir" />
    </children>
 </AnchorPane>
